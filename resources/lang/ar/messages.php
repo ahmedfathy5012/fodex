@@ -1,0 +1,28 @@
+<?php
+
+return [
+       'country' => 'الدول',
+            // 'state' => 'c,r,u,d',
+            // 'city' => 'c,r,u,d',
+              'major' => 'الاقسام',
+            'category' => 'الاقسام الرئيسيه',
+            'subcategory' => 'الاقسام الفرعيه',
+              'item' => 'items',
+            'incomes' => 'الايردات',
+            'seller' => 'البائعين',
+              'offers' => 'العروض',
+            'expensetype' => 'انواع المصروفات',
+            'collectionstypes' => 'انواع الايردات',
+            'zone' => 'المناطق',
+             'driver' => 'السائقين',
+             'expenses' => 'المصروفات',
+            'workschedule' => 'جدول العمل',
+            'expenseemployee' => 'مصروفات الموظفين',
+            'employee'=> 'الموظفين',
+    'state' => 'المحافظات',
+    'city' => 'المدن',
+    'create'=>'إضافة',
+    'read'=>'عرض',
+    'update'=>'تعديل',
+    'delete'=>'حذف',
+];

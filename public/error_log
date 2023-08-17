@@ -1,0 +1,468 @@
+[08-Jun-2021 15:49:48 America/New_York] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/dawegiyi/fodex.dawena.net/vendor/composer/platform_check.php on line 24
+[08-Jun-2021 15:51:48 America/New_York] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/dawegiyi/fodex.dawena.net/vendor/composer/platform_check.php on line 24
+[08-Jun-2021 15:52:44 America/New_York] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/dawegiyi/fodex.dawena.net/vendor/composer/platform_check.php on line 24
+[08-Jun-2021 15:54:59 America/New_York] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.3.0". You are running 7.2.34. in /home/dawegiyi/fodex.dawena.net/vendor/composer/platform_check.php on line 24
+[22-Jun-2021 00:36:06 Africa/Cairo] PHP Fatal error:  Can't use method return value in write context in /home/dawegiyi/fodex.dawena.net/app/DataTables/OrderDataTable.php on line 57
+[23-Jun-2021 21:04:55 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Http\Controllers\SellerController::destroy() in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/SellerController.php on line 278
+[23-Jun-2021 22:46:07 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Http\Controllers\EmployeeController::storeemployeecontract() in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/EmployeeController.php on line 235
+[23-Jun-2021 23:24:46 Africa/Cairo] PHP Fatal error:  Cannot use App\Models\Driver as Driver because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/DriverController.php on line 20
+[07-Jul-2021 21:05:01 Africa/Cairo] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/HomeContentController.php on line 6
+[09-Jul-2021 00:53:57 Africa/Cairo] PHP Fatal error:  Cannot use App\Models\Address as Address because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/SellerController.php on line 22
+[12-Jul-2021 01:12:00 Africa/Cairo] PHP Fatal error:  Cannot declare class App\DataTables\AllCollectionDateTable, because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/DataTables/AllCollectionDataTable.php on line 0
+[18-Jul-2021 14:31:20 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Http\Controllers\OrderController::sellerorders() in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/OrderController.php on line 128
+[26-Jul-2021 23:37:52 Africa/Cairo] PHP Fatal error:  Cannot use App\Http\Resources\CartItemResource as CartItemResource because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/OrderController.php on line 18
+[26-Jul-2021 23:41:43 Africa/Cairo] PHP Fatal error:  Cannot use App\Models\OrderItemExtra as OrderItemExtra because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/OrderController.php on line 16
+[28-Jul-2021 23:56:35 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Http\Controllers\NotificationController::notificationdriver() in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/NotificationController.php on line 157
+[28-Jul-2021 23:58:56 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Http\Controllers\NotificationController::notificationdriver() in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/NotificationController.php on line 157
+[02-Aug-2021 23:45:23 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Http\Controllers\OrderController::deleteitemorder() in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/OrderController.php on line 145
+[02-Aug-2021 23:45:46 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Http\Controllers\OrderController::deleteitemorder() in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/OrderController.php on line 145
+[03-Aug-2021 00:11:23 Africa/Cairo] PHP Fatal error:  Cannot declare class App\DataTables\GenderDataTable, because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/DataTables/RoleDataTable.php on line 0
+[24-Aug-2021 22:31:46 Africa/Cairo] PHP Fatal error:  Cannot use App\Models\Country as Country because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/StatisticController.php on line 12
+[29-Aug-2021 22:55:43 Africa/Cairo] PHP Fatal error:  Class 'App\Http\Controllers\api\Controller' not found in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/MajorClassificationController.php on line 16
+[29-Aug-2021 22:57:12 Africa/Cairo] PHP Fatal error:  Class 'App\Http\Controllers\api\Controller' not found in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/MajorClassificationapiController.php on line 16
+[02-Sep-2021 00:09:50 Africa/Cairo] PHP Fatal error:  Cannot declare class App\MajorOfferDataTable\MajorOfferDataTable, because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/DataTables/MajorOfferDataTable.php on line 0
+[14-Dec-2021 22:43:22 Africa/Cairo] PHP Fatal error:  Cannot use [] for reading in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/FavoriteSellerController.php on line 20
+[14-Dec-2021 22:46:11 Africa/Cairo] PHP Fatal error:  Cannot use Validator as Validator because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/FavoriteSellerController.php on line 12
+[16-Dec-2021 23:53:02 Africa/Cairo] PHP Fatal error:  Cannot use App\Models\OrderItem as OrderItem because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Models/Order.php on line 12
+[16-Dec-2021 23:53:16 Africa/Cairo] PHP Fatal error:  Cannot use App\Models\OrderItem as OrderItem because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Models/Order.php on line 12
+[27-Dec-2021 18:26:24 Africa/Cairo] PHP Fatal error:  Trait 'App\Traits\ApiTrait' not found in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/AddressController.php on line 24
+[30-Jan-2022 21:28:00 Africa/Cairo] PHP Fatal error:  Cannot use App\DataTables\UserWalletTransformation as UserWalletTransformation because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/UserwalletController.php on line 8
+[09-Feb-2022 22:18:29 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 217
+[09-Feb-2022 22:18:31 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 217
+[09-Feb-2022 22:18:59 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 217
+[10-Feb-2022 17:30:27 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 217
+[10-Feb-2022 17:30:28 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 217
+[10-Feb-2022 17:32:52 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 217
+[10-Feb-2022 17:33:21 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 266
+[10-Feb-2022 17:34:27 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 266
+[10-Feb-2022 17:34:50 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/api/CartController.php on line 266
+[23-Feb-2022 22:24:53 Africa/Cairo] PHP Fatal error:  Cannot declare class App\DataTables\OrderDataTable, because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/DataTables/DailyOrderDataTable.php on line 0
+[28-Feb-2022 21:54:00 Africa/Cairo] PHP Fatal error:  Cannot use App\Zone as Zone because the name is already in use in /home/dawegiyi/fodex.dawena.net/app/Http/Controllers/UserController.php on line 12
+[09-Mar-2022 21:24:53 Africa/Cairo] PHP Fatal error:  Cannot redeclare App\Models\Order::getDriverReachSellerAttribute() in /home/dawegiyi/fodex.dawena.net/app/Models/Order.php on line 172
+[29-Apr-2022 14:18:28 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:18:44 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:18:53 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:19:45 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:20:16 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:20:17 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:20:18 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:20:19 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:21:18 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[29-Apr-2022 14:21:31 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:36:19 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(476): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(344): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:43:34 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:45:39 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:51:19 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:52:45 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:52:48 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:52:49 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:52:51 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:53:14 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:53:15 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:53:15 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:53:15 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:54:00 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:54:04 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[08-May-2022 21:54:05 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(130): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(106): Illuminate\Foundation\PackageManifest->build()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): Illuminate\Foundation\PackageManifest->getManifest()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#11 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#13 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#14 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[31-May-2022 21:26:13 Africa/Cairo] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/thepkrnf/panel.fodexeg.com/app/Models/Item.php on line 3
+[04-Jul-2022 01:02:39 Africa/Cairo] PHP Fatal error:  During inheritance of ArrayAccess: Uncaught ErrorException: Return type of Illuminate\Support\Collection::offsetExists($key) should either be compatible with ArrayAccess::offsetExists(mixed $offset): bool, or the #[\ReturnTypeWillChange] attribute should be used to temporarily suppress the notice in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php:1349
+Stack trace:
+#0 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php(11): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError()
+#1 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(444): include('/home/thepkrnf/...')
+#2 /home/thepkrnf/panel.fodexeg.com/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile()
+#3 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/helpers.php(110): Composer\Autoload\ClassLoader->loadClass()
+#4 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(89): collect()
+#5 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/PackageManifest.php(78): Illuminate\Foundation\PackageManifest->config()
+#6 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterFacades.php(26): Illuminate\Foundation\PackageManifest->aliases()
+#7 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(230): Illuminate\Foundation\Bootstrap\RegisterFacades->bootstrap()
+#8 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\Foundation\Application->bootstrapWith()
+#9 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(135): Illuminate\Foundation\Http\Kernel->bootstrap()
+#10 /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#11 /home/thepkrnf/panel.fodexeg.com/public/index.php(55): Illuminate\Foundation\Http\Kernel->handle()
+#12 {main} in /home/thepkrnf/panel.fodexeg.com/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[02-Sep-2022 18:21:28 Africa/Cairo] PHP Fatal error:  Trait "App\Http\Controllers\CompanyDashboard\generaltrait" not found in /home/thepkrnf/panel.fodexeg.com/app/Http/Controllers/CompanyDashboard/DriverController.php on line 21
+[02-Sep-2022 18:23:27 Africa/Cairo] PHP Fatal error:  Cannot declare class App\DataTables\DriverDataTable, because the name is already in use in /home/thepkrnf/panel.fodexeg.com/app/DataTables/companydashboard/DriverDataTable.php on line 0
+[04-Sep-2022 21:46:02 Africa/Cairo] PHP Fatal error:  Cannot declare class App\DataTables\companydashboard\OrderDataTable, because the name is already in use in /home/thepkrnf/panel.fodexeg.com/app/DataTables/OrderDataTable.php on line 0
+[24-Oct-2022 23:26:04 Africa/Cairo] PHP Fatal error:  Cannot use empty array elements in arrays in /home/thepkrnf/panel.fodexeg.com/app/DataTables/SellerDataTable.php on line 150

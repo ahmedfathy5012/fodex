@@ -1,0 +1,114 @@
+
+:root {
+  --color-primary: #A5825A;
+  --color-second: #1A140E;
+  --color-third: #5E5E5E;
+  --color-fourth: #3D3D3D;
+  --color-fifth: #CCCCCC;
+  --color-sixth: #FFF;
+  --color-seventh: #707070;
+  --color-eightth: #999999;
+  --color-ninth: #353945;
+  --color-tenth: #23262F;
+  --color-eleven: #3A3335;
+}
+
+@font-face {
+  font-family: "light";
+  src: url("../website/fonts/alfont_com_Somar-Light.otf");
+}
+
+@font-face {
+  font-family: "regular";
+  src: url("../website/fonts/alfont_com_Somar-Regular.otf");
+}
+
+@font-face {
+  font-family: "medium";
+  src: url("../website/fonts/alfont_com_Somar-Medium.otf");
+}
+
+@font-face {
+  font-family: "semi-bold";
+  src: url("../website/fonts/alfont_com_Somar-SemiBold.otf");
+}
+
+@font-face {
+  font-family: "bold";
+  src: url("../website/fonts/alfont_com_Somar-Bold.otf");
+}
+.uploadOuter {
+    text-align: center;
+    padding: 20px;
+  
+  }
+  strong {
+    padding: 0 10px
+  }
+  .dragBox {
+    width: 100%;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    line-height: 95px;
+    color: #999;
+    border: 2px dashed #ccc;
+    display: inline-block;
+    transition: transform 0.3s;
+    cursor: pointer;
+   
+  }
+  .dragBox input[type="file"] {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+    left: 0;
+  }
+  .draging {
+    transform: scale(1.1);
+  }
+  #preview {
+    text-align: center;
+    width: 10rem;
+    /* height: 12rem; */
+    margin: auto;
+  }
+  #preview img {
+    max-width: 100%
+  }
+  .dragBox:hover{
+  background: #ecf0f5;
+}
+.dataTable img{
+  border-radius: 50%;
+  width:8rem;
+  height:8rem;
+}
+.btning,.btning:hover{
+   /*// color: #dd1e45;*/
+/*border: 2px solid currentColor;*/
+color: #3699ff;
+    background-color: #e1f0ff !important;
+    border-color: transparent !important;
+max-width: 80%;
+font-size: 1.25rem;
+font-weight: 700;
+text-overflow: ellipsis;
+white-space: nowrap;
+cursor: pointer;
+display: inline-block;
+overflow: hidden;
+padding: 0.625rem 1.25rem;
+background: transparent;
+border-radius: 0;
+text-align: center;
+margin-right: 20px;
+display:flex;
+margin:auto;
+align-items: center;
+    justify-content: center;
+}

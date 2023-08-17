@@ -1,0 +1,588 @@
+--color-primary {
+    color: #ff582b;
+}
+
+@font-face {
+    font-family: "regular";
+    src: url("../fonts/Tajawal-Regular.ttf");
+}
+
+@font-face {
+    font-family: "semibold";
+    src: url("../fonts/Tajawal-Medium.ttf");
+}
+
+@font-face {
+    font-family: "bold";
+    src: url("../fonts/Tajawal-Bold.ttf");
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    text-align: start !important;
+}
+
+.brand {
+    height: unset;
+    padding: 10px 25px;
+}
+
+.brand img {
+    width: 45px;
+}
+
+.menu-link .menu-text {
+    font-family: "semibold";
+}
+
+.header-mobile-fixed .header-mobile img {
+    width: 40%;
+}
+
+.btn {
+    font-family: "semibold";
+}
+
+input, .font-size-sm {
+    font-family: "regular";
+    text-align: start;
+}
+
+.dataTables_length label, .dataTables_filter label {
+    text-align: center !important;
+}
+
+label {
+    font-family: "semibold";
+    width: 70%;
+    text-align: start;
+}
+
+label.radio {
+    width: unset;
+}
+
+.card_amount {
+    padding: 2rem 2.25rem;
+    background-color: #fff;
+    border-top: 1px solid #ebedf3;
+}
+
+.card-title {
+    font-family: "bold";
+}
+
+.filter-option-inner-inner {
+    text-align: start !important;
+    font-family: "regular";
+}
+
+.bootstrap-select .dropdown-menu.inner>li>a {
+    font-family: "regular";
+}
+.dataTables_filter, .dataTables_length{
+    width: 49%;
+    display: inline-block;
+}
+#map {
+    width: 100%;
+    height: 500px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px #0000001a;
+    border-radius: 15px;
+}
+
+.subheaders {
+    width: fit-content;
+    margin: 2% 0% 3%;
+    font-family: "bold";
+    color: var(--color-fourth);
+    display: flex;
+    position: relative;
+    justify-content: start;
+}
+
+.subheaders::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #FF582B;
+    bottom: -10px;
+    right: 0;
+}
+
+.list_group {
+    box-shadow: 1px 1px 6px 3px rgba(30, 30, 45, .20);
+    border-radius: 10px;
+    margin: 0 0 5%;
+}
+
+table thead tr th {
+    font-family: "bold";
+    font-weight:bold;
+}
+
+table tbody tr td {
+    font-family: "semibold";
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.select2-selection__choice, .select2-results__option {
+    font-family: "regular";
+}
+
+.select2-results__group {
+    font-family: "semibold";
+}
+
+select:hover {
+    content: attr(title);
+    font-family: "regular";
+}
+
+.nonelabel {
+    opacity: 0;
+}
+
+.form-group {
+    position: relative;
+}
+
+.toggle {
+    background: none;
+    border: none;
+    outline: none;
+    color: #bfbfbf;
+    /* display: none; */
+    /* font-size: .9em; */
+    font-weight: 600;
+    /* padding: .5em; */
+    position: absolute;
+    left: 0.75em;
+    top: 55%;
+    z-index: 9;
+    cursor: pointer;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.btn--browse {
+    border: 1px solid gray;
+    border-start-end-radius: 0;
+    background-color: #3699ff;
+    color: #fff;
+    height: 42px;
+    width: 30%;
+    padding: 10px 14px;
+    cursor: pointer !important;
+    display: inline-block;
+    border-radius: .42rem 0 0 .42rem;
+}
+
+.f-input {
+    background-color: white;
+    border: 1px solid gray;
+    width: 70%;
+    display: inline-block;
+    padding: 10px 14px;
+    height: 42px;
+    border-radius: 0 .42rem .42rem 0;
+}
+
+.type_restaurant, .lang {
+    width: 100%;
+    display: inline-block;
+}
+
+.type_restaurant h3, .lang h3 {
+    font-family: "semibold";
+}
+
+.type_restaurant ul, .lang ul {
+    list-style: none;
+    padding: 0;
+}
+
+.type_restaurant li, .lang li {
+    font-family: "regular";
+    margin-left: 3%;
+    display: inline-block;
+}
+
+.flex-wrap a {
+    font-family: "semibold";
+}
+
+.administrator li {
+    list-style: none;
+    margin: 2% 0;
+}
+
+.administrator li label {
+    width: fit-content;
+}
+
+.administrator li span {
+    font-family: "regular";
+}
+
+.nav-tabs {
+    width: fit-content;
+    margin: 0 auto 3%;
+    border: 1px solid #e4e6ef;
+}
+
+.nav-item .nav-link, .nav-link {
+    font-family: "semibold";
+    padding: .75rem 3.5rem;
+    border-radius: 0;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background-color: #432f85;
+    color: #fff !important;
+    border-radius: 0;
+    padding: .75rem 3.5rem;
+}
+
+.nav-item .nav-link:hover {
+    color: #432f85 !important;
+}
+
+.nav-item .nav-link.active:hover {
+    color: #fff !important;
+}
+
+.card_label {
+    width: 95%;
+    height: 100%;
+    margin-bottom: 5%;
+}
+
+.card-input-element {
+    display: none;
+}
+
+.card-input {
+    margin: 10px;
+    padding: 3%;
+    border: 1px solid #acacac;
+    border-radius: 10px;
+    justify-content: stretch;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+}
+
+.card-input:hover {
+    cursor: pointer;
+}
+
+.card-input-element:checked+.card-input {
+    box-shadow: 0 4px 15px 0px rgba(67, 47, 133, .3);
+    border: 1px solid rgb(67, 47, 133);
+}
+
+.panel-heading {
+    font-size: 1.8rem;
+    color: #432f85;
+}
+
+.panel-body {
+    font-family: "regular";
+    color: #432f85;
+}
+
+.panel-body p {
+    margin: 5% 0;
+}
+
+.panel-body ol {
+    list-style: none;
+    padding-right: 1rem;
+}
+
+.panel-body ol li {
+    margin: 5% 0;
+}
+
+.panel-body ol li::before {
+    content: "✓";
+    font-size: 80%;
+    background-color: transparent;
+    color: #432f85;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 1px 5px;
+    border: 2px solid #432f85;
+    border-radius: 50%;
+}
+
+.package-btn {
+    margin-top: 5%;
+}
+
+.tab-content h6 {
+    font-family: "semibold";
+}
+
+.nav.nav-pills .nav-link.active, .nav.nav-pills .show>.nav-link {
+    border-radius: 5px;
+}
+
+.upload_img {
+    position: relative;
+    margin: 0 auto 5%;
+}
+
+.avatar-upload .avatar-edit {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    top: 5px;
+}
+
+.avatar-upload .avatar-edit input {
+    display: none;
+}
+
+.avatar-upload .avatar-edit input+label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s ease-in-out;
+}
+
+.avatar-upload .avatar-edit input+label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+}
+
+.avatar-upload .avatar-edit input+label:after {
+    content: url("../media/svg/icons/Devices/Camera.svg");
+    font-family: "FontAwesome";
+    color: #757575;
+    position: absolute;
+    top: 13px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+
+.avatar-upload .avatar-preview {
+    width: 192px;
+    height: 192px;
+    position: relative;
+    margin: 0 auto 5%;
+    border-radius: 100%;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.avatar-upload .avatar-preview>div {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.avatar-upload h5 {
+    text-align: center;
+    color: var(--color-primary);
+    font-family: 'bold';
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+    outline: 0 !important;
+}
+
+.price .nav-pills {
+    justify-content: center;
+}
+
+.price .nav.nav-pills .nav-item {
+    width: 25%;
+}
+
+.price .nav.nav-pills .nav-link {
+    justify-content: center;
+}
+
+.order .nav-pills {
+    display: flex;
+}
+
+.order .nav-item {
+    width: 32%;
+}
+
+.order .nav-item .nav-link {
+    justify-content: center;
+}
+
+.order .wizard-arrow {
+    transform: rotate(180deg);
+}
+
+.order .wizard-title {
+    font-family: "semibold";
+}
+
+.order .text-wizard {
+    font-family: "regular";
+}
+
+.order .title_wizard {
+    font-family: "bold";
+}
+
+.order .card-img-top {
+    height: 100px;
+    object-fit: cover;
+}
+
+.order .card-body {
+    padding: 1rem;
+}
+
+.order table tr th, .order table tr td {
+    text-align: center;
+}
+
+span.minus, span.plus {
+    width: 20%;
+    height: 34px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    padding: 8px 5px 8px 5px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+}
+
+input.numberProduct {
+    height: 34px;
+    width: 50%;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.order .details_order {
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.order .details_order h4 {
+    font-family: "semibold";
+    margin: 10% 0;
+    display: block;
+}
+
+.order .infoicon {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    cursor: pointer;
+}
+
+.order .card_product {
+    margin-bottom: 5%;
+}
+
+.invoice_back {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cuse xlink:href='%23SvgjsSymbol1007' x='0' y='0'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsSymbol1007' x='720' y='0'%3e%3c/use%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cpath d='M-1 0 a1 1 0 1 0 2 0 a1 1 0 1 0 -2 0z' id='SvgjsPath1006'%3e%3c/path%3e%3cpath d='M-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0z' id='SvgjsPath1004'%3e%3c/path%3e%3cpath d='M-5 0 a5 5 0 1 0 10 0 a5 5 0 1 0 -10 0z' id='SvgjsPath1003'%3e%3c/path%3e%3cpath d='M2 -2 L-2 2z' id='SvgjsPath1002'%3e%3c/path%3e%3cpath d='M6 -6 L-6 6z' id='SvgjsPath1001'%3e%3c/path%3e%3cpath d='M30 -30 L-30 30z' id='SvgjsPath1005'%3e%3c/path%3e%3c/defs%3e%3csymbol id='SvgjsSymbol1007'%3e%3cuse xlink:href='%23SvgjsPath1001' x='30' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='30' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='30' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='30' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='30' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='30' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='30' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='30' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='30' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='30' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='90' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='90' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='90' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='90' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='90' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='90' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='90' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='90' y='450' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='90' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='90' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='150' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='150' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='150' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='150' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='150' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='150' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='150' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='150' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='150' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='150' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='210' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='210' y='90' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='210' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='210' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='210' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='210' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='210' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='210' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='210' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='210' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='270' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='270' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='270' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='270' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='270' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='270' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='270' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='270' y='450' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='270' y='510' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='270' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='330' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='330' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='330' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='330' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='330' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='330' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='330' y='390' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='330' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='330' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='330' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='390' y='30' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='390' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='390' y='150' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='390' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='390' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='390' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='390' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='390' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='390' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='390' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='450' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='450' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='450' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='450' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='450' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='450' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='450' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1004' x='450' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='450' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='450' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='510' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='510' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='510' y='150' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='510' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='510' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='510' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='510' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='510' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='510' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='510' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='570' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='570' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='570' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='570' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='570' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='570' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='570' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='570' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='570' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1005' x='570' y='570' stroke='%231c538e' stroke-width='3'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='630' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='630' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='630' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='630' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='630' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='630' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='630' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='630' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='630' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='630' y='570' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='690' y='30' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1006' x='690' y='90' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='690' y='150' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='690' y='210' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1002' x='690' y='270' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='690' y='330' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='690' y='390' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='690' y='450' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1003' x='690' y='510' stroke='%231c538e'%3e%3c/use%3e%3cuse xlink:href='%23SvgjsPath1001' x='690' y='570' stroke='%231c538e'%3e%3c/use%3e%3c/symbol%3e%3c/svg%3e");
+}
+
+.invoice_table tr td, .invoice_table tr th {
+    text-align: center;
+}
+
+.swal2-confirm {
+    padding: 0;
+}
+
+.swal2-confirm a {
+    padding: .65rem 1rem;
+    display: block;
+}
+
+/* ====== Tablet style ====== */
+
+@media only screen and (max-width: 991.98px) {
+    .order .category_product {
+        flex-direction: row !important;
+    }
+    .order .category_product .nav-link {
+        width: 25%;
+        justify-content: center;
+    }
+    .order .nav-pills {
+        margin-bottom: 5%;
+    }
+}
+
+/* ====== Mobile style ====== */
+
+@media only screen and (max-width: 767.98px) {
+    .subheaders {
+        margin: 2% 0 10%;
+    }
+    .btn--browse {
+        width: 45%;
+    }
+    .type_restaurant li, .lang li {
+        width: 45%;
+        margin: 2% 0;
+    }
+    .administrator {
+        padding: 0;
+    }
+    .order .nav-item {
+        width: 32%;
+    }
+    .order .nav-item .nav-link {
+        padding: .75rem 1.5rem;
+    }
+}
