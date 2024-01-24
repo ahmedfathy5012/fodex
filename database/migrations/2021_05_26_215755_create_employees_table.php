@@ -34,6 +34,9 @@ class CreateEmployeesTable extends Migration {
 			$table->date('expiry_date_postponement')->nullable();
 			$table->integer('statussocial_id')->nullable();
 			$table->double('wallet_amount')->default('0.0');
+			$table->integer('seller_id')->unsigned()->nullable();
+			$table->text('remember_token')->nullable();
+
 		});
 	}
 

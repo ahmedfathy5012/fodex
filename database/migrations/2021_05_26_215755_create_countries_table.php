@@ -10,6 +10,9 @@ class CreateCountriesTable extends Migration {
 		Schema::create('countries', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
+			$table->string('code')->nullable();
+			$table->text('text')->nullable();
+			$table->integer('coin_id')->unsigned()->nullable();
 			$table->double('lat');
 			$table->double('lon')->nullable();
 			$table->timestamps();

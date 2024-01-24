@@ -17,6 +17,7 @@ class CreateEmployeescontractsTable extends Migration {
 			$table->string('paper_contract_image')->nullable();
 			$table->double('sallary')->nullable();
 			$table->string('notes')->nullable();
+			$table->tinyInteger('active')->default(1);
 		});
 	}
 

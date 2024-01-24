@@ -15,6 +15,7 @@ class CreateAddressesTable extends Migration {
 			$table->smallInteger('country_id')->unsigned()->nullable();
 			$table->integer('state_id')->unsigned()->nullable();
 			$table->integer('city_id')->unsigned()->nullable();
+			$table->integer('zone_id')->unsigned()->nullable();
 			$table->string('district')->nullable();
 			$table->string('street')->nullable();
 			$table->string('building_number')->nullable();
@@ -22,7 +23,14 @@ class CreateAddressesTable extends Migration {
 			$table->integer('employee_id')->nullable();
 			$table->integer('user_id')->unsigned();
 			$table->integer('seller_id')->unsigned()->nullable();
+			$table->integer('driver_id')->unsigned()->nullable();
 			$table->string('title')->nullable();
+			$table->text('address')->nullable();
+			$table->string('building_type')->nullable();
+			$table->integer('flat_number')->nullable();
+			$table->string('phone')->nullable();
+			$table->tinyInteger('active')->default(0);
+
 		});
 	}
 

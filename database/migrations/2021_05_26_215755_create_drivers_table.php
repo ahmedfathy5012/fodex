@@ -27,6 +27,7 @@ class CreateDriversTable extends Migration {
 			$table->integer('gender_id')->unsigned();
 			$table->string('qualification')->nullable();
 			$table->date('birthday')->nullable();
+			$table->tinyInteger('is_company')->default(0);
 			$table->string('alternative_phone')->nullable();
 			$table->integer('armycase_id')->unsigned();
 			$table->integer('statussocial_id')->unsigned();
@@ -36,7 +37,20 @@ class CreateDriversTable extends Migration {
 			$table->integer('country_id')->unsigned();
 			$table->integer('state_id')->unsigned();
 			$table->integer('city_id')->unsigned();
+			$table->integer('vehicletype_id')->unsigned();
+			$table->string('license_number')->nullable();
+			$table->string('license_image')->nullable();
 			$table->double('wallet_amount')->default('0.0');
+
+			$table->string('commission')->nullable();
+			$table->string('least_price')->nullable();
+			$table->tinyInteger('available')->default(1);
+			$table->time('start_shift')->nullable();
+			$table->time('end_shift')->nullable();
+			$table->tinyInteger('master')->default(0);
+			$table->integer('driver_id')->unsigned()->nullable();
+			$table->text('remember_token')->nullable();
+
 		});
 	}
 
