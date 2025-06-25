@@ -8,8 +8,10 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Address;
 use App\Models\Order;
 use App\Models\Seller;
+use Laratrust\Traits\LaratrustUserTrait;
 class User extends Authenticatable 
 {
+    use LaratrustUserTrait;
     use Notifiable;
 
     
