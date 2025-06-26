@@ -27,9 +27,13 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link rel="canonical" href="https://keenthemes.com/metronic" />
 	<!--begin::Fonts-->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@800&display=swap" rel="stylesheet">
-	<!--end::Fonts-->
+<!--begin::Fonts-->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+<!-- <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@800&display=swap" rel="stylesheet">   -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <!--end::Fonts-->
 	<!--begin::Page Vendors Styles(used by this page)-->
 <!-- 	<scriptc src="https://cdn.tiny.cloud/1/drwqh7e3jxearaep4ekf9iltoq9m407nkdpz0qr2a9m4ighn/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
 	<link href="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
