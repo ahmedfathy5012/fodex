@@ -104,6 +104,7 @@ class SellerResource extends JsonResource
             'major_id'=> intval($this->major_id),
             'closed' => $this->open ? 0 : 1,
             'delivery_time' => intval($this->prepare_time),
+            // TODO : ERROR HERE
             // 'image' => $this->image ? asset('uploads/'.$this->image->image) : '',
             'image'=>'',
             'distance' => $distance,
