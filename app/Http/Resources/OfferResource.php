@@ -17,7 +17,7 @@ class OfferResource extends JsonResource
         return [
             'id' => intval($this->id),
             'image' => $this->image ? asset('uploads/'.$this->image) : '',
-            "seller" => $this->seller ? new SellerResource($seller) : null
+            "seller" => $this->seller ? new SellerResource($this->seller) : null
             ];
     }
 }
