@@ -247,12 +247,14 @@ class OrderController extends Controller
           }
             $delivery_areas = DeliveryArea::get();
             $extra_del_price = 0;
-             foreach($delivery_areas as $delivery_area){
-              if($this->inside($user->address->lat,$user->address->lon,$delivery_area->areas)){
-                $extra_del_price = $delivery_area->price;
-                break;
-               }
-              }
+            // START HASHEM
+            //  foreach($delivery_areas as $delivery_area){
+            //   if($this->inside($user->address->lat,$user->address->lon,$delivery_area->areas)){
+            //     $extra_del_price = $delivery_area->price;
+            //     break;
+            //    }
+            //   }
+            // END HASHEM
           
             //     if(!in_array($user->address->zone_id,$seller->sellerzones->pluck("zone_id")->toArray())){
             //       $msg ="عفوا منطقتك ليست من ضمن مناطق توصيل هذا المطعم";
