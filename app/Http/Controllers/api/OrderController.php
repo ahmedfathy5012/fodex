@@ -227,18 +227,20 @@ class OrderController extends Controller
              return $this->errorResponse($msg,422);
                  }
                
-                foreach($zones as $zone){
-              if($this->inside($user->address->lat,$user->address->lon,$zone->areas)){
-                 $distance = $this->res_distance($user->address->lat,$user->address->lon,$seller->address->lat,$seller->address->lon,'K');
-               if($price_dels = $zone->prices()->where("from_distance","<",$distance)->where("to_distance",">",$distance)->first()){
-                   $delivery_fee = $price_dels->price;
-                   break;
-               }
-                  $msg ="عفوا لايوجد توصيل لهذا المسافه";
-             return $this->errorResponse($msg,422); 
+        //         foreach($zones as $zone){
+        //       if($this->inside($user->address->lat,$user->address->lon,$zone->areas)){
+        //          $distance = $this->res_distance($user->address->lat,$user->address->lon,$seller->address->lat,$seller->address->lon,'K');
+        //        if($price_dels = $zone->prices()->where("from_distance","<",$distance)->where("to_distance",">",$distance)->first()){
+        //            $delivery_fee = $price_dels->price;
+        //            break;
+        //        }
+        //           $msg ="عفوا لايوجد توصيل لهذا المسافه";
+        //      return $this->errorResponse($msg,422); 
               
-              }
-          }
+        //       }
+        //   }
+        // TODO: HASHEM
+        $delivery_fee=0;
           if($delivery_fee == null){
                         $msg ="عفوا لايوجد توصيل لهذا المنطقه";
              return $this->errorResponse($msg,422); 
