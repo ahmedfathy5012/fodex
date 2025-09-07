@@ -240,9 +240,9 @@ class OrderController extends Controller
         //       }
         //   }
         // TODO: HASHEM
-        $delivery_fee=0;
+        $delivery_fee=1;
           if($delivery_fee == null){
-                        $msg ="عفوا لايوجد توصيل لهذا المنطقه4";
+                        $msg ="عفوا لايوجد توصيل لهذا المنطقه";
              return $this->errorResponse($msg,422); 
           }
             $delivery_areas = DeliveryArea::get();
