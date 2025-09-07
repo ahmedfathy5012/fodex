@@ -242,7 +242,7 @@ class OrderController extends Controller
         // TODO: HASHEM
         $delivery_fee=0;
           if($delivery_fee == null){
-                        $msg ="عفوا لايوجد توصيل لهذا المنطقه";
+                        $msg ="عفوا لايوجد توصيل لهذا المنطقه4";
              return $this->errorResponse($msg,422); 
           }
             $delivery_areas = DeliveryArea::get();
