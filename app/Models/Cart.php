@@ -16,4 +16,28 @@ class Cart extends Model
     }public function size(){
         return $this->belongsTo(Size::class,'size_id');
     }
+
+    public function getPriceAttribute()
+{
+    return $this->item->price ?? 0;
+}
+
+public function getPriceAfterDiscountAttribute()
+{
+
+    // // لو مفيش خصم أو الخصم خلص، يرجع السعر الأصلي
+    // if (!$this->discount || now()->lt($this->discount_from) || now()->gt($this->discount_to)) {
+    //     return $this->price;
+    // }
+
+    // // حساب السعر بعد الخصم (هنا discount كنسبة %)
+    // return $this->price - ($this->price * ($this->discount / 100));
+    return $this->item->price_after_discount ?? $this->item->price ?? 0;
+}
+
+public function getDiscountAttribute()
+{
+    return $this->item->discount ?? 0;
+}
+
 }

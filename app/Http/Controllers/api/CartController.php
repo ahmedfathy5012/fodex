@@ -344,10 +344,17 @@ class CartController extends Controller
                    ]
                ]
                ]);
-    }public function my_cart(Request $request){
+    }
+    
+    
+    public function my_cart(Request $request){
+
+
           $user_id = auth()->id();
           $user = auth()->user();
+          
           $carts =  Cart::where('major_id',$request->major_id)->where('user_id',$user_id)->get();
+
           $cart =  Cart::where('major_id',$request->major_id)->where('user_id',$user_id)->first();
           $total = array_sum(collect(CartItemResource::collection($carts))->pluck('price')->toArray());
           $total_after_discount = array_sum(collect(CartItemResource::collection($carts))->pluck('price_after_discount')->toArray());
