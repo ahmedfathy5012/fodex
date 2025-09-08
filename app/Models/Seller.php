@@ -61,12 +61,18 @@ class Seller extends Authenticatable
         return $this->hasMany(Item::class, 'seller_id');
     }
 
+
+    // TODO : HASHEM
     public function images()
     {
-        return $this->hasMany(Sellerimage::class, 'seller_id');
-    }  public function image()
+        // return $this->hasMany(Sellerimage::class, 'seller_id');
+        return null;
+    }  
+    // TODO : HASHEM
+    public function image()
     {
-        return $this->hasOne(Sellerimage::class, 'seller_id');
+        // return $this->hasOne(Sellerimage::class, 'seller_id');
+        return null;
     }
     public function getImageLinkAttribute(){
        return $this->logo ? asset('uploads/'.$this->logo) : '';
