@@ -213,20 +213,21 @@ class OrderController extends Controller
                $seller = Seller::where("id",$seller_id)->first();
                $zones= Zone::get();
                $delivery_fee = null;
-               if(count($seller->zones_of_seller) > 0){
-               foreach($seller->zones_of_seller as $seller_zone){
-                      if($this->inside($user->address->lat,$user->address->lon,$seller_zone->areas)){
-                          break;
-               }
-                  $msg ="عفوا هذا المطعم لا يمكنه التوصيل لهذا لهذه المنطقه";
-             return $this->errorResponse($msg,422); 
+               // START HASHEM
+            //    if(count($seller->zones_of_seller) > 0){
+            //    foreach($seller->zones_of_seller as $seller_zone){
+            //           if($this->inside($user->address->lat,$user->address->lon,$seller_zone->areas)){
+            //               break;
+            //    }
+            //       $msg ="عفوا هذا المطعم لا يمكنه التوصيل لهذا لهذه المنطقه";
+            //  return $this->errorResponse($msg,422); 
               
-              }
-               }
-                 else{ $msg ="عفوا هذا المطعم لا يمكنه التوصيل لهذا لهذه المنطقه";
-             return $this->errorResponse($msg,422);
-                 }
-               
+            //   }
+            //    }
+            //      else{ $msg ="عفوا هذا المطعم لا يمكنه التوصيل لهذا لهذه المنطقه";
+            //  return $this->errorResponse($msg,422);
+            //      }
+               // END HASHEM
         //         foreach($zones as $zone){
         //       if($this->inside($user->address->lat,$user->address->lon,$zone->areas)){
         //          $distance = $this->res_distance($user->address->lat,$user->address->lon,$seller->address->lat,$seller->address->lon,'K');
