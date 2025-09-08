@@ -282,7 +282,7 @@ class OrderController extends Controller
                 if($request->coupon_id){
                $discount = $this->check_coupon_value($request->coupon_id,$request->major_id);
                if($discount != 0){
-                    $coupon = Coupon::where("name",$coupon_id)->first();
+                    $coupon = Coupon::where("name",$request->coupon_id)->first();
                     $order->coupon_id = $coupon->id;
                   if($coupon->delivery_fee == 1){
                       $delivery_fee = 0;
@@ -391,8 +391,9 @@ class OrderController extends Controller
    'id' => $order->id
 ];
 
-\Mail::to($this->setting_email())->send(new \App\Mail\SendOrder($details));
-
+// START HASHEM 
+// \Mail::to($this->setting_email())->send(new \App\Mail\SendOrder($details));
+// END HASHEM 
                return response()->json(['status' => true,'message' => 'order done'
           ,'data' => new OrderResource($order)
         //   )[
