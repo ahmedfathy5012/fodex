@@ -72,7 +72,7 @@ class Seller extends Authenticatable
     public function image()
     {
         // return $this->hasOne(Sellerimage::class, 'seller_id');
-        return null;
+        return [];
     }
     public function getImageLinkAttribute(){
        return $this->logo ? asset('uploads/'.$this->logo) : '';
