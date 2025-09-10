@@ -276,11 +276,11 @@ class CartController extends Controller
                ]
                ]);
     }public function edit_cart_item_count(Request $request){
-          //  if($request->cart_id){
+           if($request->cart_id){
             $cart =  Cart::where('id',$request->cart_id)->first();
-          //  }else if($request->product_id){
-          //   $cart =  Cart::where('id',$request->item_id)->first();
-          //  }
+           }else if($request->product_id){
+            $cart =  Cart::where('id',$request->item_id)->first();
+           }
            if(!$cart){
              $msg = 'لا يوجد عنصر كارت بهذا  الاسم';
                return $this->errorResponse($msg,404);
