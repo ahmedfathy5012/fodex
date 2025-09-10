@@ -224,7 +224,7 @@ class CartController extends Controller
          if($request->cart_id){
             $cart =  Cart::where('id',$request->cart_id)->first();
          }else if($request->product_id){
-            $cart =  Cart::where('id',$request->product_id)->first();
+            $cart =  Cart::where('id',$request->item_id)->first();
          }
           
           if(!$cart){
@@ -279,7 +279,7 @@ class CartController extends Controller
            if($request->cart_id){
             $cart =  Cart::where('id',$request->cart_id)->first();
            }else if($request->product_id){
-            $cart =  Cart::where('id',$request->product_id)->first();
+            $cart =  Cart::where('id',$request->item_id)->first();
            }
            if(!$cart){
              $msg = 'لا يوجد عنصر كارت بهذا  الاسم';
