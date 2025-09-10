@@ -220,7 +220,13 @@ class CartController extends Controller
              return $this->errorResponse($msg,422);
         }
     }public function remove_cart_item(Request $request){
-          $cart =  Cart::where('id',$request->cart_id)->first();
+
+         if($request->cart_id){
+            $cart =  Cart::where('id',$request->cart_id)->first();
+         }else if($request->product_id){
+            $cart =  Cart::where('id',$request->product_id)->first();
+         }
+          
           if(!$cart){
              $msg = 'لا يوجد عنصر كارت بهذا  الاسم';
                return $this->errorResponse($msg,404);
@@ -270,7 +276,11 @@ class CartController extends Controller
                ]
                ]);
     }public function edit_cart_item_count(Request $request){
-          $cart =  Cart::where('id',$request->cart_id)->first();
+           if($request->cart_id){
+            $cart =  Cart::where('id',$request->cart_id)->first();
+           }else if($request->product_id){
+            $cart =  Cart::where('id',$request->product_id)->first();
+           }
            if(!$cart){
              $msg = 'لا يوجد عنصر كارت بهذا  الاسم';
                return $this->errorResponse($msg,404);
