@@ -296,7 +296,8 @@ align-items: center;
 					<div class="brand flex-column-auto" id="kt_brand" kt-hidden-height="65" style="height: fit-content">
 						<!--begin::Logo-->
 						<a href="{{route('dashboard')}}" class="brand-logo">
-							<img alt="Logo" src="{{asset('fodexlogo2.jpg')}}" style="width:80%; margin: 0 auto;">
+                            <!-- <img alt="Logo" src="{{asset('fodexlogo2.jpg')}}" style="width:80%; margin: 0 auto;"> -->
+							<img alt="Logo" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Order_station.png" style="width:80%; margin: 0 auto;">
 					</a>
 						<!--end::Logo-->
 						<!--begin::Toggle-->
