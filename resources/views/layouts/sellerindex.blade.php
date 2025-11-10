@@ -18,8 +18,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 	<base href="">
 	<meta charset="utf-8" />
-	<link rel="icon" href="{{asset('fodexlogo.jpg')}}" type="image">
-	<title>fodex</title>
+	<!-- <link rel="icon" href="{{asset('fodexlogo.jpg')}}" type="image">
+	<title>fodex</title> -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/Order_station.png" type="image">
+	<title>Order Station</title>
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<meta name="description"
 		content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
