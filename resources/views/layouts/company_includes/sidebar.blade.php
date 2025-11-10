@@ -7,8 +7,11 @@
 		<div class="brand flex-column-auto" id="kt_brand">
 			<!--begin::Logo-->
 			<a href="" class="brand-logo">
-				<img alt="Logo" src="{{asset('fodexlogo.jpg')}}" style="width: 143px;
+               
+                <img alt="Logo" src=" https://upload.wikimedia.org/wikipedia/commons/3/3a/Order_station.png" style="width: 143px;
     height: 58px;"/>
+				<!-- <img alt="Logo" src="{{asset('fodexlogo.jpg')}}" style="width: 143px;
+    height: 58px;"/> -->
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toggle-->
