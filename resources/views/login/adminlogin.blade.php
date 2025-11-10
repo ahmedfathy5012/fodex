@@ -71,7 +71,9 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
 					<!--begin::Logo-->
 					<a href="#" class="text-center pt-2">
-						<img src="{{asset('fodexlogo.jpg')}}" class="max-h-100px" alt="" />
+                         
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Order_station.png" class="max-h-100px" alt="" />
+						<!-- <img src="{{asset('fodexlogo.jpg')}}" class="max-h-100px" alt="" /> -->
 					</a>
 					<!--end::Logo-->
 					<!--begin::Aside body-->
