@@ -17,7 +17,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 	<base href="../../../">
 	<meta charset="utf-8" />
-	<title>Fodex</title>
+	<!-- <title>Fodex</title> -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/3/3a/Order_station.png" type="image">
+	<title>Order Station</title>
 	<meta name="description" content="Login page example" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -42,7 +44,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="{{asset('assets/css/themes/layout/brand/dark.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets/css/themes/layout/aside/dark.css')}}" rel="stylesheet" type="text/css" />
 	<!--end::Layout Themes-->
-	<link rel="shortcut icon" href="{{asset('fodexlogo.jpg')}}" />
+	<!-- <link rel="shortcut icon" href="{{asset('fodexlogo.jpg')}}" /> -->
 
 	<style>
 		.carousel .carousel-inner .carousel-item img {
