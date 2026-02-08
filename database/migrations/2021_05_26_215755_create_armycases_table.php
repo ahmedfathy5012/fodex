@@ -7,11 +7,13 @@ class CreateArmycasesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('armycases', function(Blueprint $table) {
-			$table->increments('id');
-			$table->timestamps();
-			$table->string('title');
-		});
+		if (!Schema::hasTable('armycases')) {
+			Schema::create('armycases', function(Blueprint $table) {
+				$table->increments('id');
+				$table->timestamps();
+				$table->string('title');
+			});
+		}
 	}
 
 	public function down()

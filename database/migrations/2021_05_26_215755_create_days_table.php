@@ -7,11 +7,13 @@ class CreateDaysTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('days', function(Blueprint $table) {
-			$table->increments('id');
-			$table->timestamps();
-			$table->string('day_name');
-		});
+		if (!Schema::hasTable('days')) {
+			Schema::create('days', function(Blueprint $table) {
+				$table->increments('id');
+				$table->timestamps();
+				$table->string('day_name');
+			});
+		}
 	}
 
 	public function down()

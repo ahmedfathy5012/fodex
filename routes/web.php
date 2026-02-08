@@ -138,6 +138,7 @@ Route::group(['middleware' => 'auth:employee'], function () {
 
   Route::get('showorders/{id}', 'OrderController@showorders')->name('showorders');
   Route::resource('seller', 'SellerController');
+  Route::get('seller/add_central', 'SellerController@create')->name('seller.add_central');
   Route::get('orderitemseller/{id}', 'SellerController@orderitemseller')->name('orderitemseller');
   Route::get('sellercontracts/{id}', 'SellerController@sellercontracts')->name('sellercontracts');
   Route::get('addsellercontract/{id}', 'SellerController@addsellercontract')->name('addsellercontract');
