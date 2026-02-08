@@ -44,25 +44,31 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-            
-        ],  'employee' => [
+
+        ],
+        'employee' => [
             'driver' => 'session',
             'provider' => 'employees',
-            
-        ], 'seller' => [
+
+        ],
+        'seller' => [
             'driver' => 'session',
             'provider' => 'sellers',
-            
-        ],'selleremployee_api' => [
+
+        ],
+        'selleremployee_api' => [
             'driver' => 'token',
             'provider' => 'selleremployees',
-        ],'selleremployee' => [
+        ],
+        'selleremployee' => [
             'driver' => 'session',
             'provider' => 'selleremployees',
-        ],'driver_api' => [
+        ],
+        'driver_api' => [
             'driver' => 'token',
             'provider' => 'drivers',
-        ],'driver' => [
+        ],
+        'driver' => [
             'driver' => 'session',
             'provider' => 'drivers',
         ],
@@ -89,16 +95,20 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
-        ], 'employees' => [
+        ],
+        'employees' => [
             'driver' => 'eloquent',
             'model' => App\Models\Employee::class,
-        ], 'sellers' => [
+        ],
+        'sellers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Seller::class,
-        ],'selleremployees' => [
+        ],
+        'selleremployees' => [
             'driver' => 'eloquent',
             'model' => App\Models\SellerEmployee::class,
-        ],'drivers' => [
+        ],
+        'drivers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Driver::class,
         ],
