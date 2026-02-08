@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            $table->boolean('is_centeral')->default(false);
+            $table->boolean('is_central')->default(false);
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            $table->dropColumn('is_centeral');
+            $table->dropColumn('is_central');
         });
     }
 };

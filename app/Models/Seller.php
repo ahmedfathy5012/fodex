@@ -22,14 +22,20 @@ use App\Models\SellerRate;
 use App\Models\SellerEmployee;
 use Carbon\Carbon;
 use App\Models\Workschedule;
+use App\Scopes\CentralRestaurantVisibilityScope;
 
 class Seller extends Authenticatable
 {
 
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new CentralRestaurantVisibilityScope);
+    }
+
     protected $table = 'sellers';
     public $timestamps = true;
-    protected $fillable = array('id', 'name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_centeral');
-    protected $visible = array('id', 'name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_centeral');
+    protected $fillable = array('id', 'name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_central');
+    protected $visible = array('id', 'name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_central');
     protected $appends = ["image_link", "currency", "rate"];
     public function major()
     {
