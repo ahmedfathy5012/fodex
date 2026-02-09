@@ -325,7 +325,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!--end::Page-->
     </div>
 
-    <style>
+    {{-- <style>
         body {
             margin: 0;
             padding: 0;
@@ -451,7 +451,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 transform: rotate(-720deg);
             }
         }
-    </style>
+    </style> --}}
     <!--end::Main-->
     <!-- begin::User Panel-->
     <!--<div id="kt_quick_user" class="offcanvas offcanvas-right p-10">-->
