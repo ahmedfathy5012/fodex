@@ -17,6 +17,7 @@ use App\Models\Sellercontract;
 use App\DataTables\SellerDataTable;
 use App\DataTables\Seller3DataTable;
 use App\DataTables\OrderItemSellerDataTable;
+use App\DataTables\SellerCentralDataTable;
 use App\DataTables\SellercontractDataTable;
 use App\Models\Address;
 use App\Models\AllCollection;
@@ -36,15 +37,35 @@ class SellerController extends Controller
     {
 
         $create_route = $is_central ? route('seller.add_central') : route('seller.create');
-        
+
         $countries = Country::all();
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
-        
+
         $data = [
             'create_route' => $create_route,
             'is_central' => $is_central,
+            'countries' => $countries,
+            'states' => $states,
+            'cities' => $cities,
+            'zones' => $zones,
+        ];
+        return $dataTable->render('admindashboard.sellers.index', $data);
+    }
+    public function central_index(SellerCentralDataTable $dataTable)
+    {
+
+        $create_route = route('seller.add_central');
+
+        $countries = Country::all();
+        $states = State::all();
+        $cities = City::all();
+        $zones = Zone::all();
+
+        $data = [
+            'create_route' => $create_route,
+            'is_central' => true,
             'countries' => $countries,
             'states' => $states,
             'cities' => $cities,
@@ -58,8 +79,9 @@ class SellerController extends Controller
      *
      * @return Response
      */
-    public function create(bool $is_central = false)
+    public function create()
     {
+        $is_central = request()->routeIs('seller.add_central');
         $armycases = Armycase::all();
 
         $countries = Country::all();
@@ -71,7 +93,21 @@ class SellerController extends Controller
         $payments = Payment::all();
         $number = NumberSetting::first();
         $categories = Category::all();
-        return view('admindashboard.sellers.create')->with('countries', $countries)->with('tags', $tags)->with('number', $number)->with('states', $states)->with('cities', $cities)->with('zones', $zones)->with('majors', $majors)->with('categories', $categories)->with('payments', $payments);
+        $data = [
+            'is_central' => $is_central,
+            'armycases' => $armycases,
+            'countries' => $countries,
+            'states' => $states,
+            'cities' => $cities,
+            'zones' => $zones,
+            'majors' => $majors,
+            'tags' => $tags,
+            'payments' => $payments,
+            'number' => $number,
+            'categories' => $categories,
+            'title' => $is_central ? __('messages.add_central_seller') : __('messages.add_seller')
+        ];
+        return view('admindashboard.sellers.create', $data);
     }
 
     /**
@@ -81,14 +117,21 @@ class SellerController extends Controller
      */
     public function store(Request $request)
     {
+        $is_central = boolval($request->is_central) ?? false;
 
-        $request->validate(['phone' => 'required|unique:sellers']);
+        $request->validate([
+            'phone' => 'required|unique:sellers',
+            'cover' => 'nullable|image|max:10240', // 10MB
+            'logo' => 'nullable|image|max:10240',  // 10MB
+            'image.*' => 'nullable|image|max:10240', // 10MB each
+        ]);
         $seller = Seller::create($request->all());
         $seller->password = Hash::make($request->password);
         $seller->discount = $request->discount;
         $seller->delivery_money = $request->delivery_money;
         $seller->min_order = $request->min_order;
         $seller->is_new = $request->is_new ? 1 : 0;
+        $seller->is_central = $is_central;
 
         $seller->agreed = $request->agreed  ? 1 : 0;
         $seller->is_subcategory = $request->is_subcategory;
@@ -155,7 +198,9 @@ class SellerController extends Controller
         // }  
         //  $contract->seller_id = $seller->id; 
         // $contract->save();
-        return redirect()->route('seller.index');
+        $index_route = $is_central ? 'seller.central_index' : 'seller.index';
+
+        return redirect()->route($index_route);
     }
 
     /**

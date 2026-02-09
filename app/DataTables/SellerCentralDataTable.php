@@ -9,9 +9,10 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use App\Models\Address;
+use App\Scopes\CentralRestaurantVisibilityScope;
 use Illuminate\Http\Request;
 
-class SellerDataTable extends DataTable
+class SellerCentralDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -78,50 +79,7 @@ class SellerDataTable extends DataTable
      */
     public function query(Seller $model)
     {
-        /*$seller_ids = Address::whereIn('zone_id',auth()->user()->zones->pluck('id')->toArray())->get()->pluck('seller_id');
-          $country_id = $this->request()->get('country_id');
-     $state_id = $this->request()->get('state_id');
-     $city_id = $this->request()->get('city_id');
-     $zone_id = $this->request()->get('zone_id');
-        $sellers = $model->newQuery()->whereIn('id',$seller_ids);
- if($country_id){
-             $seller_ids = Address::where('country_id',$country_id)->get()->pluck('seller_id');
-             $sellers = $sellers->whereIn('id',$seller_ids);
-      
-         } if($country_id && $state_id){
-             $seller_ids = Address::where('state_id',$state_id)->get()->pluck('seller_id');
-            $sellers = $sellers->whereIn('id',$seller_ids);
-        
-         } if($country_id && $state_id && $city_id){
-             $seller_ids = Address::where('city_id',$city_id)->get()->pluck('seller_id');
-          $sellers = $sellers->whereIn('id',$seller_ids);
-             
-         } if($country_id && $state_id && $city_id && $zone_id){
-             $seller_ids = Address::where('zone_id',$zone_id)->get()->pluck('seller_id');
-           $sellers = $sellers->whereIn('id',$seller_ids);
-         }*/
-        $sellers = $model->newQuery()->orderBy("id", "desc");
-        //   if(auth()->user()->type == 1 ){
-        //   $sellers = $sellers->whereHas('address', function($query) {
-        //  $query->whereIn("country_id",auth()->user()->countries->pluck("id")->toArray());
-        //     });
-        //  }
-        // else if(auth()->user()->type == 2 ){
-        //   $sellers = $sellers->whereHas('address', function($query) {
-        //  $query->whereIn("state_id",auth()->user()->states->pluck("id")->toArray());
-        //     });
-        //  }else if(auth()->user()->type == 3 ){
-        //   $sellers = $sellers->whereHas('address', function($query) {
-        //  $query->whereIn("city_id",auth()->user()->cities->pluck("id")->toArray());
-        //     });
-        //  } 
-        //  else if(auth()->user()->type == 4 ){
-        //   $sellers = $sellers->whereHas('address', function($query) {
-        //  $query->whereIn("zone_id",auth()->user()->zones->pluck("id")->toArray());
-        //     });
-        //  }else{
-        //   $sellers = $sellers->where("id" ,"<",0);
-        // }
+        $sellers = $model->newQuery()->withoutGlobalScope(CentralRestaurantVisibilityScope::class)->where('is_central', 1)->orderBy("id", "desc");
         return $sellers;
     }
 
@@ -170,6 +128,6 @@ class SellerDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Seller_' . date('YmdHis');
+        return 'SellerCentral_' . date('YmdHis');
     }
 }

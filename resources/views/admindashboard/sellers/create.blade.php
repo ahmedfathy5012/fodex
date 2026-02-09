@@ -26,7 +26,7 @@
 			
 			</span>
 			
-			<h3 class="card-label">   اضافه بائع  </h3>
+			<h3 class="card-label"> {{ $title }}  </h3>
 			
 		</div>
 	</div>
@@ -35,6 +35,7 @@
  <!--begin::Form-->
 <form method="post" action="{{route('seller.store')}}" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="is_central" value="{{ $is_central }}">
   <div class="card-body">
           <div class="row">
       <div class="mx-auto col-4">

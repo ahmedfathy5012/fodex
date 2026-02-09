@@ -729,7 +729,15 @@
                             <i class="menu-bullet menu-bullet-dot">
                                 <span></span>
                             </i>
-                            <span class="menu-text">الكل </span>
+                            <span class="menu-text">المطاعم </span>
+                        </a>
+                    </li>
+                    <li class="menu-item" aria-haspopup="true">
+                        <a href="{{ route('seller.central_index') }}" class="menu-link">
+                            <i class="menu-bullet menu-bullet-dot">
+                                <span></span>
+                            </i>
+                            <span class="menu-text">المطاعم المركزيه </span>
                         </a>
                     </li>
 

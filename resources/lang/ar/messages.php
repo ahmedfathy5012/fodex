@@ -25,4 +25,6 @@ return [
     'read'=>'عرض',
     'update'=>'تعديل',
     'delete'=>'حذف',
+    'add_central_seller'=>'إضافة مطعم مركزي',
+    'add_seller'=>'إضافة مطعم'
 ];
