@@ -2,16 +2,19 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateVehicletypesTable extends Migration {
-
+class CreateVehicletypesTable extends Migration
+{
 	public function up()
 	{
-		Schema::create('vehicletypes', function(Blueprint $table) {
-			$table->increments('id');
-			$table->timestamps();
-			$table->string('title');
-		});
+		if (!Schema::hasTable('vehicletypes')) {
+			Schema::create('vehicletypes', function (Blueprint $table) {
+				$table->increments('id');
+				$table->timestamps();
+				$table->string('title');
+			});
+		}
 	}
 
 	public function down()
