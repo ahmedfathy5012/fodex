@@ -18,6 +18,6 @@ class CentralRestaurantVisibilityScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         // For regular users, only show central restaurants
-        $builder->where('is_central', true);
+        $builder->where('is_central', false);
     }
 }
