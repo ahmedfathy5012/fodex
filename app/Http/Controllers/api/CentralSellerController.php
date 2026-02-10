@@ -18,6 +18,7 @@ class CentralSellerController extends Controller
             $direction = $request->direction ?? 'asc';
             $rules = [
                 'direction' => 'nullable|in:asc,desc',
+                'word' => 'nullable|string|max:255',
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
@@ -25,7 +26,10 @@ class CentralSellerController extends Controller
             }
 
             $sellers = Seller::withoutGlobalScope(\App\Scopes\CentralRestaurantVisibilityScope::class)->where('block', 0)->where('is_central', 1)
-                ->orderBy('id', $direction)->get();
+                ->orderBy('id', $direction)
+                ->when($request->word, function ($query) use ($request) {
+                    $query->where('name', 'like', '%' . $request->word . '%');
+                })->get();
             $sellers = collect(SellerResource::collection($sellers))->sortBy('distance')->filter(function ($value) {
                 return $value["distance"] <= 20;
             })->values()->toArray();

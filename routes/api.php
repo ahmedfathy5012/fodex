@@ -28,8 +28,10 @@ Route::get('questions','QuestionController@index');
 Route::post('search_sellers','SearchSellerController@search_sellers');
 // central sellers
 Route::post('get_central_sellers','CentralSellerController@get_central_sellers');
-// menu types 
+// menu types
 Route::post('fetch_menu_types','MenuTypeController@fetch_menu_types');
+// men type items
+Route::post('fetch_menu_type_items','MenuTypeController@fetch_menu_type_items');
 
 Route::post('seller_menu','SellerItemController@seller_menu');
 
