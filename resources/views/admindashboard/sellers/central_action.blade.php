@@ -1,5 +1,5 @@
 <?php
-$seller = \App\Models\Seller::where('id', $id)->first();
+$seller = \App\Models\Seller::withoutGlobalScope(\App\Scopes\CentralRestaurantVisibilityScope::class)->where('id', $id)->first();
 $sellers = \App\Models\WebsiteSeller::get();
 ?>
 <style>
@@ -45,6 +45,7 @@ $sellers = \App\Models\WebsiteSeller::get();
         }
 
     @endphp
+
 
     @include('admindashboard.sellers.__global_seller_action')
 </div>
