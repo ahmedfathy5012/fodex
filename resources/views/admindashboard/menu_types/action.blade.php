@@ -16,6 +16,12 @@
 
 </a>
 
+<a href="{{ route('menu_type.items.index', $id) }}" class="span"
+    style="background-color: #e6f1fb; border-radius: 9px; padding: 7px;" title="المنتجات">
+    <i class="fas fa-pizza-slice" style="color:red;"></i>
+</a>
+
+
 <div style="cursor:pointer;" onclick="delete_menu_type({{ $id }})" class="btn btn-sm btn-hover-bg-light mr-1">
     <span
         class="svg-icon svg-icon-danger m-0 p-0 svg-icon-md"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo8/dist/../src/media/svg/icons/Home/Trash.svg-->

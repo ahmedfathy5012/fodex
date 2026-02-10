@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Category;
 use App\Models\Seller;
+use App\Scopes\CentralRestaurantVisibilityScope;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -59,7 +60,7 @@ class SellercategoryDataTable extends DataTable
      */
     public function query(Category $model)
     {
-       $seller = Seller::where("id",$this->id)->first();
+       $seller = Seller::withoutGlobalScope(CentralRestaurantVisibilityScope::class)->where("id",$this->id)->first();
             return $model->with('major')->where("is_subcategory",$seller->is_subcategory)
             ->select("*")
           ->orderBy('id', 'desc');

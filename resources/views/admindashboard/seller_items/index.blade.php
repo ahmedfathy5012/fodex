@@ -24,7 +24,7 @@
     		</div>
 	    </div>
 	      <div class="row">
-	        <a class="btn btn-sm  mt-4 btning" href="{{route('create_seller_items',$seller->id)}}">اضافه</a>
+	        <a class="btn btn-sm  mt-4 btning" href="{{$create_route}}">اضافه</a>
 	    </div>
         <div class="card-body">
             <!--begin: Datatable-->

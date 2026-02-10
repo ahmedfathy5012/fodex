@@ -412,6 +412,8 @@ Route::group(['middleware' => 'auth:employee'], function () {
   Route::put('update_seller_items/{id}', 'SellerItem2Controller@update')->name('update_seller_items');
   Route::delete('delete_seller_items/{id}', 'SellerItem2Controller@destroy')->name('delete_seller_items');
 
+  //menu type items
+  Route::resource('menu_type.items', 'MenuTypeItemController')->shallow(true);
   //users
   Route::get('users', 'UserController@index')->name('users');
   Route::get('user_orders/{id}', 'UserController@user_orders')->name('user_orders');

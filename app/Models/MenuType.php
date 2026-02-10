@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\CentralRestaurantVisibilityScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +17,7 @@ class MenuType extends Model
 
     public function seller()
     {
-        return $this->belongsTo(Seller::class , 'seller_id','id');
+        return $this->belongsTo(Seller::class , 'seller_id','id')->withoutGlobalScope(CentralRestaurantVisibilityScope::class);
     }
 
     public function items()
