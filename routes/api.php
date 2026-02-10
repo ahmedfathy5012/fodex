@@ -29,7 +29,7 @@ Route::post('search_sellers','SearchSellerController@search_sellers');
 // central sellers
 Route::post('get_central_sellers','CentralSellerController@get_central_sellers');
 // menu types
-Route::post('fetch_menu_types','MenuTypeController@fetch_menu_types');
+Route::post('fetch_seller_menu_types','MenuTypeController@fetch_seller_menu_types');
 // men type items
 Route::post('fetch_menu_type_items','MenuTypeController@fetch_menu_type_items');
 

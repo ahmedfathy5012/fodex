@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class MenuTypeController extends Controller
 {
     use ApiTrait;
-    public function fetch_menu_types(Request $request)
+    public function fetch_seller_menu_types(Request $request)
     {
         try {
             $direction = $request->direction ?? 'asc';
@@ -28,7 +28,6 @@ class MenuTypeController extends Controller
             if ($validator->fails()) {
                 return $this->getvalidationErrors($validator);
             }
-
 
 
             $menu_types = MenuType::where('seller_id', $request->seller_id)
