@@ -21,7 +21,8 @@ class SearchSellerController extends Controller
             $word = $request->word;
             $direction = $request->direction ?? 'asc';
             $rules = [
-                "direction" => "nullable|in:asc,desc",
+                //   "major_id" => "required"
+                'direction' => 'nullable|in:asc,desc',
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
@@ -35,7 +36,7 @@ class SearchSellerController extends Controller
             $sellers = Seller::when($word, function ($query) use ($word) {
                 $query->where("name", 'LIKE', "%$word%");
             })->orderBy('id', $direction)->get();
-            $sellers = collect(SellerResource::collection($sellers))->filter(function ($value) {
+            $sellers = collect(SellerResource::collection($sellers))->sortBy('distance')->filter(function ($value) {
                 return $value["distance"] <= 20;
             })->values()->toArray();
             $msg = "بحث البائعين";
