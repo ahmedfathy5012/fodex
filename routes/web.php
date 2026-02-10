@@ -170,6 +170,7 @@ Route::group(['middleware' => 'auth:employee'], function () {
   Route::resource('size', 'SizeController');
   Route::resource('offers', 'OfferController');
   Route::resource('expensetype', 'ExpenseTypeController');
+  Route::resource('seller.menu_types', 'MenuTypeController')->shallow(true);
   Route::resource('collectionstypes', 'AllcollectionTypeController');
   Route::resource('expenses', 'ExpenseController');
   Route::post('addcollection', 'SellerController@addcollection');
