@@ -125,13 +125,15 @@ class SellerController extends Controller
             'logo' => 'nullable|image|max:10240',  // 10MB
             'image.*' => 'nullable|image|max:10240', // 10MB each
         ]);
+
+        $request->merge(['is_central' => $is_central]);
+
         $seller = Seller::create($request->all());
         $seller->password = Hash::make($request->password);
         $seller->discount = $request->discount;
         $seller->delivery_money = $request->delivery_money;
         $seller->min_order = $request->min_order;
         $seller->is_new = $request->is_new ? 1 : 0;
-        $seller->is_central = $is_central;
 
         $seller->agreed = $request->agreed  ? 1 : 0;
         $seller->is_subcategory = $request->is_subcategory;
