@@ -21,7 +21,7 @@ class AjaxController extends Controller
         $states = State::all();
     }
     $text = '';
-      $text .= '<option value="0">الكل</option>';
+//      $text .= '<option value="0">الكل</option>';
     foreach($states as $state){
       $text .='<option value="'.$state->id.'">'.$state->name.'</option>';
     }
@@ -32,7 +32,7 @@ class AjaxController extends Controller
         $cities = City::all();
     }
     $text = '';
-     $text .= '<option value="0">الكل</option>';
+//     $text .= '<option value="0">الكل</option>';
     foreach($cities as $city){
       $text .='<option value="'.$city->id.'">'.$city->name.'</option>';
     }
@@ -50,7 +50,7 @@ class AjaxController extends Controller
         $zones = Zone::all();
     }
     $text = '';
-    $text .= '<option value="0">الكل</option>';
+//    $text .= '<option value="">الكل</option>';
     foreach($zones as $zone){
       $text .='<option value="'.$zone->id.'">'.$zone->name.'</option>';
     }
@@ -62,7 +62,7 @@ class AjaxController extends Controller
       $text .='<option value="'.$day->id.'">'.$day->day_ar.'</option>';
     }
     return response()->json(['status' => true,'data' => $text]);
-  } 
+  }
   public function getsellerscategory($id){
     $categories = Seller::where('id',$id)->first()->categories;
     $text = '';
@@ -74,7 +74,7 @@ class AjaxController extends Controller
     $states = State::whereIn('country_id',$request->country_id)->get();
 
     $text = '';
-    
+
     foreach($states as $state){
       $text .='<option value="'.$state->id.'" style="padding-left:30px;">'.$state->name.'</option>';
     }
@@ -83,16 +83,16 @@ class AjaxController extends Controller
     $cities = City::whereIn('state_id',$request->state_id)->get();
 
     $text = '';
-     
+
     foreach($cities as $city){
       $text .='<option value="'.$city->id.'" style="padding-left:30px;">'.$city->name.'</option>';
     }
     return response()->json(['status' => true,'data' => $text]);
   }public function getzonesmultiple(Request $request){
     $zones = Zone::whereIn('city_id',$request->city_id)->get();
-   
+
     $text = '';
-   
+
     foreach($zones as $zone){
       $text .='<option value="'.$zone->id.'" style="padding-left:30px;">'.$zone->name.'</option>';
     }
@@ -137,12 +137,12 @@ class AjaxController extends Controller
     $collect = AllcollectionType::where('id',$id)->first();
         return response()->json(['status' => true,'value' => $collect->value]);
   }public function filterstates(Request $request){
-      
+
       $states = State::whereIn("country_id",$request->country_id)->get();
       $text = '';
       foreach($states as $state){
           $text .='  <div class="checkbox checkbox-success form-check-inline" >
-                                                <input type="checkbox" name="state_id[]" 
+                                                <input type="checkbox" name="state_id[]"
                                                 style="opacity:1;z-index:2;"  onchange="filtercities()" id="st'.$state->id.'" value="'.$state->id.'">
                                                 <label for="st'.$state->id.'" style="margin-right: 30px;">'.$state->name.'</label>
                                             </div>';
@@ -153,7 +153,7 @@ class AjaxController extends Controller
       $text = '';
       foreach($cities as $city){
           $text .='<div class="checkbox checkbox-success form-check-inline" >
-                                                <input type="checkbox" name="city_id[]" 
+                                                <input type="checkbox" name="city_id[]"
                                                 style="opacity:1;z-index:2;" id="ci'.$city->id.'" onchange="filterzones()" value="'.$city->id.'">
                                                 <label for="ci'.$city->id.'" style="margin-right: 30px;">'.$city->name.'</label>
                                             </div>';
@@ -164,7 +164,7 @@ class AjaxController extends Controller
       $text = '';
       foreach($zones as $zone){
           $text .=' <div class="checkbox checkbox-success form-check-inline" >
-                                                <input type="checkbox" name="zone_id[]" 
+                                                <input type="checkbox" name="zone_id[]"
                                                 style="opacity:1;z-index:2;" id="zz'.$zone->id.'" value="'.$zone->id.'">
                                                 <label for="zz'.$zone->id.'" style="margin-right: 30px;">'.$zone->name.'</label>
                                             </div>';
