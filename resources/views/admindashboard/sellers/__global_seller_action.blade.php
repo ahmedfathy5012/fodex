@@ -101,11 +101,7 @@
     </label>
 </span>
 <!--<a href="{{ route('itemseller', $id) }}" class="btn btn-success btn-sm">المنتجات</a>-->
-<a href="{{ route('seller_items', $id) }}" class="span"
-    style="background-color: #e6f1fb;
-    border-radius: 9px;
-    padding: 7px;" title="المنتجات"> <i
-        class="fas fa-pizza-slice" style="color:red;"></i></a>
+<a href="{{ route('seller_items', $id) }}" class="btn btn-sm btn-primary m-0 span">المنتجات</a>
 <span class="btn btn-success btn-sm span" style="font-size:11px;color:white;" data-toggle="modal"
     data-target="#myModale{{ $id }}">
     تحصيل </span>
