@@ -2,13 +2,13 @@
 @section('content')
 
 <div class="card card-custom">
- 
- 
+
+
     <div class="card-header">
 		<div class="card-title">
 			<span class="card-icon">
-			
-			
+
+
     			<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo8/dist/../src/media/svg/icons/Files/File-plus.svg-->
                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -18,20 +18,20 @@
                         </g>
                     </svg><!--end::Svg Icon-->
                 </span>
-			
-			
+
+
 			</span>
-			
+
 			<h3 class="card-label">   اضافه منطقه </h3>
 		</div>
 	</div>
- 
- 
+
+
  <!--begin::Form-->
 <form method="post" action="{{route('zone.store')}}">
 
     @csrf
-  
+
   <div class="card-body">
    <div class ="row">
    <div class="form-group col-6">
@@ -76,13 +76,13 @@
            <div class="col-4">
           <span class="switch btn btns-m switch-outline switch-icon switch-primary">
     <label>
-        <input type="checkbox"  name="automatic" 
-       
+        <input type="checkbox"  name="automatic"
+
          value="1"/>
         <span></span>
        automatic
     </label>
-</span>                    
+</span>
           </div>
      </div>
              <div class="col-4 mx-auto mb-5 mt-5">
@@ -91,23 +91,23 @@
                                         </button>
                                     </div>
                                     <section id="section1">
-  
+
 </section>
      <div class="row">
        <div class="form-group col-6">
           @error('points')
        <p style="color:red;">{{$message}}</p>
        @enderror</div>
-     
+
     <div id="map" style="width:100%;height:400px; ">
      </div>
        <input type="hidden" id="points" name="points">
        </div>
     <button type="submit" class="btn btn-shadow btn-primary font-weight-bold mt-5">
-       
+
        إضافة
-       
-       
+
+
        <span class="svg-icon svg-icon m-0 svg-icon-md">
 			<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -119,15 +119,15 @@
 			</svg>
 			<!--end::Svg Icon-->
 		</span>
-       
-       
-       
+
+
+
     </button>
-       
+
    </div>
-  
-   
-  
+
+
+
  </form>
  <!--end::Form-->
 </div>
@@ -142,26 +142,26 @@ let id1 = $("#section1 .row").length;
  <div class="row" style="position: relative;"  id="remov${id1}">
   <div class="form-group col-3">
         <label>من  <span class="text-danger">*</span></label>
-    <input type="number" class="form-control " required="required" name="from_distance[]"  value="{{old('from_distance')}}"    />
+    <input type="number" class="form-control " required="required" name="from_distance[]"  value="{{old('from_distance.0')}}"    />
    @error('sizename')
    <p style="color:red;">{{$message}}</p>
    @enderror
- 
+
   </div>
-      
+
   <div class="form-group col-3">
     <label>السعر    <span class="text-danger">*</span></label>
-    <input type="number" class="form-control " value="{{old('price')}}" name="price[]"  required="required"/>
- 
-   </div>    
+    <input type="number" class="form-control " value="{{old('price.0')}}" name="price[]"  required="required"/>
+
+   </div>
    <div class="form-group col-2">
     <label> الى<span class="text-danger">*</span></label>
-    <input type="number" class="form-control " value="{{old('to_distance')}}" name="to_distance[]"  required="required"/>
+    <input type="number" class="form-control " value="{{old('to_distance.0')}}" name="to_distance[]"  required="required"/>
     @error('sizecalory')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div>   
- 
+   </div>
+
    <div class="form-group col-1 mt-4">
         <button class="btn btn-sm  font-weight-bolder btn-light-danger" type="button" onclick="removef(${id1})">حذف</button>
         </div>
@@ -237,7 +237,7 @@ console.log(id);
     function draw_shape() {
         // // var areas = <?php
                             // //             echo $latlng;
-                            // //             
+                            // //
                             ?>
 
         // for (var j = 0; j < areas.length; j++) {
@@ -429,11 +429,11 @@ console.log(id);
         drawingManager.setMap(map);
 
         google.maps.event.addListener(drawingManager, 'overlaycomplete', function(e) {
-            
+
             if (e.type == "marker") {
                 alert(e.overlay.getPosition());
             } else {
-             
+
 
                 newShape = e.overlay;
                 newShape.type = e.type;
@@ -442,7 +442,7 @@ console.log(id);
                     setSelection(this);
                 });
                 setSelection(newShape);
-           
+
                 var polygonBounds = newShape.getPath();
 
 for (var i = 0; i < polygonBounds.length; i++) {
@@ -540,7 +540,7 @@ $("#points").val(points);
         google.maps.event.addDomListener(controlUI, 'click', function() {
 
             if (selectedShape) {
-            
+
             } else {
                 alert("Select area first")
             }

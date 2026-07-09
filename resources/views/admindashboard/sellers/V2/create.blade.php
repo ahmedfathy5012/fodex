@@ -160,7 +160,7 @@
                         </div>
                 </div>
                 <div class="row">
-                    <div class="col-4"><label>المعلومات الرئسيه</label>
+                    <div class="col-4"><label>المعلومات الاساسية</label>
                     </div>
                 </div>
                 <div class='row'>
@@ -173,7 +173,7 @@
                         @enderror
                     </div>
                     <div class="form-group col-6">
-                        <label>رقم الهاتف <span class="text-danger">*</span></label>
+                        <label>رقم الجوال <span class="text-danger">*</span></label>
                         <input type="text" class="form-control " value="{{old('phone')}}" name="phone"
                                required="required"/>
                         @error('phone')
@@ -181,9 +181,17 @@
                         @enderror
                     </div>
                     <div class="form-group col-6">
-                        <label>رقم الهاتف الثانى (اختياري) <span class="text-danger">*</span></label>
+                        <label>رقم الهاتف  (اختياري) <span class="text-danger">*</span></label>
                         <input type="text" class="form-control " value="{{old('mobile')}}" name="mobile"/>
                         @error('mobile')
+                        <p style="color:red;">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-6">
+                        <label>الدليفري <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control " value="{{old('delivery_phone')}}" name="delivery_phone"
+                               required="required"/>
+                        @error('delivery_phone')
                         <p style="color:red;">{{ $message }}</p>
                         @enderror
                     </div>
@@ -206,125 +214,6 @@
     </label>
 </span>
                     </div>
-                </div>
-                <div class="row">
-                    <hr style="width:70%;">
-                </div>
-                <div class="row">
-                    <div class="col-4"><label>المعلومات الشخصيه</label>
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class="form-group col-6">
-                        <label>القسم <span class="text-danger">*</span></label>
-                        <select name="major_id" class="form-control selectpicker" onchange="getsubcategories(this)"
-                                id="major" required="required" data-live-search="true">
-                            @foreach($majors as $major)
-                                <option value="{{$major->id}}">{{$major->title}}</option>
-                            @endforeach
-                        </select>
-                        @error('major_id')
-                        <p style="color:red;">{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group col-6">
-                        <label class="container">category
-                            <input type="radio" checked="checked" name="is_subcategory" value="0">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="container">subcategory
-                            <input type="radio" name="is_subcategory" value="1">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <!--<div class="form-group col-6">-->
-                    <!-- <label>القسم الرئيسى   <span class="text-danger">*</span></label>-->
-                    <!-- <select name="category_id[]" multiple class="form-control selectpicker" id="sub" required="required" data-live-search="true">-->
-                    <!--   @foreach($categories as $category)-->
-                    <!--   <option value="{{$category->id}}">{{$category->title}}</option>-->
-                    <!--   @endforeach-->
-                    <!-- </select>-->
-                    <!--@error('category_id')-->
-                    <!--<p style="color:red;">{{$message}}</p>-->
-                    <!--@enderror-->
-                    <!--</div>         -->
-                    <div class="form-group col-6">
-                        <label> الوسوم <span class="text-danger">*</span></label>
-                        <select name="tag_id[]" multiple="multiple" class="form-control" id="tag_id"
-                                data-live-search="true">
-                            @foreach($tags as $tag)
-                                <option value="{{$tag->id}}">{{$tag->title}}</option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
-                        <p style="color:red;">{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group col-6">
-                        <label>وقت التحضير <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control " value="{{old('prepare_time')}}" name="prepare_time"
-                               required="required"/>
-                        @error('prepare_time')
-                        <p style="color:red;">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group col-6">
-                        <label>طرق الدفع <span class="text-danger">*</span></label>
-                        <select name="payment_id[]" class="form-control selectpicker" multiple data-live-search="true">
-                            @foreach($payments as $payment)
-                                <option value="{{$payment->id}}">{{$payment->title}}</option>
-                            @endforeach
-                        </select>
-                        @error('payment_id')
-                        <p style="color:red;">{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group col-6">
-                        <label>الحد الادنى للطلب<span class="text-danger">*</span></label>
-                        <input type="number" class="form-control " value="{{old('min_order')}}" name="min_order"
-                               required="required"/>
-                        @error('min_order')
-                        <p style="color:red;">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>نسبه الخصم <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control " value="{{old('discount')}}" name="discount"/>
-                        @error('discount')
-                        <p style="color:red;">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group col-6">
-                        <label> سعر التوصيل <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control " value="{{old('delivery_money')}}"
-                               name="delivery_money"/>
-                        @error('delivery_money')
-                        <p style="color:red;">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="col-6">
-     <span class="switch btn btns-m switch-outline switch-icon switch-primary">
-    <label>
-        <input type="checkbox" name="is_new"
-
-               value="1"/>
-        <span></span>
-
-
-
-    </label>   جديد
-</span>
-
-                    </div>
-                    <!--           <div class="form-group col-6">-->
-                    <!--   <label> النسبه<span class="text-danger">*</span></label>-->
-                    <!--   <input type="number" class="form-control " value="{{old('commission')}}" name="commission"  required="required"/>-->
-                    <!--   @error('commission')-->
-                    <!--   <p style="color:red;">{{ $message }}</p>-->
-                    <!--@enderror-->
-                    <!--  </div> -->
                 </div>
 
                 <div class="row">
@@ -453,6 +342,147 @@
                         @enderror
                     </div>
                 </div>
+
+
+                <div class="row">
+                    <hr style="width:70%;">
+                </div>
+                <div class="row">
+                    <div class="col-4"><label>المعلومات الشخصيه</label>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="form-group col-6">
+                        <label>القسم <span class="text-danger">*</span></label>
+                        <select name="major_id" class="form-control selectpicker" onchange="getsubcategories(this)"
+                                id="major" required="required" data-live-search="true">
+                            @foreach($majors as $major)
+                                <option value="{{$major->id}}">{{$major->title}}</option>
+                            @endforeach
+                        </select>
+                        @error('major_id')
+                        <p style="color:red;">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="container">category
+                            <input type="radio" checked="checked" name="is_subcategory" value="0">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container">subcategory
+                            <input type="radio" name="is_subcategory" value="1">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <!--<div class="form-group col-6">-->
+                    <!-- <label>القسم الرئيسى   <span class="text-danger">*</span></label>-->
+                    <!-- <select name="category_id[]" multiple class="form-control selectpicker" id="sub" required="required" data-live-search="true">-->
+                    <!--   @foreach($categories as $category)-->
+                    <!--   <option value="{{$category->id}}">{{$category->title}}</option>-->
+                    <!--   @endforeach-->
+                    <!-- </select>-->
+                    <!--@error('category_id')-->
+                    <!--<p style="color:red;">{{$message}}</p>-->
+                    <!--@enderror-->
+                    <!--</div>         -->
+                    <div class="form-group col-6">
+                        <label> الوسوم <span class="text-danger">*</span></label>
+                        <select name="tag_id[]" multiple="multiple" class="form-control" id="tag_id"
+                                data-live-search="true">
+                            @foreach($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->title}}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                        <p style="color:red;">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-6">
+                        <label>وقت التحضير <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control " value="{{old('prepare_time')}}" name="prepare_time"
+                               required="required"/>
+                        @error('prepare_time')
+                        <p style="color:red;">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-6">
+                        <label>طرق الدفع <span class="text-danger">*</span></label>
+                        <select name="payment_id[]" class="form-control selectpicker" multiple data-live-search="true">
+                            @foreach($payments as $payment)
+                                <option value="{{$payment->id}}">{{$payment->title}}</option>
+                            @endforeach
+                        </select>
+                        @error('payment_id')
+                        <p style="color:red;">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group col-6">
+                        <label>الحد الادنى للطلب<span class="text-danger">*</span></label>
+                        <input type="number" class="form-control " value="{{old('min_order')}}" name="min_order"
+                               required="required"/>
+                        @error('min_order')
+                        <p style="color:red;">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    {{--                    <div class="form-group col-6">--}}
+                    {{--                        <label> الخصم <span class="text-danger">*</span></label>--}}
+                    {{--                        <input type="number" class="form-control " value="{{old('discount')}}" name="discount"/>--}}
+                    {{--                        @error('discount')--}}
+                    {{--                        <p style="color:red;">{{ $message }}</p>--}}
+                    {{--                        @enderror--}}
+                    {{--                    </div>--}}
+                    <div class="form-group col-6">
+                        <label>نوع الخصم <span class="text-danger">*</span></label>
+                        <select name="discount_type" class="form-control">
+                            <option value="1">قيمة</option>
+                            <option value="0">نسبة %</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label>الخصم <span class="text-danger">*</span></label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="discount"
+                            value="{{ old('discount') }}"
+                        >
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label> سعر التوصيل <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control " value="{{old('delivery_money')}}"
+                               name="delivery_money"/>
+                        @error('delivery_money')
+                        <p style="color:red;">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-6">
+     <span class="switch btn btns-m switch-outline switch-icon switch-primary">
+    <label>
+        <input type="checkbox" name="is_new"
+
+               value="1"/>
+        <span></span>
+
+
+
+    </label>   جديد
+</span>
+
+                    </div>
+                    <!--           <div class="form-group col-6">-->
+                    <!--   <label> النسبه<span class="text-danger">*</span></label>-->
+                    <!--   <input type="number" class="form-control " value="{{old('commission')}}" name="commission"  required="required"/>-->
+                    <!--   @error('commission')-->
+                    <!--   <p style="color:red;">{{ $message }}</p>-->
+                    <!--@enderror-->
+                    <!--  </div> -->
+                </div>
+
 
                 <button type="submit" class="btn btn-shadow btn-primary font-weight-bold mt-5">
                     إضافة
@@ -720,6 +750,7 @@
 
                     $('#row').append('<div class="col-xl-4 col-6 col-sm-12 d-flex align-items-center"><figure class="imghvr-fade"><img style="width:100px;height:100px;"src=' + e.target.result + '></figure></div>');
                 }
+
                 $('#tag_id').select2({
                     tags: false
                 });

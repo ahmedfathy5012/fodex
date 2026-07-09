@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -11,32 +11,32 @@ use App\DataTables\ZoneDataTable;
 use App\Models\ZoneLatlon;
 use App\Models\ZonePrice;
 
-class ZoneController extends Controller 
+class ZoneController extends Controller
 {
 
-  
+
       public function index(ZoneDataTable $dataTable)
     {
       // dd(Country::all());
         return $dataTable->render('admindashboard.zones.index');
-    
+
   }
 
- 
+
   public function create()
   {
         $countries = Country::all();
-    $states = State::all(); 
-     $cities = City::all(); 
+    $states = State::all();
+     $cities = City::all();
     return view('admindashboard.zones.create',compact("countries","states","cities"));
   }
 
-  
+
   public function store(Request $request)
   {
         $request->validate([
       'name' => 'required',
-      'points' => 'required'],[
+      'points' => 'nullable'],[
       'name.required' => 'هذا الحقل مطلوب',
       'points.required' => 'من فضلك اختر منطقه على الخريطه'
        ]);
@@ -48,8 +48,8 @@ class ZoneController extends Controller
      $zone->text = $request->points;
      $zone->automatic = $request->automatic ? 1 : 0;
     $zone->save();
-    
-    
+
+
     if($request->points){
          foreach(json_decode($request->points) as $point){
         $area = new ZoneLatlon;
@@ -74,8 +74,8 @@ class ZoneController extends Controller
   public function edit($id)
   {
         $countries = Country::all();
-    $states = State::all(); 
-     $cities = City::all(); 
+    $states = State::all();
+     $cities = City::all();
      $zone = Zone::where('id',$id)->first();
     return view('admindashboard.zones.edit',compact("countries","states","cities","zone"));
   }
@@ -85,7 +85,7 @@ class ZoneController extends Controller
       'name' => 'required'],[
       'name.required' => 'هذا الحقل مطلوب'
        ]);
-       
+
     $zone = Zone::where('id',$id)->first();
     $zone->name = $request->name;
     $zone->country_id = $request->country_id;
@@ -129,7 +129,7 @@ class ZoneController extends Controller
     $zone->delete();
     return response()->json(['status' => true]);
   }
-  
+
 }
 
 ?>
