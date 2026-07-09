@@ -225,13 +225,6 @@
             </div>
         </li>
 
-
-
-
-
-
-
-
         <li class="menu-section">
             <h4 class="menu-text">الاعدادات</h4>
             <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
