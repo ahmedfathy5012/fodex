@@ -27,6 +27,7 @@ use App\Models\Zone;
 use App\traits\generaltrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -130,6 +131,17 @@ class SellerController extends Controller
             'cover' => 'nullable|image|max:10240', // 10MB
             'logo' => 'nullable|image|max:10240',  // 10MB
             'image.*' => 'nullable|image|max:10240', // 10MB each
+            'from_day' => 'required|date',
+            'to_day' => 'required|date|after_or_equal:from_day',
+            'percentage' => 'required|numeric',
+            'paper_contract_image' => 'required|mimes:jpg,jpeg,png,gif,webp,pdf|max:10240', // 10MB, image or PDF
+            'major_id' => 'required|exists:majors,id',
+            'country_id' => 'required|exists:countries,id',
+            // The cascading dropdowns fall back to a "الكل" (All) option with value 0 when
+            // the admin doesn't reselect after changing a parent field; 0 never exists.
+            'state_id' => 'required|exists:states,id',
+            'city_id' => 'required|exists:cities,id',
+            'zone_id' => 'required|exists:zones,id',
         ]);
 
         $request->merge(['is_central' => $is_central]);
@@ -146,83 +158,83 @@ class SellerController extends Controller
         }
         $request->merge(['discount_type' => $norm_dt]);
 
-        $seller = Seller::create($request->all());
-        $seller->password = Hash::make($request->password);
-        $seller->discount = $request->discount;
-        $seller->delivery_phone = $request->delivery_phone;
-        $seller->discount_type = (int) $request->discount_type;
-        $seller->delivery_money = $request->delivery_money;
-        $seller->min_order = $request->min_order;
-        $seller->is_new = $request->is_new ? 1 : 0;
+        DB::transaction(function () use ($request) {
+            $seller = Seller::create($request->all());
+            $seller->password = Hash::make($request->password);
+            $seller->discount = $request->discount;
+            $seller->delivery_phone = $request->delivery_phone;
+            $seller->discount_type = (int) $request->discount_type;
+            $seller->delivery_money = $request->delivery_money;
+            $seller->min_order = $request->min_order;
+            $seller->is_new = $request->is_new ? 1 : 0;
 
-        $seller->agreed = $request->agreed ? 1 : 0;
-        $seller->is_subcategory = $request->is_subcategory;
-        if ($request->hasFile('cover')) {
-            $image = $this->uploadimage($request->cover, 'sellers');
-            $seller->cover = $image;
-        }
-        if ($request->hasFile('logo')) {
-
-            $image = $this->uploadimage($request->logo, 'sellers');
-            $seller->logo = $image;
-        }
-        $seller->save();
-        if ($request->image) {
-            foreach ($request->image as $image) {
-                $sellerimage = new Sellerimage;
-                $newimage = $this->uploadimage($image, 'sellers');
-                $sellerimage->image = $newimage;
-                $sellerimage->seller_id = $seller->id;
-                $seller->save();
+            $seller->agreed = $request->agreed ? 1 : 0;
+            $seller->is_subcategory = $request->is_subcategory;
+            if ($request->hasFile('cover')) {
+                $cover = $this->uploadimage($request->cover, 'sellers');
+                $seller->cover = $cover;
             }
-        }
-        $major = Major::where('id', $request->major_id)->first();
+            if ($request->hasFile('logo')) {
 
-        $seller->categories()->attach($major->categories()->pluck('id')->toArray());
+                $logo = $this->uploadimage($request->logo, 'sellers');
+                $seller->logo = $logo;
+            }
+            $seller->save();
+            if ($request->image) {
+                foreach ($request->image as $image) {
+                    $sellerimage = new Sellerimage;
+                    $newimage = $this->uploadimage($image, 'sellers');
+                    $sellerimage->image = $newimage;
+                    $sellerimage->seller_id = $seller->id;
+                    $seller->save();
+                }
+            }
+            $major = Major::where('id', $request->major_id)->first();
 
-        if ($request->tag_id) {
-            $seller->tags()->attach($request->tag_id);
-        }
+            $seller->categories()->attach($major->categories()->pluck('id')->toArray());
 
-        if ($request->payment_id) {
-            $seller->payments()->attach($request->payment_id);
-        }
-        $address = new Address;
-        $address->country_id = $request->country_id;
-        $address->state_id = $request->state_id;
-        $address->city_id = $request->city_id;
-        $address->zone_id = $request->zone_id;
-        // $address->floor_number = $request->floor_number;
-        // $address->building_number = $request->building_number;
-        $address->lat = $request->lat;
-        $address->lon = $request->lon;
-        $address->street = $request->street;
-        $address->address = $request->address;
-        $address->seller_id = $seller->id;
-        $address->save();
-        $employee = new SellerEmployee;
-        $employee->name = $request->name;
-        $employee->phone = $request->phone;
-        $employee->password = Hash::make($request->phone);
-        $employee->seller_id = $seller->id;
-        $employee->save();
-        //  $contract = new Sellercontract;
-        //  $contract->from_day = $request->from_day;
-        //   $contract->to_day = $request->to_day;
+            if ($request->tag_id) {
+                $seller->tags()->attach($request->tag_id);
+            }
 
-        //  $contract->percentage = $request->percentage;
-        //  $contract->notes = $request->notes;
-        //  if($request->hasFile('paper_contract_image'))
-        // {
-
-        //     $image = $this->uploadimage($request->paper_contract_image,'contracts');
-        //     $contract->paper_contract_image = $image;
-        // }
-        //  $contract->seller_id = $seller->id;
-        // $contract->save();
+            if ($request->payment_id) {
+                $seller->payments()->attach($request->payment_id);
+            }
+            $address = new Address;
+            $address->country_id = $request->country_id;
+            $address->state_id = $request->state_id;
+            $address->city_id = $request->city_id;
+            $address->zone_id = $request->zone_id;
+            // $address->floor_number = $request->floor_number;
+            // $address->building_number = $request->building_number;
+            $address->lat = $request->lat;
+            $address->lon = $request->lon;
+            $address->street = $request->street;
+            $address->address = $request->address;
+            $address->seller_id = $seller->id;
+            $address->save();
+            $employee = new SellerEmployee;
+            $employee->name = $request->name;
+            $employee->phone = $request->phone;
+            $employee->password = Hash::make($request->phone);
+            $employee->seller_id = $seller->id;
+            $employee->save();
+            $contract = new Sellercontract;
+            $contract->from_day = $request->from_day;
+            $contract->to_day = $request->to_day;
+            $contract->percentage = $request->percentage;
+            $contract->notes = $request->notes;
+            if ($request->hasFile('paper_contract_image')) {
+                $image = $this->uploadimage($request->paper_contract_image, 'contracts');
+                $contract->paper_contract_image = $image;
+            }
+            $contract->seller_id = $seller->id;
+            $contract->active = 1;
+            $contract->save();
+        });
         $index_route = $is_central ? 'seller.central_index' : 'seller.index';
 
-        return redirect()->route($index_route);
+        return redirect()->route($index_route)->with('success', 'Seller created successfully.');
     }
 
     /**
@@ -260,7 +272,6 @@ class SellerController extends Controller
         $address = Address::where('seller_id', $id)->first();
         $contract = Sellercontract::where('seller_id', $id)->first();
         $view = env('APP_ENV') == 'production' ? 'admindashboard.sellers.edit' : 'admindashboard.sellers.V2.edit';
-
         return view($view)->with('countries', $countries)->with('tags', $tags)
             ->with('states', $states)->with('cities', $cities)->with('zones', $zones)->with('majors', $majors)
             ->with('categories', $categories)->with('seller', $seller)->with('address', $address)->with('contract', $contract)
@@ -275,11 +286,20 @@ class SellerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'phone' => "required|unique:sellers,phone,$id",
+            'major_id' => 'required|exists:majors,id',
+            'country_id' => 'required|exists:countries,id',
+            // The cascading dropdowns fall back to a "الكل" (All) option with value 0 when
+            // the admin doesn't reselect after changing a parent field; 0 never exists.
+            'state_id' => 'required|exists:states,id',
+            'city_id' => 'required|exists:cities,id',
+            'zone_id' => 'required|exists:zones,id',
+        ]);
 
         $major = Major::where('id', $request->major_id)->first();
         $seller = Seller::where('id', $id)->first();
         $password = $seller->password;
-        $request->validate(['phone' => "required|unique:sellers,phone,$id"]);
 
         // Normalize discount_type to integer before updating (1 = fixed amount, 0 = percentage)
         $dt = $request->input('discount_type');
@@ -293,66 +313,68 @@ class SellerController extends Controller
         }
         $request->merge(['discount_type' => $norm_dt]);
 
-        $seller = $seller->update($request->all());
-        $seller = Seller::where('id', $id)->first();
-        if ($request->password) {
-            $seller->password = Hash::make($request->password);
-        } else {
-            $seller->password = $password;
-        }
-        $seller->discount = $request->discount;
-        $seller->is_subcategory = $request->is_subcategory;
-        $seller->delivery_money = $request->delivery_money;
-        $seller->min_order = $request->min_order;
-        $seller->is_new = $request->is_new ? 1 : 0;
+        DB::transaction(function () use ($request, $seller, $major, $id, $password) {
+            $seller = $seller->update($request->all());
+            $seller = Seller::where('id', $id)->first();
+            if ($request->password) {
+                $seller->password = Hash::make($request->password);
+            } else {
+                $seller->password = $password;
+            }
+            $seller->discount = $request->discount;
+            $seller->is_subcategory = $request->is_subcategory;
+            $seller->delivery_money = $request->delivery_money;
+            $seller->min_order = $request->min_order;
+            $seller->is_new = $request->is_new ? 1 : 0;
 
-        $seller->discount_type = (int) $request->discount_type;
-        $seller->agreed = $request->agreed ? 1 : 0;
-        $seller->save();
-        if ($request->hasFile('cover')) {
-            File::delete(public_path() . '/uploads/' . $seller->cover);
-            $image = $this->uploadimage($request->cover, 'sellers');
-            $seller->cover = $image;
-        }
-        if ($request->hasFile('logo')) {
-            File::delete(public_path() . '/uploads/' . $seller->logo);
-            $image = $this->uploadimage($request->logo, 'sellers');
-            $seller->logo = $image;
-        }
-        $seller->save();
-        if ($request->image) {
-            if (count($seller->images) > 0) {
-                foreach ($seller->images as $im) {
-                    File::delete(public_path() . '/uploads/' . $im->image);
+            $seller->discount_type = (int) $request->discount_type;
+            $seller->agreed = $request->agreed ? 1 : 0;
+            $seller->save();
+            if ($request->hasFile('cover')) {
+                File::delete(public_path() . '/uploads/' . $seller->cover);
+                $image = $this->uploadimage($request->cover, 'sellers');
+                $seller->cover = $image;
+            }
+            if ($request->hasFile('logo')) {
+                File::delete(public_path() . '/uploads/' . $seller->logo);
+                $image = $this->uploadimage($request->logo, 'sellers');
+                $seller->logo = $image;
+            }
+            $seller->save();
+            if ($request->image) {
+                if (count($seller->images) > 0) {
+                    foreach ($seller->images as $im) {
+                        File::delete(public_path() . '/uploads/' . $im->image);
+                    }
+                }
+                foreach ($request->image as $image) {
+
+                    $sellerimage = new Sellerimage;
+                    $newimage = $this->uploadimage($image, 'sellers');
+                    $sellerimage->image = $newimage;
+                    $sellerimage->seller_id = $seller->id;
+                    $sellerimage->save();
                 }
             }
-            foreach ($request->image as $image) {
-
-                $sellerimage = new Sellerimage;
-                $newimage = $this->uploadimage($image, 'sellers');
-                $sellerimage->image = $newimage;
-                $sellerimage->seller_id = $seller->id;
-                $sellerimage->save();
+            $seller->categories()->sync($major->categories()->pluck('id')->toArray());
+            $seller->tags()->sync($request->tag_id);
+            if ($request->payment_id) {
+                $seller->payments()->sync($request->payment_id);
             }
-        }
-        $seller->categories()->sync($major->categories()->pluck('id')->toArray());
-        $seller->tags()->sync($request->tag_id);
-        if ($request->payment_id) {
-            $seller->payments()->sync($request->payment_id);
-        }
-        $address = Address::where('seller_id', $seller->id)->firstOrNew();
-        $address->country_id = $request->country_id;
-        $address->state_id = $request->state_id;
-        $address->city_id = $request->city_id;
-        $address->zone_id = $request->zone_id;
-        $address->floor_number = $request->floor_number;
-        $address->building_number = $request->building_number;
-        $address->lat = $request->lat;
-        $address->lon = $request->lon;
-        $address->address = $request->address;
-        $address->street = $request->street;
-        $address->seller_id = $seller->id;
-        $address->save();
+            $address = Address::where('seller_id', $seller->id)->firstOrNew();
+            $address->country_id = $request->country_id;
+            $address->state_id = $request->state_id;
+            $address->city_id = $request->city_id;
+            $address->zone_id = $request->zone_id;
+            $address->floor_number = $request->floor_number;
+            $address->building_number = $request->building_number;
+            $address->lat = $request->lat;
+            $address->lon = $request->lon;
+            $address->address = $request->address;
+            $address->street = $request->street;
+            $address->seller_id = $seller->id;
+            $address->save();
+        });
         //      $contract =  Sellercontract::where('seller_id',$seller->id)->first();
         //      $contract->from_day = $request->from_day;
         //       $contract->to_day = $request->to_day;
@@ -367,7 +389,7 @@ class SellerController extends Controller
         //     }
         //      $contract->seller_id = $seller->id;
         //     $contract->save();
-        return redirect()->route('seller.index');
+        return redirect()->route('seller.index')->with('success', 'Seller updated successfully.');
     }
 
     /**

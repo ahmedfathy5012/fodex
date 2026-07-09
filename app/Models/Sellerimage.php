@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Seller;
-class Sellerimage extends Model 
+class Sellerimage extends Model
 {
 
     protected $table = 'sellerimages';
@@ -17,4 +17,8 @@ class Sellerimage extends Model
         return $this->belongsTo(Seller::class, 'seller_id');
     }
 
+    public function getImageLinkAttribute()
+    {
+        return asset('uploads' . $this->image);
+    }
 }
