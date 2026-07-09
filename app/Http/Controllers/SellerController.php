@@ -26,10 +26,13 @@ use App\Models\WebsiteSeller;
 use App\Models\Zone;
 use App\traits\generaltrait;
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class SellerController extends Controller
 {
@@ -80,7 +83,7 @@ class SellerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+     * @return Response|Application|Factory|\Illuminate\Contracts\View\View|View
      */
     public function create()
     {
@@ -110,11 +113,7 @@ class SellerController extends Controller
             'categories' => $categories,
             'title' => $is_central ? __('messages.add_central_seller') : __('messages.add_seller')
         ];
-        if (env('APP_ENV') == 'production') {
-            return view('admindashboard.sellers.create', $data);
-        } else {
-            return view('admindashboard.sellers.V2.create', $data);
-        }
+        return view('admindashboard.sellers.V2.create', $data);
     }
 
     /**
@@ -163,7 +162,7 @@ class SellerController extends Controller
             $seller->password = Hash::make($request->password);
             $seller->discount = $request->discount;
             $seller->delivery_phone = $request->delivery_phone;
-            $seller->discount_type = (int) $request->discount_type;
+            $seller->discount_type = (int)$request->discount_type;
             $seller->delivery_money = $request->delivery_money;
             $seller->min_order = $request->min_order;
             $seller->is_new = $request->is_new ? 1 : 0;
@@ -271,7 +270,7 @@ class SellerController extends Controller
         $seller = Seller::where('id', $id)->first();
         $address = Address::where('seller_id', $id)->first();
         $contract = Sellercontract::where('seller_id', $id)->first();
-        $view = env('APP_ENV') == 'production' ? 'admindashboard.sellers.edit' : 'admindashboard.sellers.V2.edit';
+        $view = 'admindashboard.sellers.V2.edit';
         return view($view)->with('countries', $countries)->with('tags', $tags)
             ->with('states', $states)->with('cities', $cities)->with('zones', $zones)->with('majors', $majors)
             ->with('categories', $categories)->with('seller', $seller)->with('address', $address)->with('contract', $contract)
@@ -327,7 +326,7 @@ class SellerController extends Controller
             $seller->min_order = $request->min_order;
             $seller->is_new = $request->is_new ? 1 : 0;
 
-            $seller->discount_type = (int) $request->discount_type;
+            $seller->discount_type = (int)$request->discount_type;
             $seller->agreed = $request->agreed ? 1 : 0;
             $seller->save();
             if ($request->hasFile('cover')) {
