@@ -34,8 +34,8 @@ class Seller extends Authenticatable
 
     protected $table = 'sellers';
     public $timestamps = true;
-    protected $fillable = array('id', 'name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_central');
-    protected $visible = array('id', 'name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_central');
+    protected $fillable = array('id','delivery_phone', 'discount_type','name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_central');
+    protected $visible = array('id','delivery_phone', 'discount_type', 'name', 'phone', 'mobile', 'prepare_time', 'description', 'major_id', 'device_token', 'verify_code', 'api_token', 'password', 'wallet_amount', 'block', 'availability', 'not_available_reason', 'block_reason', 'close', 'distance_range', 'commission', 'is_central');
     protected $appends = ["image_link", "currency", "rate"];
     public function major()
     {

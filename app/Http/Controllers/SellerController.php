@@ -134,9 +134,23 @@ class SellerController extends Controller
 
         $request->merge(['is_central' => $is_central]);
 
+        // Normalize discount_type to integer (1 = fixed amount, 0 = percentage)
+        $dt = $request->input('discount_type');
+        $norm_dt = 0;
+        if (!is_null($dt)) {
+            if (is_numeric($dt)) {
+                $norm_dt = intval($dt);
+            } else {
+                $norm_dt = (strtolower($dt) === 'amount') ? 1 : 0;
+            }
+        }
+        $request->merge(['discount_type' => $norm_dt]);
+
         $seller = Seller::create($request->all());
         $seller->password = Hash::make($request->password);
         $seller->discount = $request->discount;
+        $seller->delivery_phone = $request->delivery_phone;
+        $seller->discount_type = (int) $request->discount_type;
         $seller->delivery_money = $request->delivery_money;
         $seller->min_order = $request->min_order;
         $seller->is_new = $request->is_new ? 1 : 0;
@@ -264,6 +278,19 @@ class SellerController extends Controller
         $seller = Seller::where('id', $id)->first();
         $password = $seller->password;
         $request->validate(['phone' => "required|unique:sellers,phone,$id"]);
+
+        // Normalize discount_type to integer before updating (1 = fixed amount, 0 = percentage)
+        $dt = $request->input('discount_type');
+        $norm_dt = 0;
+        if (!is_null($dt)) {
+            if (is_numeric($dt)) {
+                $norm_dt = intval($dt);
+            } else {
+                $norm_dt = (strtolower($dt) === 'amount') ? 1 : 0;
+            }
+        }
+        $request->merge(['discount_type' => $norm_dt]);
+
         $seller = $seller->update($request->all());
         $seller = Seller::where('id', $id)->first();
         if ($request->password) {
@@ -277,6 +304,7 @@ class SellerController extends Controller
         $seller->min_order = $request->min_order;
         $seller->is_new = $request->is_new ? 1 : 0;
 
+        $seller->discount_type = (int) $request->discount_type;
         $seller->agreed = $request->agreed ? 1 : 0;
         $seller->save();
         if ($request->hasFile('cover')) {
