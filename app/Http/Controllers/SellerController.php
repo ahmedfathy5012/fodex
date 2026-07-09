@@ -2,32 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Country;
-use App\Models\City;
-use App\Models\Tag;
-use App\Models\State;
-use App\Models\Zone;
-use App\Models\Major;
-use App\Models\Category;
-use App\Models\Seller;
-use App\Models\Armycase;
-use App\traits\generaltrait;
-use App\Models\Sellercontract;
-use App\DataTables\SellerDataTable;
-use App\DataTables\Seller3DataTable;
 use App\DataTables\OrderItemSellerDataTable;
+use App\DataTables\Seller3DataTable;
 use App\DataTables\SellerCentralDataTable;
 use App\DataTables\SellercontractDataTable;
+use App\DataTables\SellerDataTable;
 use App\Models\Address;
 use App\Models\AllCollection;
-use App\Models\Sellerimage;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Armycase;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Major;
 use App\Models\NumberSetting;
 use App\Models\Payment;
+use App\Models\Seller;
+use App\Models\Sellercontract;
 use App\Models\SellerEmployee;
+use App\Models\Sellerimage;
+use App\Models\State;
+use App\Models\Tag;
 use App\Models\WebsiteSeller;
+use App\Models\Zone;
+use App\traits\generaltrait;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class SellerController extends Controller
 {
@@ -53,6 +54,7 @@ class SellerController extends Controller
         ];
         return $dataTable->render('admindashboard.sellers.index', $data);
     }
+
     public function central_index(SellerCentralDataTable $dataTable)
     {
 
@@ -77,7 +79,7 @@ class SellerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
     public function create()
     {
@@ -107,7 +109,11 @@ class SellerController extends Controller
             'categories' => $categories,
             'title' => $is_central ? __('messages.add_central_seller') : __('messages.add_seller')
         ];
-        return view('admindashboard.sellers.create', $data);
+        if (env('APP_ENV') == 'production') {
+            return view('admindashboard.sellers.create', $data);
+        } else {
+            return view('admindashboard.sellers.V2.create', $data);
+        }
     }
 
     /**
@@ -135,7 +141,7 @@ class SellerController extends Controller
         $seller->min_order = $request->min_order;
         $seller->is_new = $request->is_new ? 1 : 0;
 
-        $seller->agreed = $request->agreed  ? 1 : 0;
+        $seller->agreed = $request->agreed ? 1 : 0;
         $seller->is_subcategory = $request->is_subcategory;
         if ($request->hasFile('cover')) {
             $image = $this->uploadimage($request->cover, 'sellers');
@@ -197,8 +203,8 @@ class SellerController extends Controller
 
         //     $image = $this->uploadimage($request->paper_contract_image,'contracts');
         //     $contract->paper_contract_image = $image;
-        // }  
-        //  $contract->seller_id = $seller->id; 
+        // }
+        //  $contract->seller_id = $seller->id;
         // $contract->save();
         $index_route = $is_central ? 'seller.central_index' : 'seller.index';
 
@@ -208,7 +214,7 @@ class SellerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show(SellercontractDataTable $dataTable, $id)
@@ -221,7 +227,7 @@ class SellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -248,7 +254,7 @@ class SellerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -271,7 +277,7 @@ class SellerController extends Controller
         $seller->min_order = $request->min_order;
         $seller->is_new = $request->is_new ? 1 : 0;
 
-        $seller->agreed = $request->agreed  ? 1 : 0;
+        $seller->agreed = $request->agreed ? 1 : 0;
         $seller->save();
         if ($request->hasFile('cover')) {
             File::delete(public_path() . '/uploads/' . $seller->cover);
@@ -304,7 +310,7 @@ class SellerController extends Controller
         if ($request->payment_id) {
             $seller->payments()->sync($request->payment_id);
         }
-        $address =  Address::where('seller_id', $seller->id)->firstOrNew();
+        $address = Address::where('seller_id', $seller->id)->firstOrNew();
         $address->country_id = $request->country_id;
         $address->state_id = $request->state_id;
         $address->city_id = $request->city_id;
@@ -328,8 +334,8 @@ class SellerController extends Controller
         //   File::delete(public_path(). '/uploads/'.$contract->paper_contract_image);
         //         $image = $this->uploadimage($request->paper_contract_image,'contracts');
         //         $contract->paper_contract_image = $image;
-        //     }  
-        //      $contract->seller_id = $seller->id; 
+        //     }
+        //      $contract->seller_id = $seller->id;
         //     $contract->save();
         return redirect()->route('seller.index');
     }
@@ -337,7 +343,7 @@ class SellerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
@@ -352,6 +358,7 @@ class SellerController extends Controller
         $seller->delete();
         return response()->json(['status' => true]);
     }
+
     public function blockseller(Request $request)
     {
         $seller = Seller::where('id', $request->id)->first();
@@ -374,15 +381,18 @@ class SellerController extends Controller
         $seller->save();
         return response()->json(['status' => true]);
     }
+
     public function sellercontracts(SellercontractDataTable $dataTable, $id)
     {
         $dataTable->id = $id;
         return $dataTable->render('admindashboard.sellers.contracts', ['id' => $id]);
     }
+
     public function addsellercontract($id)
     {
         return view('admindashboard.sellers.addsellercontract')->with('id', $id);
     }
+
     public function storesellercontract(Request $request, $id)
     {
         Sellercontract::where('seller_id', $id)->update(['active' => 0]);
@@ -402,14 +412,16 @@ class SellerController extends Controller
         $contract->save();
         return redirect('sellercontracts/' . $id);
     }
+
     public function editsellercontract($id)
     {
-        $contract =  Sellercontract::where('id', $id)->first();
+        $contract = Sellercontract::where('id', $id)->first();
         return view('admindashboard.sellers.editsellercontract')->with('contract', $contract);
     }
+
     public function updatesellercontract(Request $request, $id)
     {
-        $contract =  Sellercontract::where('id', $id)->first();
+        $contract = Sellercontract::where('id', $id)->first();
         $contract->from_day = $request->from_day;
         $contract->to_day = $request->to_day;
 
@@ -425,16 +437,18 @@ class SellerController extends Controller
 
         return redirect('sellercontracts/' . $contract->seller_id);
     }
+
     public function deletesellercontract($id)
     {
-        $contract =  Sellercontract::where('id', $id)->first();
+        $contract = Sellercontract::where('id', $id)->first();
         File::delete(public_path() . '/uploads/' . $contract->paper_contract_image);
         $contract->delete();
         return response()->json(['status' => true]);
     }
+
     public function activesellercontract($id)
     {
-        $contract =  Sellercontract::where('id', $id)->first();
+        $contract = Sellercontract::where('id', $id)->first();
         if ($contract->active == 1) {
             $contract->active = 0;
             $contract->save();
@@ -445,6 +459,7 @@ class SellerController extends Controller
             return response()->json(['status' => true, 'message' => 'تم  التفعيل']);
         }
     }
+
     public function addcollection(Request $request)
     {
         $res = Seller::where('id', $request->id)->first();
@@ -457,18 +472,18 @@ class SellerController extends Controller
             return response()->json(['status' => true, 'message' => 'تم التحصيل بنجاح']);
         } else {
             //     dd($request->all());
-            $orders = $res->acceptorders()->whereYear('orders.created_at', \Carbon\Carbon::parse($request->date))
-                ->whereMonth('orders.created_at', \Carbon\Carbon::parse($request->date))->get();
+            $orders = $res->acceptorders()->whereYear('orders.created_at', Carbon::parse($request->date))
+                ->whereMonth('orders.created_at', Carbon::parse($request->date))->get();
             //   ->whereMonth('orders.created_at',$date3)->get();
 
             //   ->where('order_status_id',7)->whereYear('orders.created_at',$date3)
             //   ->whereMonth('orders.created_at',$date3)->get();
             $countorders = count($orders);
-            $money = array_sum($res->orders()->where('status', 1)->whereYear('orders.created_at', \Carbon\Carbon::parse($request->date))
-                ->whereMonth('orders.created_at', \Carbon\Carbon::parse($request->date))->get()->pluck('priceafterdiscount')->toArray()) -
-                array_sum($res->orders()->where('status', 1)->whereYear('orders.created_at', \Carbon\Carbon::parse($request->date))
-                    ->whereMonth('orders.created_at', \Carbon\Carbon::parse($request->date))->get()->pluck('delivery_fee')->toArray());
-            $contract =  Sellercontract::where('seller_id', $request->id)->where('active', 1)->latest()->first();
+            $money = array_sum($res->orders()->where('status', 1)->whereYear('orders.created_at', Carbon::parse($request->date))
+                    ->whereMonth('orders.created_at', Carbon::parse($request->date))->get()->pluck('priceafterdiscount')->toArray()) -
+                array_sum($res->orders()->where('status', 1)->whereYear('orders.created_at', Carbon::parse($request->date))
+                    ->whereMonth('orders.created_at', Carbon::parse($request->date))->get()->pluck('delivery_fee')->toArray());
+            $contract = Sellercontract::where('seller_id', $request->id)->where('active', 1)->latest()->first();
 
 
             $value = $money * ($contract->percentage / 100);
@@ -478,11 +493,12 @@ class SellerController extends Controller
             $collect->ordersnumber = $countorders;
             $collect->money_taken = $request->value;
             $collect->month_date = $request->date;
-            $collect->money_left = $value -  $request->value;
+            $collect->money_left = $value - $request->value;
             $collect->save();
             return response()->json(['status' => true, 'message' => 'تم التحصيل بنجاح']);
         }
     }
+
     public function notcollectsellers(Seller3DataTable $dataTable)
     {
         $countries = Country::all();
@@ -491,11 +507,13 @@ class SellerController extends Controller
         $zones = Zone::all();
         return $dataTable->render('admindashboard.sellers.notcollectsellers', ['countries' => $countries, 'states' => $states, 'cities' => $cities, 'zones' => $zones]);
     }
+
     public function orderitemseller(OrderItemSellerDataTable $dataTable, $id)
     {
         $dataTable->id = $id;
         return $dataTable->render('admindashboard.sellers.orderitemseller');
     }
+
     public function choose_seller_website($id)
     {
         $seller = WebsiteSeller::where('seller_id', $id)->first();
