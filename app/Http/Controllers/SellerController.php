@@ -259,7 +259,9 @@ class SellerController extends Controller
         $seller = Seller::where('id', $id)->first();
         $address = Address::where('seller_id', $id)->first();
         $contract = Sellercontract::where('seller_id', $id)->first();
-        return view('admindashboard.sellers.edit')->with('countries', $countries)->with('tags', $tags)
+        $view = env('APP_ENV') == 'production' ? 'admindashboard.sellers.edit' : 'admindashboard.sellers.V2.edit';
+
+        return view($view)->with('countries', $countries)->with('tags', $tags)
             ->with('states', $states)->with('cities', $cities)->with('zones', $zones)->with('majors', $majors)
             ->with('categories', $categories)->with('seller', $seller)->with('address', $address)->with('contract', $contract)
             ->with('payments', $payments);

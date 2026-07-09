@@ -290,7 +290,7 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label> المسافه<span class="text-danger">*</span></label>
+                        <label> نطاق التوصيل { كم }<span class="text-danger">*</span></label>
                         <input type="number" class="form-control " value="{{$number->res_distance ?? ''}}"
                                name="distance_range" required="required"/>
                         @error('distance_range')
