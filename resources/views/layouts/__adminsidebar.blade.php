@@ -296,7 +296,7 @@
                 <span class="svg-icon menu-icon"><i class="fas fa-bars"></i></span>
 
 
-                <span class="menu-text">الاقسام</span>
+                <span class="menu-text">أقسام قائمة المنتجات </span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="menu-submenu">
