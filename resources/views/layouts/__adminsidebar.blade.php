@@ -313,7 +313,7 @@
                             <i class="menu-bullet menu-bullet-dot">
                                 <span></span>
                             </i>
-                            <span class="menu-text">الاقسام </span>
+                            <span class="menu-text"> الأقسام العامة Main Category  </span>
                         </a>
                     </li>
                     <li class="menu-item" aria-haspopup="true">
