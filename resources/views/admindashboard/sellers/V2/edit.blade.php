@@ -243,8 +243,18 @@
               </div>
        <div class="row">
         <div class="form-group col-6">
-    <label>نسبه الخصم     <span class="text-danger">*</span></label>
-    <input type="number" class="form-control " value="{{$seller->discount}}" name="discount"  />
+    <label>نوع الخصم     <span class="text-danger">*</span></label>
+    <select name="discount_type" class="form-control">
+        <option value="1" @if(old('discount_type', $seller->discount_type) == 1) selected @endif>قيمة</option>
+        <option value="0" @if(old('discount_type', $seller->discount_type) == 0) selected @endif>نسبة %</option>
+    </select>
+    @error('discount_type')
+    <p style="color:red;">{{ $message }}</p>
+ @enderror
+   </div>
+        <div class="form-group col-6">
+    <label>الخصم     <span class="text-danger">*</span></label>
+    <input type="number" class="form-control " value="{{old('discount', $seller->discount)}}" name="discount"  />
     @error('discount')
     <p style="color:red;">{{ $message }}</p>
  @enderror
