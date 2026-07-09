@@ -171,13 +171,13 @@ class SellerController extends Controller
             $seller->agreed = $request->agreed ? 1 : 0;
             $seller->is_subcategory = $request->is_subcategory;
             if ($request->hasFile('cover')) {
-                $image = $this->uploadimage($request->cover, 'sellers');
-                $seller->cover = $image;
+                $cover = $this->uploadimage($request->cover, 'sellers');
+                $seller->cover = $cover;
             }
             if ($request->hasFile('logo')) {
 
-                $image = $this->uploadimage($request->logo, 'sellers');
-                $seller->logo = $image;
+                $logo = $this->uploadimage($request->logo, 'sellers');
+                $seller->logo = $logo;
             }
             $seller->save();
             if ($request->image) {
@@ -389,7 +389,7 @@ class SellerController extends Controller
         //     }
         //      $contract->seller_id = $seller->id;
         //     $contract->save();
-        return redirect()->route('seller.index');
+        return redirect()->route('seller.index')->with('success', 'Seller updated successfully.');
     }
 
     /**

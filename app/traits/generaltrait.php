@@ -4,12 +4,24 @@ namespace App\traits;
 
 
 
+use Illuminate\Support\Str;
+
 trait generaltrait
 {
-    public function uploadimage($image, $file)
+    public function uploadimage($image, $folder)
     {
-        $imageName = time() . rand(1, 100) . '.' . $image->getClientOriginalExtension();
-        $photo = $image->storeAs($file, $imageName, 'uploads');
+//        $imageName = time() . rand(1, 100) . '.' . $image->getClientOriginalExtension();
+//        $photo = $image->storeAs($folder, $imageName, 'uploads');
+//        return $photo;
+        if (!$image instanceof \Illuminate\Http\UploadedFile || !$image->isValid()) {
+            throw new \InvalidArgumentException('Invalid file upload.');
+        }
+
+        $imageName = Str::uuid() . '.' . $image->extension();
+
+        $photo = $image->storeAs($folder, $imageName, 'uploads');
+
+
         return $photo;
     }
     public function distance($lat1, $lon1, $lat2, $lon2, $unit)

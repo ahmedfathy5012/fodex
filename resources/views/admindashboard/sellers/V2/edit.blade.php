@@ -198,7 +198,7 @@
                                          style="flex-direction: row; flex-wrap: wrap;">
                                         @foreach($seller->images as $image)
                                             <img style="width:100px;height:100px;object-fit:cover;"
-                                                 src="{{asset('uploads/'.$image->image)}}"
+                                                 src="{{$image->image ? asset('uploads/'.$image->image) : '#'}}"
                                                  class="upload-zone__preview-img" alt="preview">
                                         @endforeach
                                     </div>
