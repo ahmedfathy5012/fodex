@@ -62,7 +62,7 @@ class SellerDataTable extends DataTable
                     });
                 });
             })
-            ->addColumn('action', 'admindashboard.sellers.action')
+            ->addColumn('action', 'admindashboard.sellers.V2.action')
 
             ->rawColumns([
                 'action',
@@ -87,15 +87,15 @@ class SellerDataTable extends DataTable
  if($country_id){
              $seller_ids = Address::where('country_id',$country_id)->get()->pluck('seller_id');
              $sellers = $sellers->whereIn('id',$seller_ids);
-      
+
          } if($country_id && $state_id){
              $seller_ids = Address::where('state_id',$state_id)->get()->pluck('seller_id');
             $sellers = $sellers->whereIn('id',$seller_ids);
-        
+
          } if($country_id && $state_id && $city_id){
              $seller_ids = Address::where('city_id',$city_id)->get()->pluck('seller_id');
           $sellers = $sellers->whereIn('id',$seller_ids);
-             
+
          } if($country_id && $state_id && $city_id && $zone_id){
              $seller_ids = Address::where('zone_id',$zone_id)->get()->pluck('seller_id');
            $sellers = $sellers->whereIn('id',$seller_ids);
@@ -114,7 +114,7 @@ class SellerDataTable extends DataTable
         //   $sellers = $sellers->whereHas('address', function($query) {
         //  $query->whereIn("city_id",auth()->user()->cities->pluck("id")->toArray());
         //     });
-        //  } 
+        //  }
         //  else if(auth()->user()->type == 4 ){
         //   $sellers = $sellers->whereHas('address', function($query) {
         //  $query->whereIn("zone_id",auth()->user()->zones->pluck("id")->toArray());
