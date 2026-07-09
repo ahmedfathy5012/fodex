@@ -129,7 +129,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--begin::Body-->
 
 <body id="kt_body"
-    class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed 
+    class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed
 	aside-enabled aside-fixed aside-minimize-hoverable page-loading">
     <!--begin::Main-->
     <!--begin::Header Mobile-->
@@ -287,7 +287,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                     <!--begin::Menu Container-->
-                    @include('layouts.__adminsidebar')
+                    @include('layouts.company_includes.v2.__adminsidebar')
                     <!--end::Menu Container-->
 
                 </div>
@@ -727,8 +727,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- 	<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
  <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
  <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
- 
-   
+
+
  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
  <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
  <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
