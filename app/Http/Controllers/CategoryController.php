@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -9,11 +9,11 @@ use App\Models\Sellercategory;
 use App\traits\generaltrait;
 use App\DataTables\CategoryDataTable;
 use App\DataTables\SellercategoryDataTable;
-use Illuminate\Support\Facades\File; 
-class CategoryController extends Controller 
+use Illuminate\Support\Facades\File;
+class CategoryController extends Controller
 {
  use generaltrait;
-  
+
   public function index(CategoryDataTable $dataTable)
   {
     return $dataTable->render('admindashboard.categories.index');
@@ -23,10 +23,10 @@ class CategoryController extends Controller
   {
     $majors = Major::all();
     return view('admindashboard.categories.create')->with('majors',$majors);
-    
+
   }
 
- 
+
   public function store(Request $request)
   {
      $request->validate([
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     $category->description = $request->description;
      if($request->hasFile('image'))
         {
-       
+
             $image = $this->uploadimage($request->image,'categories');
             $category->image = $image;
         }
@@ -55,7 +55,7 @@ class CategoryController extends Controller
 
   public function show($id)
   {
-    
+
   }
 
 
@@ -127,8 +127,9 @@ class CategoryController extends Controller
       $selcategory->order_number = $request->order_number;
       $selcategory->save();
       return response()->json(['status' => true]);
-  }public function add_category_seller(Request $request){
-        $seller_category = Sellercategory::where([['seller_id','=',$request->seller_id],['category_id','=',$request->seller_id]])->first();
+  }
+  public function add_category_seller(Request $request){
+        $seller_category = Sellercategory::where([['seller_id','=',$request->seller_id],['category_id','=',$request->category_id]])->first();
         if($seller_category){
             $seller_category->delete();
         }else{
@@ -140,5 +141,3 @@ class CategoryController extends Controller
         return response()->json(['status' => true]);
   }
 }
-
-?>
