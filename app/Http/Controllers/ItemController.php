@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -10,16 +10,16 @@ use App\Models\Category;
 use App\Models\Extra;
 use App\Models\Seller;
 use App\traits\generaltrait;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\DataTables\ItemDataTable;
 use App\DataTables\ItemSellerDataTable;
 use App\Models\Extradetail;
-class ItemController extends Controller 
+class ItemController extends Controller
 {
 
  use generaltrait;
-  
+
    public function index(ItemDataTable $dataTable)
     {
       //
@@ -33,7 +33,7 @@ class ItemController extends Controller
       $dataTable->id = $id;
        return $dataTable->render('admindashboard.items.index');
     }
-  
+
   public function create()
   {
     $sellers = Seller::all();
@@ -41,10 +41,10 @@ class ItemController extends Controller
     return view('admindashboard.items.create')->with('sellers',$sellers)->with('categories',$categories);
   }
 
-  
+
   public function store(Request $request)
   {
-     
+
     $seller = Seller::where('id',$request->seller_id)->first();
     //     $request->validate([
     //   'title' => 'required',
@@ -52,14 +52,14 @@ class ItemController extends Controller
     // ],[
     //   'required' => 'هذا الحقل مطلوب'
     //    ]);
-  
+
     $item = Item::create($request->all());
       if($request->discount == null){
       $item->discount = 0;
     }
 
     $item->major_id = $seller->major_id;
-   
+
      $item->save();
     if($request->image){
     foreach($request->image as $image){
@@ -68,7 +68,7 @@ class ItemController extends Controller
             $itemimage->image = $newimage;
             $itemimage->item_id = $item->id;
             $itemimage->save();
-    } 
+    }
   }
  if($request->sizename){
     foreach($request->sizename as $key => $value) {
@@ -88,7 +88,7 @@ class ItemController extends Controller
     foreach($request->extrname as $key => $value) {
        $extra = new Extra;
        $extra->title = $value;
-         $extra->price = $request->extrprice[$key];
+         $extra->price = $request->extrprice[$key] ?? null;
           $extra->calory = $request->extracalory[$key];
           $extra->count_number = $request->count_number[$key];
          if(is_array($request->multiple) && array_key_exists($key, $request->multiple)){
@@ -96,7 +96,7 @@ class ItemController extends Controller
           $extra->multiple = $request->multiple[$key];
           }
           }else{
-            $extra->multiple = 0;  
+            $extra->multiple = 0;
           }
        $extra->item_id = $item->id;
        $extra->save();
@@ -116,7 +116,7 @@ class ItemController extends Controller
        }
          }
     }
-  }    
+  }
     return redirect()->route('item.index');
   }
 
@@ -128,7 +128,7 @@ class ItemController extends Controller
    */
   public function show($id)
   {
-    
+
   }
 
   /**
@@ -144,7 +144,7 @@ class ItemController extends Controller
     //  $categories = Category::all();
       $seller = Seller::where('id',$item->seller_id)->first();
     $categories = $seller->categories;
-    dd($item->extras_ddd);
+//    dd($item->extras_ddd);
     return view('admindashboard.items.edit')->with('sellers',$sellers)->with('item',$item)->with('categories',$categories);
   }
 
@@ -156,8 +156,8 @@ class ItemController extends Controller
    */
   public function update(Request $request,$id)
   {
-    
-     
+
+
       $item = Item::where('id',$id)->first();
    $item->update($request->all());
      if($request->discount == null){
@@ -172,18 +172,18 @@ class ItemController extends Controller
         }
          ItemImage::where('item_id',$id)->delete();
     foreach($request->image as $image){
-     
+
            $itemimage = new ItemImage;
             $newimage = $this->uploadimage($image,'items');
             $itemimage->image = $newimage;
             $itemimage->item_id = $item->id;
             $itemimage->save();
-    } 
+    }
   }
  if($request->sizename){
       Size::where('item_id',$id)->update(["hidden" => 1]);
     foreach($request->sizename as $key => $value) {
-      
+
        $size = new Size;
        $size->title = $value;
        $size->price = $request->sizeprice[$key];
@@ -210,7 +210,7 @@ class ItemController extends Controller
           $extra->multiple = $request->multiple[$key];
           }
           }else{
-            $extra->multiple = 0;  
+            $extra->multiple = 0;
           }
        $extra->save();
        if($request["extrname$key"]){
@@ -219,7 +219,7 @@ class ItemController extends Controller
          $ex2 = new Extradetail;
          $ex2->title = $value1;
          $ex2->extra_price = $request["extrprice$key"][$key1];
-       
+
               if(is_array($request["extrprice$key"]) &&  array_key_exists($key1, $request["extrprice$key"])){
         if(is_array($request["default$key"]) && array_key_exists($key1, $request["default$key"])){
           //if($request["default$key"][$key1]){
@@ -231,8 +231,8 @@ class ItemController extends Controller
        }
        }
     }
-  }   
-   return redirect()->route('item.index'); 
+  }
+   return redirect()->route('item.index');
   }
 
   /**
@@ -276,7 +276,7 @@ class ItemController extends Controller
       }
 }   public function availableitem($id){
         $item = Item::where("id",$id)->first();
-    
+
         if( $item->available == 1){
             $item->available = 0;
             $item->save();
@@ -284,8 +284,8 @@ class ItemController extends Controller
             $item->available =  1;
             $item->save();
         }
-    
-     
+
+
         return response()->json(['status' => true]);
     }
 }
