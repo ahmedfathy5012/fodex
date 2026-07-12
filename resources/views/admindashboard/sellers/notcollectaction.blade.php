@@ -3,12 +3,12 @@
     $res = \App\Models\Seller::where('id',$id)->first();
     $collect = \App\Models\AllCollection::where('seller_id',$id)->latest()->first();
     // if(isset($collect)){
-        
+
     //      $orders = $res->acceptorders()->whereBetween('created_at',[$collect->created_at,now()])->get();
     //     $countorders = count($orders);
     //     $money =array_sum($orders->pluck('priceafterdiscount')->toArray()) - array_sum($orders->pluck('delivery_fee')->toArray());
     //     $value = $money * ($res->admin_commission /100) + $collect->money_left;
-    
+
     // }else{
     //     $orders = $res->orders->where('order_status_id',7);
     //     $countorders = count($res->orders->where('order_status_id',7));
@@ -16,17 +16,17 @@
     //     array_sum($res->orders->where('order_status_id',7)->pluck('delivery_fee')->toArray());
     //     $value = $money * ($res->admin_commission /100);
     // }?>
-         <?php    
+         <?php
          $date2 = \Carbon\Carbon::now()->subMonth()->format('Y-m-d');
          $date1 = \Carbon\Carbon::parse($res->created_at)->format('Y-m-d');
     $period = \Carbon\CarbonPeriod::create($date1, '1 month', $date2);
 $aa = [];
     foreach ($period as $dt) {
-      
+
         $aa[]= $dt->format("Y-m");
     } ?>
-    @foreach($aa as $a) 
-    <?php 
+    @foreach($aa as $a)
+    <?php
     $date3 = \Carbon\Carbon::parse($a)->format('Y-m');
         $collect = \App\Models\AllCollection::where('seller_id',$id)->where('month_date',$a)
         ->first();?>
@@ -47,10 +47,10 @@ $aa = [];
         <div class="row">
      <div class="col-4">
          <label>عدد الطلبات</label>
-   
+
          <input type="number" disabled required value="{{$collect->ordersnumber}}"  min="1" name="orders" class="form-control">
      </div>
-   
+
  <div class="col-4">
          <label>المبلغ الكلى </label>
           <input type="number" disabled required value="{{$collect->total}}"  min="1" name="orders"  class="form-control">
@@ -82,24 +82,24 @@ $aa = [];
 </div>
     @endif
     @else
-    
-       <?php 
+
+       <?php
       $orders = $res->acceptorders()->whereYear('orders.created_at',\Carbon\Carbon::parse($a))
       ->whereMonth('orders.created_at',\Carbon\Carbon::parse($a))->get();
     //   ->whereMonth('orders.created_at',$date3)->get();
 
     //   ->where('order_status_id',7)->whereYear('orders.created_at',$date3)
     //   ->whereMonth('orders.created_at',$date3)->get();
-       $countorders = count($orders); 
+       $countorders = count($orders);
             $money =array_sum($res->orders()->where('status',1)->whereYear('orders.created_at',\Carbon\Carbon::parse($a))
             ->whereMonth('orders.created_at',\Carbon\Carbon::parse($a))->get()->pluck('priceafterdiscount')->toArray()) -
         array_sum($res->orders()->where('status',1)->whereYear('orders.created_at',\Carbon\Carbon::parse($a))
         ->whereMonth('orders.created_at',\Carbon\Carbon::parse($a))->get()->pluck('delivery_fee')->toArray());
        $contract =  \App\Models\Sellercontract::where('seller_id',$id)->where('active',1)->latest()->first();
-        
+
         ?>
         @if($contract)
-        <?php 
+        <?php
           $value = $money * ($contract->percentage /100);
         ?>
 @if($countorders == 0)
@@ -118,14 +118,14 @@ $aa = [];
         <div class="row">
      <div class="col-4">
          <label>عدد الطلبات</label>
-   
+
          <input type="number" disabled required value="{{$countorders}}"  min="1" name="orders" id="orders{{$a}}" class="form-control">
      </div>
-   
+
  <div class="col-4">
          <label>المبلغ الكلى </label>
           <input type="number" disabled required value="{{$value}}"  min="1" name="orders" id="total{{$a}}" class="form-control">
-     </div> 
+     </div>
      <div class="col-4">
          <label>المحصل </label>
           <input type="number" disabled required value="0"  min="1" name="orders"class="form-control">
@@ -169,7 +169,7 @@ $aa = [];
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-  
+
     $.ajax({
        type:"get",
        url: `showres/${id}`,
@@ -177,7 +177,7 @@ $aa = [];
        dataType: "Json",
        success: function(result){
            if(result.status == true){
-   
+
        table.ajax.reload();
            }
        }
@@ -191,7 +191,7 @@ $aa = [];
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-  
+
     $.ajax({
        type:"get",
        url: `opennow/${id}`,
@@ -199,7 +199,7 @@ $aa = [];
        dataType: "Json",
        success: function(result){
            if(result.status == true){
-   
+
        table.ajax.reload();
            }
        }
@@ -214,7 +214,7 @@ $aa = [];
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-  
+
     $.ajax({
        type:"post",
        url: `discountres/${id}`,
@@ -227,7 +227,7 @@ $aa = [];
        },
        success: function(result){
            if(result.status == true){
-  
+
 
 Swal.fire({
   position: 'top-end',
@@ -266,7 +266,7 @@ function addcollection(id,a){
        },
        success: function(result){
            if(result.status == true){
-  
+
 
 Swal.fire({
   position: 'top-end',

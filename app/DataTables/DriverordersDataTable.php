@@ -32,23 +32,23 @@ class DriverordersDataTable extends DataTable
                     return $order->user->name;
                 }
             })
-           ->addColumn('action', 'admindashboard.driverorders.action')
+           ->addColumn('action', 'admindashboard.driverorders.V2.action')
             ->rawColumns([
            'action',
         ])->filter(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
-                   
+
                     return $q->where("country_id",$request->country_id);
                 });
                 $query->when($request->state_id != 0,function($q) use($request){
-                   
+
                     return $q->where("state_id",$request->state_id);
                 });$query->when($request->city_id != 0,function($q) use($request){
-                   
+
                     return $q->where("city_id",$request->city_id);
                 });
                 $query->when($request->zone_id != 0,function($q) use($request){
-                   
+
                     return $q->where("zone_id",$request->zone_id);
                 });
                 $query->when($request->datepicker1,function($q) use($request){
@@ -75,7 +75,7 @@ class DriverordersDataTable extends DataTable
    //  $to = $this->request()->get('to');
         // return  Order::with(['seller' => function ($q){
         //   $q->with(['address' => function ($q1){
-        //       $q1->where('address.country_id',$this->request()->get('country_id')); 
+        //       $q1->where('address.country_id',$this->request()->get('country_id'));
         // }]);
         // }]);
          $orders = $model->newQuery()->where('driver_id',$this->id);
@@ -91,7 +91,7 @@ class DriverordersDataTable extends DataTable
         //     }
         // });
         //   if($this->request()->get('country_id') && $this->request()->get('state_id')){
-           
+
         //   }
     }
 
@@ -124,11 +124,11 @@ class DriverordersDataTable extends DataTable
     {
         return [
            ['data'=>'id','title'=>'id'],
-            ['data'=>'user_id','title'=>'المشتري'],    
-             ['data'=>'seller_id','title'=>'البائع'], 
+            ['data'=>'user_id','title'=>'المشتري'],
+             ['data'=>'seller_id','title'=>'البائع'],
        ['data'=>'price','title'=>'السعر'],
          ['data'=>'priceafterdiscount','title'=>'السعر بعد الخصم'],
-       
+
             ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],
         ];
     }

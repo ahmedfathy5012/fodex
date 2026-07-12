@@ -1,5 +1,5 @@
 <a href="{{route('editstoresellerzones',$id)}}" class="btn btn-sm btn-hover-bg-light m-0">
-                                
+
                                 <span class="svg-icon svg-icon-primary m-0 p-0 svg-icon-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -9,7 +9,7 @@
                                         </g>
                                     </svg>
                                 </span>
-                                
+
                             </a>
 
                             <div style="cursor:pointer;" onclick="deletezone({{$id}})" class="btn btn-sm btn-hover-bg-light mr-1">

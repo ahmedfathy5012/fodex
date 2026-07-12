@@ -63,7 +63,7 @@ class SellerCentralDataTable extends DataTable
                     });
                 });
             })
-            ->addColumn('action', 'admindashboard.sellers.central_action')
+            ->addColumn('action', 'admindashboard.sellers.V2.central_action')
 
             ->rawColumns([
                 'action',

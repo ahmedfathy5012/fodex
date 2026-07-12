@@ -2,13 +2,13 @@
 @section('content')
 
 <div class="card card-custom">
- 
- 
+
+
     <div class="card-header">
 		<div class="card-title">
 			<span class="card-icon">
-			
-			
+
+
     			<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo8/dist/../src/media/svg/icons/Files/File-plus.svg-->
                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -18,23 +18,23 @@
                         </g>
                     </svg><!--end::Svg Icon-->
                 </span>
-			
-			
+
+
 			</span>
-			
+
 			<h3 class="card-label">    اضافه منتج  </h3>
-			
+
 		</div>
 	</div>
- 
- 
+
+
  <!--begin::Form-->
 <form method="post" action="{{route('item.store')}}" enctype="multipart/form-data">
     @csrf
   <div class="card-body">
           <div class="row">
       <div class="mx-auto col-4">
-        
+
 
       <label id="label" for="gallery-photo-add"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> تحميل صور</label>
           <input type="file" multiple id="gallery-photo-add" class="image custom-file-input" name="image[]" >
@@ -53,7 +53,7 @@
     @error('title')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div>   
+   </div>
   <div class="form-group col-6">
     <label>السعر    <span class="text-danger">*</span></label>
     <input type="number" class="form-control " value="{{old('price')}}" name="price"  required="required"/>
@@ -66,14 +66,14 @@
     @error('discount')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div> 
+   </div>
       <div class="form-group col-6">
     <label>الخصم من    <span class="text-danger">*</span></label>
     <input type="date" class="form-control "  name="discount_from" />
     @error('discount_from')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div> 
+   </div>
       <div class="form-group col-6">
     <label>الخصم الى    <span class="text-danger">*</span></label>
     <input type="date" class="form-control "  name="discount_to" />
@@ -92,7 +92,7 @@
     @error('calory')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div> 
+   </div>
      <div class="form-group col-6">
         <label>البائعين  <span class="text-danger">*</span></label>
         <select name="seller_id" class="form-control selectpicker" onchange="getsellerscategory(this)" required="required" id="seller_id" required="required" data-live-search="true">
@@ -103,29 +103,29 @@
        @error('seller_id')
        <p style="color:red;">{{$message}}</p>
        @enderror
-       </div>  
+       </div>
          <div class="form-group col-6">
         <label>القسم الرئيسى  <span class="text-danger">*</span></label>
-        <select name="category_id" class="form-control selectpicker"  onchange="filter_subcategories(this)"  required="required" id="category_id" 
+        <select name="category_id" class="form-control selectpicker"  onchange="filter_subcategories(this)"  required="required" id="category_id"
         required="required" data-live-search="true">
           @foreach($categories as $category)
           <option value="{{$category->id}}">{{$category->title}}</option>
           @endforeach
         </select>
-       </div> 
+       </div>
          <div class="form-group col-6">
       <label>القسم الفرعى  <span class="text-danger">*</span></label>
-        <select name="subcategory_id" class="form-control selectpicker"  id="subcategory_id" 
+        <select name="subcategory_id" class="form-control selectpicker"  id="subcategory_id"
        data-live-search="true">
         </select>
-       </div> 
+       </div>
     <div class="form-group col-lg-6 col-md-12">
     <label> الوصف      <span class="text-danger">*</span></label>
     <textarea class="form-control" rows="5" name="description">{{old('description')}}</textarea>
     @error('description')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div>         
+   </div>
 </div>
  <div class="col-4 mx-auto mb-5 mt-5">
                                         <button type="button"  id="addf" class="btn btn-primary btn-light-primary w-100 d-flex justify-content-center align-items-center">
@@ -137,19 +137,19 @@
                                             اضافه اكسترا
                                         </button>
                                     </div>
-                                   
+
   <div class="row">
   <label style="display:block;margin-right:24px;">الاحجام </label>
  </div>
 <section id="section1">
-  
+
 </section>
 <!---->
 <div class="row">
   <label style="display:block;margin-right:24px;">الاضافات </label>
  </div>
 <section id ="section2">
-     
+
 </section>
   <button type="submit" class="btn btn-shadow btn-primary font-weight-bold mt-5">
            إضافة
@@ -164,9 +164,9 @@
     			</svg>
     			<!--end::Svg Icon-->
     		</span>
-           
-           
-           
+
+
+
        </button>
  </form>
  <!--end::Form-->
@@ -174,14 +174,14 @@
 @endsection
 @section('scripts')
 <script>
-  
+
            function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
             $('#im').css('background-image', 0);
-            
+
             $('#im').css('background-image', "url(" + e.target.result + ")");
         }
 
@@ -192,7 +192,7 @@
 $("#do").change(function(){
     readURL(this);
     console.log($('#im').css('background-image'));
-   
+
 });
           function readURL1(input) {
     if (input.files && input.files[0]) {
@@ -200,7 +200,7 @@ $("#do").change(function(){
 
         reader.onload = function (e) {
             $('#im1').css('background-image', 0);
-            
+
             $('#im1').css('background-image', "url(" + e.target.result + ")");
         }
 
@@ -211,14 +211,14 @@ $("#do").change(function(){
 $("#do1").change(function(){
     readURL1(this);
     console.log($('#im1').css('background-image'));
-   
+
 });      function readURL2(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
             $('#im2').css('background-image', 0);
-            
+
             $('#im2').css('background-image', "url(" + e.target.result + ")");
         }
 
@@ -229,7 +229,7 @@ $("#do1").change(function(){
 $("#do2").change(function(){
     readURL2(this);
     console.log($('#im2').css('background-image'));
-   
+
 });
   function readURL4(input) {
     if (input.files && input.files[0]) {
@@ -237,7 +237,7 @@ $("#do2").change(function(){
 
         reader.onload = function (e) {
             $('#im4').css('background-image', 0);
-            
+
             $('#im4').css('background-image', "url(" + e.target.result + ")");
         }
 
@@ -248,7 +248,7 @@ $("#do2").change(function(){
 $("#do4").change(function(){
     readURL4(this);
     console.log($('#im4').css('background-image'));
-   
+
 });
 
 let id = $("#section1 .row").length;
@@ -261,30 +261,30 @@ let id = $("#section1 .row").length;
    @error('sizename')
    <p style="color:red;">{{$message}}</p>
    @enderror
- 
+
   </div>
-      
+
   <div class="form-group col-3">
     <label>السعر    <span class="text-danger">*</span></label>
     <input type="number" class="form-control " value="{{old('sizeprice')}}" name="sizeprice[]"  required="required"/>
     @error('sizeprice')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div>    
+   </div>
    <div class="form-group col-2">
     <label>السعرات الحراريه<span class="text-danger">*</span></label>
     <input type="number" class="form-control " value="{{old('sizecalory')}}" name="sizecalory[]"  required="required"/>
     @error('sizecalory')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div>   
+   </div>
      <div class="form-group col-1">
     <label>default     <span class="text-danger">*</span></label>
     <input type="checkbox" class="form-control " value="1" name="size_default[]"  />
     @error('size_default')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div> 
+   </div>
    <div class="form-group col-1 mt-4">
         <button class="btn btn-sm  font-weight-bolder btn-light-danger" type="button" onclick="removef(${id})">مسح</button>
         </div>
@@ -298,7 +298,7 @@ console.log(id);
     $(`#remov${id}`).remove();
     id--;
     }
-    //new 
+    //new
     let id1 = $("#section2 .all").length;
     $('#adds').click(function(){
         $('#section2').append(`
@@ -310,7 +310,7 @@ console.log(id);
    @error('extrname')
    <p style="color:red;">{{$message}}</p>
    @enderror
- 
+
   </div>
       <div class="form-group col-2">
         <label> السعرات   <span class="text-danger">*</span></label>
@@ -318,7 +318,7 @@ console.log(id);
    @error('calory')
    <p style="color:red;">{{$message}}</p>
    @enderror
- 
+
   </div>
   <div class="form-group col-2">
     <label>السعر     <span class="text-danger">*</span></label>
@@ -326,7 +326,7 @@ console.log(id);
     @error('extrprice')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div>    
+   </div>
     <div class="form-group col-1">
     <label>العدد     <span class="text-danger">*</span></label>
     <input type="number" class="form-control " value="0" name="count_number[]"  required="required"/>
@@ -339,14 +339,14 @@ console.log(id);
     @error('multiple')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div> 
+   </div>
    <div class="form-group col-1 mt-4">
         <button class="btn btn-sm  font-weight-bolder btn-light-danger" type="button" onclick="removes(${id1})">مسح</button>
         </div>
 <div class="form-group col-1 mt-4">
         <button class="btn btn-sm  font-weight-bolder btn-light-success" type="button" onclick="get1(${id1})">اضافه</button>
         </div>
- 
+
 </div>
 </div>`);
 id1++;
@@ -368,7 +368,7 @@ console.log(id);
    @error('extrname2')
    <p style="color:red;">{{$message}}</p>
    @enderror
- 
+
   </div>
   <div class="form-group col-2">
     <label>السعر     <span class="text-danger">*</span></label>
@@ -376,14 +376,14 @@ console.log(id);
     @error('extrprice')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div>    
+   </div>
    <div class="form-group col-1">
     <label>default     <span class="text-danger">*</span></label>
     <input type="checkbox" class="form-control " value="1" name="default${i}[]"  />
     @error('default')
     <p style="color:red;">{{ $message }}</p>
  @enderror
-   </div> 
+   </div>
      <div class="form-group col-1 mt-4">
         <button class="btn btn-sm  font-weight-bolder btn-light-danger" type="button" onclick="removec(${id2})">مسح</button>
         </div>

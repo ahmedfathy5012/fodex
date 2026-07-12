@@ -26,21 +26,24 @@ use App\Models\WebsiteSeller;
 use App\Models\Zone;
 use App\traits\generaltrait;
 use Carbon\Carbon;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
 
 class SellerController extends Controller
 {
     use generaltrait;
 
+    private function sellerView(string $page): string
+    {
+        return env('APP_ENV') == 'production'
+            ? "admindashboard.sellers.$page"
+            : "admindashboard.sellers.V2.$page";
+    }
+
     public function index(SellerDataTable $dataTable, bool $is_central = false)
     {
-
         $create_route = $is_central ? route('seller.add_central') : route('seller.create');
 
         $countries = Country::all();
@@ -56,12 +59,12 @@ class SellerController extends Controller
             'cities' => $cities,
             'zones' => $zones,
         ];
-        return $dataTable->render('admindashboard.sellers.index', $data);
+
+        return $dataTable->render($this->sellerView('index'), $data);
     }
 
     public function central_index(SellerCentralDataTable $dataTable)
     {
-
         $create_route = route('seller.add_central');
 
         $countries = Country::all();
@@ -77,14 +80,10 @@ class SellerController extends Controller
             'cities' => $cities,
             'zones' => $zones,
         ];
-        return $dataTable->render('admindashboard.sellers.index', $data);
+
+        return $dataTable->render($this->sellerView('index'), $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response|Application|Factory|\Illuminate\Contracts\View\View|View
-     */
     public function create()
     {
         $is_central = request()->routeIs('seller.add_central');
@@ -99,6 +98,7 @@ class SellerController extends Controller
         $payments = Payment::all();
         $number = NumberSetting::first();
         $categories = Category::all();
+
         $data = [
             'is_central' => $is_central,
             'armycases' => $armycases,
@@ -113,31 +113,25 @@ class SellerController extends Controller
             'categories' => $categories,
             'title' => $is_central ? __('messages.add_central_seller') : __('messages.add_seller')
         ];
-        return view('admindashboard.sellers.V2.create', $data);
+
+        return view($this->sellerView('create'), $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store(Request $request)
     {
         $is_central = boolval($request->is_central) ?? false;
 
         $request->validate([
             'phone' => 'required|unique:sellers',
-            'cover' => 'nullable|image|max:10240', // 10MB
-            'logo' => 'nullable|image|max:10240',  // 10MB
-            'image.*' => 'nullable|image|max:10240', // 10MB each
+            'cover' => 'nullable|image|max:10240',
+            'logo' => 'nullable|image|max:10240',
+            'image.*' => 'nullable|image|max:10240',
             'from_day' => 'required|date',
             'to_day' => 'required|date|after_or_equal:from_day',
             'percentage' => 'required|numeric',
-            'paper_contract_image' => 'required|mimes:jpg,jpeg,png,gif,webp,pdf|max:10240', // 10MB, image or PDF
+            'paper_contract_image' => 'required|mimes:jpg,jpeg,png,gif,webp,pdf|max:10240',
             'major_id' => 'required|exists:majors,id',
             'country_id' => 'required|exists:countries,id',
-            // The cascading dropdowns fall back to a "الكل" (All) option with value 0 when
-            // the admin doesn't reselect after changing a parent field; 0 never exists.
             'state_id' => 'required|exists:states,id',
             'city_id' => 'required|exists:cities,id',
             'zone_id' => 'required|exists:zones,id',
@@ -145,9 +139,9 @@ class SellerController extends Controller
 
         $request->merge(['is_central' => $is_central]);
 
-        // Normalize discount_type to integer (1 = fixed amount, 0 = percentage)
         $dt = $request->input('discount_type');
         $norm_dt = 0;
+
         if (!is_null($dt)) {
             if (is_numeric($dt)) {
                 $norm_dt = intval($dt);
@@ -155,6 +149,7 @@ class SellerController extends Controller
                 $norm_dt = (strtolower($dt) === 'amount') ? 1 : 0;
             }
         }
+
         $request->merge(['discount_type' => $norm_dt]);
 
         DB::transaction(function () use ($request) {
@@ -162,23 +157,25 @@ class SellerController extends Controller
             $seller->password = Hash::make($request->password);
             $seller->discount = $request->discount;
             $seller->delivery_phone = $request->delivery_phone;
-            $seller->discount_type = (int)$request->discount_type;
+            $seller->discount_type = (int) $request->discount_type;
             $seller->delivery_money = $request->delivery_money;
             $seller->min_order = $request->min_order;
             $seller->is_new = $request->is_new ? 1 : 0;
-
             $seller->agreed = $request->agreed ? 1 : 0;
             $seller->is_subcategory = $request->is_subcategory;
+
             if ($request->hasFile('cover')) {
                 $cover = $this->uploadimage($request->cover, 'sellers');
                 $seller->cover = $cover;
             }
-            if ($request->hasFile('logo')) {
 
+            if ($request->hasFile('logo')) {
                 $logo = $this->uploadimage($request->logo, 'sellers');
                 $seller->logo = $logo;
             }
+
             $seller->save();
+
             if ($request->image) {
                 foreach ($request->image as $image) {
                     $sellerimage = new Sellerimage;
@@ -188,6 +185,7 @@ class SellerController extends Controller
                     $seller->save();
                 }
             }
+
             $major = Major::where('id', $request->major_id)->first();
 
             $seller->categories()->attach($major->categories()->pluck('id')->toArray());
@@ -199,62 +197,57 @@ class SellerController extends Controller
             if ($request->payment_id) {
                 $seller->payments()->attach($request->payment_id);
             }
+
             $address = new Address;
             $address->country_id = $request->country_id;
             $address->state_id = $request->state_id;
             $address->city_id = $request->city_id;
             $address->zone_id = $request->zone_id;
-            // $address->floor_number = $request->floor_number;
-            // $address->building_number = $request->building_number;
             $address->lat = $request->lat;
             $address->lon = $request->lon;
             $address->street = $request->street;
             $address->address = $request->address;
             $address->seller_id = $seller->id;
             $address->save();
+
             $employee = new SellerEmployee;
             $employee->name = $request->name;
             $employee->phone = $request->phone;
             $employee->password = Hash::make($request->phone);
             $employee->seller_id = $seller->id;
             $employee->save();
+
             $contract = new Sellercontract;
             $contract->from_day = $request->from_day;
             $contract->to_day = $request->to_day;
             $contract->percentage = $request->percentage;
             $contract->notes = $request->notes;
+
             if ($request->hasFile('paper_contract_image')) {
                 $image = $this->uploadimage($request->paper_contract_image, 'contracts');
                 $contract->paper_contract_image = $image;
             }
+
             $contract->seller_id = $seller->id;
             $contract->active = 1;
             $contract->save();
         });
+
         $index_route = $is_central ? 'seller.central_index' : 'seller.index';
 
         return redirect()->route($index_route)->with('success', 'Seller created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
     public function show(SellercontractDataTable $dataTable, $id)
     {
         $seller = Seller::where('id', $id)->first();
         $dataTable->id = $id;
-        return $dataTable->render('admindashboard.sellers.show', ['seller' => $seller]);
+
+        return $dataTable->render($this->sellerView('show'), [
+            'seller' => $seller
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
     public function edit($id)
     {
         $armycases = Armycase::all();
@@ -267,30 +260,31 @@ class SellerController extends Controller
         $tags = Tag::all();
         $payments = Payment::all();
         $categories = Category::all();
+
         $seller = Seller::where('id', $id)->first();
         $address = Address::where('seller_id', $id)->first();
         $contract = Sellercontract::where('seller_id', $id)->first();
-        $view = 'admindashboard.sellers.V2.edit';
-        return view($view)->with('countries', $countries)->with('tags', $tags)
-            ->with('states', $states)->with('cities', $cities)->with('zones', $zones)->with('majors', $majors)
-            ->with('categories', $categories)->with('seller', $seller)->with('address', $address)->with('contract', $contract)
+
+        return view($this->sellerView('edit'))
+            ->with('countries', $countries)
+            ->with('tags', $tags)
+            ->with('states', $states)
+            ->with('cities', $cities)
+            ->with('zones', $zones)
+            ->with('majors', $majors)
+            ->with('categories', $categories)
+            ->with('seller', $seller)
+            ->with('address', $address)
+            ->with('contract', $contract)
             ->with('payments', $payments);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param int $id
-     * @return Response
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
             'phone' => "required|unique:sellers,phone,$id",
             'major_id' => 'required|exists:majors,id',
             'country_id' => 'required|exists:countries,id',
-            // The cascading dropdowns fall back to a "الكل" (All) option with value 0 when
-            // the admin doesn't reselect after changing a parent field; 0 never exists.
             'state_id' => 'required|exists:states,id',
             'city_id' => 'required|exists:cities,id',
             'zone_id' => 'required|exists:zones,id',
@@ -300,9 +294,9 @@ class SellerController extends Controller
         $seller = Seller::where('id', $id)->first();
         $password = $seller->password;
 
-        // Normalize discount_type to integer before updating (1 = fixed amount, 0 = percentage)
         $dt = $request->input('discount_type');
         $norm_dt = 0;
+
         if (!is_null($dt)) {
             if (is_numeric($dt)) {
                 $norm_dt = intval($dt);
@@ -310,44 +304,50 @@ class SellerController extends Controller
                 $norm_dt = (strtolower($dt) === 'amount') ? 1 : 0;
             }
         }
+
         $request->merge(['discount_type' => $norm_dt]);
 
         DB::transaction(function () use ($request, $seller, $major, $id, $password) {
             $seller = $seller->update($request->all());
             $seller = Seller::where('id', $id)->first();
+
             if ($request->password) {
                 $seller->password = Hash::make($request->password);
             } else {
                 $seller->password = $password;
             }
+
             $seller->discount = $request->discount;
             $seller->is_subcategory = $request->is_subcategory;
             $seller->delivery_money = $request->delivery_money;
             $seller->min_order = $request->min_order;
             $seller->is_new = $request->is_new ? 1 : 0;
-
-            $seller->discount_type = (int)$request->discount_type;
+            $seller->discount_type = (int) $request->discount_type;
             $seller->agreed = $request->agreed ? 1 : 0;
             $seller->save();
+
             if ($request->hasFile('cover')) {
                 File::delete(public_path() . '/uploads/' . $seller->cover);
                 $image = $this->uploadimage($request->cover, 'sellers');
                 $seller->cover = $image;
             }
+
             if ($request->hasFile('logo')) {
                 File::delete(public_path() . '/uploads/' . $seller->logo);
                 $image = $this->uploadimage($request->logo, 'sellers');
                 $seller->logo = $image;
             }
+
             $seller->save();
+
             if ($request->image) {
                 if (count($seller->images) > 0) {
                     foreach ($seller->images as $im) {
                         File::delete(public_path() . '/uploads/' . $im->image);
                     }
                 }
-                foreach ($request->image as $image) {
 
+                foreach ($request->image as $image) {
                     $sellerimage = new Sellerimage;
                     $newimage = $this->uploadimage($image, 'sellers');
                     $sellerimage->image = $newimage;
@@ -355,11 +355,14 @@ class SellerController extends Controller
                     $sellerimage->save();
                 }
             }
+
             $seller->categories()->sync($major->categories()->pluck('id')->toArray());
             $seller->tags()->sync($request->tag_id);
+
             if ($request->payment_id) {
                 $seller->payments()->sync($request->payment_id);
             }
+
             $address = Address::where('seller_id', $seller->id)->firstOrNew();
             $address->country_id = $request->country_id;
             $address->state_id = $request->state_id;
@@ -374,45 +377,30 @@ class SellerController extends Controller
             $address->seller_id = $seller->id;
             $address->save();
         });
-        //      $contract =  Sellercontract::where('seller_id',$seller->id)->first();
-        //      $contract->from_day = $request->from_day;
-        //       $contract->to_day = $request->to_day;
 
-        //      $contract->percentage = $request->percentage;
-        //      $contract->notes = $request->notes;
-        //      if($request->hasFile('paper_contract_image'))
-        //     {
-        //   File::delete(public_path(). '/uploads/'.$contract->paper_contract_image);
-        //         $image = $this->uploadimage($request->paper_contract_image,'contracts');
-        //         $contract->paper_contract_image = $image;
-        //     }
-        //      $contract->seller_id = $seller->id;
-        //     $contract->save();
         return redirect()->route('seller.index')->with('success', 'Seller updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return Response
-     */
     public function destroy($id)
     {
         $seller = Seller::where('id', $id)->first();
+
         if (count($seller->images) > 0) {
             foreach ($seller->images as $im) {
                 File::delete(public_path() . '/uploads/' . $im->image);
             }
         }
+
         $seller->address()->delete();
         $seller->delete();
+
         return response()->json(['status' => true]);
     }
 
     public function blockseller(Request $request)
     {
         $seller = Seller::where('id', $request->id)->first();
+
         if ($seller->block == 1) {
             $seller->block = 0;
             $seller->save();
@@ -421,6 +409,7 @@ class SellerController extends Controller
             $seller->block_reason = $request->block_reason;
             $seller->save();
         }
+
         return response()->json(['status' => true]);
     }
 
@@ -430,44 +419,52 @@ class SellerController extends Controller
 
         $seller->availability = !$seller->availability;
         $seller->save();
+
         return response()->json(['status' => true]);
     }
 
     public function sellercontracts(SellercontractDataTable $dataTable, $id)
     {
         $dataTable->id = $id;
-        return $dataTable->render('admindashboard.sellers.contracts', ['id' => $id]);
+
+        return $dataTable->render($this->sellerView('contracts'), [
+            'id' => $id
+        ]);
     }
 
     public function addsellercontract($id)
     {
-        return view('admindashboard.sellers.addsellercontract')->with('id', $id);
+        return view($this->sellerView('addsellercontract'))->with('id', $id);
     }
 
     public function storesellercontract(Request $request, $id)
     {
         Sellercontract::where('seller_id', $id)->update(['active' => 0]);
+
         $contract = new Sellercontract;
         $contract->from_day = $request->from_day;
         $contract->to_day = $request->to_day;
-
         $contract->percentage = $request->percentage;
         $contract->notes = $request->notes;
-        if ($request->hasFile('paper_contract_image')) {
 
+        if ($request->hasFile('paper_contract_image')) {
             $image = $this->uploadimage($request->paper_contract_image, 'contracts');
             $contract->paper_contract_image = $image;
         }
+
         $contract->seller_id = $id;
         $contract->active = 1;
         $contract->save();
+
         return redirect('sellercontracts/' . $id);
     }
 
     public function editsellercontract($id)
     {
         $contract = Sellercontract::where('id', $id)->first();
-        return view('admindashboard.sellers.editsellercontract')->with('contract', $contract);
+
+        return view($this->sellerView('editsellercontract'))
+            ->with('contract', $contract);
     }
 
     public function updatesellercontract(Request $request, $id)
@@ -475,9 +472,9 @@ class SellerController extends Controller
         $contract = Sellercontract::where('id', $id)->first();
         $contract->from_day = $request->from_day;
         $contract->to_day = $request->to_day;
-
         $contract->percentage = $request->percentage;
         $contract->notes = $request->notes;
+
         if ($request->hasFile('paper_contract_image')) {
             File::delete(public_path() . '/uploads/' . $contract->paper_contract_image);
             $image = $this->uploadimage($request->paper_contract_image, 'contracts');
@@ -492,52 +489,86 @@ class SellerController extends Controller
     public function deletesellercontract($id)
     {
         $contract = Sellercontract::where('id', $id)->first();
+
         File::delete(public_path() . '/uploads/' . $contract->paper_contract_image);
         $contract->delete();
+
         return response()->json(['status' => true]);
     }
 
     public function activesellercontract($id)
     {
         $contract = Sellercontract::where('id', $id)->first();
+
         if ($contract->active == 1) {
             $contract->active = 0;
             $contract->save();
-            return response()->json(['status' => true, 'message' => 'تم الغاء التفعيل']);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'تم الغاء التفعيل'
+            ]);
         } elseif ($contract->active == 0) {
             $contract->active = 1;
             $contract->save();
-            return response()->json(['status' => true, 'message' => 'تم  التفعيل']);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'تم  التفعيل'
+            ]);
         }
     }
 
     public function addcollection(Request $request)
     {
         $res = Seller::where('id', $request->id)->first();
-        $collect = AllCollection::where('seller_id', $request->id)->where('month_date', $request->date)
+
+        $collect = AllCollection::where('seller_id', $request->id)
+            ->where('month_date', $request->date)
             ->first();
+
         if ($collect) {
             $collect->money_left = $collect->total - ($collect->money_taken + $request->value);
             $collect->money_taken = $collect->money_taken + $request->value;
             $collect->save();
-            return response()->json(['status' => true, 'message' => 'تم التحصيل بنجاح']);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'تم التحصيل بنجاح'
+            ]);
         } else {
-            //     dd($request->all());
-            $orders = $res->acceptorders()->whereYear('orders.created_at', Carbon::parse($request->date))
-                ->whereMonth('orders.created_at', Carbon::parse($request->date))->get();
-            //   ->whereMonth('orders.created_at',$date3)->get();
+            $orders = $res->acceptorders()
+                ->whereYear('orders.created_at', Carbon::parse($request->date))
+                ->whereMonth('orders.created_at', Carbon::parse($request->date))
+                ->get();
 
-            //   ->where('order_status_id',7)->whereYear('orders.created_at',$date3)
-            //   ->whereMonth('orders.created_at',$date3)->get();
             $countorders = count($orders);
-            $money = array_sum($res->orders()->where('status', 1)->whereYear('orders.created_at', Carbon::parse($request->date))
-                    ->whereMonth('orders.created_at', Carbon::parse($request->date))->get()->pluck('priceafterdiscount')->toArray()) -
-                array_sum($res->orders()->where('status', 1)->whereYear('orders.created_at', Carbon::parse($request->date))
-                    ->whereMonth('orders.created_at', Carbon::parse($request->date))->get()->pluck('delivery_fee')->toArray());
-            $contract = Sellercontract::where('seller_id', $request->id)->where('active', 1)->latest()->first();
 
+            $money = array_sum(
+                    $res->orders()
+                        ->where('status', 1)
+                        ->whereYear('orders.created_at', Carbon::parse($request->date))
+                        ->whereMonth('orders.created_at', Carbon::parse($request->date))
+                        ->get()
+                        ->pluck('priceafterdiscount')
+                        ->toArray()
+                ) - array_sum(
+                    $res->orders()
+                        ->where('status', 1)
+                        ->whereYear('orders.created_at', Carbon::parse($request->date))
+                        ->whereMonth('orders.created_at', Carbon::parse($request->date))
+                        ->get()
+                        ->pluck('delivery_fee')
+                        ->toArray()
+                );
+
+            $contract = Sellercontract::where('seller_id', $request->id)
+                ->where('active', 1)
+                ->latest()
+                ->first();
 
             $value = $money * ($contract->percentage / 100);
+
             $collect = new AllCollection;
             $collect->seller_id = $request->id;
             $collect->total = $value;
@@ -546,7 +577,11 @@ class SellerController extends Controller
             $collect->month_date = $request->date;
             $collect->money_left = $value - $request->value;
             $collect->save();
-            return response()->json(['status' => true, 'message' => 'تم التحصيل بنجاح']);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'تم التحصيل بنجاح'
+            ]);
         }
     }
 
@@ -556,18 +591,26 @@ class SellerController extends Controller
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
-        return $dataTable->render('admindashboard.sellers.notcollectsellers', ['countries' => $countries, 'states' => $states, 'cities' => $cities, 'zones' => $zones]);
+
+        return $dataTable->render($this->sellerView('notcollectsellers'), [
+            'countries' => $countries,
+            'states' => $states,
+            'cities' => $cities,
+            'zones' => $zones
+        ]);
     }
 
     public function orderitemseller(OrderItemSellerDataTable $dataTable, $id)
     {
         $dataTable->id = $id;
-        return $dataTable->render('admindashboard.sellers.orderitemseller');
+
+        return $dataTable->render($this->sellerView('orderitemseller'));
     }
 
     public function choose_seller_website($id)
     {
         $seller = WebsiteSeller::where('seller_id', $id)->first();
+
         if ($seller) {
             $seller->delete();
         } else {
@@ -575,6 +618,7 @@ class SellerController extends Controller
                 "seller_id" => $id
             ]);
         }
+
         return response()->json(['status' => true]);
     }
 }

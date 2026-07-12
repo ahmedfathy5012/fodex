@@ -27,8 +27,8 @@ class EmployeescontractDataTable extends DataTable
             $image = asset("uploads/$im");
             return '<img  src="' . $image . '" style ="width:100px;height:100px;" />';
         }
-              }) 
-          ->addColumn('action', 'admindashboard.employees.contractaction')
+              })
+          ->addColumn('action', 'admindashboard.employees.V2.contractaction')
              ->rawColumns([
          'action',
            'paper_contract_image'

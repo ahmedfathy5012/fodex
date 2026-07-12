@@ -25,21 +25,21 @@ class sellerworkschedulesDataTable extends DataTable
             //     if($Workschedule->seller){
             //         return $Workschedule->seller->name;
             //     }
-            // }) 
+            // })
             ->editColumn('work_from',function(Workschedule $Workschedule){
-                
+
                     return Carbon::parse($Workschedule->work_from)->format(' a g:i ');
-               
+
             }) ->editColumn('work_to',function(Workschedule $Workschedule){
-                
+
                     return Carbon::parse($Workschedule->work_to)->format(' a g:i ');
-               
+
             }) ->editColumn('day_id',function(Workschedule $Workschedule){
                 if($Workschedule->day){
                     return $Workschedule->day->day_ar;
                 }
             })
-            ->addColumn('action', 'admindashboard.sellerworkschedules.action')
+            ->addColumn('action', 'admindashboard.sellerworkschedules.V2.action')
 
             ->rawColumns([
            'action',
@@ -64,7 +64,7 @@ class sellerworkschedulesDataTable extends DataTable
      */
 public function html()
     {
-        
+
          return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()

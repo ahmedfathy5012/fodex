@@ -25,8 +25,8 @@ $isWebsiteSeller = $sellers->pluck('seller_id')->contains($id);
     }
 
     .seller-menu-trigger i {
-        font-size: 2rem;
-        color: #9ca3af;
+        font-size: 1rem !important;
+        color: #3699FF !important;
     }
 
     .seller-actions-dropdown {
@@ -73,6 +73,10 @@ $isWebsiteSeller = $sellers->pluck('seller_id')->contains($id);
         background: #f3f6f9 !important;
         color: #3f4254 !important;
         border: 1px solid #e4e6ef !important;
+    }
+
+    .seller-action-icon-btn i {
+        color: #3699FF !important;
     }
 
     .seller-action-danger {
@@ -135,8 +139,23 @@ $isWebsiteSeller = $sellers->pluck('seller_id')->contains($id);
     }
 
     .font_icon {
-        font-size: 1.2rem;
+        font-size: 0.75rem !important;
+        color: #3699FF !important;
         cursor: pointer;
+    }
+
+    .seller-action-icon-btn i,
+    .seller-action-icon-btn .font_icon,
+    .seller-action-icon-btn i[style] {
+        font-size: 0.75rem !important;
+        color: #3699FF !important;
+    }
+
+    .seller-action-icon-btn img {
+        width: 11px !important;
+        height: 11px !important;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%) invert(52%) sepia(92%) saturate(2213%) hue-rotate(190deg) brightness(101%) contrast(101%);
     }
 </style>
 

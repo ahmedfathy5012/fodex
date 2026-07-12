@@ -21,7 +21,7 @@ class SellerZoneDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.sellers.zones.action')
+            ->addColumn('action', 'admindashboard.sellers.zones.V2.action')
 
             ->rawColumns([
            'action',
