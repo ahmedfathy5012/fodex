@@ -42,7 +42,7 @@ class OrderItemDataTable extends DataTable
                     $foodOrder['price'] += $extra->price;
                 }
                 return $foodOrder['price'];
-            })  ->addColumn('action', 'admindashboard.orders.orderitemaction')
+            })  ->addColumn('action', 'admindashboard.orders.V2.orderitemaction')
            ->rawColumns([
                'action',
            'extras',
@@ -90,10 +90,10 @@ class OrderItemDataTable extends DataTable
     {
         return [
             ['data'=>'id','title'=>'id','orderable'=>false,'searchable'=>false],
-            ['data'=>'item_id','title'=>'الطعام','orderable'=>false,'searchable'=>false],    
+            ['data'=>'item_id','title'=>'الطعام','orderable'=>false,'searchable'=>false],
              ['data'=>'size_id','title'=>'الحجم','orderable'=>false,'searchable'=>false],
              ['data'=>'extras','title'=>'extras','orderable'=>false,'searchable'=>false],
-               ['data'=>'quantity','title'=>'الكميه'], 
+               ['data'=>'quantity','title'=>'الكميه'],
        ['data'=>'price','title'=>'السعر','class'=>'text-danger'],
         ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],
         ];

@@ -21,11 +21,11 @@ class NotcollectemployeeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-           ->addColumn('action', 'admindashboard.employees.notcollectaction')
+           ->addColumn('action', 'admindashboard.employees.V2.notcollectaction')
 ->editColumn('name',function(Employee $employee){
-          
+
                     return '<a href="'.route("employee.show",$employee->id).'">'.$employee->name.'</a>';
-                
+
             })
             ->rawColumns([
            'action',
@@ -43,7 +43,7 @@ class NotcollectemployeeDataTable extends DataTable
     {
         $ress =  Employee::all();
    $res_ids = [];
-   
+
     foreach($ress as $res){
       //  dd($res->id);
                       $date2 = \Carbon\Carbon::now()->subMonth()->format('Y-m-d');
@@ -51,27 +51,27 @@ class NotcollectemployeeDataTable extends DataTable
     $period = \Carbon\CarbonPeriod::create($date1, '1 month', $date2);
 $aa = [];
     foreach ($period as $dt) {
-      
+
         $aa[]= $dt->format("Y-m");
-    } 
+    }
     foreach($aa as $a){
-    
+
     $date3 = \Carbon\Carbon::parse($a)->format('Y-m');
         $collect = \App\Models\ExpenseEmployee::where('employee_id',$res->id)->where('month_date',$a)
         ->first();
     if($collect){
-        
+
   if($collect->money_left == 0){
-        
+
     }else{
         $res_ids[]= $res->id;
     }
-           
-       
+
+
     }
     else{
-    
-    
+
+
     //   $orders = $res->orders()->whereYear('orders.created_at',\Carbon\Carbon::parse($a))
     //   ->whereMonth('orders.created_at',\Carbon\Carbon::parse($a))->get();
     //   ->whereMonth('orders.created_at',$date3)->get();
@@ -83,9 +83,9 @@ $aa = [];
       ->whereMonth('created_at',\Carbon\Carbon::parse($a))->get()->pluck('value')->toArray());
        $awards =  array_sum(\App\Models\Award::where('employee_id',$res->id)->whereYear('created_at',\Carbon\Carbon::parse($a))
       ->whereMonth('created_at',\Carbon\Carbon::parse($a))->get()->pluck('value')->toArray());
-       
+
 if($contract == null){
-    
+
 }
 else{
 $res_ids[] = $res->id;
@@ -101,22 +101,22 @@ $res_ids[] = $res->id;
  if($country_id){
              $employee_ids = Address::where('country_id',$country_id)->get()->pluck('employee_id');
              $employees = $employees->whereIn('id',$employee_ids);
-      
+
          } if($country_id && $state_id){
              $employee_ids = Address::where('state_id',$state_id)->get()->pluck('employee_id');
             $employees = $employees->whereIn('id',$employee_ids);
-        
+
          } if($country_id && $state_id && $city_id){
              $employee_ids = Address::where('city_id',$city_id)->get()->pluck('employee_id');
           $employees = $employees->whereIn('id',$employee_ids);
-             
+
          } if($country_id && $state_id && $city_id && $zone_id){
              $employee_ids = Address::where('zone_id',$zone_id)->get()->pluck('employee_id');
            $employees = $employees->whereIn('id',$employee_ids);
          }
             return $employees->whereIn('id',$res_ids);
     }
-    
+
 
     /**
      * Optional method if you want to use html builder.

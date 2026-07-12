@@ -46,10 +46,10 @@ class ItemDataTable extends DataTable
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })
-             ->addColumn('action', 'admindashboard.items.action')
+             ->addColumn('action', 'admindashboard.items.V2.action')
             ->rawColumns([
            'action',
         ]);
@@ -64,7 +64,7 @@ class ItemDataTable extends DataTable
     public function query(Item $model)
     {
         $items = $model->newQuery()->orderBy("id","desc");
-        
+
                  if(auth()->user()->type == 1 ){
            $items = $items->whereHas('seller.address', function($query) {
          $query->whereIn("country_id",auth()->user()->countries->pluck("id")->toArray());
@@ -78,7 +78,7 @@ class ItemDataTable extends DataTable
            $items = $items->whereHas('seller.address', function($query) {
          $query->whereIn("city_id",auth()->user()->cities->pluck("id")->toArray());
             });
-         } 
+         }
          else if(auth()->user()->type == 4 ){
            $items = $items->whereHas('seller.address', function($query) {
          $query->whereIn("zone_id",auth()->user()->zones->pluck("id")->toArray());
@@ -96,7 +96,7 @@ class ItemDataTable extends DataTable
      */
    public function html()
     {
-        
+
          return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()
@@ -119,8 +119,8 @@ class ItemDataTable extends DataTable
          return [
      // ['data'=>'id','title'=>'id','visible' => false, 'printable' => false, 'exportable' => true],
             ['data'=>'title','title'=>'الاسم '],
-         
-        
+
+
                   ['data'=>'price','title'=>'السعر '],
                 ['data'=>'seller_id','title'=>'البائع','searchable'=>false],
             ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],

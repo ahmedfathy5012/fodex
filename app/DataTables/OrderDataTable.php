@@ -47,25 +47,25 @@ class OrderDataTable extends DataTable
                     return $order->user->name;
                 }
             })
-           ->addColumn('action', 'admindashboard.orders.action')
+           ->addColumn('action', 'admindashboard.orders.V2.action')
             ->rawColumns([
            'action',
            'seller_id',
            'user_id'
         ])->filter(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
-                   
+
                     return $q->where("country_id",$request->country_id);
                 });
                 $query->when($request->state_id != 0,function($q) use($request){
-                   
+
                     return $q->where("state_id",$request->state_id);
                 });$query->when($request->city_id != 0,function($q) use($request){
-                   
+
                     return $q->where("city_id",$request->city_id);
                 });
                 $query->when($request->zone_id != 0,function($q) use($request){
-                   
+
                     return $q->where("zone_id",$request->zone_id);
                 });
                 $query->when($request->datepicker1,function($q) use($request){
@@ -81,7 +81,7 @@ class OrderDataTable extends DataTable
                      }
                  });
         });
-           
+
     }
 
     /**
@@ -101,14 +101,14 @@ class OrderDataTable extends DataTable
     //       $orders = $orders->whereIn("state_id",auth()->user()->states->pluck("id")->toArray());
     //      }else if(auth()->user()->type == 3 ){
     //       $orders = $orders->whereIn("city_id",auth()->user()->cities->pluck("id")->toArray());
-    //      } 
+    //      }
     //      else if(auth()->user()->type == 4 ){
     //       $orders = $orders->whereIn("zone_id",auth()->user()->zones->pluck("id")->toArray());
     //      }else{
     //          $orders = $orders->where("id" ,"<",0);
     //      }
          return $orders;
-     
+
     }
 
     /**
@@ -140,11 +140,11 @@ class OrderDataTable extends DataTable
     {
         return [
            ['data'=>'id','title'=>'id'],
-            ['data'=>'user_id','title'=>'المشتري'],    
-             ['data'=>'seller_id','title'=>'البائع'], 
+            ['data'=>'user_id','title'=>'المشتري'],
+             ['data'=>'seller_id','title'=>'البائع'],
        ['data'=>'price','title'=>'السعر'],
          ['data'=>'priceafterdiscount','title'=>'السعر بعد الخصم'],
-       
+
             ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false,"width"=>"60px"],
         ];
     }

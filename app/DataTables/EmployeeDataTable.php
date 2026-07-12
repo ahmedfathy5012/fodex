@@ -43,14 +43,14 @@ class EmployeeDataTable extends DataTable
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })
-           ->addColumn('action', 'admindashboard.employees.action')
+           ->addColumn('action', 'admindashboard.employees.V2.action')
 ->editColumn('name',function(Employee $employee){
-          
+
                     return '<a href="'.route("employee.show",$employee->id).'">'.$employee->name.'</a>';
-                
+
             })
             ->rawColumns([
            'action',
@@ -80,7 +80,7 @@ class EmployeeDataTable extends DataTable
            $employees = $employees->whereHas('address', function($query) {
          $query->whereIn("city_id",auth()->user()->cities->pluck("id")->toArray());
             });
-         } 
+         }
          else if(auth()->user()->type == 4 ){
            $employees = $employees->whereHas('address', function($query) {
          $query->whereIn("zone_id",auth()->user()->zones->pluck("id")->toArray());
@@ -90,7 +90,7 @@ class EmployeeDataTable extends DataTable
          }
          return $employees;
     }
-    
+
 
     /**
      * Optional method if you want to use html builder.

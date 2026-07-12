@@ -1,4 +1,4 @@
-<?php 
+<?php
 $order =\App\Models\Order::where('id',$id)->first();
 $drivers = \App\Models\Driver::has('orders_ongoing', '=', 0)
 ->get();
@@ -38,11 +38,11 @@ $reasons = \App\Models\RefusedReason::all();
         </div>
         </div>
         <div class="row">
-            <button class="btn btn-primary mx-auto mt-4" 
+            <button class="btn btn-primary mx-auto mt-4"
            onclick="editprice({{$id}})" >حفظ</button>
             </div>
       </div>
-     
+
     </div>
 
   </div>
@@ -74,29 +74,29 @@ $reasons = \App\Models\RefusedReason::all();
 <!--           onclick="choosedriver({{$id}})" >حفظ</button>-->
 <!--            </div>-->
 <!--      </div>-->
-     
+
 <!--    </div>-->
 
 <!--  </div>-->
 <!--</div>-->
 <!--@endif   -->
 @if($order->delivery_status == 0)
-     <span style="cursor:pointer;" 
+     <span style="cursor:pointer;"
      class="label label-lg font-weight-bold label-light-success label-inline">السائق لم يقبل الطلب بعد</span>
 @elseif($order->delivery_status == 1)
-     <span style="cursor:pointer;" 
+     <span style="cursor:pointer;"
      class="label label-lg font-weight-bold label-light-success label-inline">السائق قبل</span>
      @elseif($order->delivery_status == 2)
-     <span style="cursor:pointer;" 
+     <span style="cursor:pointer;"
      class="label label-lg font-weight-bold label-light-success label-inline">السائق وصل للمنفذ</span>
      @elseif($order->delivery_status == 3)
-     <span style="cursor:pointer;" 
+     <span style="cursor:pointer;"
      class="label label-lg font-weight-bold label-light-success label-inline">السائق استلم الطلب </span>
      @elseif($order->delivery_status == 4)
-     <span style="cursor:pointer;" 
+     <span style="cursor:pointer;"
      class="label label-lg font-weight-bold label-light-success label-inline">السائق وصل الطلب</span>
      @endif
-     
+
 @if($order->cancel == 1)
  <span class="label label-lg font-weight-bold label-light-danger label-inline">ملغى</span>
                         @endif
@@ -105,10 +105,10 @@ $reasons = \App\Models\RefusedReason::all();
                         @endif
                             @if($order->status == 0)
                             <span onclick="orderstatus({{$id}},1)" style="cursor:pointer;" class="label label-lg font-weight-bold label-light-success label-inline">قبول</span>
-                         
+
                             <!--<span class="btn btn-success"data-toggle="modal" data-target="#myModal{{$id}}" >قبول</span>-->
-     
-         <span class="label label-lg font-weight-bold label-light-danger label-inline"  
+
+         <span class="label label-lg font-weight-bold label-light-danger label-inline"
          data-toggle="modal" data-target="#myModale{{$id}}" style="cursor:pointer;">رفض</span>
                                  <div id="myModale{{$id}}" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -131,36 +131,36 @@ $reasons = \App\Models\RefusedReason::all();
         </div>
         </div>
         <div class="row">
-            <button class="label label-lg font-weight-bold label-light-danger label-inline  mx-auto mt-4" 
+            <button class="label label-lg font-weight-bold label-light-danger label-inline  mx-auto mt-4"
            onclick="orderstatus({{$id}},2)" >رفض</button>
             </div>
       </div>
-     
+
     </div>
 
   </div>
 </div>
-                           
+
                            @elseif($order->status == 1)
 <span class="btn btn-sm btn-success sm-4" data-toggle="modal" data-target="#myModalaa{{$id}}">
-   قيد التحضير 
+   قيد التحضير
 </span>
 
 <div  id="myModalaa{{$id}}"  class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
 
-   
+
       <div class="modal-header">
         <h4 class="modal-title">الطيارين </h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-    
-      
+
+
       <div class="modal-body">
        <div class="row">
            <div class="col-6">
-               <select class="form-control" data-live-search="true" 
+               <select class="form-control" data-live-search="true"
                title="اختر طيار" id="driver_id{{$id}}">
            @foreach($drivers as $driver)
            <option value="{{$driver->id}}">{{$driver->name}}</option>
@@ -180,13 +180,13 @@ $reasons = \App\Models\RefusedReason::all();
 
     </div>
   </div>
-                            
+
                             @elseif($order->status == 2)
                             <span class="label label-lg font-weight-bold label-light-primary label-inline">السائق استلم الطلب</span>
                             @elseif($order->status == 3)
                             <span class="label label-lg font-weight-bold label-light-success label-inline">تم تسليم الطلب</span>
                             @endif
-                           
+
                             <script>
               function deleteorder(sel){
     let id = sel;
@@ -236,7 +236,7 @@ $reasons = \App\Models\RefusedReason::all();
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-      
+
     $.ajax({
        type:"post",
        url: `../orderstatus`,
@@ -270,7 +270,7 @@ $reasons = \App\Models\RefusedReason::all();
      }
        table.ajax.reload();
            }
- 
+
   })
 }
   function editprice(sel){
@@ -282,7 +282,7 @@ $reasons = \App\Models\RefusedReason::all();
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-      
+
     $.ajax({
        type:"post",
        url: `../editprice`,
@@ -303,9 +303,9 @@ $reasons = \App\Models\RefusedReason::all();
          )
          table.ajax.reload();
      }
-       
+
            }
- 
+
   })
 }function choosedriver(sel){
     let id = sel;
@@ -316,7 +316,7 @@ $reasons = \App\Models\RefusedReason::all();
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-      
+
     $.ajax({
        type:"post",
        url: `../choosedriver`,
@@ -338,7 +338,7 @@ $reasons = \App\Models\RefusedReason::all();
 })
        table.ajax.reload();
            }
- 
+
   })
 }function checkres(sel){
     let id = sel;
@@ -349,7 +349,7 @@ $reasons = \App\Models\RefusedReason::all();
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
     });
-   
+
     $.ajax({
        type:"get",
        url: `../checkres/${id}`,
@@ -357,10 +357,10 @@ $reasons = \App\Models\RefusedReason::all();
        dataType: "Json",
        success: function(result){
            if(result.status == true){
-   
+
        table.ajax.reload();
            }
        }
-  
+
   })
 }</script>

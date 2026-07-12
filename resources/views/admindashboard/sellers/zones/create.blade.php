@@ -2,13 +2,13 @@
 @section('content')
 
 <div class="card card-custom">
- 
- 
+
+
     <div class="card-header">
 		<div class="card-title">
 			<span class="card-icon">
-			
-			
+
+
     			<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo8/dist/../src/media/svg/icons/Files/File-plus.svg-->
                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -18,20 +18,20 @@
                         </g>
                     </svg><!--end::Svg Icon-->
                 </span>
-			
-			
+
+
 			</span>
-			
+
 			<h3 class="card-label">   اضافه سعر توصيل لمنطقه </h3>
 		</div>
 	</div>
- 
- 
+
+
  <!--begin::Form-->
 <form method="post" action="{{route('storesellerzones',$id)}}">
 
     @csrf
-  
+
   <div class="card-body">
    <div class ="row">
     <div class="form-group col-lg-4 col-md-6">
@@ -52,13 +52,13 @@
    <!--    <p style="color:red;">{{$message}}</p>-->
    <!--    @enderror-->
    <!--    </div>-->
-  
+
        </div>
     <button type="submit" class="btn btn-shadow btn-primary font-weight-bold mt-5">
-       
+
        إضافة
-       
-       
+
+
        <span class="svg-icon svg-icon m-0 svg-icon-md">
 			<!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -70,15 +70,15 @@
 			</svg>
 			<!--end::Svg Icon-->
 		</span>
-       
-       
-       
+
+
+
     </button>
-       
+
    </div>
-  
-   
-  
+
+
+
  </form>
  <!--end::Form-->
 </div>
