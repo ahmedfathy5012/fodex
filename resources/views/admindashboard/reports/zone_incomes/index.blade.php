@@ -96,6 +96,15 @@ z-index: 1
           @endforeach
         </select>
        </div>  
+             <div class="form-group col-lg-5 col-md-6">
+        <label>القسم الرئيسي</label>
+        <select name="category_id" class="form-control selectpicker" id="category" data-live-search="true">
+            <option value="0">الكل</option>
+          @foreach($categories as $category)
+          <option value="{{$category->id}}">{{$category->title}}</option>
+          @endforeach
+        </select>
+       </div>
 <!--     <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">-->
 <!--    <i class="fa fa-calendar"></i>&nbsp;-->
 <!--    <span></span> <i class="fa fa-caret-down"></i>-->
@@ -251,7 +260,8 @@ $("#datepicker").val('');}
        dataType: "Json",
        data:{
            "datepicker":String($("#datepicker").val()),
-           "zone_id":$('#zone').val()
+           "zone_id":$('#zone').val(),
+           "category_id":$('#category').val()
        },
        success: function(result){
         if(result.status == true){

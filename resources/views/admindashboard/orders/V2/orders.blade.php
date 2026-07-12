@@ -414,6 +414,16 @@
                                 </select>
                             </div>
                         @endif
+
+                        <div class="form-group col-lg-3 col-md-6">
+                            <label>القسم الرئيسي</label>
+                            <select name="category_id" class="form-control selectpicker" id="category" data-live-search="true">
+                                <option value="0">الكل</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="orders-date-wrapper">
@@ -625,7 +635,7 @@
         }
 
         $("#btn").on("click",function(){
-            $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
+            $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function ( e, settings, data ) {
                 data.from = $('#from').val();
                 data.to = $('#to').val();
                 data.datepicker1 = $('#datepicker').val();
@@ -636,13 +646,14 @@
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
+                data.category_id = $('#category').val();
             });
 
             $('#dataTableBuilder').DataTable().ajax.reload();
         });
 
         function filterstatus(status) {
-            $('#dataTableBuilder').on('preXhr.dt', function(e, settings, data) {
+            $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function(e, settings, data) {
                 data.status = status;
                 data.from = $('#from').val();
                 data.to = $('#to').val();
@@ -654,6 +665,7 @@
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
+                data.category_id = $('#category').val();
             });
 
             $('#dataTableBuilder').DataTable().ajax.reload();

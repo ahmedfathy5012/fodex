@@ -2,39 +2,39 @@
 
 @section('content')
     <style>
-        .sellers-index-page {
+        .driver-companies-page {
             direction: rtl;
         }
 
-        .sellers-index-card {
+        .driver-companies-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
-            background: #ffffff;
+            background: #fff;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .sellers-index-card .card-header {
-            background: #ffffff;
+        .driver-companies-card .card-header {
+            background: #fff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .sellers-index-card .card-title {
+        .driver-companies-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .sellers-index-card .card-label {
+        .driver-companies-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .sellers-index-card .card-icon {
+        .driver-companies-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,25 +44,25 @@
             justify-content: center;
         }
 
-        /*.sellers-index-card .card-icon svg path,*/
-        /*.sellers-index-card .card-icon svg rect {*/
-        /*    fill: #3699ff !important;*/
-        /*}*/
+        .driver-companies-card .card-icon svg path,
+        .driver-companies-card .card-icon svg rect {
+            fill: #3699ff !important;
+        }
 
-        .sellers-toolbar {
+        .driver-companies-toolbar {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding: 18px 26px 0;
         }
 
-        .sellers-add-btn {
+        .driver-companies-add-btn {
             min-width: 130px;
             height: 42px;
             border-radius: 10px !important;
             background: #3699ff !important;
             border: 0 !important;
-            color: #ffffff !important;
+            color: #fff !important;
             font-size: 14px;
             font-weight: 800 !important;
             display: inline-flex !important;
@@ -72,18 +72,18 @@
             transition: all 0.15s ease;
         }
 
-        .sellers-add-btn:hover {
+        .driver-companies-add-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.28);
-            color: #ffffff !important;
+            color: #fff !important;
         }
 
-        .sellers-index-body {
+        .driver-companies-body {
             padding: 28px;
-            background: #ffffff;
+            background: #fff;
         }
 
-        .sellers-filter-section {
+        .driver-companies-filter-section {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -91,7 +91,7 @@
             margin-bottom: 22px;
         }
 
-        .sellers-section-title {
+        .driver-companies-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -101,7 +101,7 @@
             gap: 8px;
         }
 
-        .sellers-section-title::before {
+        .driver-companies-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -110,53 +110,53 @@
             display: inline-block;
         }
 
-        .sellers-index-page .form-group label {
+        .driver-companies-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .sellers-index-page .form-control,
-        .sellers-index-page .bootstrap-select > .dropdown-toggle {
+        .driver-companies-page .form-control,
+        .driver-companies-page .bootstrap-select > .dropdown-toggle {
             min-height: 44px;
             border-radius: 10px !important;
             border: 1px solid #e4e6ef !important;
             color: #3f4254 !important;
-            background-color: #ffffff !important;
+            background: #fff !important;
             box-shadow: none !important;
             transition: all 0.15s ease;
         }
 
-        .sellers-index-page .form-control:focus,
-        .sellers-index-page .bootstrap-select.show > .dropdown-toggle {
+        .driver-companies-page .form-control:focus,
+        .driver-companies-page .bootstrap-select.show > .dropdown-toggle {
             border-color: #3699ff !important;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
         }
 
-        .sellers-index-page .bootstrap-select .filter-option {
+        .driver-companies-page .bootstrap-select .filter-option {
             text-align: right !important;
         }
 
-        .sellers-index-page .dropdown-menu {
+        .driver-companies-page .dropdown-menu {
             border-radius: 12px;
             border: 1px solid #edf0f5;
             box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
         }
 
-        .sellers-search-row {
+        .driver-companies-search-row {
             display: flex;
             justify-content: center;
             margin-top: 8px;
         }
 
-        .sellers-search-btn {
+        .driver-companies-search-btn {
             min-width: 150px;
             height: 42px;
             border-radius: 10px !important;
             background: #1bc5bd !important;
             border: 0 !important;
-            color: #ffffff !important;
+            color: #fff !important;
             font-size: 14px;
             font-weight: 800 !important;
             display: inline-flex !important;
@@ -167,28 +167,28 @@
             transition: all 0.15s ease;
         }
 
-        .sellers-search-btn:hover {
+        .driver-companies-search-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(27, 197, 189, 0.28);
-            color: #ffffff !important;
+            color: #fff !important;
         }
 
-        .sellers-table-section {
-            background: #ffffff;
+        .driver-companies-table-section {
+            background: #fff;
             border: 1px solid #edf0f5;
             border-radius: 14px;
             padding: 18px;
             overflow-x: auto;
         }
 
-        .sellers-index-page table.dataTable {
+        .driver-companies-page table.dataTable {
             width: 100% !important;
             border-collapse: separate !important;
             border-spacing: 0 8px !important;
             margin-top: 0 !important;
         }
 
-        .sellers-index-page table.dataTable thead th {
+        .driver-companies-page table.dataTable thead th {
             background: #f3f6f9;
             color: #3f4254;
             font-weight: 800;
@@ -198,20 +198,20 @@
             text-align: center;
         }
 
-        .sellers-index-page table.dataTable thead th:first-child {
+        .driver-companies-page table.dataTable thead th:first-child {
             border-radius: 0 10px 10px 0;
         }
 
-        .sellers-index-page table.dataTable thead th:last-child {
+        .driver-companies-page table.dataTable thead th:last-child {
             border-radius: 10px 0 0 10px;
         }
 
-        .sellers-index-page table.dataTable tbody tr {
-            background: #ffffff;
+        .driver-companies-page table.dataTable tbody tr {
+            background: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
-        .sellers-index-page table.dataTable tbody td {
+        .driver-companies-page table.dataTable tbody td {
             border-top: 1px solid #edf0f5 !important;
             border-bottom: 1px solid #edf0f5 !important;
             padding: 13px 12px !important;
@@ -220,17 +220,17 @@
             color: #3f4254;
         }
 
-        .sellers-index-page table.dataTable tbody td:first-child {
+        .driver-companies-page table.dataTable tbody td:first-child {
             border-right: 1px solid #edf0f5 !important;
             border-radius: 0 10px 10px 0;
         }
 
-        .sellers-index-page table.dataTable tbody td:last-child {
+        .driver-companies-page table.dataTable tbody td:last-child {
             border-left: 1px solid #edf0f5 !important;
             border-radius: 10px 0 0 10px;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_filter input {
+        .driver-companies-page .dataTables_wrapper .dataTables_filter input {
             border-radius: 10px;
             border: 1px solid #e4e6ef;
             min-height: 38px;
@@ -239,30 +239,30 @@
             box-shadow: none !important;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_filter input:focus {
+        .driver-companies-page .dataTables_wrapper .dataTables_filter input:focus {
             border-color: #3699ff;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
             outline: none;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_length select {
+        .driver-companies-page .dataTables_wrapper .dataTables_length select {
             border-radius: 8px;
             border: 1px solid #e4e6ef;
             min-height: 36px;
             padding: 4px 8px;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_info {
+        .driver-companies-page .dataTables_wrapper .dataTables_info {
             color: #7e8299;
             font-weight: 600;
             padding-top: 16px;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_paginate {
+        .driver-companies-page .dataTables_wrapper .dataTables_paginate {
             padding-top: 14px;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_paginate .paginate_button {
+        .driver-companies-page .dataTables_wrapper .dataTables_paginate .paginate_button {
             border-radius: 8px !important;
             border: 0 !important;
             margin: 0 2px;
@@ -271,43 +271,42 @@
             background: transparent !important;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        .driver-companies-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             background: #3699ff !important;
-            color: #ffffff !important;
+            color: #fff !important;
         }
 
-        .sellers-index-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        .driver-companies-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #eaf4ff !important;
             color: #3699ff !important;
         }
 
         @media (max-width: 768px) {
-            .sellers-index-body {
+            .driver-companies-body {
                 padding: 18px;
             }
 
-            .sellers-toolbar {
-                padding: 18px 18px 0;
-            }
-
-            .sellers-add-btn,
-            .sellers-search-btn {
-                width: 100%;
-            }
-
-            .sellers-filter-section {
+            .driver-companies-filter-section {
                 padding: 16px;
             }
 
-            .sellers-table-section {
+            .driver-companies-toolbar {
+                padding: 16px 18px 0;
+            }
+
+            .driver-companies-add-btn,
+            .driver-companies-search-btn {
+                width: 100%;
+            }
+
+            .driver-companies-table-section {
                 padding: 14px;
             }
         }
     </style>
 
-    <div class="sellers-index-page">
-        <!--begin::Card-->
-        <div class="card card-custom gutter-b sellers-index-card">
+    <div class="driver-companies-page">
+        <div class="card card-custom gutter-b driver-companies-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -319,30 +318,30 @@
                              viewBox="0 0 24 24"
                              version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <rect x="0" y="0" width="24" height="24" />
-                                <rect fill="#000000" x="4" y="5" width="16" height="3" rx="1.5" />
-                                <path
-                                    d="M5.5,15 L18.5,15 C19.3284271,15 20,15.6715729 20,16.5 C20,17.3284271 19.3284271,18 18.5,18 L5.5,18 C4.67157288,18 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 Z M5.5,10 L18.5,10 C19.3284271,10 20,10.6715729 20,11.5 C20,12.3284271 19.3284271,13 18.5,13 L5.5,13 C4.67157288,13 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 Z"
-                                    fill="#000000"
-                                    opacity="0.3" />
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <rect fill="#000000" x="4" y="5" width="16" height="3" rx="1.5"/>
+                                <path d="M5.5,15 L18.5,15 C19.3284271,15 20,15.6715729 20,16.5 C20,17.3284271 19.3284271,18 18.5,18 L5.5,18 C4.67157288,18 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 Z M5.5,10 L18.5,10 C19.3284271,10 20,10.6715729 20,11.5 C20,12.3284271 19.3284271,13 18.5,13 L5.5,13 C4.67157288,13 4,12.3284271 4,11.5 C4,10.6715729 4.67157288,10 5.5,10 Z"
+                                      fill="#000000"
+                                      opacity="0.3"/>
                             </g>
                         </svg>
                     </span>
                 </span>
 
-                    <h3 class="card-label">البائعين</h3>
+                    <h3 class="card-label">شركات التوصيل</h3>
                 </div>
             </div>
 
-            <div class="sellers-toolbar">
-                <a class="btn btn-sm btning sellers-add-btn" href="{{ $create_route }}">
+            <div class="driver-companies-toolbar">
+                <a class="btn btn-sm btning driver-companies-add-btn"
+                   href="{{ route('driver_companies.create') }}">
                     اضافه
                 </a>
             </div>
 
-            <div class="card-body sellers-index-body">
-                <div class="sellers-filter-section">
-                    <div class="sellers-section-title">فلترة البائعين</div>
+            <div class="card-body driver-companies-body">
+                <div class="driver-companies-filter-section">
+                    <div class="driver-companies-section-title">فلترة شركات التوصيل</div>
 
                     <div class="row">
                         <div class="form-group col-lg-3 col-md-6">
@@ -354,7 +353,7 @@
                                     required="required"
                                     data-live-search="true">
                                 <option value="0">الكل</option>
-                                @foreach (auth()->user()->countries as $country)
+                                @foreach(auth()->user()->countries as $country)
                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
@@ -369,7 +368,7 @@
                                     required="required"
                                     data-live-search="true">
                                 <option value="0">الكل</option>
-                                @foreach (auth()->user()->states as $state)
+                                @foreach(auth()->user()->states as $state)
                                     <option value="{{ $state->id }}">{{ $state->name }}</option>
                                 @endforeach
                             </select>
@@ -384,7 +383,7 @@
                                     required="required"
                                     data-live-search="true">
                                 <option value="0">الكل</option>
-                                @foreach (auth()->user()->cities as $city)
+                                @foreach(auth()->user()->cities as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach
                             </select>
@@ -398,39 +397,27 @@
                                     required="required"
                                     data-live-search="true">
                                 <option value="0">الكل</option>
-                                @foreach (auth()->user()->zones as $zone)
+                                @foreach(auth()->user()->zones as $zone)
                                     <option value="{{ $zone->id }}">{{ $zone->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-3 col-md-6">
-                            <label>القسم الرئيسي</label>
-                            <select name="category_id"
-                                    class="form-control selectpicker"
-                                    id="category"
-                                    data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-12 sellers-search-row">
-                            <span id="btn" class="btn btn-primary mx-auto sellers-search-btn">بحث</span>
+                        <div class="col-12 driver-companies-search-row">
+                            <span id="btn" class="btn btn-sm btning driver-companies-search-btn">بحث</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="sellers-table-section">
-                    {!! $dataTable->table([], true) !!}
+                <div class="driver-companies-table-section">
+                    {!! $dataTable->table([
+
+                    ], true) !!}
                 </div>
             </div>
         </div>
-        <!--end::Card-->
     </div>
 @endsection
 
@@ -450,7 +437,7 @@
 
             $.ajax({
                 type: "get",
-                url: `getstatesemployee/${id}`,
+                url: `getstates/${id}`,
                 dataType: "Json",
                 success: function(result) {
                     if (result.status == true) {
@@ -475,7 +462,7 @@
 
             $.ajax({
                 type: "get",
-                url: `getcitiesemployee/${id}`,
+                url: `getcities/${id}`,
                 dataType: "Json",
                 success: function(result) {
                     if (result.status == true) {
@@ -500,7 +487,7 @@
 
             $.ajax({
                 type: "get",
-                url: `getzonesemployee/${id}`,
+                url: `getzones/${id}`,
                 dataType: "Json",
                 success: function(result) {
                     if (result.status == true) {
@@ -515,17 +502,16 @@
 
         $("#btn").on("click", function() {
             $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function(e, settings, data) {
-                console.log($('#city').val());
-
                 data.country_id = $('#country').val();
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
-                data.category_id = $('#category').val();
             });
 
             var table = $('#dataTableBuilder').DataTable();
             table.ajax.reload();
+
+            return false;
         });
     </script>
 @endsection

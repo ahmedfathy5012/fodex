@@ -50,6 +50,7 @@ class SellerController extends Controller
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
+        $categories = Major::all();
 
         $data = [
             'create_route' => $create_route,
@@ -58,6 +59,7 @@ class SellerController extends Controller
             'states' => $states,
             'cities' => $cities,
             'zones' => $zones,
+            'categories' => $categories,
         ];
 
         return $dataTable->render($this->sellerView('index'), $data);
@@ -71,6 +73,7 @@ class SellerController extends Controller
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
+        $categories = Major::all();
 
         $data = [
             'create_route' => $create_route,
@@ -79,6 +82,7 @@ class SellerController extends Controller
             'states' => $states,
             'cities' => $cities,
             'zones' => $zones,
+            'categories' => $categories,
         ];
 
         return $dataTable->render($this->sellerView('index'), $data);

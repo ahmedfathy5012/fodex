@@ -42,14 +42,14 @@ class UserDataTable extends DataTable
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
-        })->addColumn('action', 'admindashboard.users.action')
+
+
+        })->addColumn('action', 'admindashboard.users.V2.action')
             ->rawColumns([
            'action'
         ]);
 
-           
+
     }
 
     /**
@@ -59,7 +59,7 @@ class UserDataTable extends DataTable
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(User $model)
-    {   
+    {
 
          return  $model->newQuery()->withCount("done_orders")->orderBy("done_orders_count","desc");
     }
