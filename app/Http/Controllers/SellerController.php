@@ -50,7 +50,7 @@ class SellerController extends Controller
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
-        $categories = Major::all();
+        $majories = Major::all();
 
         $data = [
             'create_route' => $create_route,
@@ -59,7 +59,7 @@ class SellerController extends Controller
             'states' => $states,
             'cities' => $cities,
             'zones' => $zones,
-            'categories' => $categories,
+            'majories' => $majories,
         ];
 
         return $dataTable->render($this->sellerView('index'), $data);
@@ -73,7 +73,7 @@ class SellerController extends Controller
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
-        $categories = Major::all();
+        $majories = Major::all();
 
         $data = [
             'create_route' => $create_route,
@@ -82,7 +82,7 @@ class SellerController extends Controller
             'states' => $states,
             'cities' => $cities,
             'zones' => $zones,
-            'categories' => $categories,
+            'majories' => $majories,
         ];
 
         return $dataTable->render($this->sellerView('index'), $data);
@@ -101,7 +101,7 @@ class SellerController extends Controller
         $tags = Tag::all();
         $payments = Payment::all();
         $number = NumberSetting::first();
-        $categories = Category::all();
+        $majories = Major::all();
 
         $data = [
             'is_central' => $is_central,
@@ -110,11 +110,11 @@ class SellerController extends Controller
             'states' => $states,
             'cities' => $cities,
             'zones' => $zones,
-            'majors' => $majors,
+            'majories' => $majories,
             'tags' => $tags,
             'payments' => $payments,
             'number' => $number,
-            'categories' => $categories,
+//            'categories' => $majories,
             'title' => $is_central ? __('messages.add_central_seller') : __('messages.add_seller')
         ];
 
