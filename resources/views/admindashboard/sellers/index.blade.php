@@ -18,7 +18,7 @@
                         </svg><!--end::Svg Icon--></span>
                 </span>
 
-                <h3 class="card-label">البائعين</h3>
+                    <h3 class="card-label">المنافذ</h3>
 
             </div>
         </div>
@@ -165,7 +165,7 @@
             //              var table = $('#dataTableBuilder').DataTable();
             //      table.ajax.reload();
             //      return false;
-            // }); 
+            // });
 
             $("#btn").on("click", function() {
 
