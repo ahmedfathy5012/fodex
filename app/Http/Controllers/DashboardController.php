@@ -32,7 +32,7 @@ class DashboardController extends Controller
          $daily_orders = count(Order::whereDate("created_at",Carbon::now())->get());
          $count_sellers =count($sellers);
           $count_employees =count($employees);
-          $count_drivers =count($drivers); 
+          $count_drivers =count($drivers);
           $seller_types = Seller::withCount("done_orders")->orderBy("done_orders_count","desc")
 ->take('5')->get();
             $sellers_names =[];
@@ -41,7 +41,7 @@ class DashboardController extends Controller
            $sellers_names[]= $seller_type->name;
            $seller_order_numbers[]=$seller_type->done_orders_count;
        }
-       
+
                 $driver_types = Driver::withCount("done_orders")->orderBy("done_orders_count","desc")
 ->take('5')->get();
             $drivers_names =[];
@@ -62,7 +62,7 @@ class DashboardController extends Controller
         "sellers_names","seller_order_numbers","drivers_names","driver_order_numbers","users_names","user_order_numbers","orders","dailyorders","notifications","top_users","top_drivers","coupons"));
     }public function mostresitems(){
         $zone_ids = auth()->user()->zones->pluck('id')->toArray();
-        $sellers = Seller::withCount("items")->orderByDesc('items_count')->whereHas('address', function($q) use ($zone_ids) 
+        $sellers = Seller::withCount("items")->orderByDesc('items_count')->whereHas('address', function($q) use ($zone_ids)
 {
     $q->whereIn("zone_id",$zone_ids);
 
@@ -77,7 +77,7 @@ class DashboardController extends Controller
        'names'=> $names,'numbers' => $numbers]]);
     }public function mostsellerorder(){
         $zone_ids = auth()->user()->zones->pluck('id')->toArray();
-        $sellers = Seller::withCount("acceptorders")->whereHas('address', function($q) use ($zone_ids) 
+        $sellers = Seller::withCount("acceptorders")->whereHas('address', function($q) use ($zone_ids)
 {
     $q->whereIn("zone_id",$zone_ids);
 
@@ -113,7 +113,7 @@ class DashboardController extends Controller
    "data"=>[
        'names'=> $names,'numbers' => $numbers]]);
     }public function mostcountryorder(){
-        
+
           $countries = Country::withCount("acceptorders")->orderByDesc('acceptorders_count')->take('10')->get();
         $names =[];
    $numbers=[];
@@ -131,10 +131,10 @@ class DashboardController extends Controller
        $names[]= $country->name;
          $number =0;
                    foreach($country->acceptorders as $order){
-               
-                        $number += $orderitem->priceafterdiscount; 
-                   
-                
+
+                        $number += $orderitem->priceafterdiscount;
+
+
             }
          $numbers[]=$number;
    }return response()->json(["status" => true,
@@ -160,10 +160,10 @@ class DashboardController extends Controller
        $names[]= $state->name;
          $number =0;
                    foreach($state->acceptorders as $order){
-               
-                        $number += $orderitem->priceafterdiscount; 
-                   
-                
+
+                        $number += $orderitem->priceafterdiscount;
+
+
             }
          $numbers[]=$number;
    }return response()->json(["status" => true,
@@ -189,10 +189,10 @@ class DashboardController extends Controller
        $names[]= $city->name;
          $number =0;
                    foreach($city->acceptorders as $order){
-               
-                        $number += $orderitem->priceafterdiscount; 
-                   
-                
+
+                        $number += $orderitem->priceafterdiscount;
+
+
             }
          $numbers[]=$number;
    }return response()->json(["status" => true,
@@ -218,10 +218,10 @@ class DashboardController extends Controller
        $names[]= $zone->name;
          $number =0;
                    foreach($zone->acceptorders as $order){
-               
-                        $number += $orderitem->priceafterdiscount; 
-                   
-                
+
+                        $number += $orderitem->priceafterdiscount;
+
+
             }
          $numbers[]=$number;
    }return response()->json(["status" => true,
@@ -229,7 +229,7 @@ class DashboardController extends Controller
        'names'=> $names,'numbers' => $numbers]]);
     }public function fastemployeeorder(){
         $zone_ids = auth()->user()->zones->pluck('id')->toArray();
-        $employees = Employee::withCount("acceptorders")->whereHas('address', function($q) use ($zone_ids) 
+        $employees = Employee::withCount("acceptorders")->whereHas('address', function($q) use ($zone_ids)
 {
     $q->whereIn("zone_id",$zone_ids);
 
@@ -243,7 +243,7 @@ class DashboardController extends Controller
    "data"=>[
        'names'=> $names,'numbers' => $numbers]]);
     } public function filter_dashboard(Request $request){
-      
+
         $now = Carbon::now()->format('Y-m-d');
         $sellers = Seller::where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
@@ -266,10 +266,10 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->get();
-      
+
         $employees = Employee::where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
                  $q->wherehas("address",function($qq) use($request){
@@ -291,8 +291,8 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->get();
         $drivers = Driver::where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
@@ -315,41 +315,41 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->get();
        $orders = Order::where("status",1)->where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
-                   
+
                     return $q->where("country_id",$request->country_id);
                 });
                 $query->when($request->state_id != 0,function($q) use($request){
-                   
+
                     return $q->where("state_id",$request->state_id);
                 });$query->when($request->city_id != 0,function($q) use($request){
-                   
+
                     return $q->where("city_id",$request->city_id);
                 });
                 $query->when($request->zone_id != 0,function($q) use($request){
-                   
+
                     return $q->where("zone_id",$request->zone_id);
                 });
                 })->get();
         $dailyorders = Order::where("status",1)->where('created_at',Carbon::now())
         ->where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
-                   
+
                     return $q->where("country_id",$request->country_id);
                 });
                 $query->when($request->state_id != 0,function($q) use($request){
-                   
+
                     return $q->where("state_id",$request->state_id);
                 });$query->when($request->city_id != 0,function($q) use($request){
-                   
+
                     return $q->where("city_id",$request->city_id);
                 });
                 $query->when($request->zone_id != 0,function($q) use($request){
-                   
+
                     return $q->where("zone_id",$request->zone_id);
                 });
                 })->get();
@@ -374,8 +374,8 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->take(5)->get();
          $top_drivers = Driver::withCount("acceptorders")->orderBy("acceptorders_count","desc")->where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
@@ -398,29 +398,29 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->take(5)->get();
          $daily_orders = count(Order::whereDate("created_at",Carbon::now())->where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
-                   
+
                     return $q->where("country_id",$request->country_id);
                 });
                 $query->when($request->state_id != 0,function($q) use($request){
-                   
+
                     return $q->where("state_id",$request->state_id);
                 });$query->when($request->city_id != 0,function($q) use($request){
-                   
+
                     return $q->where("city_id",$request->city_id);
                 });
                 $query->when($request->zone_id != 0,function($q) use($request){
-                   
+
                     return $q->where("zone_id",$request->zone_id);
                 });
                 })->get());
          $count_sellers =count($sellers);
           $count_employees =count($employees);
-          $count_drivers =count($drivers); 
+          $count_drivers =count($drivers);
           $seller_types = Seller::withCount("done_orders")->where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
                  $q->wherehas("address",function($qq) use($request){
@@ -442,8 +442,8 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->orderBy("done_orders_count","desc")
 ->take('5')->get();
             $sellers_names =[];
@@ -452,7 +452,7 @@ class DashboardController extends Controller
            $sellers_names[]= $seller_type->name;
            $seller_order_numbers[]=$seller_type->done_orders_count;
        }
-       
+
                 $driver_types = Driver::withCount("done_orders")->where(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
                  $q->wherehas("address",function($qq) use($request){
@@ -474,8 +474,8 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->orderBy("done_orders_count","desc")
 ->take('5')->get();
             $drivers_names =[];
@@ -505,8 +505,8 @@ class DashboardController extends Controller
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         })->orderBy("done_orders_count","desc")
 ->take('5')->get();
             $users_names =[];
