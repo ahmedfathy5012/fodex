@@ -101,7 +101,7 @@ class SellerController extends Controller
         $tags = Tag::all();
         $payments = Payment::all();
         $number = NumberSetting::first();
-        $majories = Major::all();
+//        $majories = Major::all();
 
         $data = [
             'is_central' => $is_central,
@@ -110,7 +110,7 @@ class SellerController extends Controller
             'states' => $states,
             'cities' => $cities,
             'zones' => $zones,
-            'majories' => $majories,
+            'majors' => $majors,
             'tags' => $tags,
             'payments' => $payments,
             'number' => $number,
