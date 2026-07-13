@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 
 use App\DataTables\SellerMoneyDataTable;
+use App\Models\Major;
 
 class SellerMoneyController extends Controller 
 {
@@ -13,6 +14,8 @@ class SellerMoneyController extends Controller
   
    public function index(SellerMoneyDataTable $dataTable)
     {
-        return $dataTable->render('admindashboard.seller_money.index');
+        $majors = Major::all();
+
+        return $dataTable->render('admindashboard.seller_money.index', compact('majors'));
     }
 }

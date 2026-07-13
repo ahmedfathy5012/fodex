@@ -62,6 +62,9 @@ class SellerCentralDataTable extends DataTable
                         return $qq->where("zone_id", $request->zone_id);
                     });
                 });
+                $query->when($request->major_id != 0, function ($q) use ($request) {
+                    $q->where("major_id", $request->major_id);
+                });
             })
             ->addColumn('action', 'admindashboard.sellers.V2.central_action')
 

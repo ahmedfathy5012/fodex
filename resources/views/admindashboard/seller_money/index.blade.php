@@ -29,6 +29,17 @@
         <div class="card-body">
             <!--begin: Datatable-->
            <div class="row">
+                <div class="form-group col-lg-4 col-md-6 mx-auto">
+                    <label>القسم العام</label>
+                    <select name="major_id" class="form-control selectpicker" id="major" data-live-search="true">
+                        <option value="0">الكل</option>
+                        @foreach($majors as $major)
+                            <option value="{{$major->id}}">{{$major->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+           </div>
+           <div class="row">
                 <div class="col-4 mx-auto">
           <div class="form-group btn-dating">
                                 <label for="datepicker">    <i class="fa fa-calendar"></i>&nbsp;
@@ -116,8 +127,9 @@ $("#datepicker").val('');}
       
         $("#btn").on("click",function(){
  
- $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
+ $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function ( e, settings, data ) {
           data.datepicker1 = $('#datepicker').val();
+          data.major_id = $('#major').val();
  });
        $('#dataTableBuilder').DataTable().ajax.reload();
 

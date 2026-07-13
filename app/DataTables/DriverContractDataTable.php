@@ -27,13 +27,13 @@ class DriverContractDataTable extends DataTable
             $image = asset("uploads/$im");
             return '<img  src="' . $image . '" style ="width:100px;height:100px;" />';
         }
-              }) 
-          ->addColumn('action', 'admindashboard.drivers.contractaction')
+              })
+          ->addColumn('action', 'admindashboard.drivers.V2.contractaction')
              ->rawColumns([
          'action',
            'paper_contract_image'
         ]);
-    
+
     }
 
     /**

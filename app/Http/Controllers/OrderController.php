@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\City;
+use App\Models\Major;
 use App\Models\State;
 use App\User;
 use App\Models\Zone;
@@ -40,12 +41,14 @@ class OrderController extends Controller
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
+        $majors = Major::all();
 
         return $dataTable->render($this->dashboardView('orders', 'orders'), [
             'countries' => $countries,
             'states' => $states,
             'cities' => $cities,
-            'zones' => $zones
+            'zones' => $zones,
+            'majors' => $majors
         ]);
     }
 
@@ -414,12 +417,14 @@ class OrderController extends Controller
         $states = State::all();
         $cities = City::all();
         $zones = Zone::all();
+        $majors = Major::all();
 
         return $dataTable->render($this->dashboardView('orders', 'dailyorders'), [
             'countries' => $countries,
             'states' => $states,
             'cities' => $cities,
-            'zones' => $zones
+            'zones' => $zones,
+            'majors' => $majors
         ]);
     }
 }

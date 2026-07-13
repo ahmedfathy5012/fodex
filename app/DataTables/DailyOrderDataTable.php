@@ -68,6 +68,11 @@ class DailyOrderDataTable extends DataTable
                    
                     return $q->where("zone_id",$request->zone_id);
                 });
+                $query->when($request->major_id != 0,function($q) use($request){
+                    return $q->whereHas("seller", function ($qq) use ($request) {
+                        return $qq->where("major_id", $request->major_id);
+                    });
+                });
                 $query->when($request->datepicker1,function($q) use($request){
                     $from = explode(" - ",$this->request()->get('datepicker1'))[0];
                     $to = explode(" - ",$this->request()->get('datepicker1'))[1];

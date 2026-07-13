@@ -96,7 +96,13 @@ class SellerMoneyDataTable extends DataTable
              $seller_ids = Address::where('zone_id',$zone_id)->get()->pluck('seller_id');
            $sellers = $sellers->whereIn('id',$seller_ids);
          }*/
-         return  $model->newQuery();
+         $sellers = $model->newQuery();
+
+         $sellers->when($this->request()->major_id != 0, function ($q) {
+             return $q->where("major_id", $this->request()->major_id);
+         });
+
+         return $sellers;
     }
 
     /**

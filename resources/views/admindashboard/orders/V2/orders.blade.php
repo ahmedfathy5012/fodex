@@ -414,6 +414,16 @@
                                 </select>
                             </div>
                         @endif
+
+                        <div class="form-group col-lg-3 col-md-6">
+                            <label>القسم العام</label>
+                            <select name="major_id" class="form-control selectpicker" id="major" data-live-search="true">
+                                <option value="0">الكل</option>
+                                @foreach($majors as $major)
+                                    <option value="{{$major->id}}">{{$major->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="orders-date-wrapper">
@@ -625,7 +635,7 @@
         }
 
         $("#btn").on("click",function(){
-            $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
+            $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function ( e, settings, data ) {
                 data.from = $('#from').val();
                 data.to = $('#to').val();
                 data.datepicker1 = $('#datepicker').val();
@@ -636,13 +646,14 @@
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
+                data.major_id = $('#major').val();
             });
 
             $('#dataTableBuilder').DataTable().ajax.reload();
         });
 
         function filterstatus(status) {
-            $('#dataTableBuilder').on('preXhr.dt', function(e, settings, data) {
+            $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function(e, settings, data) {
                 data.status = status;
                 data.from = $('#from').val();
                 data.to = $('#to').val();
@@ -654,6 +665,7 @@
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
+                data.major_id = $('#major').val();
             });
 
             $('#dataTableBuilder').DataTable().ajax.reload();

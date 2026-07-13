@@ -22,11 +22,11 @@ class CompanyDriversDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-           ->addColumn('action', 'admindashboard.driver_companies.drivers.action')
+           ->addColumn('action', 'admindashboard.driver_companies.drivers.V2.action')
    ->editColumn('name',function(Driver $driver){
-          
+
                     return '<a href="'.route("driver.show",$driver->id).'">'.$driver->name.'</a>';
-                
+
             })
             ->rawColumns([
          'action',
@@ -44,10 +44,10 @@ class CompanyDriversDataTable extends DataTable
     {
 
             $drivers = $model->newQuery()->orderBy("id","desc")->where("driver_id",$this->id);
-    
+
          return $drivers;
     }
-         
+
     /**
      * Optional method if you want to use html builder.
      *

@@ -403,6 +403,19 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group col-lg-3 col-md-6">
+                            <label>القسم العام</label>
+                            <select name="major_id"
+                                    class="form-control selectpicker"
+                                    id="major"
+                                    data-live-search="true">
+                                <option value="0">الكل</option>
+                                @foreach ($majors as $major)
+                                    <option value="{{ $major->id }}">{{ $major->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -501,15 +514,15 @@
         }
 
         $("#btn").on("click", function() {
-            $('#dataTableBuilder').on('preXhr.dt', function(e, settings, data) {
+            $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function(e, settings, data) {
                 console.log($('#city').val());
 
                 data.country_id = $('#country').val();
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
+                data.major_id = $('#major').val();
             });
-
             var table = $('#dataTableBuilder').DataTable();
             table.ajax.reload();
         });

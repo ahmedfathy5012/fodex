@@ -22,11 +22,11 @@ class DriverDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-           ->addColumn('action', 'admindashboard.drivers.action')
+           ->addColumn('action', 'admindashboard.drivers.V2.action')
    ->editColumn('name',function(Driver $driver){
-          
+
                     return '<a href="'.route("driver.show",$driver->id).'">'.$driver->name.'</a>';
-                
+
             })
             ->rawColumns([
            'action',
@@ -52,8 +52,8 @@ class DriverDataTable extends DataTable
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
-              
-           
+
+
         });
     }
 
@@ -73,15 +73,15 @@ class DriverDataTable extends DataTable
 //  if($country_id){
 //              $driver_ids = Address::where('country_id',$country_id)->get()->pluck('driver_id');
 //              $drivers = $drivers->whereIn('id',$driver_ids);
-      
+
 //          } if($country_id && $state_id){
 //              $driver_ids = Address::where('state_id',$state_id)->get()->pluck('driver_id');
 //             $drivers = $drivers->whereIn('id',$driver_ids);
-        
+
 //          } if($country_id && $state_id && $city_id){
 //              $driver_ids = Address::where('city_id',$city_id)->get()->pluck('driver_id');
 //           $drivers = $drivers->whereIn('id',$driver_ids);
-             
+
 //          } if($country_id && $state_id && $city_id && $zone_id){
 //              $driver_ids = Address::where('zone_id',$zone_id)->get()->pluck('driver_id');
 //           $drivers = $drivers->whereIn('id',$driver_ids);
@@ -100,7 +100,7 @@ class DriverDataTable extends DataTable
            $drivers = $drivers->whereHas('address', function($query) {
          $query->whereIn("city_id",auth()->user()->cities->pluck("id")->toArray());
             });
-         } 
+         }
          else if(auth()->user()->type == 4 ){
            $drivers = $drivers->whereHas('address', function($query) {
          $query->whereIn("zone_id",auth()->user()->zones->pluck("id")->toArray());
@@ -110,7 +110,7 @@ class DriverDataTable extends DataTable
          }
          return $drivers;
     }
-         
+
     /**
      * Optional method if you want to use html builder.
      *
