@@ -21,7 +21,7 @@ class CountryDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.countries.action')
+            ->addColumn('action', 'admindashboard.countries.V2.action')
         ->rawColumns([
            'action',
         ]);
