@@ -178,6 +178,8 @@ console.log(id1);
 function getstates(selected){
 let id = selected.value;
 console.log(id);
+ $('#city').empty();
+ $('select#city').selectpicker("refresh");
  $.ajaxSetup({
        headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -193,6 +195,9 @@ console.log(id);
        $('#state').empty();
        $('#state').append(result.data);
        $('select#state').selectpicker("refresh");
+       if ($('#state').val()) {
+         getcities(document.getElementById('state'));
+       }
        console.log(result);
      }
        }
