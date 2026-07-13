@@ -30,11 +30,11 @@
             <!--begin: Datatable-->
            <div class="row">
                 <div class="form-group col-lg-4 col-md-6 mx-auto">
-                    <label>القسم الرئيسي</label>
-                    <select name="category_id" class="form-control selectpicker" id="category" data-live-search="true">
+                    <label>القسم العام</label>
+                    <select name="major_id" class="form-control selectpicker" id="major" data-live-search="true">
                         <option value="0">الكل</option>
-                        @foreach($categories as $category)
-                            <option value="{{$category->id}}">{{$category->title}}</option>
+                        @foreach($majors as $major)
+                            <option value="{{$major->id}}">{{$major->title}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -129,7 +129,7 @@ $("#datepicker").val('');}
  
  $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function ( e, settings, data ) {
           data.datepicker1 = $('#datepicker').val();
-          data.category_id = $('#category').val();
+          data.major_id = $('#major').val();
  });
        $('#dataTableBuilder').DataTable().ajax.reload();
 

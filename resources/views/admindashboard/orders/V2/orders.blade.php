@@ -416,11 +416,11 @@
                         @endif
 
                         <div class="form-group col-lg-3 col-md-6">
-                            <label>القسم الرئيسي</label>
-                            <select name="category_id" class="form-control selectpicker" id="category" data-live-search="true">
+                            <label>القسم العام</label>
+                            <select name="major_id" class="form-control selectpicker" id="major" data-live-search="true">
                                 <option value="0">الكل</option>
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                @foreach($majors as $major)
+                                    <option value="{{$major->id}}">{{$major->title}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -646,7 +646,7 @@
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
-                data.category_id = $('#category').val();
+                data.major_id = $('#major').val();
             });
 
             $('#dataTableBuilder').DataTable().ajax.reload();
@@ -665,7 +665,7 @@
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
-                data.category_id = $('#category').val();
+                data.major_id = $('#major').val();
             });
 
             $('#dataTableBuilder').DataTable().ajax.reload();

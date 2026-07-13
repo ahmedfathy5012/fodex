@@ -68,9 +68,9 @@ class OrderDataTable extends DataTable
 
                     return $q->where("zone_id",$request->zone_id);
                 });
-                $query->when($request->category_id != 0,function($q) use($request){
-                    return $q->whereHas("seller.categories", function ($qq) use ($request) {
-                        return $qq->where("categories.id", $request->category_id);
+                $query->when($request->major_id != 0,function($q) use($request){
+                    return $q->whereHas("seller", function ($qq) use ($request) {
+                        return $qq->where("major_id", $request->major_id);
                     });
                 });
                 $query->when($request->datepicker1,function($q) use($request){

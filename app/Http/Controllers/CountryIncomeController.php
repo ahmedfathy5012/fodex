@@ -4,21 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\CountryOrderDataTable;
-use App\Models\Category;
 use App\Models\Country;
+use App\Models\Major;
 use App\Models\Order;
 class CountryIncomeController extends Controller 
 {
     public function index()
     {
    $countries = Country::all();
-   $categories = Category::all();
+   $majors = Major::all();
     $orders = Order::where("status",3)->get();
     $total = array_sum($orders->pluck("priceafterdiscount")->toArray());
     $seller_commission = array_sum($orders->pluck("money_seller_commission")->toArray());
     $driver_commission = array_sum($orders->pluck("delivery_commission")->toArray()) - array_sum($orders->pluck("money_seller_commission")->toArray());
     $order_count = count($orders);
-        return view('admindashboard.reports.country_incomes.index',compact("countries","categories","total","seller_commission","driver_commission","order_count"));
+        return view('admindashboard.reports.country_incomes.index',compact("countries","majors","total","seller_commission","driver_commission","order_count"));
     
   }public function filtercountry_icomes(Request $request){
        $countries = Country::all();
@@ -28,9 +28,9 @@ class CountryIncomeController extends Controller
                    
                     return $q->where("country_id",$request->country_id);
                 });
-                $query->when($request->category_id != 0,function($q) use($request){
-                    return $q->whereHas("seller.categories", function ($qq) use ($request) {
-                        return $qq->where("categories.id", $request->category_id);
+                $query->when($request->major_id != 0,function($q) use($request){
+                    return $q->whereHas("seller", function ($qq) use ($request) {
+                        return $qq->where("major_id", $request->major_id);
                     });
                 });
                 $query->when($request->datepicker,function($q) use($request){

@@ -405,13 +405,13 @@
                         </div>
 
                         <div class="form-group col-lg-3 col-md-6">
-                            <label>القسم </label>
+                            <label>القسم العام</label>
                             <select name="major_id"
                                     class="form-control selectpicker"
                                     id="major"
                                     data-live-search="true">
                                 <option value="0">الكل</option>
-                                @foreach ($majories as $major)
+                                @foreach ($majors as $major)
                                     <option value="{{ $major->id }}">{{ $major->title }}</option>
                                 @endforeach
                             </select>
@@ -521,7 +521,8 @@
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
-                data.major_id = $('#major').val();            });
+                data.major_id = $('#major').val();
+            });
             var table = $('#dataTableBuilder').DataTable();
             table.ajax.reload();
         });
