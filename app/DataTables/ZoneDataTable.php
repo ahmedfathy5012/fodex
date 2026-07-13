@@ -34,7 +34,7 @@ class ZoneDataTable extends DataTable
                     return $zone->city->name;
                 }
             })
-            ->addColumn('action', 'admindashboard.zones.action')
+            ->addColumn('action', 'admindashboard.zones.V2.action')
 
             ->rawColumns([
            'action',

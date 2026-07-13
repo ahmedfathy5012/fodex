@@ -26,7 +26,7 @@ class StateDataTable extends DataTable
                     return $state->country->name;
                 }
             })
-            ->addColumn('action', 'admindashboard.states.action')
+            ->addColumn('action', 'admindashboard.states.V2.action')
 
             ->rawColumns([
            'action',

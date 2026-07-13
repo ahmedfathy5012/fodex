@@ -30,7 +30,7 @@ class CityDataTable extends DataTable
                     return $city->state->name;
                 }
             })
-            ->addColumn('action', 'admindashboard.cities.action')
+            ->addColumn('action', 'admindashboard.cities.V2.action')
 
             ->rawColumns([
            'action',
