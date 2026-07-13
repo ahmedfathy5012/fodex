@@ -19,12 +19,14 @@ class BoxTakeDataTable extends DataTable
      */
     public function dataTable($query)
     {
-         return datatables()
+        return datatables()
             ->eloquent($query)
-
-        ->rawColumns([
-          
-        ]);
+            ->editColumn('driver_name', function (BoxTake $boxTake) {
+                return $boxTake->driver_name ?: '-';
+            })
+            ->editColumn('box_title', function (BoxTake $boxTake) {
+                return $boxTake->box_title ?: '-';
+            });
     }
 
     /**
@@ -35,7 +37,14 @@ class BoxTakeDataTable extends DataTable
      */
     public function query(BoxTake $model)
     {
-        return $model->newQuery()->with("box")->with("driver");
+        return $model->newQuery()
+            ->leftJoin('drivers', 'drivers.id', '=', 'box_takes.driver_id')
+            ->leftJoin('boxs', 'boxs.id', '=', 'box_takes.box_id')
+            ->select([
+                'box_takes.*',
+                'drivers.name as driver_name',
+                'boxs.title as box_title',
+            ]);
     }
 
     /**
@@ -50,7 +59,7 @@ class BoxTakeDataTable extends DataTable
         ->minifiedAjax()
         ->parameters([
             'dom' => 'Blfrtip',
-            'Box' => [0, 'desc'],
+            'order' => [[3, 'desc']],
             'lengthMenu' => [
                 [10,25,50,100,-1],[10,25,50,'all record']
             ],
@@ -66,11 +75,10 @@ class BoxTakeDataTable extends DataTable
     protected function getColumns()
     {
         return [
-               ['data'=>'driver.name','title'=>'السائق'],
-               ['data'=>'box.title','title'=>'الصندوق'],
-               ['data'=>'notes','title'=>'ملاحظات'],
-               ['data'=>'created_at','title'=>'الوقت'],
-            
+            ['data' => 'driver_name', 'name' => 'drivers.name', 'title' => 'السائق'],
+            ['data' => 'box_title', 'name' => 'boxs.title', 'title' => 'الصندوق'],
+            ['data' => 'notes', 'title' => 'ملاحظات'],
+            ['data' => 'created_at', 'title' => 'الوقت'],
         ];
     }
 
