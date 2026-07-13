@@ -21,8 +21,8 @@ class SellerItemDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            
-             ->addColumn('action', 'admindashboard.seller_items.action')
+
+             ->addColumn('action', 'admindashboard.seller_items.V2.action')
             ->rawColumns([
            'action',
         ]);
@@ -46,7 +46,7 @@ class SellerItemDataTable extends DataTable
      */
    public function html()
     {
-        
+
          return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()
@@ -69,8 +69,8 @@ class SellerItemDataTable extends DataTable
          return [
      // ['data'=>'id','title'=>'id','visible' => false, 'printable' => false, 'exportable' => true],
             ['data'=>'title','title'=>'الاسم '],
-         
-        
+
+
                   ['data'=>'price','title'=>'السعر '],
             ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],
         ];
