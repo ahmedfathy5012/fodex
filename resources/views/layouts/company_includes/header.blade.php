@@ -44,8 +44,8 @@
     <link href="{{asset('custom/app.css')}}" rel="stylesheet" type="text/css" />
 
     <!--end::Layout Themes-->
-  
-    <!-- ? Favicon --> 
+
+    <!-- ? Favicon -->
     <link rel="icon" href="{{asset('fodexlogo.jpg')}}" type="image" />
     <!-- ? Favicon -->
 
@@ -70,7 +70,7 @@
   width: 100%;
   position: fixed;
   z-index: 1000;
-} 
+}
       #add{
         color: #316B83;
     border: 2px solid currentColor;
@@ -132,7 +132,7 @@
         </div>
         <!--end::Toolbar-->
     </div>
-    <div id="preloader"><lottie-player 
+    <div id="preloader"><lottie-player
     src="{{asset('lotti/loader.json')}}"  background="transparent"  speed="1"  style="width: 200px; height: 400px;"  loop  autoplay></lottie-player></div>
     <!--end::Header Mobile-->
     <div class="d-flex flex-column flex-root">
