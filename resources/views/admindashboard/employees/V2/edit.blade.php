@@ -388,7 +388,6 @@
                                 <label>الدوله<span class="text-danger">*</span></label>
                                 <select name="country_id"
                                         class="form-control selectpicker"
-                                        onchange="getstates(this)"
                                         id="country_id"
                                         required="required"
                                         data-live-search="true">
@@ -408,7 +407,6 @@
                                 <select name="state_id"
                                         class="form-control selectpicker"
                                         id="state"
-                                        onchange="getcities(this)"
                                         required="required"
                                         data-live-search="true">
                                     @foreach($states as $state)
@@ -426,7 +424,6 @@
                                 <label>المدينه<span class="text-danger">*</span></label>
                                 <select name="city_id"
                                         class="form-control selectpicker"
-                                        onchange="getzones(this)"
                                         id="city"
                                         required="required"
                                         data-live-search="true">

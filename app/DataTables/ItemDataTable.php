@@ -17,7 +17,7 @@ class ItemDataTable extends DataTable
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query,Request $request)
+    public function dataTable($query, Request $request)
     {
         return datatables()
             ->eloquent($query)
@@ -26,6 +26,13 @@ class ItemDataTable extends DataTable
                     return $item->seller->name;
                 }
             })->filter(function ($query) use ($request) {
+                if (
+                    $request->has('search') && isset($request->input('search')['value'])
+                    && !empty($request->input('search')['value'])
+                ) {
+                    $query->where('title', 'like', '%' . $request->input('search')['value'] . '%');
+                }
+
             $query->when($request->country_id != 0,function($q) use($request){
                  $q->wherehas("seller.address",function($qq) use($request){
                         return $qq->where("country_id",$request->country_id);
@@ -46,6 +53,11 @@ class ItemDataTable extends DataTable
                         return $qq->where("zone_id",$request->zone_id);
                     });
                 });
+                $query->when($request->major_id != 0, function ($q) use ($request) {
+                    $q->whereHas('major', function ($qq) use ($request) {
+                        return $qq->where('majors.id', $request->major_id);
+                    });
+                });
 
 
         })
@@ -63,30 +75,7 @@ class ItemDataTable extends DataTable
      */
     public function query(Item $model)
     {
-        $items = $model->newQuery()->orderBy("id","desc");
-
-                 if(auth()->user()->type == 1 ){
-           $items = $items->whereHas('seller.address', function($query) {
-         $query->whereIn("country_id",auth()->user()->countries->pluck("id")->toArray());
-            });
-         }
-        else if(auth()->user()->type == 2 ){
-           $items = $items->whereHas('seller.address', function($query) {
-         $query->whereIn("state_id",auth()->user()->states->pluck("id")->toArray());
-            });
-         }else if(auth()->user()->type == 3 ){
-           $items = $items->whereHas('seller.address', function($query) {
-         $query->whereIn("city_id",auth()->user()->cities->pluck("id")->toArray());
-            });
-         }
-         else if(auth()->user()->type == 4 ){
-           $items = $items->whereHas('seller.address', function($query) {
-         $query->whereIn("zone_id",auth()->user()->zones->pluck("id")->toArray());
-            });
-         }else{
-             $items = $items->where("id" ,"<",0);
-         }
-        return $items;
+        return $model->newQuery()->orderBy('id', 'desc');
     }
 
     /**

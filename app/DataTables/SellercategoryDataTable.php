@@ -29,12 +29,12 @@ class SellercategoryDataTable extends DataTable
             $image = asset("uploads/$im");
             return '<img  src="' . $image . '" style ="width:100px;height:100px;" />';
         }
-              }) 
+              })
               ->editColumn('major_id',function(Category $Sellercategory){
             if($Sellercategory->major){
             return $Sellercategory->major->title;
         }
-              }) 
+              })
         //->editColumn('title',function(Sellercategory $Sellercategory){
         //     if($Sellercategory->category){
         //     return $Sellercategory->category->title;
@@ -44,7 +44,7 @@ class SellercategoryDataTable extends DataTable
         //     return $Sellercategory->category->description;
         // }
         //       })
-            ->addColumn('action', 'admindashboard.categories.selleraction')
+            ->addColumn('action', 'admindashboard.categories.V2.selleraction')
 
             ->rawColumns([
            'action',

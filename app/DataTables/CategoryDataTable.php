@@ -31,7 +31,7 @@ class CategoryDataTable extends DataTable
             return $category->major->title;
         }
               })
-            ->addColumn('action', 'admindashboard.categories.action')
+            ->addColumn('action', 'admindashboard.categories.V2.action')
 
             ->rawColumns([
            'action',

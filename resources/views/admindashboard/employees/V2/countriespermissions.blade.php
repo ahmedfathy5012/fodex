@@ -282,7 +282,6 @@
                                 <select name="country_id[]"
                                         class="form-control selectpicker"
                                         multiple
-                                        onchange="getstates(this)"
                                         id="country_id"
                                         data-live-search="true">
                                     @foreach($countries as $country)
@@ -318,7 +317,6 @@
                                         class="form-control selectpicker"
                                         id="state"
                                         multiple
-                                        onchange="getcities(this)"
                                         data-live-search="true">
                                     @foreach($states as $state)
                                         <option value="{{ $state->id }}"
@@ -351,7 +349,6 @@
                                 <label>المدينه<span class="text-danger">*</span></label>
                                 <select name="city_id[]"
                                         class="form-control selectpicker"
-                                        onchange="getzones(this)"
                                         multiple
                                         id="city"
                                         data-live-search="true">

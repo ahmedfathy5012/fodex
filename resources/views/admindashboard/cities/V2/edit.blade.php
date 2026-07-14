@@ -240,7 +240,6 @@
                                 <label>الدوله <span class="text-danger">*</span></label>
                                 <select name="country_id"
                                         class="form-control selectpicker"
-                                        onchange="getstates(this)"
                                         required="required"
                                         data-live-search="true">
                                     @foreach($countries as $country)

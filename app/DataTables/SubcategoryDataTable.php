@@ -34,7 +34,7 @@ class SubcategoryDataTable extends DataTable
             return $subcategory->category->title;
         }
               })
-            ->addColumn('action', 'admindashboard.subcategories.action')
+            ->addColumn('action', 'admindashboard.subcategories.V2.action')
 
             ->rawColumns([
            'action',
@@ -71,7 +71,7 @@ class SubcategoryDataTable extends DataTable
             ],
        'buttons'      => ['export'],
    ]);
- 
+
     }
 
     /**

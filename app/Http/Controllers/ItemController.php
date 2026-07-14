@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use App\DataTables\ItemDataTable;
 use App\DataTables\ItemSellerDataTable;
 use App\Models\Extradetail;
+use App\Models\Major;
 
 class ItemController extends Controller
 {
@@ -29,14 +30,18 @@ class ItemController extends Controller
 
     public function index(ItemDataTable $dataTable)
     {
-        return $dataTable->render($this->itemView('index'));
+        return $dataTable->render($this->itemView('index'), [
+            'majors' => Major::all(),
+        ]);
     }
 
     public function itemseller(ItemSellerDataTable $dataTable, $id)
     {
         $dataTable->id = $id;
 
-        return $dataTable->render($this->itemView('index'));
+        return $dataTable->render($this->itemView('index'), [
+            'majors' => Major::all(),
+        ]);
     }
 
     public function create()

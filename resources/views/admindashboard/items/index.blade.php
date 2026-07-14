@@ -28,7 +28,6 @@
 	    </div>
         <div class="card-body">
                    <div class="row">
-          @if(auth()->user()->type == 1)
              <div class="form-group col-lg-3 col-md-6">
         <label>الدوله<span class="text-danger">*</span></label>
         <select name="country_id" class="form-control selectpicker" onchange="getstates(this)" id="country" required="required" data-live-search="true">
@@ -38,8 +37,6 @@
           @endforeach
         </select>
        </div> 
-       @endif
-        @if(auth()->user()->type == 1 || auth()->user()->type == 2)
        <div class="form-group col-lg-3 col-md-6">
         <label>المحافظه<span class="text-danger">*</span></label>
         <select name="state_id" class="form-control selectpicker" id="state"  onchange="getcities(this)" required="required" data-live-search="true">
@@ -50,8 +47,6 @@
         </select>
 
        </div>    
-       @endif
-         @if(auth()->user()->type == 1 ||auth()->user()->type == 2 || auth()->user()->type == 3)
        <div class="form-group col-lg-3 col-md-6">
         <label>المدينه<span class="text-danger">*</span></label>
         <select name="city_id" class="form-control selectpicker" onchange="getzones(this)" id="city" required="required" data-live-search="true">
@@ -61,8 +56,6 @@
           @endforeach
         </select>
        </div>   
-       @endif
-        @if(auth()->user()->type == 1 ||auth()->user()->type == 2 || auth()->user()->type == 3 || auth()->user()->type == 4)
        <div class="form-group col-lg-3 col-md-6">
         <label>المنطقه<span class="text-danger">*</span></label>
         <select name="zone_id" class="form-control selectpicker" id="zone" required="required" data-live-search="true">
@@ -72,7 +65,15 @@
           @endforeach
         </select>
        </div>    
-       @endif
+       <div class="form-group col-lg-3 col-md-6">
+        <label>القسم العام</label>
+        <select name="major_id" class="form-control selectpicker" id="major" data-live-search="true">
+          <option value="0">الكل</option>
+          @foreach($majors as $major)
+          <option value="{{$major->id}}">{{$major->title}}</option>
+          @endforeach
+        </select>
+       </div>
 <!--     <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">-->
 <!--    <i class="fa fa-calendar"></i>&nbsp;-->
 <!--    <span></span> <i class="fa fa-caret-down"></i>-->
@@ -108,7 +109,7 @@ console.log(id);
     });
     $.ajax({
        type:"get",
-       url: `getstates/${id}`,
+       url: `getstatesemployee/${id}`,
    //    contentType: "application/json; charset=utf-8",
        dataType: "Json",
        success: function(result){
@@ -131,7 +132,7 @@ console.log(id);
     });
     $.ajax({
        type:"get",
-       url: `getcities/${id}`,
+       url: `getcitiesemployee/${id}`,
    //    contentType: "application/json; charset=utf-8",
        dataType: "Json",
        success: function(result){
@@ -154,7 +155,7 @@ console.log(id);
     });
     $.ajax({
        type:"get",
-       url: `getzones/${id}`,
+       url: `getzonesemployee/${id}`,
    //    contentType: "application/json; charset=utf-8",
        dataType: "Json",
        success: function(result){
@@ -170,13 +171,14 @@ console.log(id);
     }
     $("#btn").on("click",function(){
  
- $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
+ $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function ( e, settings, data ) {
 
         
           data.country_id = $('#country').val();
          data.state_id = $('#state').val();
               data.city_id = $('#city').val();
          data.zone_id = $('#zone').val();
+         data.major_id = $('#major').val();
       });
              $('#dataTableBuilder').DataTable().ajax.reload();
 });
