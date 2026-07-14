@@ -846,12 +846,13 @@
 
             $.ajax({
                 type: "get",
-                url: `getstates/${id}`,
+                url: `getstatesemployee/${id}`,
                 dataType: "Json",
                 success: function (result) {
                     if (result.status == true) {
                         $('#state').empty().append(result.data);
                         $('select#state').selectpicker("refresh");
+                        getcities(document.getElementById('state'));
                     }
                 }
             });
@@ -868,12 +869,13 @@
 
             $.ajax({
                 type: "get",
-                url: `getcities/${id}`,
+                url: `getcitiesemployee/${id}`,
                 dataType: "Json",
                 success: function (result) {
                     if (result.status == true) {
                         $('#city').empty().append(result.data);
                         $('select#city').selectpicker("refresh");
+                        getzones(document.getElementById('city'));
                     }
                 }
             });
@@ -890,7 +892,7 @@
 
             $.ajax({
                 type: "get",
-                url: `getzones/${id}`,
+                url: `getzonesemployee/${id}`,
                 dataType: "Json",
                 success: function (result) {
                     if (result.status == true) {

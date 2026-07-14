@@ -497,7 +497,7 @@
                     <!--  </div>-->
                     <div class="form-group col-6">
                         <label>الدوله<span class="text-danger">*</span></label>
-                        <select name="country_id" class="form-control selectpicker" onchange="getstates(this)"
+                        <select name="country_id" class="form-control selectpicker"
                                 id="country_id" required="required" data-live-search="true">
                             @foreach($countries as $country)
                                 <option value="{{$country->id}}"
@@ -510,7 +510,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label>المحافظه<span class="text-danger">*</span></label>
-                        <select name="state_id" class="form-control selectpicker" id="state" onchange="getcities(this)"
+                        <select name="state_id" class="form-control selectpicker" id="state"
                                 required="required" data-live-search="true">
                             @foreach($states as $state)
                                 <option value="{{$state->id}}"
@@ -523,7 +523,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label>المدينه<span class="text-danger">*</span></label>
-                        <select name="city_id" class="form-control selectpicker" onchange="getzones(this)" id="city"
+                        <select name="city_id" class="form-control selectpicker" id="city"
                                 required="required" data-live-search="true">
                             @foreach($cities as $city)
                                 <option value="{{$city->id}}"

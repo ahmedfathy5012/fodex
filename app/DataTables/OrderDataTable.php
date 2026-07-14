@@ -54,18 +54,14 @@ class OrderDataTable extends DataTable
            'user_id'
         ])->filter(function ($query) use ($request) {
             $query->when($request->country_id != 0,function($q) use($request){
-
                     return $q->where("country_id",$request->country_id);
                 });
                 $query->when($request->state_id != 0,function($q) use($request){
-
                     return $q->where("state_id",$request->state_id);
                 });$query->when($request->city_id != 0,function($q) use($request){
-
                     return $q->where("city_id",$request->city_id);
                 });
                 $query->when($request->zone_id != 0,function($q) use($request){
-
                     return $q->where("zone_id",$request->zone_id);
                 });
                 $query->when($request->major_id != 0,function($q) use($request){

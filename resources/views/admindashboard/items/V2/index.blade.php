@@ -327,57 +327,18 @@
                     <div class="items-section-title">فلترة المنتجات</div>
 
                     <div class="row">
-                        @if(auth()->user()->type == 1)
-                            <div class="form-group col-lg-3 col-md-6">
-                                <label>الدوله<span class="text-danger">*</span></label>
-                                <select name="country_id" class="form-control selectpicker" onchange="getstates(this)"
-                                        id="country" required="required" data-live-search="true">
-                                    <option value="0">الكل</option>
-                                    @foreach(auth()->user()->countries as $country)
-                                        <option value="{{$country->id}}">{{$country->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        @endif
+                        <x-filter-component />
 
-                        @if(auth()->user()->type == 1 || auth()->user()->type == 2)
                             <div class="form-group col-lg-3 col-md-6">
-                                <label>المحافظه<span class="text-danger">*</span></label>
-                                <select name="state_id" class="form-control selectpicker" id="state"
-                                        onchange="getcities(this)" required="required" data-live-search="true">
-                                    <option value="0">الكل</option>
-                                    @foreach(auth()->user()->states as $state)
-                                        <option value="{{$state->id}}">{{$state->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        @endif
-
-                        @if(auth()->user()->type == 1 ||auth()->user()->type == 2 || auth()->user()->type == 3)
-                            <div class="form-group col-lg-3 col-md-6">
-                                <label>المدينه<span class="text-danger">*</span></label>
-                                <select name="city_id" class="form-control selectpicker" onchange="getzones(this)"
-                                        id="city" required="required" data-live-search="true">
-                                    <option value="0">الكل</option>
-                                    @foreach(auth()->user()->cities as $city)
-                                        <option value="{{$city->id}}">{{$city->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        @endif
-
-                        @if(auth()->user()->type == 1 ||auth()->user()->type == 2 || auth()->user()->type == 3 || auth()->user()->type == 4)
-                            <div class="form-group col-lg-3 col-md-6">
-                                <label>المنطقه<span class="text-danger">*</span></label>
-                                <select name="zone_id" class="form-control selectpicker" id="zone" required="required"
+                                <label>القسم العام</label>
+                                <select name="major_id" class="form-control selectpicker" id="major"
                                         data-live-search="true">
                                     <option value="0">الكل</option>
-                                    @foreach(auth()->user()->zones as $zone)
-                                        <option value="{{$zone->id}}">{{$zone->name}}</option>
+                                    @foreach($majors as $major)
+                                        <option value="{{$major->id}}">{{$major->title}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        @endif
 
                         <!--     <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">-->
                         <!--    <i class="fa fa-calendar"></i>&nbsp;-->
@@ -409,88 +370,14 @@
     {{$dataTable->scripts()}}
 
     <script>
-        function getstates(selected) {
-            let id = selected.value;
-            console.log(id);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "get",
-                url: `getstates/${id}`,
-                //    contentType: "application/json; charset=utf-8",
-                dataType: "Json",
-                success: function (result) {
-                    if (result.status == true) {
-                        $('#state').empty();
-                        $('#state').append(result.data);
-                        $('select#state').selectpicker("refresh");
-                        console.log(result);
-                    }
-                }
-
-            });
-        }
-
-        function getcities(selected) {
-            let id = selected.value;
-            console.log(id);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "get",
-                url: `getcities/${id}`,
-                //    contentType: "application/json; charset=utf-8",
-                dataType: "Json",
-                success: function (result) {
-                    if (result.status == true) {
-                        $('#city').empty();
-                        $('#city').append(result.data);
-                        $('select#city').selectpicker("refresh");
-                        console.log(result);
-                    }
-                }
-
-            });
-        }
-
-        function getzones(selected) {
-            let id = selected.value;
-            console.log(id);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "get",
-                url: `getzones/${id}`,
-                //    contentType: "application/json; charset=utf-8",
-                dataType: "Json",
-                success: function (result) {
-                    if (result.status == true) {
-                        $('#zone').empty();
-                        $('#zone').append(result.data);
-                        $('select#zone').selectpicker("refresh");
-                        console.log(result);
-                    }
-                }
-
-            });
-        }
-
         $("#btn").on("click", function () {
 
-            $('#dataTableBuilder').on('preXhr.dt', function (e, settings, data) {
+            $('#dataTableBuilder').off('preXhr.dt').on('preXhr.dt', function (e, settings, data) {
                 data.country_id = $('#country').val();
                 data.state_id = $('#state').val();
                 data.city_id = $('#city').val();
                 data.zone_id = $('#zone').val();
+                data.major_id = $('#major').val();
             });
 
             $('#dataTableBuilder').DataTable().ajax.reload();

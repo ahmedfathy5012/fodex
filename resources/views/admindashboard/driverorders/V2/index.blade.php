@@ -337,45 +337,7 @@
                     <div class="orders-section-title">فلترة الطلبات</div>
 
                     <div class="row">
-                        <div class="form-group col-lg-3 col-md-6">
-                            <label>الدوله<span class="text-danger">*</span></label>
-                            <select name="country_id" class="form-control selectpicker" onchange="getstates(this)" id="country" required="required" data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach($countries as $country)
-                                    <option value="{{$country->id}}">{{$country->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-3 col-md-6">
-                            <label>المحافظه<span class="text-danger">*</span></label>
-                            <select name="state_id" class="form-control selectpicker" id="state" onchange="getcities(this)" required="required" data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach($states as $state)
-                                    <option value="{{$state->id}}">{{$state->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-3 col-md-6">
-                            <label>المدينه<span class="text-danger">*</span></label>
-                            <select name="city_id" class="form-control selectpicker" onchange="getzones(this)" id="city" required="required" data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach($cities as $city)
-                                    <option value="{{$city->id}}">{{$city->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-3 col-md-6">
-                            <label>المنطقه<span class="text-danger">*</span></label>
-                            <select name="zone_id" class="form-control selectpicker" id="zone" required="required" data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach($zones as $zone)
-                                    <option value="{{$zone->id}}">{{$zone->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <x-filter-component :states-url="url('getstates')" :cities-url="url('getcities')" :zones-url="url('getzones')" />
                     </div>
 
                     <div class="orders-date-wrapper">

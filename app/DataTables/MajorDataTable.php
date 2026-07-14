@@ -27,7 +27,7 @@ class MajorDataTable extends DataTable
             return '<img  src="' . $image . '" style ="width:100px;height:100px;" />';
         }
               })
-            ->addColumn('action', 'admindashboard.majors.action')
+            ->addColumn('action', 'admindashboard.majors.V2.action')
 
             ->rawColumns([
            'action',
@@ -53,7 +53,7 @@ class MajorDataTable extends DataTable
      */
     public function html()
     {
-        
+
          return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()
@@ -67,7 +67,7 @@ class MajorDataTable extends DataTable
    ]);
     }
 
-    
+
 
     /**
      * Get columns.

@@ -27,7 +27,7 @@ class MajorOfferDataTable extends DataTable
             return '<img  src="' . $image . '" style ="width:100px;height:100px;" />';
         }
               })
-            ->addColumn('action', 'admindashboard.majors.offers.action')
+            ->addColumn('action', 'admindashboard.majors.offers.V2.action')
 
             ->rawColumns([
            'action',
