@@ -56,22 +56,22 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="{{asset('assets/css/themes/layout/header/menu/light.rtl.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets/css/themes/layout/brand/light.rtl.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets/css/themes/layout/aside/light.rtl.css')}}" rel="stylesheet" type="text/css" />
-		
+
 	<!--end::Layout Themes-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
-	     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+	     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 	     <script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
-	     	 <script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script> 
-	     	
+	     	 <script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
+
 	<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
 
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
- 
+
 <!-- <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
@@ -79,7 +79,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
- --> 
+ -->
  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -118,7 +118,7 @@ top: 2px !important;
     opacity: .8 !important;
 }
  .image-input.image-input-circle label{
-      opacity:1; 
+      opacity:1;
       padding: 16px !important;
 
  }
@@ -243,15 +243,15 @@ align-items: center;
 <!--end::Head-->
 	<!--end::Head-->
 	<!--begin::Body-->
-	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed 
+	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed
 	aside-enabled aside-fixed aside-minimize-hoverable page-loading">
 		<!--begin::Main-->
 		<!--begin::Header Mobile-->
-		<div id="preloader"><lottie-player src="{{asset('67226-food-app-interaction.json')}}"  
-		background="transparent"  speed="1" 
+		<div id="preloader"><lottie-player src="{{asset('67226-food-app-interaction.json')}}"
+		background="transparent"  speed="1"
 		style="width: 400px; height: 400px;"  loop  autoplay></lottie-player></div>
-		<div id="preloader1"><lottie-player src="{{asset('72168-loading-food.json')}}"  
-		background="transparent"  speed="1" 
+		<div id="preloader1"><lottie-player src="{{asset('72168-loading-food.json')}}"
+		background="transparent"  speed="1"
 		style="width: 400px; height: 400px;"  loop  autoplay></lottie-player></div>
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
@@ -293,8 +293,8 @@ align-items: center;
 				<!--begin::Aside-->
 				<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
 					<!--begin::Brand-->
-					
-					
+
+
 					<div class="brand flex-column-auto" id="kt_brand" kt-hidden-height="65" style="height: fit-content">
 						<!--begin::Logo-->
 						<a href="{{route('dashboard')}}" class="brand-logo">
@@ -318,29 +318,29 @@ align-items: center;
 						</button>
 						<!--end::Toolbar-->
 					</div>
-					
-					
+
+
 					<!--end::Brand-->
 					<!--begin::Aside Menu-->
 					<div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
-					    
-					    
-					    
+
+
+
 					    <div id="kt_header" class="header header-fixed">
     						<!--begin::Container-->
     						<div class="container-fluid d-flex align-items-stretch justify-content-between">
     							<!--begin::Header Menu Wrapper-->
     							<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
-    								
+
     							</div>
     							<!--end::Header Menu Wrapper-->
     							<!--begin::Topbar-->
     							<div class="topbar">
-    							  
-    					
-    							
-    								
-    								
+
+
+
+
+
     								<!--begin::Languages-->
     								<div class="dropdown">
     									<!--begin::Toggle-->
@@ -354,20 +354,20 @@ align-items: center;
     									<div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
     										<!--begin::Nav-->
     										<ul class="navi navi-hover py-4">
-    									
+
     										</ul>
     										<!--end::Nav-->
     									</div>
     									<!--end::Dropdown-->
     								</div>
     								<!--end::Languages-->
-    								
+
     								<!--begin::User-->
     								<div class="topbar-item">
     									<div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
     										<span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">مرحبا</span>
-    										<lottie-player src="{{asset('6542-handup.json')}}"  
-		background="transparent"  speed="1" 
+    										<lottie-player src="{{asset('6542-handup.json')}}"
+		background="transparent"  speed="1"
 		style="width: 70px; height:70px;"  loop  autoplay></lottie-player>
     										<span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{auth()->user()->name}}</span>
     										<span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
@@ -377,27 +377,27 @@ align-items: center;
     									</div>
     								</div>
     								<!--end::User-->
-    								
+
     							</div>
     							<!--end::Topbar-->
     						</div>
     						<!--end::Container-->
     					</div>
-					    
-					    
-					    
+
+
+
 						<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
 							<!--begin::Menu Nav-->
 							<ul class="menu-nav">
-								
+
 								<li class="menu-section">
 									<!--<h4 class="menu-text">Custom</h4>-->
 									<i class="menu-icon ki ki-bold-more-hor icon-md"></i>
 								</li>
-								
+
 										<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
-									    
+
 										<span class="svg-icon menu-icon"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo1/dist/../src/media/svg/icons/Code/Settings4.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <rect x="0" y="0" width="24" height="24"/>
@@ -406,7 +406,7 @@ align-items: center;
                                             </g>
                                         </svg><!--end::Svg Icon--></span>
 
-										
+
 								<span class="menu-text"> الاعدادات</span>
 										<i class="menu-arrow"></i>
 									</a>
@@ -418,8 +418,8 @@ align-items: center;
 										<span class="menu-text">Applications</span>
 									</span>
 								</li>
-									
-							
+
+
 								<li class="menu-item" aria-haspopup="true">
 									<a href="{{route('myworkschedule.index')}}" class="menu-link">
 										<i class="menu-bullet menu-bullet-dot">
@@ -428,16 +428,16 @@ align-items: center;
 										<span class="menu-text">جدول العمل  </span>
 									</a>
 								</li>
-									
-							
-						
+
+
+
 							</ul>
 						</div>
 					</li>
 									<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
-									    
-								
+
+
 											<span class="svg-icon menu-icon">	<i class="fas fa-users"></i><!--end::Svg Icon--></span>
 								<span class="menu-text"> الموظفين</span>
 										<i class="menu-arrow"></i>
@@ -458,22 +458,22 @@ align-items: center;
 										<span class="menu-text">الكل  </span>
 									</a>
 								</li>
-							
-									
-							
-						
+
+
+
+
 							</ul>
 						</div>
 					</li>
-								
-								
+
+
 									<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
-									    
+
 										<span class="svg-icon menu-icon"><i class="fas fa-utensils"></i>
                                         </span>
 
-										
+
 								<span class="menu-text"> الطلبات</span>
 										<i class="menu-arrow"></i>
 									</a>
@@ -485,9 +485,9 @@ align-items: center;
 										<span class="menu-text">Applications</span>
 									</span>
 								</li>
-							
-							
-							
+
+
+
 								<li class="menu-item" aria-haspopup="true">
 									<a href="{{route('myorders')}}" class="menu-link">
 										<i class="menu-bullet menu-bullet-dot">
@@ -496,19 +496,19 @@ align-items: center;
 										<span class="menu-text"> الكل  </span>
 									</a>
 								</li>
-									
-							
-						
+
+
+
 							</ul>
 						</div>
 					</li>
 						<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
-									    
+
 										<span class="svg-icon menu-icon"><i class="fas fa-hamburger"></i>
                                         </span>
 
-										
+
 								<span class="menu-text"> المنتجات</span>
 										<i class="menu-arrow"></i>
 									</a>
@@ -520,9 +520,9 @@ align-items: center;
 										<span class="menu-text">Applications</span>
 									</span>
 								</li>
-							
-							
-							
+
+
+
 								<li class="menu-item" aria-haspopup="true">
 									<a href="{{route('myitems.index')}}" class="menu-link">
 										<i class="menu-bullet menu-bullet-dot">
@@ -531,15 +531,15 @@ align-items: center;
 										<span class="menu-text"> الكل  </span>
 									</a>
 								</li>
-									
-							
-						
+
+
+
 							</ul>
 						</div>
 					</li>
-						
-							
-									    
+
+
+
 									<li class="menu-item" aria-haspopup="true">
 									<a href="{{route('sellerlogout')}}" class="menu-link">
 										<span class="svg-icon menu-icon"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Sign-out.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -552,20 +552,20 @@ align-items: center;
                                         </svg><!--end::Svg Icon--></span>
 										<span class="menu-text">تسجيل الخروج</span>
 									</a>
-								</li>	
-								
-						
+								</li>
+
+
 							</ul>
 							<!--end::Menu Nav-->
 						</div>
-						
+
 					</div>
 					<!--end::Aside Menu-->
 				</div>
                 <!--end::Aside-->
                 	<!--begin::Wrapper-->
 				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-				
+
                     @yield('content')
                     	<!--begin::Footer-->
 				<div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
@@ -574,7 +574,7 @@ align-items: center;
 						class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
 						<!--begin::Copyright-->
 						<div class="text-dark order-2 order-md-1">
-								
+
 								<!--<div class="item text-center">-->
         <!--                            <a href="http://crazyideaco.com/" target="_blank">-->
         <!--                                <h6 class="text-dark-75 text-hover-primary">Made with <img class="my-heart" src="http://qethara.crazyideaco.com/icon/heart.svg" alt="icon heart"> by Crazy Idea</h6>-->
@@ -583,7 +583,7 @@ align-items: center;
         <!--                        </div>-->
 						</div>
 						<!--end::Copyright-->
-					
+
 					</div>
 					<!--end::Container-->
 				</div>
@@ -1043,8 +1043,8 @@ align-items: center;
 <!-- 	<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
 	<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
 	<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
-	
-   	
+
+
 	<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
@@ -1069,7 +1069,7 @@ align-items: center;
 			$('.overlay').css({'display':'none'});
 				$('.overlay').css({'z-index':-100})
 	})
-	
+
 	// Will wait for everything on the page to load.
 	$(window).bind('load', function() {
 		$('.overlay, body').addClass('loaded');
@@ -1078,7 +1078,7 @@ align-items: center;
 				$('.overlay').css({'z-index':-100});
 		}, 200)
 	});
-	
+
 	// Will remove overlay after 1min for users cannnot load properly.
 	setTimeout(function() {
 		$('.overlay, body').addClass('loaded');
@@ -1125,10 +1125,10 @@ window.addEventListener('load', function () {
 
  var loader1 = document.getElementById('preloader1');
    $("form").on("submit", function(){
-    
+
   //e.preventDefault();
   loader1.style.display = 'flex';
- 
+
 });
 	</script>
 	<!--end::Body-->

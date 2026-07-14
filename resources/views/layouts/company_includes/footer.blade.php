@@ -19,7 +19,7 @@
 		<!--end::Footer-->
 	</div>
 	<!--end::Wrapper-->
-	
+
 </div>
 <!--begin::Global Theme Bundle(used by all pages)-->
 <script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
