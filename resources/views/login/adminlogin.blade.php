@@ -65,7 +65,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Main-->
 	<div class="d-flex flex-column flex-root">
 		<!--begin::Login-->
-		<div class="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" 
+		<div class="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white"
 		id="kt_login">
 			<!--begin::Aside-->
 			<div class="login-aside order-1 order-lg-2 d-flex flex-row-auto position-relative overflow-hidden" >
@@ -73,8 +73,9 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
 					<!--begin::Logo-->
 					<a href="#" class="text-center pt-2">
-                         
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Order_station.png" class="max-h-100px" alt="" />
+                        <img src="{{ asset('assets/loaders/modern_delivery_logo_design_clean_transparent.png') }}" class="max-h-100px" alt="" />
+{{--                        old food delivery logo --}}
+{{--                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Order_station.png" class="max-h-100px" alt="" />--}}
 						<!-- <img src="{{asset('fodexlogo.jpg')}}" class="max-h-100px" alt="" /> -->
 					</a>
 					<!--end::Logo-->
@@ -98,9 +99,9 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--end::Form group-->
 								<!--begin::Form group-->
 								<div class="form-group">
-									
+
 										<label class="font-size-h6 font-weight-bolder text-dark pt-5 float-right">كلمه السر</label>
-									
+
 									<input class="form-control form-control-solid" type="password" placeholder="كلمه السر" name="password" autocomplete="off" />
 								</div>
 
@@ -108,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<p class="text-danger">{{ session('error')  }}</p>
 								@endif
 								<!--end::Form group-->
-								<div class="form-group d-flex flex-wrap 
+								<div class="form-group d-flex flex-wrap
 								justify-content-between align-items-center px-8 float-right">
 									<div class="checkbox-inline">
 										<label class="checkbox checkbox-outline checkbox-white text-white m-0">
@@ -119,11 +120,11 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<!--begin::Action-->
 								<div class="text-center pt-4">
-									<button type="submit" class="btn btn-dark font-weight-bolder 
+									<button type="submit" class="btn btn-dark font-weight-bolder
 									font-size-h6 px-8 py-4 my-3" style="text-transform: capitalize;">تسجيل الدخول</button>
 								</div>
 								<div class="row">
-								
+
 								</div>
 								<!--end::Action-->
 							</form>
@@ -137,7 +138,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 			<!--begin::Aside-->
 			<!--begin::Content-->
-			<div class="content order-2 order-lg-1 d-flex flex-column w-100 pb-0" 
+			<div class="content order-2 order-lg-1 d-flex flex-column w-100 pb-0"
 			style="background-color: #fff;">
 				<!--begin::Image-->
 				<!--begin::Image-->

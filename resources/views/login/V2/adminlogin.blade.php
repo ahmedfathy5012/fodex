@@ -47,6 +47,243 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- <link rel="shortcut icon" href="{{asset('fodexlogo.jpg')}}" /> -->
 
 	<style>
+		#preloader {
+			position: fixed;
+			inset: 0;
+			width: 100%;
+			height: 100vh;
+			z-index: 999999;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: radial-gradient(circle at top right, rgba(54, 153, 255, 0.12), transparent 35%),
+					radial-gradient(circle at bottom left, rgba(27, 197, 189, 0.12), transparent 35%),
+					#f8fafc;
+		}
+
+		.real-delivery-loader {
+			width: 460px;
+			min-height: 380px;
+			background: rgba(255, 255, 255, 0.95);
+			border: 1px solid #edf0f5;
+			border-radius: 32px;
+			box-shadow: 0 30px 80px rgba(15, 23, 42, 0.14);
+			backdrop-filter: blur(14px);
+			padding: 28px 24px 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			text-align: center;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.real-delivery-loader::before {
+			content: "";
+			position: absolute;
+			width: 210px;
+			height: 210px;
+			border-radius: 50%;
+			background: rgba(54, 153, 255, 0.08);
+			top: -85px;
+			right: -85px;
+		}
+
+		.real-delivery-loader::after {
+			content: "";
+			position: absolute;
+			width: 160px;
+			height: 160px;
+			border-radius: 50%;
+			background: rgba(27, 197, 189, 0.09);
+			bottom: -65px;
+			left: -65px;
+		}
+
+		.real-delivery-scene {
+			width: 380px;
+			height: 230px;
+			position: relative;
+			z-index: 2;
+			margin-bottom: 10px;
+			overflow: hidden;
+		}
+
+		.real-delivery-bike {
+			position: absolute;
+			width: 220px;
+			height: auto;
+			right: 10px;
+			bottom: 28px;
+			z-index: 3;
+			object-fit: contain;
+			animation: realBikeRun 2.4s linear infinite;
+			filter: drop-shadow(0 20px 22px rgba(15, 23, 42, 0.20));
+		}
+
+		.real-delivery-road {
+			position: absolute;
+			left: 20px;
+			right: 20px;
+			bottom: 28px;
+			height: 9px;
+			border-radius: 999px;
+			background: #dfe6ee;
+			overflow: hidden;
+			z-index: 1;
+		}
+
+		.real-delivery-road span {
+			position: absolute;
+			top: 2px;
+			width: 58px;
+			height: 5px;
+			border-radius: 999px;
+			background: #ffffff;
+			animation: realRoadMove 0.8s linear infinite;
+		}
+
+		.real-delivery-road span:nth-child(1) {
+			left: 0;
+		}
+
+		.real-delivery-road span:nth-child(2) {
+			left: 130px;
+			animation-delay: 0.2s;
+		}
+
+		.real-delivery-road span:nth-child(3) {
+			left: 260px;
+			animation-delay: 0.4s;
+		}
+
+		.real-delivery-speed-lines {
+			position: absolute;
+			inset: 0;
+			z-index: 0;
+			pointer-events: none;
+		}
+
+		.real-delivery-speed-lines span {
+			position: absolute;
+			height: 4px;
+			border-radius: 999px;
+			background: linear-gradient(90deg, transparent, rgba(54, 153, 255, 0.45), transparent);
+			animation: speedLineMove 0.7s linear infinite;
+		}
+
+		.real-delivery-speed-lines span:nth-child(1) {
+			width: 140px;
+			top: 62px;
+			left: 20px;
+		}
+
+		.real-delivery-speed-lines span:nth-child(2) {
+			width: 190px;
+			top: 104px;
+			left: -40px;
+			animation-delay: 0.15s;
+		}
+
+		.real-delivery-speed-lines span:nth-child(3) {
+			width: 160px;
+			top: 148px;
+			left: 25px;
+			animation-delay: 0.3s;
+		}
+
+		.real-delivery-speed-lines span:nth-child(4) {
+			width: 120px;
+			top: 182px;
+			left: -10px;
+			animation-delay: 0.45s;
+		}
+
+		.real-delivery-loader h4 {
+			margin: 0;
+			font-size: 20px;
+			font-weight: 900;
+			color: #181c32;
+			position: relative;
+			z-index: 2;
+		}
+
+		.real-delivery-loader p {
+			margin: 9px 0 18px;
+			font-size: 13px;
+			font-weight: 700;
+			color: #7e8299;
+			position: relative;
+			z-index: 2;
+		}
+
+		.real-delivery-progress {
+			width: 230px;
+			height: 7px;
+			border-radius: 999px;
+			background: #edf0f5;
+			overflow: hidden;
+			position: relative;
+			z-index: 2;
+		}
+
+		.real-delivery-progress span {
+			display: block;
+			width: 42%;
+			height: 100%;
+			border-radius: 999px;
+			background: linear-gradient(90deg, #3699ff, #1bc5bd, #ffa800);
+			animation: realProgressRun 1.15s ease-in-out infinite;
+		}
+
+		@keyframes realBikeRun {
+			0% { transform: translateX(-150px) translateY(0) rotate(0deg); }
+			25% { transform: translateX(-112px) translateY(-3px) rotate(-0.5deg); }
+			50% { transform: translateX(-75px) translateY(0) rotate(0deg); }
+			75% { transform: translateX(-38px) translateY(-3px) rotate(-0.5deg); }
+			100% { transform: translateX(0) translateY(0) rotate(0deg); }
+		}
+
+		@keyframes realRoadMove {
+			from { transform: translateX(360px); }
+			to { transform: translateX(-100px); }
+		}
+
+		@keyframes speedLineMove {
+			from { transform: translateX(230px); opacity: 0; }
+			35% { opacity: 1; }
+			to { transform: translateX(-190px); opacity: 0; }
+		}
+
+		@keyframes realProgressRun {
+			0% { transform: translateX(170%); }
+			100% { transform: translateX(-270%); }
+		}
+
+		@media (max-width: 576px) {
+			.real-delivery-loader {
+				width: 92%;
+				min-height: 330px;
+				padding: 22px 16px;
+			}
+
+			.real-delivery-scene {
+				width: 310px;
+				height: 190px;
+			}
+
+			.real-delivery-bike {
+				--bike-travel: -105px;
+				width: 190px;
+				right: 12px;
+			}
+
+			.real-delivery-progress {
+				width: 190px;
+			}
+		}
+
 		.carousel .carousel-inner .carousel-item img {
 			width: 70%;
 			margin: 0 auto;
@@ -73,7 +310,9 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
 					<!--begin::Logo-->
 					<a href="#" class="text-center pt-2">
-						<img src="{{asset('fodexlogo.jpg')}}" class="max-h-100px" alt="" />
+
+								                        <img src="{{ asset('assets/loaders/modern_delivery_logo_design_clean_transparent.png') }}" class="max-h-100px" alt="" />
+						<!-- <img src="{{asset('fodexlogo.jpg')}}" class="max-h-100px" alt="" /> -->
 					</a>
 					<!--end::Logo-->
 					<!--begin::Aside body-->
@@ -81,7 +320,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!--begin::Signin-->
 						<div class="login-form login-signin py-11">
 							<!--begin::Form-->
-							<form class="form" id="kt_login_signin_form" method="post" action="{{route('sellerlogindash')}}">
+							<form class="form" id="kt_login_signin_form" method="post" action="{{route('login')}}">
 								@csrf
 								<!--begin::Title-->
 								<div class="text-center pb-8">
@@ -90,9 +329,8 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--end::Title-->
 								<!--begin::Form group-->
 								<div class="form-group">
-									<label class="font-size-h6 font-weight-bolder text-dark float-right">رقم الهاتف</label>
-									<input class="form-control form-control-solid " type="number" placeholder="رقم الهاتف
-									" name="phone" autocomplete="off" />
+									<label class="font-size-h6 font-weight-bolder text-dark float-right">الاسم</label>
+									<input class="form-control form-control-solid " type="text" placeholder="الاسم" name="name" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
@@ -139,12 +377,35 @@ License: You must have a valid license purchased only from themeforest(the above
 			<div class="content order-2 order-lg-1 d-flex flex-column w-100 pb-0"
 			style="background-color: #fff;">
 				<!--begin::Image-->
-				<!--begin::Image-->
-				<div class="content-img d-flex  justify-content-center align-items-center
-				 flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center">
-					<lottie-player src="{{asset('67226-food-app-interaction.json')}}"
-					 background="transparent" speed="1" style="width: 500px; height: 500px;" loop autoplay></lottie-player>
-				</div>
+							<div id="preloader">
+								<div class="real-delivery-loader">
+									<div class="real-delivery-scene">
+										<div class="real-delivery-speed-lines">
+											<span></span>
+											<span></span>
+											<span></span>
+											<span></span>
+										</div>
+
+										<img class="real-delivery-bike"
+										     src="{{ asset('assets/loaders/orderstation-delivery-bike.png') }}"
+										     alt="delivery bike loader">
+
+										<div class="real-delivery-road">
+											<span></span>
+											<span></span>
+											<span></span>
+										</div>
+									</div>
+
+									<h4>OrderStation</h4>
+									<p>جاري تجهيز صفحة تسجيل الدخول...</p>
+
+									<div class="real-delivery-progress">
+										<span></span>
+									</div>
+								</div>
+							</div>
 				<!--end::Image-->
 				<!--<div class="text-center">-->
 				<!--	<p class="my-3 h5">جميع الحقوق محفوظه @ <span class="alina"> Enjoy </span> 2021</p>-->
@@ -226,7 +487,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
 	<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js')}}"></script>
 	<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
-	<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 	<!--end::Global Theme Bundle-->
 	<script>
 		FormValidation.formValidation(
@@ -278,6 +538,14 @@ License: You must have a valid license purchased only from themeforest(the above
 			timer: 1500
 		})
 		@endif
+	</script>
+	<script>
+		let loader = document.getElementById('preloader');
+		window.addEventListener('load', function () {
+			if (loader) {
+				loader.style.display = 'none';
+			}
+		});
 	</script>
 </body>
 <!--end::Body-->
