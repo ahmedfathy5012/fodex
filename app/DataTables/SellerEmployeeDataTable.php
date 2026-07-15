@@ -21,11 +21,11 @@ class SellerEmployeeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-           ->addColumn('action', 'admindashboard.employees.selleremployees.action')
+           ->addColumn('action', 'admindashboard.employees.selleremployees.V2.action')
 // ->editColumn('name',function(Employee $employee){
-          
+
 //                     return '<a href="'.route("employee.show",$employee->id).'">'.$employee->name.'</a>';
-                
+
 //             })
             ->rawColumns([
            'action',
@@ -49,22 +49,22 @@ class SellerEmployeeDataTable extends DataTable
 //  if($country_id){
 //              $employee_ids = Address::where('country_id',$country_id)->get()->pluck('employee_id');
 //              $employees = $employees->whereIn('id',$employee_ids);
-      
+
 //          } if($country_id && $state_id){
 //              $employee_ids = Address::where('state_id',$state_id)->get()->pluck('employee_id');
 //             $employees = $employees->whereIn('id',$employee_ids);
-        
+
 //          } if($country_id && $state_id && $city_id){
 //              $employee_ids = Address::where('city_id',$city_id)->get()->pluck('employee_id');
 //           $employees = $employees->whereIn('id',$employee_ids);
-             
+
 //          } if($country_id && $state_id && $city_id && $zone_id){
 //              $employee_ids = Address::where('zone_id',$zone_id)->get()->pluck('employee_id');
 //           $employees = $employees->whereIn('id',$employee_ids);
 //          }
             return $employees;
     }
-    
+
 
     /**
      * Optional method if you want to use html builder.

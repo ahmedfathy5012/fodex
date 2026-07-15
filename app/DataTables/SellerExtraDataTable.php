@@ -21,7 +21,7 @@ class SellerExtraDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-             ->addColumn('action', 'admindashboard.seller_extras.action')
+             ->addColumn('action', 'admindashboard.seller_extras.V2.action')
         ->rawColumns([
            'action',
         ]);
