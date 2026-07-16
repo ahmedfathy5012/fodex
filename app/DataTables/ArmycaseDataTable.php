@@ -21,7 +21,7 @@ class ArmycaseDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.armycases.action')
+            ->addColumn('action', 'admindashboard.armycases.V2.action')
         ->rawColumns([
            'action',
         ]);

@@ -21,7 +21,7 @@ class StatussocialDataTable extends DataTable
     {
        return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.statussocials.action')
+            ->addColumn('action', 'admindashboard.statussocials.V2.action')
         ->rawColumns([
            'action',
         ]);

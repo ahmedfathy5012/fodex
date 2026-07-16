@@ -28,20 +28,20 @@ class WorkscheduleDataTable extends DataTable
             //     }
          //   })
             ->editColumn('work_from',function(Workschedule $Workschedule){
-                
+
                     return Carbon::parse($Workschedule->work_from)->format(' a g:i ');
-               
+
             }) ->editColumn('work_to',function(Workschedule $Workschedule){
-                
+
                     return Carbon::parse($Workschedule->work_to)->format(' a g:i ');
-               
-            }) 
+
+            })
             // ->editColumn('day_id',function(Workschedule $Workschedule){
             //     if($Workschedule->day){
             //         return $Workschedule->day->day_ar;
             //     }
             // })
-            ->addColumn('action', 'admindashboard.workschedules.action')
+            ->addColumn('action', 'admindashboard.workschedules.V2.action')
 
             ->rawColumns([
            'action',
@@ -58,7 +58,7 @@ class WorkscheduleDataTable extends DataTable
     {
        return $model->newQuery()->with("seller")->with("day")->select('workschedules.*');
       //  dd( $model->newQuery()->with("seller")->select('*');
-    
+
     }
 
     /**
@@ -68,7 +68,7 @@ class WorkscheduleDataTable extends DataTable
      */
 public function html()
     {
-        
+
          return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()

@@ -21,7 +21,7 @@ class RefusedReasonDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.refusedreasons.action')
+            ->addColumn('action', 'admindashboard.refusedreasons.V2.action')
         ->rawColumns([
            'action',
         ]);

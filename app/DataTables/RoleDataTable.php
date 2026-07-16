@@ -21,7 +21,7 @@ class RoleDataTable extends DataTable
     {
          return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.roles.action')
+            ->addColumn('action', 'admindashboard.roles.V2.action')
         ->rawColumns([
            'action',
         ]);
