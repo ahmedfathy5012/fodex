@@ -1,48 +1,43 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AppStatus;
-class AppStatusController extends Controller 
+
+class AppStatusController extends Controller
 {
+    private function appStatusView(string $page): string
+    {
+        return env('APP_ENV') == 'production'
+            ? "admindashboard.app_status.$page"
+            : "admindashboard.app_status.V2.$page";
+    }
 
+    public function edit()
+    {
+        $app_status = AppStatus::firstOrNew();
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function edit()
-  {
-       $app_status = AppStatus::firstOrNew();
+        return view($this->appStatusView('edit'))
+            ->with('app_status', $app_status);
+    }
 
-    return view('admindashboard.app_status.edit')->with('app_status',$app_status);
-  }
+    public function update(Request $request)
+    {
+        $app_status = AppStatus::firstOrNew();
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function update(Request $request)
-  {
-     $app_status = AppStatus::first();
-   $app_status->message = $request->message;
-   if($request->status == 1){
-       $app_status->status = 1;
-   }else{
-         $app_status->status = 0;
-   }
-     $app_status->save();
-   
-   return redirect()->back()->with(['success'=> "تم الحفظ بنجاح"]);
-  }
+        $app_status->message = $request->message;
 
-  
- 
+        if ($request->status == 1) {
+            $app_status->status = 1;
+        } else {
+            $app_status->status = 0;
+        }
+
+        $app_status->save();
+
+        return redirect()->back()->with([
+            'success' => "تم الحفظ بنجاح",
+        ]);
+    }
 }
-
-?>

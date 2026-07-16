@@ -21,7 +21,7 @@ class TagDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-             ->addColumn('action', 'admindashboard.tags.action')
+             ->addColumn('action', 'admindashboard.tags.V2.action')
         ->rawColumns([
            'action',
         ]);

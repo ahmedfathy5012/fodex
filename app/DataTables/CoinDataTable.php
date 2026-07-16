@@ -21,7 +21,7 @@ class CoinDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-             ->addColumn('action', 'admindashboard.coins.action')
+             ->addColumn('action', 'admindashboard.coins.V2.action')
         ->rawColumns([
            'action',
         ]);
