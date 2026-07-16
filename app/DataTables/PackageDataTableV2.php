@@ -2,14 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\ExpenseType;
+use App\Models\Package;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ExpenseTypeDataTable extends DataTable
+class PackageDataTableV2 extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,19 +21,19 @@ class ExpenseTypeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-             ->addColumn('action', 'admindashboard.expensetypes.V2.action')
-        ->rawColumns([
-           'action',
-        ]);
+            ->addColumn('action', 'dashboard.packagesV2.action')
+            ->rawColumns([
+                'action'
+             ]);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ExpenseType $model
+     * @param \App\Models\Package $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(ExpenseType $model)
+    public function query(Package $model)
     {
         return $model->newQuery();
     }
@@ -45,7 +45,7 @@ class ExpenseTypeDataTable extends DataTable
      */
     public function html()
     {
-         return $this->builder()
+        return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()
         ->parameters([
@@ -65,10 +65,19 @@ class ExpenseTypeDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
-          ['data'=>'name','title'=>'الاسم'],
-            ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],
-        ];
+        
+            return [
+                // ['data'=>'id','title'=>'id','visible' => false, 'printable' => false, 'exportable' => true],
+               
+                     ['data'=>'name','title'=>'الاسم'],
+                    //  ['data'=>'branches_number','title'=>'عدد الفروع'],
+                    //  ['data'=>'items_number','title'=>'عدد المنتجات'],
+                    //  ['data'=>'notifications_number','title'=>'عدد الاشعارات'],
+                    //  ['data'=>'orders_number','title'=>'عدد الطلبات'],
+
+                  ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],
+              ];
+        
     }
 
     /**
@@ -78,6 +87,6 @@ class ExpenseTypeDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'ExpenseType_' . date('YmdHis');
+        return 'Package_' . date('YmdHis');
     }
 }

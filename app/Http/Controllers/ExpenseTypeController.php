@@ -8,10 +8,17 @@ use App\DataTables\ExpenseTypeDataTable;
 
 class ExpenseTypeController extends Controller
 {
+  private function expenseTypeView(string $page): string
+  {
+    return env('APP_ENV') == 'production'
+      ? "admindashboard.expensetypes.$page"
+      : "admindashboard.expensetypes.V2.$page";
+  }
+
   public function index(ExpenseTypeDataTable $dataTable)
   {
 
-    return $dataTable->render('admindashboard.expensetypes.index');
+    return $dataTable->render($this->expenseTypeView('index'));
   }
 
   /**
@@ -21,7 +28,7 @@ class ExpenseTypeController extends Controller
    */
   public function create()
   {
-    return view('admindashboard.expensetypes.create');
+    return view($this->expenseTypeView('create'));
   }
 
 
@@ -43,7 +50,7 @@ class ExpenseTypeController extends Controller
   public function edit($id)
   {
     $extype = ExpenseType::where('id', $id)->first();
-    return view('admindashboard.expensetypes.edit')->with('extype', $extype);
+    return view($this->expenseTypeView('edit'))->with('extype', $extype);
   }
   public function update(Request $request, $id)
   {

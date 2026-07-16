@@ -21,7 +21,7 @@ class GenderDataTable extends DataTable
     {
          return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.gender.action')
+            ->addColumn('action', 'admindashboard.gender.V2.action')
         ->rawColumns([
            'action',
         ]);
