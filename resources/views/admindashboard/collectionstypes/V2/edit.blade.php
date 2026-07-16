@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .expense-type-create-page {
+        .collection-type-edit-page {
             direction: rtl;
         }
 
-        .expense-type-create-card {
+        .collection-type-edit-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .expense-type-create-card .card-header {
+        .collection-type-edit-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .expense-type-create-card .card-title {
+        .collection-type-edit-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .expense-type-create-card .card-label {
+        .collection-type-edit-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .expense-type-create-card .card-icon {
+        .collection-type-edit-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,17 +44,17 @@
             justify-content: center;
         }
 
-        /*.expense-type-create-card .card-icon svg path,*/
-        /*.expense-type-create-card .card-icon svg polygon {*/
+        /*.collection-type-edit-card .card-icon svg path,*/
+        /*.collection-type-edit-card .card-icon svg polygon {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .expense-type-create-body {
+        .collection-type-edit-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .expense-type-section {
+        .collection-type-section {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -62,7 +62,7 @@
             margin-bottom: 22px;
         }
 
-        .expense-type-section-title {
+        .collection-type-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .expense-type-section-title::before {
+        .collection-type-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,14 +81,14 @@
             display: inline-block;
         }
 
-        .expense-type-create-page .form-group label {
+        .collection-type-edit-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .expense-type-create-page .form-control {
+        .collection-type-edit-page .form-control {
             min-height: 44px;
             border-radius: 10px !important;
             border: 1px solid #e4e6ef !important;
@@ -98,26 +98,26 @@
             transition: all 0.15s ease;
         }
 
-        .expense-type-create-page .form-control:focus {
+        .collection-type-edit-page .form-control:focus {
             border-color: #3699ff !important;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
         }
 
-        .expense-type-create-page .text-danger,
-        .expense-type-create-page p[style*="color:red"] {
+        .collection-type-edit-page .text-danger,
+        .collection-type-edit-page p[style*="color:red"] {
             color: #f64e60 !important;
             font-size: 13px;
             font-weight: 700;
             margin-top: 6px;
         }
 
-        .expense-type-submit-wrapper {
+        .collection-type-submit-wrapper {
             display: flex;
             justify-content: center;
             padding: 0 28px 28px;
         }
 
-        .expense-type-submit-btn {
+        .collection-type-submit-btn {
             min-width: 220px;
             height: 48px;
             border-radius: 12px !important;
@@ -134,37 +134,37 @@
             transition: all 0.15s ease;
         }
 
-        .expense-type-submit-btn:hover {
+        .collection-type-submit-btn:hover {
             color: #ffffff !important;
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
         }
 
-        .expense-type-submit-btn svg path {
+        .collection-type-submit-btn svg path {
             fill: #ffffff !important;
         }
 
         @media (max-width: 768px) {
-            .expense-type-create-body {
+            .collection-type-edit-body {
                 padding: 18px;
             }
 
-            .expense-type-section {
+            .collection-type-section {
                 padding: 16px;
             }
 
-            .expense-type-submit-wrapper {
+            .collection-type-submit-wrapper {
                 padding: 0 18px 18px;
             }
 
-            .expense-type-submit-btn {
+            .collection-type-submit-btn {
                 width: 100%;
             }
         }
     </style>
 
-    <div class="expense-type-create-page">
-        <div class="card card-custom expense-type-create-card">
+    <div class="collection-type-edit-page">
+        <div class="card card-custom collection-type-edit-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -188,23 +188,24 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">إضافة نوع مصروف</h3>
+                    <h3 class="card-label">تعديل نوع إيراد</h3>
                 </div>
             </div>
 
-            <form method="post" action="{{ route('expensetype.store') }}">
+            <form method="post" action="{{ route('collectionstypes.update', $collect->id) }}">
                 @csrf
+                @method('PUT')
 
-                <div class="card-body expense-type-create-body">
-                    <div class="expense-type-section">
-                        <div class="expense-type-section-title">بيانات نوع المصروف</div>
+                <div class="card-body collection-type-edit-body">
+                    <div class="collection-type-section">
+                        <div class="collection-type-section-title">بيانات نوع الإيراد</div>
 
                         <div class="row">
                             <div class="form-group col-lg-6 col-md-6">
                                 <label>الاسم <span class="text-danger">*</span></label>
                                 <input type="text"
                                        class="form-control"
-                                       value="{{ old('name') }}"
+                                       value="{{ $collect->name }}"
                                        name="name"
                                        required/>
 
@@ -217,7 +218,7 @@
                                 <label>القيمة <span class="text-danger">*</span></label>
                                 <input type="number"
                                        class="form-control"
-                                       value="{{ old('value') }}"
+                                       value="{{ $collect->value }}"
                                        name="value"
                                        required/>
 
@@ -229,9 +230,9 @@
                     </div>
                 </div>
 
-                <div class="expense-type-submit-wrapper">
-                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold expense-type-submit-btn">
-                        إضافة
+                <div class="collection-type-submit-wrapper">
+                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold collection-type-submit-btn">
+                        حفظ التعديل
 
                         <span class="svg-icon svg-icon m-0 svg-icon-md">
                         <svg xmlns="http://www.w3.org/2000/svg"

@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .expensetype-page {
+        .expense-types-page {
             direction: rtl;
         }
 
-        .expensetype-card {
+        .expense-types-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .expensetype-card .card-header {
+        .expense-types-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .expensetype-card .card-title {
+        .expense-types-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .expensetype-card .card-label {
+        .expense-types-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .expensetype-card .card-icon {
+        .expense-types-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,19 +44,19 @@
             justify-content: center;
         }
 
-        /*.expensetype-card .card-icon svg path,*/
-        /*.expensetype-card .card-icon svg rect {*/
+        /*.expense-types-card .card-icon svg path,*/
+        /*.expense-types-card .card-icon svg rect {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .expensetype-toolbar {
+        .expense-types-toolbar {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding: 18px 26px 0;
         }
 
-        .expensetype-add-btn {
+        .expense-types-add-btn {
             min-width: 130px;
             height: 42px;
             border-radius: 10px !important;
@@ -72,18 +72,18 @@
             transition: all 0.15s ease;
         }
 
-        .expensetype-add-btn:hover {
+        .expense-types-add-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.28);
             color: #ffffff !important;
         }
 
-        .expensetype-body {
+        .expense-types-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .expensetype-table-section {
+        .expense-types-table-section {
             background: #ffffff;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -91,14 +91,14 @@
             overflow-x: auto;
         }
 
-        .expensetype-page table.dataTable {
+        .expense-types-page table.dataTable {
             width: 100% !important;
             border-collapse: separate !important;
             border-spacing: 0 8px !important;
             margin-top: 0 !important;
         }
 
-        .expensetype-page table.dataTable thead th {
+        .expense-types-page table.dataTable thead th {
             background: #f3f6f9;
             color: #3f4254;
             font-weight: 800;
@@ -108,20 +108,20 @@
             text-align: center;
         }
 
-        .expensetype-page table.dataTable thead th:first-child {
+        .expense-types-page table.dataTable thead th:first-child {
             border-radius: 0 10px 10px 0;
         }
 
-        .expensetype-page table.dataTable thead th:last-child {
+        .expense-types-page table.dataTable thead th:last-child {
             border-radius: 10px 0 0 10px;
         }
 
-        .expensetype-page table.dataTable tbody tr {
+        .expense-types-page table.dataTable tbody tr {
             background: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
-        .expensetype-page table.dataTable tbody td {
+        .expense-types-page table.dataTable tbody td {
             border-top: 1px solid #edf0f5 !important;
             border-bottom: 1px solid #edf0f5 !important;
             padding: 13px 12px !important;
@@ -130,17 +130,17 @@
             color: #3f4254;
         }
 
-        .expensetype-page table.dataTable tbody td:first-child {
+        .expense-types-page table.dataTable tbody td:first-child {
             border-right: 1px solid #edf0f5 !important;
             border-radius: 0 10px 10px 0;
         }
 
-        .expensetype-page table.dataTable tbody td:last-child {
+        .expense-types-page table.dataTable tbody td:last-child {
             border-left: 1px solid #edf0f5 !important;
             border-radius: 10px 0 0 10px;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_filter input {
+        .expense-types-page .dataTables_wrapper .dataTables_filter input {
             border-radius: 10px;
             border: 1px solid #e4e6ef;
             min-height: 38px;
@@ -149,30 +149,30 @@
             box-shadow: none !important;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_filter input:focus {
+        .expense-types-page .dataTables_wrapper .dataTables_filter input:focus {
             border-color: #3699ff;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
             outline: none;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_length select {
+        .expense-types-page .dataTables_wrapper .dataTables_length select {
             border-radius: 8px;
             border: 1px solid #e4e6ef;
             min-height: 36px;
             padding: 12px 24px;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_info {
+        .expense-types-page .dataTables_wrapper .dataTables_info {
             color: #7e8299;
             font-weight: 600;
             padding-top: 16px;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_paginate {
+        .expense-types-page .dataTables_wrapper .dataTables_paginate {
             padding-top: 14px;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_paginate .paginate_button {
+        .expense-types-page .dataTables_wrapper .dataTables_paginate .paginate_button {
             border-radius: 8px !important;
             border: 0 !important;
             margin: 0 2px;
@@ -181,37 +181,37 @@
             background: transparent !important;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        .expense-types-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             background: #3699ff !important;
             color: #ffffff !important;
         }
 
-        .expensetype-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        .expense-types-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #eaf4ff !important;
             color: #3699ff !important;
         }
 
         @media (max-width: 768px) {
-            .expensetype-toolbar {
+            .expense-types-toolbar {
                 padding: 16px 18px 0;
             }
 
-            .expensetype-add-btn {
+            .expense-types-add-btn {
                 width: 100%;
             }
 
-            .expensetype-body {
+            .expense-types-body {
                 padding: 18px;
             }
 
-            .expensetype-table-section {
+            .expense-types-table-section {
                 padding: 14px;
             }
         }
     </style>
 
-    <div class="expensetype-page">
-        <div class="card card-custom gutter-b expensetype-card">
+    <div class="expense-types-page">
+        <div class="card card-custom gutter-b expense-types-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -233,19 +233,19 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">نوع المصروف</h3>
+                    <h3 class="card-label">أنواع المصروفات</h3>
                 </div>
             </div>
 
-            <div class="expensetype-toolbar">
-                <a class="btn btn-sm btning expensetype-add-btn"
+            <div class="expense-types-toolbar">
+                <a class="btn btn-sm btning expense-types-add-btn"
                    href="{{ route('expensetype.create') }}">
                     اضافه
                 </a>
             </div>
 
-            <div class="card-body expensetype-body">
-                <div class="expensetype-table-section">
+            <div class="card-body expense-types-body">
+                <div class="expense-types-table-section">
                     {!! $dataTable->table([
 
                     ], true) !!}

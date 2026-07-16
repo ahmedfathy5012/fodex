@@ -38,11 +38,11 @@ class MajorclassificationcontentSellerDataTable extends DataTable
               //  }
             })
             //  ->editColumn('name',function(HomecontentSeller $seller){
-          
+
             //         return '<a href="'.route("seller.show",$seller->seller->id).'">'.$seller->seller->name.'</a>';
-                
+
             // })
-           ->addColumn('action', 'admindashboard.majorclassification.homecontent.selleraction')->with('home',MajorclassificationContent::where('id',$this->id)->first())
+           ->addColumn('action', 'admindashboard.majorclassification.homecontent.V2.selleraction')->with('home',MajorclassificationContent::where('id',$this->id)->first())
 
             ->rawColumns([
            'action',

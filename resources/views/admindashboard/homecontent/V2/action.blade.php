@@ -1,6 +1,6 @@
 @once
     <style>
-        .expense-type-actions-inline {
+        .home-content-actions-inline {
             width: 75px;
             display: grid;
             grid-template-columns: 34px 34px;
@@ -11,7 +11,7 @@
             margin: auto;
         }
 
-        .expense-type-action-btn {
+        .home-content-action-btn {
             width: 34px !important;
             height: 34px !important;
             min-width: 34px !important;
@@ -31,27 +31,27 @@
             transition: all 0.15s ease;
         }
 
-        .expense-type-action-btn:hover {
+        .home-content-action-btn:hover {
             background: #eaf4ff !important;
             border-color: #b5d9ff !important;
             color: #3699ff !important;
             transform: translateY(-1px);
         }
 
-        .expense-type-action-btn i {
+        .home-content-action-btn i {
             font-size: 13px;
             color: #3699ff !important;
         }
 
-        .expense-type-action-danger {
+        .home-content-action-danger {
             color: #f64e60 !important;
         }
 
-        .expense-type-action-danger i {
+        .home-content-action-danger i {
             color: #f64e60 !important;
         }
 
-        .expense-type-action-danger:hover {
+        .home-content-action-danger:hover {
             background: #fff5f6 !important;
             border-color: #ffd0d6 !important;
             color: #f64e60 !important;
@@ -59,15 +59,15 @@
     </style>
 @endonce
 
-<div class="expense-type-actions-inline">
-    <a href="{{ route('expensetype.edit', $id) }}"
-       class="expense-type-action-btn"
+<div class="home-content-actions-inline">
+    <a href="{{ route('homecontent.edit', $id) }}"
+       class="home-content-action-btn"
        title="تعديل">
         <i class="fas fa-pen"></i>
     </a>
 
-    <div onclick="deleteexpensetype({{ $id }})"
-         class="expense-type-action-btn expense-type-action-danger"
+    <div onclick="deletehomecontent({{ $id }})"
+         class="home-content-action-btn home-content-action-danger"
          title="حذف">
         <i class="fas fa-trash"></i>
     </div>
@@ -75,7 +75,7 @@
 
 @once
     <script>
-        function deleteexpensetype(sel) {
+        function deletehomecontent(sel) {
             let id = sel;
             var table = $('.dataTable').DataTable();
 
@@ -97,9 +97,9 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "delete",
-                        url: `expensetype/${id}`,
+                        url: `homecontent/${id}`,
                         dataType: "Json",
-                        success: function (result) {
+                        success: function(result) {
                             if (result.status == true) {
                                 Swal.fire(
                                     'Deleted!',

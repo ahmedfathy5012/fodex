@@ -21,7 +21,7 @@ class OrderStatusDataTable extends DataTable
     {
          return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.orderstatus.action')
+            ->addColumn('action', 'admindashboard.orderstatus.V2.action')
         ->rawColumns([
            'action',
         ]);

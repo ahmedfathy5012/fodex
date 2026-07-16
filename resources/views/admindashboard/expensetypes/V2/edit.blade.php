@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .expensetype-edit-page {
+        .expense-type-edit-page {
             direction: rtl;
         }
 
-        .expensetype-edit-card {
+        .expense-type-edit-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .expensetype-edit-card .card-header {
+        .expense-type-edit-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .expensetype-edit-card .card-title {
+        .expense-type-edit-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .expensetype-edit-card .card-label {
+        .expense-type-edit-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .expensetype-edit-card .card-icon {
+        .expense-type-edit-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,17 +44,17 @@
             justify-content: center;
         }
 
-        /*.expensetype-edit-card .card-icon svg path,*/
-        /*.expensetype-edit-card .card-icon svg polygon {*/
+        /*.expense-type-edit-card .card-icon svg path,*/
+        /*.expense-type-edit-card .card-icon svg polygon {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .expensetype-edit-body {
+        .expense-type-edit-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .expensetype-section {
+        .expense-type-section {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -62,7 +62,7 @@
             margin-bottom: 22px;
         }
 
-        .expensetype-section-title {
+        .expense-type-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .expensetype-section-title::before {
+        .expense-type-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,14 +81,14 @@
             display: inline-block;
         }
 
-        .expensetype-edit-page .form-group label {
+        .expense-type-edit-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .expensetype-edit-page .form-control {
+        .expense-type-edit-page .form-control {
             min-height: 44px;
             border-radius: 10px !important;
             border: 1px solid #e4e6ef !important;
@@ -98,26 +98,26 @@
             transition: all 0.15s ease;
         }
 
-        .expensetype-edit-page .form-control:focus {
+        .expense-type-edit-page .form-control:focus {
             border-color: #3699ff !important;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
         }
 
-        .expensetype-edit-page .text-danger,
-        .expensetype-edit-page p[style*="color:red"] {
+        .expense-type-edit-page .text-danger,
+        .expense-type-edit-page p[style*="color:red"] {
             color: #f64e60 !important;
             font-size: 13px;
             font-weight: 700;
             margin-top: 6px;
         }
 
-        .expensetype-submit-wrapper {
+        .expense-type-submit-wrapper {
             display: flex;
             justify-content: center;
             padding: 0 28px 28px;
         }
 
-        .expensetype-submit-btn {
+        .expense-type-submit-btn {
             min-width: 220px;
             height: 48px;
             border-radius: 12px !important;
@@ -134,37 +134,37 @@
             transition: all 0.15s ease;
         }
 
-        .expensetype-submit-btn:hover {
+        .expense-type-submit-btn:hover {
             color: #ffffff !important;
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
         }
 
-        .expensetype-submit-btn svg path {
+        .expense-type-submit-btn svg path {
             fill: #ffffff !important;
         }
 
         @media (max-width: 768px) {
-            .expensetype-edit-body {
+            .expense-type-edit-body {
                 padding: 18px;
             }
 
-            .expensetype-section {
+            .expense-type-section {
                 padding: 16px;
             }
 
-            .expensetype-submit-wrapper {
+            .expense-type-submit-wrapper {
                 padding: 0 18px 18px;
             }
 
-            .expensetype-submit-btn {
+            .expense-type-submit-btn {
                 width: 100%;
             }
         }
     </style>
 
-    <div class="expensetype-edit-page">
-        <div class="card card-custom expensetype-edit-card">
+    <div class="expense-type-edit-page">
+        <div class="card card-custom expense-type-edit-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -194,11 +194,11 @@
 
             <form method="post" action="{{ route('expensetype.update', $extype->id) }}">
                 @csrf
-                @method('put')
+                @method('PUT')
 
-                <div class="card-body expensetype-edit-body">
-                    <div class="expensetype-section">
-                        <div class="expensetype-section-title">بيانات نوع المصروف</div>
+                <div class="card-body expense-type-edit-body">
+                    <div class="expense-type-section">
+                        <div class="expense-type-section-title">بيانات نوع المصروف</div>
 
                         <div class="row">
                             <div class="form-group col-lg-6 col-md-6">
@@ -215,7 +215,7 @@
                             </div>
 
                             <div class="form-group col-lg-6 col-md-6">
-                                <label>القيمه <span class="text-danger">*</span></label>
+                                <label>القيمة <span class="text-danger">*</span></label>
                                 <input type="number"
                                        class="form-control"
                                        value="{{ $extype->value }}"
@@ -230,8 +230,8 @@
                     </div>
                 </div>
 
-                <div class="expensetype-submit-wrapper">
-                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold expensetype-submit-btn">
+                <div class="expense-type-submit-wrapper">
+                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold expense-type-submit-btn">
                         حفظ التعديل
 
                         <span class="svg-icon svg-icon m-0 svg-icon-md">
