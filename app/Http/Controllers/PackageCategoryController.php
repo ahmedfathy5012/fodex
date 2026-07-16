@@ -62,6 +62,7 @@ class PackageCategoryController extends Controller
 
         return redirect()->route('packagescategories.index');
     }
+    //
 
     public function destroy($id)
     {
