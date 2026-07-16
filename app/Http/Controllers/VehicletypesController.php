@@ -1,77 +1,75 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicletypes;
 use App\DataTables\VehicletypesDataTable;
-class VehicletypesController extends Controller 
+
+class VehicletypesController extends Controller
 {
-
-  /**
-   * Display a listing of the resource.
-   *
-   * @return Response
-   */
-public function index(VehicletypesDataTable $dataTable)
+    private function vehicletypesView(string $page): string
     {
-      // dd(Country::all());
-        return $dataTable->render('admindashboard.vehicletypes.index');
+        return env('APP_ENV') == 'production'
+            ? "admindashboard.vehicletypes.$page"
+            : "admindashboard.vehicletypes.V2.$page";
     }
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create()
-  {
-    return view('admindashboard.vehicletypes.create');
-  }
 
- 
-  public function store(Request $request)
-  {
-    $request->validate([
-      'title' => 'required'],[
-      'title.required' => 'هذا الحقل مطلوب'
-       ]);
-    $type = new Vehicletypes;
-    $type->title = $request->title;
-    $type->save();
-    return redirect()->route('vehicletypes.index');
-  }
+    public function index(VehicletypesDataTable $dataTable)
+    {
+        return $dataTable->render($this->vehicletypesView('index'));
+    }
 
- 
-  public function edit($id)
-  {
-    $type = Vehicletypes::where('id',$id)->first();
-    return view('admindashboard.vehicletypes.edit')->with('type',$type); 
-  }
-  public function update(Request $request,$id)
-  {
-      $request->validate([
-      'title' => 'required'],[
-      'title.required' => 'هذا الحقل مطلوب'
-       ]);
-    $type = Vehicletypes::where('id',$id)->first();
-    $type->title = $request->title;
-    $type->save();
-    return redirect()->route('vehicletypes.index');
-  }
+    public function create()
+    {
+        return view($this->vehicletypesView('create'));
+    }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function destroy($id)
-  {
-     $type = Vehicletypes::where('id',$id)->first();
-     $type->delete();
-     return response()->json(['status' => true]);
-  }
-  
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+        ], [
+            'title.required' => 'هذا الحقل مطلوب',
+        ]);
+
+        $type = new Vehicletypes;
+        $type->title = $request->title;
+        $type->save();
+
+        return redirect()->route('vehicletypes.index');
+    }
+
+    public function edit($id)
+    {
+        $type = Vehicletypes::where('id', $id)->first();
+
+        return view($this->vehicletypesView('edit'))
+            ->with('type', $type);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+        ], [
+            'title.required' => 'هذا الحقل مطلوب',
+        ]);
+
+        $type = Vehicletypes::where('id', $id)->first();
+        $type->title = $request->title;
+        $type->save();
+
+        return redirect()->route('vehicletypes.index');
+    }
+
+    public function destroy($id)
+    {
+        $type = Vehicletypes::where('id', $id)->first();
+        $type->delete();
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
 }
-
-?>
