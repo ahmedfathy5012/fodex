@@ -8,67 +8,70 @@ use App\DataTables\ExpenseTypeDataTable;
 
 class ExpenseTypeController extends Controller
 {
-  public function index(ExpenseTypeDataTable $dataTable)
-  {
+    private function expenseTypeView(string $page): string
+    {
+        return env('APP_ENV') == 'production'
+            ? "admindashboard.expensetypes.$page"
+            : "admindashboard.expensetypes.V2.$page";
+    }
 
-    return $dataTable->render('admindashboard.expensetypes.index');
-  }
+    public function index(ExpenseTypeDataTable $dataTable)
+    {
+        return $dataTable->render($this->expenseTypeView('index'));
+    }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create()
-  {
-    return view('admindashboard.expensetypes.create');
-  }
+    public function create()
+    {
+        return view($this->expenseTypeView('create'));
+    }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'هذا الحقل مطلوب',
+        ]);
 
-  public function store(Request $request)
-  {
-    $request->validate([
-      'name' => 'required'
-    ], [
-      'name.required' => 'هذا الحقل مطلوب'
-    ]);
-    $extype = new ExpenseType;
-    $extype->name = $request->name;
-    $extype->value = $request->value;
-    $extype->save();
-    return redirect()->route('expensetype.index');
-  }
+        $extype = new ExpenseType;
+        $extype->name = $request->name;
+        $extype->value = $request->value;
+        $extype->save();
 
+        return redirect()->route('expensetype.index');
+    }
 
-  public function edit($id)
-  {
-    $extype = ExpenseType::where('id', $id)->first();
-    return view('admindashboard.expensetypes.edit')->with('extype', $extype);
-  }
-  public function update(Request $request, $id)
-  {
-    $request->validate([
-      'name' => 'required'
-    ], [
-      'name.required' => 'هذا الحقل مطلوب'
-    ]);
-    $extype = ExpenseType::where('id', $id)->first();
-    $extype->name = $request->name;
-    $extype->value = $request->value;
-    $extype->save();
-    return redirect()->route('expensetype.index');
-  }
+    public function edit($id)
+    {
+        $extype = ExpenseType::where('id', $id)->first();
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function destroy($id)
-  {
-    $extype = ExpenseType::where('id', $id)->first();
-    $extype->delete();
-    return response()->json(['status' => true]);
-  }
+        return view($this->expenseTypeView('edit'))
+            ->with('extype', $extype);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'هذا الحقل مطلوب',
+        ]);
+
+        $extype = ExpenseType::where('id', $id)->first();
+        $extype->name = $request->name;
+        $extype->value = $request->value;
+        $extype->save();
+
+        return redirect()->route('expensetype.index');
+    }
+
+    public function destroy($id)
+    {
+        $extype = ExpenseType::where('id', $id)->first();
+        $extype->delete();
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
 }

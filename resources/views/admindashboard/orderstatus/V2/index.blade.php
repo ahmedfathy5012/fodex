@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .majors-page {
+        .order-status-page {
             direction: rtl;
         }
 
-        .majors-card {
+        .order-status-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .majors-card .card-header {
+        .order-status-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .majors-card .card-title {
+        .order-status-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .majors-card .card-label {
+        .order-status-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .majors-card .card-icon {
+        .order-status-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,19 +44,19 @@
             justify-content: center;
         }
 
-        /*.majors-card .card-icon svg path,*/
-        /*.majors-card .card-icon svg rect {*/
+        /*.order-status-card .card-icon svg path,*/
+        /*.order-status-card .card-icon svg rect {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .majors-toolbar {
+        .order-status-toolbar {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding: 18px 26px 0;
         }
 
-        .majors-add-btn {
+        .order-status-add-btn {
             min-width: 130px;
             height: 42px;
             border-radius: 10px !important;
@@ -72,18 +72,18 @@
             transition: all 0.15s ease;
         }
 
-        .majors-add-btn:hover {
+        .order-status-add-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.28);
             color: #ffffff !important;
         }
 
-        .majors-body {
+        .order-status-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .majors-table-section {
+        .order-status-table-section {
             background: #ffffff;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -91,14 +91,14 @@
             overflow-x: auto;
         }
 
-        .majors-page table.dataTable {
+        .order-status-page table.dataTable {
             width: 100% !important;
             border-collapse: separate !important;
             border-spacing: 0 8px !important;
             margin-top: 0 !important;
         }
 
-        .majors-page table.dataTable thead th {
+        .order-status-page table.dataTable thead th {
             background: #f3f6f9;
             color: #3f4254;
             font-weight: 800;
@@ -108,20 +108,20 @@
             text-align: center;
         }
 
-        .majors-page table.dataTable thead th:first-child {
+        .order-status-page table.dataTable thead th:first-child {
             border-radius: 0 10px 10px 0;
         }
 
-        .majors-page table.dataTable thead th:last-child {
+        .order-status-page table.dataTable thead th:last-child {
             border-radius: 10px 0 0 10px;
         }
 
-        .majors-page table.dataTable tbody tr {
+        .order-status-page table.dataTable tbody tr {
             background: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
-        .majors-page table.dataTable tbody td {
+        .order-status-page table.dataTable tbody td {
             border-top: 1px solid #edf0f5 !important;
             border-bottom: 1px solid #edf0f5 !important;
             padding: 13px 12px !important;
@@ -130,17 +130,17 @@
             color: #3f4254;
         }
 
-        .majors-page table.dataTable tbody td:first-child {
+        .order-status-page table.dataTable tbody td:first-child {
             border-right: 1px solid #edf0f5 !important;
             border-radius: 0 10px 10px 0;
         }
 
-        .majors-page table.dataTable tbody td:last-child {
+        .order-status-page table.dataTable tbody td:last-child {
             border-left: 1px solid #edf0f5 !important;
             border-radius: 10px 0 0 10px;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_filter input {
+        .order-status-page .dataTables_wrapper .dataTables_filter input {
             border-radius: 10px;
             border: 1px solid #e4e6ef;
             min-height: 38px;
@@ -149,30 +149,30 @@
             box-shadow: none !important;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_filter input:focus {
+        .order-status-page .dataTables_wrapper .dataTables_filter input:focus {
             border-color: #3699ff;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
             outline: none;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_length select {
+        .order-status-page .dataTables_wrapper .dataTables_length select {
             border-radius: 8px;
             border: 1px solid #e4e6ef;
             min-height: 36px;
             padding: 12px 24px;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_info {
+        .order-status-page .dataTables_wrapper .dataTables_info {
             color: #7e8299;
             font-weight: 600;
             padding-top: 16px;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_paginate {
+        .order-status-page .dataTables_wrapper .dataTables_paginate {
             padding-top: 14px;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_paginate .paginate_button {
+        .order-status-page .dataTables_wrapper .dataTables_paginate .paginate_button {
             border-radius: 8px !important;
             border: 0 !important;
             margin: 0 2px;
@@ -181,37 +181,37 @@
             background: transparent !important;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        .order-status-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             background: #3699ff !important;
             color: #ffffff !important;
         }
 
-        .majors-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        .order-status-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #eaf4ff !important;
             color: #3699ff !important;
         }
 
         @media (max-width: 768px) {
-            .majors-toolbar {
+            .order-status-toolbar {
                 padding: 16px 18px 0;
             }
 
-            .majors-add-btn {
+            .order-status-add-btn {
                 width: 100%;
             }
 
-            .majors-body {
+            .order-status-body {
                 padding: 18px;
             }
 
-            .majors-table-section {
+            .order-status-table-section {
                 padding: 14px;
             }
         }
     </style>
 
-    <div class="majors-page">
-        <div class="card card-custom gutter-b majors-card">
+    <div class="order-status-page">
+        <div class="card card-custom gutter-b order-status-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -233,19 +233,19 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">الأقسام</h3>
+                    <h3 class="card-label">حالات الطلب</h3>
                 </div>
             </div>
 
-            <div class="majors-toolbar">
-                <a class="btn btn-sm majors-add-btn"
-                   href="{{ route('major.create') }}">
+            <div class="order-status-toolbar">
+                <a class="btn btn-sm btning order-status-add-btn"
+                   href="{{ route('orderstatus.create') }}">
                     اضافه
                 </a>
             </div>
 
-            <div class="card-body majors-body">
-                <div class="majors-table-section">
+            <div class="card-body order-status-body">
+                <div class="order-status-table-section">
                     {!! $dataTable->table([
 
                     ], true) !!}

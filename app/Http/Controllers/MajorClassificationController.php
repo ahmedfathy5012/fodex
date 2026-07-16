@@ -8,139 +8,199 @@ use App\Models\Seller;
 use App\Models\Major;
 use App\Models\Zone;
 use App\traits\generaltrait;
-use App\Models\HomecontentSeller;
 use App\Models\MajorClassificationSeller;
 use App\DataTables\MajorClassificationDataTable;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use App\DataTables\SellerClassDataTable;
+
 class MajorClassificationController extends Controller
 {
     use generaltrait;
-   public function index(MajorClassificationDataTable $dataTable)
+
+    private function majorClassificationView(string $page): string
     {
+        return env('APP_ENV') == 'production'
+            ? "admindashboard.majorclassification.$page"
+            : "admindashboard.majorclassification.V2.$page";
+    }
 
-        return $dataTable->render('admindashboard.majorclassification.index');
-    
-  }
+    public function index(MajorClassificationDataTable $dataTable)
+    {
+        return $dataTable->render($this->majorClassificationView('index'));
+    }
 
+    public function create()
+    {
+        $sellers = Seller::all();
+        $majors = Major::all();
+        $zones = Zone::all();
 
-  public function create()
-  {
- $sellers = Seller::all();
-  $majors = Major::all();
-   $zones = Zone::all();
-    return view('admindashboard.majorclassification.create')->with('sellers',$sellers)->with('majors',$majors)->with("zones",$zones);
-  }
+        return view($this->majorClassificationView('create'))
+            ->with('sellers', $sellers)
+            ->with('majors', $majors)
+            ->with('zones', $zones);
+    }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+        ], [
+            'title.required' => 'هذا الحقل مطلوب',
+        ]);
 
+        $home = new MajorClassification;
+        $home->title = $request->title;
+        $home->major_id = $request->major_id;
 
-  public function store(Request $request)
-  {
-    $request->validate([
-      'title' => 'required'],[
-      'title.required' => 'هذا الحقل مطلوب'
-       ]);
-    $home = new MajorClassification;
-    $home->title = $request->title;
-      $home->major_id = $request->major_id;
-     if($request->hasFile('image'))
-        {
-       
-            $image = $this->uploadimage($request->image,'majorclassification');
+        if ($request->hasFile('image')) {
+            $image = $this->uploadimage($request->image, 'majorclassification');
             $home->image = $image;
         }
-    $home->save();
-    $home->sellers()->attach($request->seller_id);
-    $home->zones()->attach($request->zone_id);
-    return redirect()->route('majorclassification.index');
-  }
 
+        $home->save();
 
-  public function show($id)
-  {
-    
-  }
+        $home->sellers()->attach($request->seller_id);
+        $home->zones()->attach($request->zone_id);
 
-  public function edit($id)
-  {
-    $home = MajorClassification::where('id',$id)->first();
- $sellers = Seller::all();
-  $majors = Major::all();
-  $zones = Zone::all();
-    return view('admindashboard.majorclassification.edit')->with('sellers',$sellers)->with('home',$home)->with('majors',$majors)->with("zones",$zones);
-  }
+        return redirect()->route('majorclassification.index');
+    }
 
+    public function show($id)
+    {
+        //
+    }
 
-  public function update($id,Request $request)
-  {
+    public function edit($id)
+    {
+        $home = MajorClassification::where('id', $id)->first();
+        $sellers = Seller::all();
+        $majors = Major::all();
+        $zones = Zone::all();
 
-    $request->validate([
-      'title' => 'required'],[
-      'title.required' => 'هذا الحقل مطلوب'
-       ]);
-    $home = MajorClassification::where('id',$id)->first();
-    $home->title = $request->title;
-     if($request->hasFile('image'))
-        {
-              File::delete(public_path(). '/uploads/'.$home->image);
-            $image = $this->uploadimage($request->image,'majorclassification');
+        return view($this->majorClassificationView('edit'))
+            ->with('sellers', $sellers)
+            ->with('home', $home)
+            ->with('majors', $majors)
+            ->with('zones', $zones);
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+        ], [
+            'title.required' => 'هذا الحقل مطلوب',
+        ]);
+
+        $home = MajorClassification::where('id', $id)->first();
+        $home->title = $request->title;
+
+        if ($request->hasFile('image')) {
+            File::delete(public_path() . '/uploads/' . $home->image);
+
+            $image = $this->uploadimage($request->image, 'majorclassification');
             $home->image = $image;
         }
-          $home->major_id = $request->major_id;
-    $home->save();
-    $home->sellers()->sync($request->seller_id);
-    $home->zones()->sync($request->zone_id);
-    return redirect()->route('majorclassification.index');
-  }
-  public function destroy($id)
-  {
-   $home = MajorClassification::where('id',$id)->first();
-      File::delete(public_path(). '/uploads/'.$home->image);
-      $home->delete();
-      return response()->json(['status' => true]);
-  }  public function sellersclass(SellerClassDataTable $dataTable,$id)
+
+        $home->major_id = $request->major_id;
+        $home->save();
+
+        $home->sellers()->sync($request->seller_id);
+        $home->zones()->sync($request->zone_id);
+
+        return redirect()->route('majorclassification.index');
+    }
+
+    public function destroy($id)
     {
-         $home = MajorClassification::where('id',$id)->first();
+        $home = MajorClassification::where('id', $id)->first();
+
+        File::delete(public_path() . '/uploads/' . $home->image);
+
+        $home->delete();
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function sellersclass(SellerClassDataTable $dataTable, $id)
+    {
+        $home = MajorClassification::where('id', $id)->first();
+
         $dataTable->id = $id;
-        return $dataTable->render('admindashboard.majorclassification.sellers',['home' =>$home,'id' => $id]);
-    
-  }  public function addsellerclass($id)
-  {
-    $home = MajorClassification::where('id',$id)->first();
-$sellers = Seller::all();
-    return view('admindashboard.majorclassification.addseller')->with('sellers',$sellers)->with('home',$home);
-  } public function updateclassseller($id,Request $request)
-  {
 
-    $request->validate([
-      'title' => 'required'],[
-      'title.required' => 'هذا الحقل مطلوب'
-       ]);
-    $home = MajorClassification::where('id',$id)->first();
-    $home->title = $request->title;
-     if($request->hasFile('image'))
-        {
-              File::delete(public_path(). '/uploads/'.$home->image);
-            $image = $this->uploadimage($request->image,'majorclassification');
+        return $dataTable->render($this->majorClassificationView('sellers'), [
+            'home' => $home,
+            'id' => $id,
+        ]);
+    }
+
+    public function addsellerclass($id)
+    {
+        $home = MajorClassification::where('id', $id)->first();
+        $sellers = Seller::all();
+
+        return view($this->majorClassificationView('addseller'))
+            ->with('sellers', $sellers)
+            ->with('home', $home);
+    }
+
+    public function updateclassseller($id, Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+        ], [
+            'title.required' => 'هذا الحقل مطلوب',
+        ]);
+
+        $home = MajorClassification::where('id', $id)->first();
+        $home->title = $request->title;
+
+        if ($request->hasFile('image')) {
+            File::delete(public_path() . '/uploads/' . $home->image);
+
+            $image = $this->uploadimage($request->image, 'majorclassification');
             $home->image = $image;
         }
-    $home->save();
-    $home->sellers()->sync($request->seller_id);
-    return redirect('sellersclass/'.$id);
-  }public function deletesellerclass($id){
-      $homeseller =MajorClassificationSeller::where('id',$id)->first();
-      $homeseller->delete();
-      return response()->json(['status' => true]);
-  }
-public function order_numbersellerclass(Request $request){
-         $res = MajorClassificationSeller::where('id',$request->id)->first();
-         $res->order_number = $request->order_number;
-         $res->save();
-         return response()->json(['status' => true]);
-    }public function order_numbersellerclass1(Request $request){
-         $res = MajorClassification::where('id',$request->id)->first();
-         $res->order_number = $request->order_number;
-         $res->save();
-         return response()->json(['status' => true]);
+
+        $home->save();
+
+        $home->sellers()->sync($request->seller_id);
+
+        return redirect('sellersclass/' . $id);
+    }
+
+    public function deletesellerclass($id)
+    {
+        $homeseller = MajorClassificationSeller::where('id', $id)->first();
+        $homeseller->delete();
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function order_numbersellerclass(Request $request)
+    {
+        $res = MajorClassificationSeller::where('id', $request->id)->first();
+        $res->order_number = $request->order_number;
+        $res->save();
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function order_numbersellerclass1(Request $request)
+    {
+        $res = MajorClassification::where('id', $request->id)->first();
+        $res->order_number = $request->order_number;
+        $res->save();
+
+        return response()->json([
+            'status' => true,
+        ]);
     }
 }

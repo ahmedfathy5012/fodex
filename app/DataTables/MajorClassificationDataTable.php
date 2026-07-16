@@ -29,7 +29,7 @@ class MajorClassificationDataTable extends DataTable
               })->editColumn('title',function(MajorClassification $home){
 
             if($home->type == 1){
-               return $home->title;  
+               return $home->title;
             }
             else{
             return '<a  href="' . route("sellersclass",$home->id) . '" />'.$home->title.'</a>';
@@ -40,7 +40,7 @@ class MajorClassificationDataTable extends DataTable
             return $home->major->title;
         }
               })
-            ->addColumn('action', 'admindashboard.majorclassification.action')
+            ->addColumn('action', 'admindashboard.majorclassification.V2.action')
 
             ->rawColumns([
            'action',
@@ -67,7 +67,7 @@ class MajorClassificationDataTable extends DataTable
      */
     public function html()
     {
-        
+
          return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()
@@ -81,7 +81,7 @@ class MajorClassificationDataTable extends DataTable
    ]);
     }
 
-    
+
 
     /**
      * Get columns.

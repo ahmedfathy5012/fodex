@@ -21,7 +21,7 @@ class AllcollectionTypeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-             ->addColumn('action', 'admindashboard.collectionstypes.action')
+             ->addColumn('action', 'admindashboard.collectionstypes.V2.action')
         ->rawColumns([
            'action',
         ]);

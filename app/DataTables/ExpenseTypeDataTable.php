@@ -21,7 +21,7 @@ class ExpenseTypeDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-             ->addColumn('action', 'admindashboard.expensetypes.action')
+             ->addColumn('action', 'admindashboard.expensetypes.V2.action')
         ->rawColumns([
            'action',
         ]);
