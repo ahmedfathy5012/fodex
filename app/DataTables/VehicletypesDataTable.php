@@ -21,7 +21,7 @@ class VehicletypesDataTable extends DataTable
     {
        return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.vehicletypes.action')
+            ->addColumn('action', 'admindashboard.vehicletypes.V2.action')
         ->rawColumns([
            'action',
         ]);
