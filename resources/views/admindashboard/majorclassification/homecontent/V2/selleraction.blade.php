@@ -1,159 +1,332 @@
-<?php 
-$seller = \App\Models\Seller::where('id',$id)->first();
-$home_id = Route::current()->parameters['id'];
-$homeseller = \App\Models\MajorclassificationcontentSeller::where('id',$id)->first();
-?> 
-    <!--<input type="hidden" class="home_id" value="{{$home_id}}">-->
+@php
+    $seller = \App\Models\Seller::where('id', $id)->first();
+    $home_id = Route::current()->parameters['id'];
+    $homeseller = \App\Models\MajorclassificationcontentSeller::where('id', $id)->first();
+@endphp
 
+@once
+    <style>
+        .major-content-seller-actions {
+            width: 92px;
+            display: grid;
+            grid-template-columns: 34px 46px;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            direction: rtl;
+            margin: auto;
+        }
 
-                            <div style="cursor:pointer;" onclick="deletesellerhome({{$id}})" class="btn btn-sm btn-hover-bg-light mr-1">
-                                <span class="svg-icon svg-icon-danger m-0 p-0 svg-icon-md"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo8/dist/../src/media/svg/icons/Home/Trash.svg-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="0" y="0" width="24" height="24"/>
-                                            <path d="M6,8 L18,8 L17.106535,19.6150447 C17.04642,20.3965405 16.3947578,21 15.6109533,21 L8.38904671,21 C7.60524225,21 6.95358004,20.3965405 6.89346498,19.6150447 L6,8 Z M8,10 L8.45438229,14.0894406 L15.5517885,14.0339036 L16,10 L8,10 Z" fill="#000000" fill-rule="nonzero"/>
-                                            <path d="M14,4.5 L14,3.5 C14,3.22385763 13.7761424,3 13.5,3 L10.5,3 C10.2238576,3 10,3.22385763 10,3.5 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/>
-                                        </g>
-                                    </svg><!--end::Svg Icon-->
-                                </span>
-                                </div>
-                                <!--<input type="checkbox"  @if($homeseller->status == 1) checked @endif -->
-                                <!--onchange="changesellerstatus({{$id}})" >-->
-                                <span  class="btn btn-success btn-sm" style="font-size:11px;color:white;" data-toggle="modal" data-target="#myModals{{$id}}">
-    الترتيب</span>
-<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+        .major-content-seller-action-btn {
+            width: 34px !important;
+            height: 34px !important;
+            min-width: 34px !important;
+            min-height: 34px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border-radius: 8px !important;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            background: #f3f6f9 !important;
+            border: 1px solid #e4e6ef !important;
+            color: #3699ff !important;
+            cursor: pointer;
+            line-height: 1;
+            text-decoration: none !important;
+            transition: all 0.15s ease;
+        }
 
-  
-<div id="myModals{{$id}}" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+        .major-content-seller-action-btn:hover {
+            background: #eaf4ff !important;
+            border-color: #b5d9ff !important;
+            color: #3699ff !important;
+            transform: translateY(-1px);
+        }
 
+        .major-content-seller-action-btn i {
+            font-size: 13px;
+            color: #3699ff !important;
+        }
 
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">الترتيب </h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-     <div class="col-6">
-         <label>الترتيب</label>
-         <input type="number" required  min="0" value="{{$homeseller->order_number}}" name="order_number" id="order_number{{$id}}" class="form-control">
-     </div>
-     
-      </div>
-<div class="row">
-    <div class="col-3"></div>
-     <div class="col-3">
-         <input type="button" onclick="order_numberres({{$id}})" value="حفظ" class="form-control btn btn-success btn-sm m-4">
-     </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+        .major-content-seller-action-danger {
+            color: #f64e60 !important;
+        }
+
+        .major-content-seller-action-danger i {
+            color: #f64e60 !important;
+        }
+
+        .major-content-seller-action-danger:hover {
+            background: #fff5f6 !important;
+            border-color: #ffd0d6 !important;
+            color: #f64e60 !important;
+        }
+
+        .major-content-seller-order-btn {
+            height: 34px !important;
+            min-width: 46px;
+            padding: 0 10px !important;
+            border-radius: 8px !important;
+            background: #1bc5bd !important;
+            border: 1px solid #1bc5bd !important;
+            color: #ffffff !important;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px !important;
+            font-weight: 800 !important;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 6px 14px rgba(27, 197, 189, 0.2);
+        }
+
+        .major-content-seller-order-btn:hover {
+            color: #ffffff !important;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(27, 197, 189, 0.28);
+        }
+
+        .major-content-seller-modal .modal-content {
+            border: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+        }
+
+        .major-content-seller-modal .modal-header {
+            padding: 18px 22px;
+            background: #ffffff;
+            border-bottom: 1px solid #edf0f5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            direction: rtl;
+        }
+
+        .major-content-seller-modal .modal-title {
+            margin: 0;
+            color: #181c32;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .major-content-seller-modal .close {
+            margin: 0;
+            padding: 0;
+            color: #7e8299;
+            opacity: 1;
+            font-size: 26px;
+            line-height: 1;
+        }
+
+        .major-content-seller-modal .modal-body {
+            padding: 24px;
+            direction: rtl;
+        }
+
+        .major-content-seller-modal .modal-footer {
+            border-top: 1px solid #edf0f5;
+            padding: 14px 22px;
+            justify-content: flex-start;
+        }
+
+        .major-content-seller-modal label {
+            color: #3f4254;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .major-content-seller-modal .form-control {
+            min-height: 44px;
+            border-radius: 10px !important;
+            border: 1px solid #e4e6ef !important;
+            box-shadow: none !important;
+        }
+
+        .major-content-seller-modal .form-control:focus {
+            border-color: #3699ff !important;
+            box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
+        }
+
+        .major-content-seller-save-btn {
+            min-width: 110px;
+            height: 42px;
+            border-radius: 10px !important;
+            background: #1bc5bd !important;
+            border: 0 !important;
+            color: #ffffff !important;
+            font-size: 14px;
+            font-weight: 900 !important;
+        }
+
+        .major-content-seller-close-btn {
+            min-width: 90px;
+            height: 40px;
+            border-radius: 10px !important;
+            background: #f3f6f9 !important;
+            border: 1px solid #e4e6ef !important;
+            color: #3f4254 !important;
+            font-weight: 800 !important;
+        }
+    </style>
+@endonce
+
+<div class="major-content-seller-actions">
+    <div onclick="deletesellerhome({{ $id }})"
+         class="major-content-seller-action-btn major-content-seller-action-danger"
+         title="حذف">
+        <i class="fas fa-trash"></i>
     </div>
 
-  </div>
+    <span class="major-content-seller-order-btn"
+          data-toggle="modal"
+          data-target="#myModals{{ $id }}">
+        الترتيب
+    </span>
 </div>
-</div>
-                           
- <script>
-              function deletesellerhome(sel){
-    let id = sel;
- console.log(sel);
- var table = $('.dataTable').DataTable();
- $.ajaxSetup({
-       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-     Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
-}).then((result) => {
-  if (result.isConfirmed) {
-      console.log(id);
-    $.ajax({
-       type:"get",
-       url: `../deletesellermajorcontent/${id}`,
-   //    contentType: "application/json; charset=utf-8",
-       dataType: "Json",
-       success: function(result){
-           if(result.status == true){
-     Swal.fire(
-      'Deleted!',
-   'تم المسح بنجاح',
-      'success'
-         )
-       }
-       table.ajax.reload();
-           }
-    });
-    }
-  })
-}       
-          function changesellerstatus(sel){
-    let id = sel;
- console.log(sel);
- var table = $('.dataTable').DataTable();
- $.ajaxSetup({
-       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-    $.ajax({
-       type:"post",
-       url: `../changesellerstatus`,
-   //    contentType: "application/json; charset=utf-8",
-       dataType: "Json",
-       data:{
-         'id':id,
-     //    'home_id':$(".home_id").val()
-       },
-       success: function(result){
-           if(result.status == true){
- table.ajax.reload();
-       }
-      
-           }
-  })
-} function order_numberres(sel){
-    let id = sel;
- console.log(sel);
- var table = $('.dataTable').DataTable();
- $.ajaxSetup({
-       headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-    });
-    $.ajax({
-       type:"post",
-       url: `../order_numbersellermajorcontent`,
-   //    contentType: "application/json; charset=utf-8",
-       dataType: "Json",
-       data:{
-           'id':sel,
-             'order_number':$(`#order_number${id}`).val()
-       },
-       success: function(result){
-           if(result.status == true){
-  
 
-Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'تم اضافه الترتيب بنجاح',
-  showConfirmButton: false,
-  timer: 1500
-})
-   $(`#myModals${id}`).modal('hide');
-       table.ajax.reload();
-           }
-       }
-  })
-}
-</script>
+<div id="myModals{{ $id }}" class="modal fade major-content-seller-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">الترتيب</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-8">
+                        <label>الترتيب</label>
+                        <input type="number"
+                               required
+                               min="0"
+                               value="{{ $homeseller->order_number }}"
+                               name="order_number"
+                               id="order_number{{ $id }}"
+                               class="form-control">
+                    </div>
+                </div>
+
+                <button type="button"
+                        onclick="order_numberres({{ $id }})"
+                        class="btn major-content-seller-save-btn">
+                    حفظ
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn major-content-seller-close-btn"
+                        data-dismiss="modal">
+                    إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@once
+    <script>
+        function deletesellerhome(sel) {
+            let id = sel;
+            var table = $('.dataTable').DataTable();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "get",
+                        url: `../deletesellermajorcontent/${id}`,
+                        dataType: "Json",
+                        success: function(result) {
+                            if (result.status == true) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'تم المسح بنجاح',
+                                    'success'
+                                );
+                            }
+
+                            table.ajax.reload();
+                        }
+                    });
+                }
+            });
+        }
+
+        function changesellerstatus(sel) {
+            let id = sel;
+            var table = $('.dataTable').DataTable();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "post",
+                url: `../changesellerstatus`,
+                dataType: "Json",
+                data: {
+                    'id': id,
+                },
+                success: function(result) {
+                    if (result.status == true) {
+                        table.ajax.reload();
+                    }
+                }
+            });
+        }
+
+        function order_numberres(sel) {
+            let id = sel;
+            var table = $('.dataTable').DataTable();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "post",
+                url: `../order_numbersellermajorcontent`,
+                dataType: "Json",
+                data: {
+                    'id': sel,
+                    'order_number': $(`#order_number${id}`).val()
+                },
+                success: function(result) {
+                    if (result.status == true) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'تم اضافه الترتيب بنجاح',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        $(`#myModals${id}`).modal('hide');
+                        table.ajax.reload();
+                    }
+                }
+            });
+        }
+    </script>
+@endonce

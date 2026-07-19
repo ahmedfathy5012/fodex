@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .major-content-edit-page {
+        .major-offer-edit-page {
             direction: rtl;
         }
 
-        .major-content-edit-card {
+        .major-offer-edit-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .major-content-edit-card .card-header {
+        .major-offer-edit-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .major-content-edit-card .card-title {
+        .major-offer-edit-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .major-content-edit-card .card-label {
+        .major-offer-edit-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .major-content-edit-card .card-icon {
+        .major-offer-edit-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,17 +44,17 @@
             justify-content: center;
         }
 
-        /*.major-content-edit-card .card-icon svg path,*/
-        /*.major-content-edit-card .card-icon svg polygon {*/
+        /*.major-offer-edit-card .card-icon svg path,*/
+        /*.major-offer-edit-card .card-icon svg polygon {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .major-content-edit-body {
+        .major-offer-edit-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .major-content-section {
+        .major-offer-section {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -62,7 +62,7 @@
             margin-bottom: 22px;
         }
 
-        .major-content-section-title {
+        .major-offer-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .major-content-section-title::before {
+        .major-offer-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,15 +81,15 @@
             display: inline-block;
         }
 
-        .major-content-edit-page .form-group label {
+        .major-offer-edit-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .major-content-edit-page .form-control,
-        .major-content-edit-page .bootstrap-select > .dropdown-toggle {
+        .major-offer-edit-page .form-control,
+        .major-offer-edit-page .bootstrap-select > .dropdown-toggle {
             min-height: 44px;
             border-radius: 10px !important;
             border: 1px solid #e4e6ef !important;
@@ -99,38 +99,38 @@
             transition: all 0.15s ease;
         }
 
-        .major-content-edit-page .form-control:focus,
-        .major-content-edit-page .bootstrap-select.show > .dropdown-toggle {
+        .major-offer-edit-page .form-control:focus,
+        .major-offer-edit-page .bootstrap-select.show > .dropdown-toggle {
             border-color: #3699ff !important;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
         }
 
-        .major-content-edit-page .bootstrap-select .filter-option {
+        .major-offer-edit-page .bootstrap-select .filter-option {
             text-align: right !important;
         }
 
-        .major-content-edit-page .dropdown-menu {
+        .major-offer-edit-page .dropdown-menu {
             border-radius: 12px;
             border: 1px solid #edf0f5;
             box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
         }
 
-        .major-content-edit-page .text-danger,
-        .major-content-edit-page p[style*="color:red"] {
+        .major-offer-edit-page .text-danger,
+        .major-offer-edit-page p[style*="color:red"] {
             color: #f64e60 !important;
             font-size: 13px;
             font-weight: 700;
             margin-top: 6px;
         }
 
-        .major-content-image-wrapper {
+        .major-offer-image-wrapper {
             display: flex;
             align-items: center;
             justify-content: flex-start;
             padding: 12px 0 6px;
         }
 
-        .major-content-edit-page .image-input {
+        .major-offer-edit-page .image-input {
             position: relative;
             width: 132px;
             height: 132px;
@@ -139,7 +139,7 @@
             box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
         }
 
-        .major-content-edit-page .image-input-wrapper {
+        .major-offer-edit-page .image-input-wrapper {
             width: 132px !important;
             height: 132px !important;
             border-radius: 50% !important;
@@ -150,7 +150,7 @@
             box-shadow: inset 0 0 0 1px #e4e6ef;
         }
 
-        .major-content-edit-page .image-input label.btn {
+        .major-offer-edit-page .image-input label.btn {
             position: absolute;
             right: -5px;
             bottom: 8px;
@@ -164,25 +164,35 @@
             border: 1px solid #e4e6ef !important;
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12) !important;
             cursor: pointer;
+            z-index: 2;
         }
 
-        .major-content-edit-page .image-input label.btn svg path,
-        .major-content-edit-page .image-input label.btn svg rect,
-        .major-content-edit-page .image-input label.btn svg circle {
+        .major-offer-edit-page .image-input label.btn svg path,
+        .major-offer-edit-page .image-input label.btn svg rect,
+        .major-offer-edit-page .image-input label.btn svg circle {
             fill: #3699ff !important;
         }
 
-        .major-content-edit-page .image-input input[type="file"] {
+        .major-offer-edit-page .image-input input[type="file"] {
             display: none;
         }
 
-        .major-content-submit-wrapper {
+        .major-offer-image-label {
+            display: block;
+            margin-top: 14px;
+            color: #3f4254;
+            font-size: 14px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .major-offer-submit-wrapper {
             display: flex;
             justify-content: center;
             padding: 0 28px 28px;
         }
 
-        .major-content-submit-btn {
+        .major-offer-submit-btn {
             min-width: 220px;
             height: 48px;
             border-radius: 12px !important;
@@ -199,37 +209,37 @@
             transition: all 0.15s ease;
         }
 
-        .major-content-submit-btn:hover {
+        .major-offer-submit-btn:hover {
             color: #ffffff !important;
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
         }
 
-        .major-content-submit-btn svg path {
+        .major-offer-submit-btn svg path {
             fill: #ffffff !important;
         }
 
         @media (max-width: 768px) {
-            .major-content-edit-body {
+            .major-offer-edit-body {
                 padding: 18px;
             }
 
-            .major-content-section {
+            .major-offer-section {
                 padding: 16px;
             }
 
-            .major-content-submit-wrapper {
+            .major-offer-submit-wrapper {
                 padding: 0 18px 18px;
             }
 
-            .major-content-submit-btn {
+            .major-offer-submit-btn {
                 width: 100%;
             }
         }
     </style>
 
-    <div class="major-content-edit-page">
-        <div class="card card-custom major-content-edit-card">
+    <div class="major-offer-edit-page">
+        <div class="card card-custom major-offer-edit-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -253,24 +263,24 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">تعديل تصنيف محتوى رئيسي</h3>
+                    <h3 class="card-label">تعديل عرض</h3>
                 </div>
             </div>
 
             <form method="post"
-                  action="{{ route('updatemajorcontent', $home->id) }}"
+                  action="{{ route('updatemajoroffer', $offer->id) }}"
                   enctype="multipart/form-data">
                 @csrf
 
-                <div class="card-body major-content-edit-body">
-                    <div class="major-content-section">
-                        <div class="major-content-section-title">الصورة</div>
+                <div class="card-body major-offer-edit-body">
+                    <div class="major-offer-section">
+                        <div class="major-offer-section-title">صورة العرض</div>
 
-                        <div class="major-content-image-wrapper">
+                        <div class="major-offer-image-wrapper">
                             <div class="image-input image-input-outline image-input-circle" id="kt_image_3">
                                 <div class="image-input-wrapper mb-5"
-                                     id="im"
-                                     style="background-image:url({{ asset('uploads/' . $home->image) }})"></div>
+                                     id="im4"
+                                     style="background-image:url({{ asset('uploads/' . $offer->image) }})"></div>
 
                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow p-5"
                                        data-action="change"
@@ -294,9 +304,11 @@
                                     </svg>
                                 </span>
 
-                                    <input type="file" name="image" id="do"/>
+                                    <input type="file" name="image" id="do4"/>
                                     <input type="hidden" name="profile_avatar_remove"/>
                                 </label>
+
+                                <label class="major-offer-image-label">صورة العرض</label>
 
                                 @error('image')
                                 <p style="color:red;">{{ $message }}</p>
@@ -312,41 +324,21 @@
                         </div>
                     </div>
 
-                    <div class="major-content-section">
-                        <div class="major-content-section-title">بيانات التصنيف</div>
+                    <div class="major-offer-section">
+                        <div class="major-offer-section-title">بيانات العرض</div>
 
                         <div class="row">
-                            <div class="form-group col-lg-4 col-md-12">
-                                <label>الاسم <span class="text-danger">*</span></label>
-                                <input type="text"
-                                       class="form-control"
-                                       value="{{ $home->title }}"
-                                       name="title"
-                                       required="required"/>
-
-                                @error('title')
-                                <p style="color:red;">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="major-content-section">
-                        <div class="major-content-section-title">البائعين</div>
-
-                        <div class="row">
-                            <div class="form-group col-lg-4 col-md-12">
-                                <label>البائعين <span class="text-danger">*</span></label>
-                                <select name="seller_id[]"
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label>المطاعم <span class="text-danger">*</span></label>
+                                <select name="seller_id"
                                         class="form-control selectpicker"
-                                        multiple
                                         required="required"
                                         id="seller_id"
                                         data-live-search="true">
                                     @foreach($sellers as $seller)
                                         <option value="{{ $seller->id }}"
                                                 style="padding-left:30px;"
-                                                @if(in_array($seller->id, $home->sellers->pluck('id')->toArray())) selected @endif>
+                                                @if($seller->id == $offer->seller_id) selected @endif>
                                             {{ $seller->name }}
                                         </option>
                                     @endforeach
@@ -360,8 +352,8 @@
                     </div>
                 </div>
 
-                <div class="major-content-submit-wrapper">
-                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold major-content-submit-btn">
+                <div class="major-offer-submit-wrapper">
+                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold major-offer-submit-btn">
                         حفظ التعديل
 
                         <span class="svg-icon svg-icon m-0 svg-icon-md">
@@ -394,22 +386,22 @@
 
 @section('scripts')
     <script>
-        function readURL(input) {
+        function readURL4(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function(e) {
-                    $('#im').css('background-image', 0);
-                    $('#im').css('background-image', "url(" + e.target.result + ")");
+                    $('#im4').css('background-image', 0);
+                    $('#im4').css('background-image', "url(" + e.target.result + ")");
                 }
 
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        $("#do").change(function() {
-            readURL(this);
-            console.log($('#im').css('background-image'));
+        $("#do4").change(function() {
+            readURL4(this);
+            console.log($('#im4').css('background-image'));
         });
     </script>
 @endsection

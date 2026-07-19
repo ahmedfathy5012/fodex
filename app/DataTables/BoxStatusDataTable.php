@@ -21,7 +21,7 @@ class BoxStatusDataTable extends DataTable
     {
          return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.boxstatus.action')
+            ->addColumn('action', 'admindashboard.boxstatus.V2.action')
         ->rawColumns([
            'action',
         ]);

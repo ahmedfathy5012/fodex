@@ -21,8 +21,18 @@ class BoxDataTable extends DataTable
     {
          return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.boxs.action')
+            ->editColumn('image', function (Box $box) {
+                if (!$box->image) {
+                    return '<span class="text-muted">لا توجد صورة</span>';
+                }
+
+                return '<img src="' . asset('uploads/' . $box->image) . '"
+                    alt="' . e($box->title) . '"
+                    style="width:70px;height:70px;object-fit:cover;border-radius:8px;">';
+            })
+            ->addColumn('action','admindashboard.boxs.V2.action')
         ->rawColumns([
+           'image',
            'action',
         ]);
     }
@@ -66,7 +76,9 @@ class BoxDataTable extends DataTable
     protected function getColumns()
     {
         return [
+
                ['data'=>'title','title'=>'الاسم'],
+                ['data'=>'image','title'=>'الصورة','orderable'=>false,'searchable'=>false],
                 ['data'=>'width','title'=>'العرض'],
                  ['data'=>'height','title'=>'الطول'],
             ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'Boxable'=>false,'searchable'=>false],
