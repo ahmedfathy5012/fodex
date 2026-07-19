@@ -19,7 +19,7 @@ class BoxDataTable extends DataTable
      */
     public function dataTable($query)
     {
-         return datatables()
+        return datatables()
             ->eloquent($query)
             ->editColumn('image', function (Box $box) {
                 if (!$box->image) {
@@ -30,11 +30,11 @@ class BoxDataTable extends DataTable
                     alt="' . e($box->title) . '"
                     style="width:70px;height:70px;object-fit:cover;border-radius:8px;">';
             })
-            ->addColumn('action','admindashboard.boxs.V2.action')
-        ->rawColumns([
-           'image',
-           'action',
-        ]);
+            ->addColumn('action', 'admindashboard.boxs.V2.action')
+            ->rawColumns([
+                'image',
+                'action',
+            ]);
     }
 
     /**
@@ -45,7 +45,8 @@ class BoxDataTable extends DataTable
      */
     public function query(Box $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()
+            ->orderBy('id', 'asc');
     }
 
     /**
@@ -55,17 +56,17 @@ class BoxDataTable extends DataTable
      */
     public function html()
     {
-          return $this->builder()
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        ->parameters([
-            'dom' => 'Blfrtip',
-            'Box' => [0, 'desc'],
-            'lengthMenu' => [
-                [10,25,50,100,-1],[10,25,50,'all record']
-            ],
-       'buttons'      => ['export'],
-   ]);
+        return $this->builder()
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->parameters([
+                'dom' => 'Blfrtip',
+                'Box' => [0, 'desc'],
+                'lengthMenu' => [
+                    [10, 25, 50, 100, -1], [10, 25, 50, 'all record']
+                ],
+                'buttons' => ['export'],
+            ]);
     }
 
     /**
@@ -77,11 +78,11 @@ class BoxDataTable extends DataTable
     {
         return [
 
-               ['data'=>'title','title'=>'الاسم'],
-                ['data'=>'image','title'=>'الصورة','orderable'=>false,'searchable'=>false],
-                ['data'=>'width','title'=>'العرض'],
-                 ['data'=>'height','title'=>'الطول'],
-            ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'Boxable'=>false,'searchable'=>false],
+            ['data' => 'title', 'title' => 'الاسم'],
+            ['data' => 'image', 'title' => 'الصورة'],
+            ['data' => 'height', 'title' => 'الطول'],
+            ['data' => 'width', 'title' => 'العرض'],
+            ['data' => 'action', 'title' => 'الاعدادات', 'printable' => false, 'exportable' => false, 'Boxable' => false, 'searchable' => false],
         ];
     }
 

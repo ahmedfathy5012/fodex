@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .boxs-page {
+        .box-take-page {
             direction: rtl;
         }
 
-        .boxs-card {
+        .box-take-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .boxs-card .card-header {
+        .box-take-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .boxs-card .card-title {
+        .box-take-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .boxs-card .card-label {
+        .box-take-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .boxs-card .card-icon {
+        .box-take-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,19 +44,19 @@
             justify-content: center;
         }
 
-        /*.boxs-card .card-icon svg path,*/
-        /*.boxs-card .card-icon svg rect {*/
+        /*.box-take-card .card-icon svg rect,*/
+        /*.box-take-card .card-icon svg path {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .boxs-toolbar {
+        .box-take-toolbar {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding: 18px 26px 0;
         }
 
-        .boxs-add-btn {
+        .box-take-add-btn {
             min-width: 130px;
             height: 42px;
             border-radius: 10px !important;
@@ -72,18 +72,18 @@
             transition: all 0.15s ease;
         }
 
-        .boxs-add-btn:hover {
+        .box-take-add-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.28);
             color: #ffffff !important;
         }
 
-        .boxs-body {
+        .box-take-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .boxs-table-section {
+        .box-take-table-section {
             background: #ffffff;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -91,14 +91,14 @@
             overflow-x: auto;
         }
 
-        .boxs-page table.dataTable {
+        .box-take-page table.dataTable {
             width: 100% !important;
             border-collapse: separate !important;
             border-spacing: 0 8px !important;
             margin-top: 0 !important;
         }
 
-        .boxs-page table.dataTable thead th {
+        .box-take-page table.dataTable thead th {
             background: #f3f6f9;
             color: #3f4254;
             font-weight: 800;
@@ -108,20 +108,20 @@
             text-align: center;
         }
 
-        .boxs-page table.dataTable thead th:first-child {
+        .box-take-page table.dataTable thead th:first-child {
             border-radius: 0 10px 10px 0;
         }
 
-        .boxs-page table.dataTable thead th:last-child {
+        .box-take-page table.dataTable thead th:last-child {
             border-radius: 10px 0 0 10px;
         }
 
-        .boxs-page table.dataTable tbody tr {
+        .box-take-page table.dataTable tbody tr {
             background: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
-        .boxs-page table.dataTable tbody td {
+        .box-take-page table.dataTable tbody td {
             border-top: 1px solid #edf0f5 !important;
             border-bottom: 1px solid #edf0f5 !important;
             padding: 13px 12px !important;
@@ -130,17 +130,17 @@
             color: #3f4254;
         }
 
-        .boxs-page table.dataTable tbody td:first-child {
+        .box-take-page table.dataTable tbody td:first-child {
             border-right: 1px solid #edf0f5 !important;
             border-radius: 0 10px 10px 0;
         }
 
-        .boxs-page table.dataTable tbody td:last-child {
+        .box-take-page table.dataTable tbody td:last-child {
             border-left: 1px solid #edf0f5 !important;
             border-radius: 10px 0 0 10px;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_filter input {
+        .box-take-page .dataTables_wrapper .dataTables_filter input {
             border-radius: 10px;
             border: 1px solid #e4e6ef;
             min-height: 38px;
@@ -149,30 +149,30 @@
             box-shadow: none !important;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_filter input:focus {
+        .box-take-page .dataTables_wrapper .dataTables_filter input:focus {
             border-color: #3699ff;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
             outline: none;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_length select {
+        .box-take-page .dataTables_wrapper .dataTables_length select {
             border-radius: 8px;
             border: 1px solid #e4e6ef;
             min-height: 36px;
             padding: 12px 24px;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_info {
+        .box-take-page .dataTables_wrapper .dataTables_info {
             color: #7e8299;
             font-weight: 600;
             padding-top: 16px;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_paginate {
+        .box-take-page .dataTables_wrapper .dataTables_paginate {
             padding-top: 14px;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_paginate .paginate_button {
+        .box-take-page .dataTables_wrapper .dataTables_paginate .paginate_button {
             border-radius: 8px !important;
             border: 0 !important;
             margin: 0 2px;
@@ -181,12 +181,12 @@
             background: transparent !important;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        .box-take-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             background: #3699ff !important;
             color: #ffffff !important;
         }
 
-        .boxs-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        .box-take-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #eaf4ff !important;
             color: #3699ff !important;
         }
@@ -224,26 +224,26 @@
         }
 
         @media (max-width: 768px) {
-            .boxs-toolbar {
+            .box-take-toolbar {
                 padding: 16px 18px 0;
             }
 
-            .boxs-add-btn {
+            .box-take-add-btn {
                 width: 100%;
             }
 
-            .boxs-body {
+            .box-take-body {
                 padding: 18px;
             }
 
-            .boxs-table-section {
+            .box-take-table-section {
                 padding: 14px;
             }
         }
     </style>
 
-    <div class="boxs-page">
-        <div class="card card-custom gutter-b boxs-card">
+    <div class="box-take-page">
+        <div class="card card-custom gutter-b box-take-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -265,19 +265,19 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">الصناديق</h3>
+                    <h3 class="card-label">استلام الصناديق</h3>
                 </div>
             </div>
 
-            <div class="boxs-toolbar">
-                <a class="btn btn-sm btning boxs-add-btn"
-                   href="{{ route('boxs.create') }}">
+            <div class="box-take-toolbar">
+                <a class="btn btn-sm btning box-take-add-btn"
+                   href="{{ route('boxtake.create') }}">
                     اضافه
                 </a>
             </div>
 
-            <div class="card-body boxs-body">
-                <div class="boxs-table-section">
+            <div class="card-body box-take-body">
+                <div class="box-take-table-section">
                     {!! $dataTable->table([
 
                     ], true) !!}
@@ -289,4 +289,66 @@
 
 @section('scripts')
     {{ $dataTable->scripts() }}
+
+    <script>
+        $('.datepicker').daterangepicker({
+            autoApply: true,
+            opens: "left",
+            drops: "auto",
+            parentEl: "main",
+            ranges: {
+                "اليوم": [moment(), moment()],
+                "أمس": [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                "آخر 7 أيام": [moment().subtract(6, 'days'), moment()],
+                "آخر 30 يوم": [moment().subtract(29, 'days'), moment()],
+                "هذا الشهر": [moment().startOf('month'), moment().endOf('month')],
+                "الشهر الماضي": [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            locale: {
+                customRangeLabel: "تاريخ مخصص",
+                direction: "rtl",
+                format: "YYYY-MM-DD",
+                applyLabel: "تطبيق",
+                cancelLabel: "إلغاء",
+                fromLabel: "من",
+                toLabel: "إلي",
+                firstDay: 6,
+                daysOfWeek: [
+                    "ح",
+                    "ن",
+                    "ث",
+                    "ر",
+                    "خ",
+                    "ج",
+                    "س"
+                ],
+                monthNames: [
+                    "يناير",
+                    "فبراير",
+                    "مارس",
+                    "أبريل",
+                    "مايو",
+                    "يونيو",
+                    "يوليو",
+                    "أغسطس",
+                    "سبتمبر",
+                    "أكتوبر",
+                    "نوفمبر",
+                    "ديسمبر"
+                ],
+            },
+        });
+
+        $("#btn").on("click", function () {
+            var table = $('#dataTableBuilder').DataTable();
+            table.ajax.reload();
+            return false;
+        });
+
+        $("#btn").on("click", function () {
+            $('#dataTableBuilder').on('preXhr.dt', function (e, settings, data) {
+                data.datepicker1 = $('#datepicker').val();
+            });
+        });
+    </script>
 @endsection

@@ -3,10 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\BoxTake;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class BoxTakeDataTable extends DataTable
@@ -26,13 +22,22 @@ class BoxTakeDataTable extends DataTable
             })
             ->editColumn('box_title', function (BoxTake $boxTake) {
                 return $boxTake->box_title ?: '-';
+            })
+            ->editColumn('created_at', function (BoxTake $boxTake) {
+                if (!$boxTake->created_at) {
+                    return '-';
+                }
+
+                return $boxTake->created_at
+//                    ->timezone('Africa/Cairo')
+                    ->format('Y-m-d h:i A');
             });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\BoxStatus $model
+     * @param \App\Models\BoxTake $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(BoxTake $model)
@@ -44,7 +49,8 @@ class BoxTakeDataTable extends DataTable
                 'box_takes.*',
                 'drivers.name as driver_name',
                 'boxs.title as box_title',
-            ]);
+            ])
+            ->orderBy('box_takes.id', 'asc');
     }
 
     /**
@@ -54,17 +60,22 @@ class BoxTakeDataTable extends DataTable
      */
     public function html()
     {
-          return $this->builder()
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        ->parameters([
-            'dom' => 'Blfrtip',
-            'order' => [[3, 'desc']],
-            'lengthMenu' => [
-                [10,25,50,100,-1],[10,25,50,'all record']
-            ],
-       'buttons'      => ['export'],
-   ]);
+        return $this->builder()
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->parameters([
+                'dom' => 'Blfrtip',
+
+                // ترتيب من الأقدم للأحدث حسب id المخفي
+                'order' => [[0, 'asc']],
+
+                'lengthMenu' => [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 'all record']
+                ],
+
+                'buttons' => ['export'],
+            ]);
     }
 
     /**
@@ -75,10 +86,38 @@ class BoxTakeDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            ['data' => 'driver_name', 'name' => 'drivers.name', 'title' => 'السائق'],
-            ['data' => 'box_title', 'name' => 'boxs.title', 'title' => 'الصندوق'],
-            ['data' => 'notes', 'title' => 'ملاحظات'],
-            ['data' => 'created_at', 'title' => 'الوقت'],
+            [
+                'data' => 'id',
+                'name' => 'box_takes.id',
+                'title' => 'ID',
+                'visible' => false,
+                'searchable' => false,
+                'orderable' => true,
+            ],
+
+            [
+                'data' => 'driver_name',
+                'name' => 'drivers.name',
+                'title' => 'السائق',
+            ],
+
+            [
+                'data' => 'box_title',
+                'name' => 'boxs.title',
+                'title' => 'الصندوق',
+            ],
+
+            [
+                'data' => 'notes',
+                'name' => 'box_takes.notes',
+                'title' => 'ملاحظات',
+            ],
+
+            [
+                'data' => 'created_at',
+                'name' => 'box_takes.created_at',
+                'title' => 'الوقت',
+            ],
         ];
     }
 
@@ -89,6 +128,6 @@ class BoxTakeDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'BoxStatus_' . date('YmdHis');
+        return 'BoxTake_' . date('YmdHis');
     }
 }
