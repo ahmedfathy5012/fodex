@@ -10,6 +10,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class OrderDataTable extends DataTable
 {
@@ -70,9 +71,11 @@ class OrderDataTable extends DataTable
                     });
                 });
                 $query->when($request->datepicker1,function($q) use($request){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
+                    $dateRange = $this->getDateRange();
+
+                    return $dateRange !== null
+                        ? $q->whereBetween('created_at', $dateRange)
+                        : $q;
                 });
                  $query->when($request->status != '',function($q) use($request){
                      if($request->status == 5){
@@ -83,6 +86,30 @@ class OrderDataTable extends DataTable
                  });
         });
 
+    }
+
+    private function getDateRange(): ?array
+    {
+        $datepicker = $this->request()->input('datepicker1');
+
+        if (empty($datepicker)) {
+            return null;
+        }
+
+        $dates = preg_split('/\s+-\s+/', trim($datepicker));
+
+        if (!is_array($dates) || count($dates) !== 2) {
+            return null;
+        }
+
+        try {
+            return [
+                Carbon::createFromFormat('Y-m-d', trim($dates[0]))->startOfDay(),
+                Carbon::createFromFormat('Y-m-d', trim($dates[1]))->endOfDay(),
+            ];
+        } catch (\Throwable $exception) {
+            return null;
+        }
     }
 
     /**
