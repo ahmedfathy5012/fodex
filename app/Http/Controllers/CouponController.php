@@ -12,6 +12,13 @@ use App\Models\Coupon;
 use App\DataTables\CouponDataTable;
 class CouponController extends Controller
 {
+    private function couponView(string $page):string
+    {
+         return env('APP_ENV') == 'production'
+              ? "admindashboard.coupons.$page"
+              : "admindashboard.coupons.V2.$page";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +26,7 @@ class CouponController extends Controller
      */
     public function index(CouponDataTable $dataTable)
     {
-     return  $dataTable->render("admindashboard.coupons.index");
+     return  $dataTable->render($this->couponView("index"));
     }
 
     /**
@@ -30,11 +37,11 @@ class CouponController extends Controller
     public function create()
     {
 
-      
+
           $cities = City::where("country_id",auth()->user()->countries->pluck("id")->toArray())->get();
            $sellers = Seller::all();
-           
-        return view("admindashboard.coupons.create",compact("cities","sellers"));
+
+        return view($this->couponView("create"),compact("cities","sellers"));
     }
 
     /**
@@ -45,7 +52,7 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-     
+
       $data =  $request->validate([
             'value' => 'sometimes',
             'name' => 'required',
@@ -59,22 +66,22 @@ class CouponController extends Controller
             'description' => 'sometimes',
              'delivery_fee' => 'sometimes'
             ],[
-            'required' => 'هذا الحقل مطلوب'    
+            'required' => 'هذا الحقل مطلوب'
                 ]);
         $coupon = Coupon::create($data);
         if(!$request->general){
         // if($request->country_id){
         //     $coupon->countries()->attach($request->country_id);
-        // }  
+        // }
         // if($request->state_id){
         //      $coupon->states()->attach($request->state_id);
-        // } 
+        // }
         if($request->city_id){
              $coupon->cities()->attach($request->city_id);
-        } 
+        }
         // if($request->zone_id){
         //      $coupon->zones()->attach($request->zone_id);
-        // } 
+        // }
         if($request->seller_id){
              $coupon->sellers()->attach($request->seller_id);
         }
@@ -104,7 +111,7 @@ class CouponController extends Controller
    $cities = City::where("country_id",auth()->user()->countries->pluck("id")->toArray())->get();
            $sellers = Seller::all();
             $coupon = Coupon::where('id',$id)->first();
-        return view("admindashboard.coupons.edit",compact("cities","sellers","coupon"));
+        return view($this->couponView("edit"),compact("cities","sellers","coupon"));
     }
 
     /**
@@ -129,12 +136,12 @@ class CouponController extends Controller
             'description' => 'sometimes',
             'delivery_fee' => 'sometimes'
             ],[
-            'required' => 'هذا الحقل مطلوب'    
+            'required' => 'هذا الحقل مطلوب'
                 ]);
          $coupon = Coupon::where('id',$id)->first();
          $coupon->update($data);
-         $coupon->delivery_fee = $request->delivery_fee ? 1 : 0; 
-           $coupon->general = $request->general ? 1 : 0; 
+         $coupon->delivery_fee = $request->delivery_fee ? 1 : 0;
+           $coupon->general = $request->general ? 1 : 0;
            $coupon->save();
            if(!$request->general){
          if($request->city_id){
@@ -144,7 +151,7 @@ class CouponController extends Controller
         }
            }else{
           $coupon->cities()->sync([]);
-        
+
              $coupon->sellers()->sync([]);
            }
         return redirect()->route("coupons.index");

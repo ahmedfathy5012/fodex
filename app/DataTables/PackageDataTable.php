@@ -21,7 +21,7 @@ class PackageDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'admindashboard.packages.action')
+            ->addColumn('action', 'admindashboard.packages.V2.action')
             ->rawColumns([
                 'action'
              ]);
@@ -65,10 +65,10 @@ class PackageDataTable extends DataTable
      */
     protected function getColumns()
     {
-        
+
             return [
                 // ['data'=>'id','title'=>'id','visible' => false, 'printable' => false, 'exportable' => true],
-               
+
                      ['data'=>'name','title'=>'الاسم'],
                     //  ['data'=>'branches_number','title'=>'عدد الفروع'],
                     //  ['data'=>'items_number','title'=>'عدد المنتجات'],
@@ -77,7 +77,7 @@ class PackageDataTable extends DataTable
 
                   ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],
               ];
-        
+
     }
 
     /**

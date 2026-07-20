@@ -20,10 +20,10 @@ class CouponDataTable extends DataTable
     public function dataTable($query)
     {return datatables()
             ->eloquent($query)
-           ->addColumn('action', 'admindashboard.coupons.action')
+           ->addColumn('action', 'admindashboard.coupons.V2.action')
    ->editColumn('percentage',function(Coupon $coupon){
           if($coupon->percentage == 0){
-               return "ثابت"; 
+               return "ثابت";
           }else{
               return "نسبه مئويه";
           }
@@ -76,9 +76,9 @@ class CouponDataTable extends DataTable
         ['data'=>'name','title'=>'الكود'],
            ['data'=>'title','title'=>'الاسم'],
         ['data'=>'date_from','title'=>'من'],
-          ['data'=>'date_to','title'=>'الى'], 
-          ['data'=>'value','title'=>'القيمه'], 
-             ['data'=>'percentage','title'=>'النوع'], 
+          ['data'=>'date_to','title'=>'الى'],
+          ['data'=>'value','title'=>'القيمه'],
+             ['data'=>'percentage','title'=>'النوع'],
             //   ['data'=>'qualification','title'=>'المؤهل'],
             //          ['data'=>'birthday','title'=>'تاريخ الميلاد'],
             ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],

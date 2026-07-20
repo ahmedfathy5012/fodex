@@ -10,9 +10,15 @@ use App\Models\PackageCategory;
 use App\DataTables\PackageDataTable;
 class PackageController extends Controller
 {
+    private function packageView(string $page):string
+    {
+         return env('APP_ENV') == 'production'
+              ? "admindashboard.packages.$page"
+              : "admindashboard.packages.V2.$page";
+    }
     public function index(PackageDataTable $dataTable)
     {
-        return $dataTable->render('admindashboard.packages.index');
+        return $dataTable->render($this->packageView('index'));
     }
 
   /**
@@ -24,7 +30,7 @@ class PackageController extends Controller
   {
     $countries = Country::all();
     $categories = PackageCategory::all();
-    return view('admindashboard.packages.create')->with('countries',$countries)->with('categories',$categories);
+    return view($this->packageView('create'))->with('countries',$countries)->with('categories',$categories);
 }
   /**
    * Store a newly created resource in storage.
@@ -77,7 +83,7 @@ class PackageController extends Controller
   {   $countries = Country::all();
     $package = Package::where('id',$id)->first();
     $categories = PackageCategory::all();
-    return view('admindashboard.packages.edit')->with('countries',$countries)->with('package',$package)->with('categories',$categories);
+    return view($this->packageView('edit'))->with('countries',$countries)->with('package',$package)->with('categories',$categories);
   }
 
   /**
@@ -97,7 +103,7 @@ class PackageController extends Controller
    $package->save();
    if($request->country_id){
     CountryPackage::where('package_id',$package->id)->delete();
-  
+
    foreach($request->country_id as $key => $country){
      $cp = new CountryPackage;
      $cp->package_id = $package->id;
@@ -106,7 +112,7 @@ class PackageController extends Controller
      $cp->save();
    } }
         return redirect()->route('packages.index');
-     
+
 
   }
 

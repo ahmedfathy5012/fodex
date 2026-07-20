@@ -27,7 +27,7 @@ class OfferDataTable extends DataTable
             return '<img  src="' . $image . '" style ="width:100px;height:100px;" />';
         }
               })
-            ->addColumn('action', 'admindashboard.offers.action')
+            ->addColumn('action', 'admindashboard.offers.V2.action')
 
             ->rawColumns([
            'action',
