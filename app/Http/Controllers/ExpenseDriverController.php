@@ -13,12 +13,12 @@ class ExpenseDriverController extends Controller
     {
 
         return $dataTable->render('admindashboard.expensedriver.index');
-    
+
   }public function allcollections(AllCollectionDataTable $dataTable)
     {
 
-        return $dataTable->render('admindashboard.expenses.allcollections');
-    
+        return $dataTable->render('admindashboard.expenses.V2.allcollections');
+
   }
 
   /**
@@ -32,7 +32,7 @@ class ExpenseDriverController extends Controller
     return view('admindashboard.expensedriver.create')->with('drivers',$drivers);
   }
 
- 
+
   public function store(Request $request)
   {
     $request->validate([
@@ -49,12 +49,12 @@ class ExpenseDriverController extends Controller
     return redirect()->route('expensedriver.index');
   }
 
- 
+
   public function edit($id)
   {
     $exdriver = ExpenseDriver::where('id',$id)->first();
      $drivers = Driver::all();
-    return view('admindashboard.expensedriver.edit')->with('exdriver',$exdriver)->with('drivers',$drivers); 
+    return view('admindashboard.expensedriver.edit')->with('exdriver',$exdriver)->with('drivers',$drivers);
   }
   public function update(Request $request,$id)
   {
