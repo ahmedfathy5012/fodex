@@ -2,132 +2,227 @@
 
 namespace App\DataTables;
 
-use App\Models\Order;
 use App\Models\State;
-use Illuminate\Http\Request;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
+use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
 
 class StateOrderDataTable extends DataTable
 {
     /**
-     * Build DataTable class.
+     * تجهيز بيانات الجدول.
      *
-     * @param mixed $query Results from query() method.
+     * @param mixed $query
+     *
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query,Request $request)
+    public function dataTable($query)
     {
-             return datatables()
+        return datatables()
             ->eloquent($query)
-             ->editColumn('order_number',function(State $state){
-          
-                    $orders = $state->done_orders()
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                
-                return count($orders);
-            })->editColumn('total',function(State $state){
-           $orders = $state->done_orders()
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                    return  array_sum($orders->pluck("priceafterdiscount")->toArray());
-                
-            })->editColumn('seller_commission',function(State $state){
-          
-           $orders = $state->done_orders()
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                    return  array_sum($orders->pluck("money_seller_commission")->toArray());
-                
-            })
-         
 
-            ->rawColumns([
-           'seller_commission',
-           'order_number','total'
-        ]);
+            /*
+             * عدد الطلبات الخاصة بالمحافظة.
+             */
+            ->addColumn('order_number', function (State $state) {
+                return $this->getStateOrdersQuery($state)->count();
+            })
+
+            /*
+             * إجمالي أسعار الطلبات.
+             */
+            ->addColumn('total', function (State $state) {
+                return $this->getStateOrdersQuery($state)
+                    ->sum('priceafterdiscount');
+            })
+
+            /*
+             * إجمالي العمولة.
+             *
+             * money_seller_commission ليست عمودًا في قاعدة البيانات،
+             * لذلك نحضر الطلبات أولًا ثم نحسب قيمة الـ Accessor.
+             */
+            ->addColumn('seller_commission', function (State $state) {
+                $orders = $this->getStateOrdersQuery($state)->get();
+
+                return $orders->sum(function ($order) {
+                    return (float) ($order->money_seller_commission ?? 0);
+                });
+            });
     }
 
     /**
-     * Get query source of dataTable.
+     * Query طلبات المحافظة مع تطبيق فلتر التاريخ.
+     */
+    private function getStateOrdersQuery(State $state)
+    {
+        $query = $state->done_orders();
+
+        $dateRange = $this->getDateRange();
+
+        if ($dateRange !== null) {
+            [$from, $to] = $dateRange;
+
+            $query->whereBetween('created_at', [$from, $to]);
+        }
+
+        return $query;
+    }
+
+    /**
+     * استخراج فترة التاريخ من Request.
+     */
+    private function getDateRange(): ?array
+    {
+        $datepicker = $this->request()->input('datepicker1');
+
+        if (empty($datepicker)) {
+            return null;
+        }
+
+        $dates = preg_split('/\s+-\s+/', trim($datepicker));
+
+        if (!is_array($dates) || count($dates) !== 2) {
+            return null;
+        }
+
+        try {
+            $from = Carbon::createFromFormat(
+                'Y-m-d',
+                trim($dates[0])
+            )->startOfDay();
+
+            $to = Carbon::createFromFormat(
+                'Y-m-d',
+                trim($dates[1])
+            )->endOfDay();
+
+            return [$from, $to];
+        } catch (\Throwable $exception) {
+            return null;
+        }
+    }
+
+    /**
+     * Query المحافظات.
      *
-     * @param \App\Models\Order $model
+     * عند اختيار تاريخ سيتم إظهار المحافظات
+     * التي لديها طلبات داخل الفترة المحددة فقط.
+     *
+     * @param State $model
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-        public function query(State $model)
+    public function query(State $model)
     {
+        $query = $model->newQuery();
 
-        $orders = $model->newQuery()->orderBy("id","desc");
-  
-         return $orders;
-      
+        $dateRange = $this->getDateRange();
+
+        if ($dateRange !== null) {
+            [$from, $to] = $dateRange;
+
+            $query->whereHas(
+                'done_orders',
+                function ($ordersQuery) use ($from, $to) {
+                    $ordersQuery->whereBetween(
+                        'created_at',
+                        [$from, $to]
+                    );
+                }
+            );
+        }
+
+        return $query->orderByDesc('id');
     }
 
     /**
-     * Optional method if you want to use html builder.
+     * إعدادات DataTable.
      *
      * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {
- return $this->builder()
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        ->parameters([
-            'dom' => 'Blfrtip',
-            'order' => [0, 'desc'],
-            'lengthMenu' => [
-                [10,25,50,100,-1],[10,25,50,'all record']
-            ],
-       'buttons'      => ['export'],
-   ]);
+        return $this->builder()
+            ->setTableId('dataTableBuilder')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->parameters([
+                'dom' => 'Blfrtip',
+
+                'processing' => true,
+                'serverSide' => true,
+
+                /*
+                 * الترتيب الافتراضي باستخدام ID.
+                 */
+                'order' => [
+                    [0, 'desc'],
+                ],
+
+                'lengthMenu' => [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, 'كل السجلات'],
+                ],
+
+                'buttons' => [
+                    'export',
+                ],
+            ]);
     }
 
     /**
-     * Get columns.
-     *
-     * @return array
+     * أعمدة الجدول.
      */
     protected function getColumns()
     {
         return [
-           ['data'=>'id','title'=>'id'],
-           ["data" => "name" ,"title" =>"اسم المحافظه"],
-          ['data'=>'order_number','title'=>'عدد الطلبات' ,'searchable'=>false],
-            ['data'=>'total','title'=>'المبلغ كامل' ,'searchable'=>false],
-             ['data'=>'seller_commission','title'=>'النسبه من المطعم ' ,'searchable'=>false]
+            [
+                'data' => 'id',
+                'name' => 'id',
+                'title' => 'ID',
+                'searchable' => true,
+                'orderable' => true,
+            ],
+
+            [
+                'data' => 'name',
+                'name' => 'name',
+                'title' => 'اسم المحافظة',
+                'searchable' => true,
+                'orderable' => true,
+            ],
+
+            [
+                'data' => 'order_number',
+                'name' => 'order_number',
+                'title' => 'عدد الطلبات',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+
+            [
+                'data' => 'total',
+                'name' => 'total',
+                'title' => 'المبلغ كامل',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+
+            [
+                'data' => 'seller_commission',
+                'name' => 'seller_commission',
+                'title' => 'النسبة من المطعم',
+                'searchable' => false,
+                'orderable' => false,
+            ],
         ];
     }
 
     /**
-     * Get filename for export.
-     *
-     * @return string
+     * اسم ملف التصدير.
      */
     protected function filename()
     {
-        return 'Order_' . date('YmdHis');
+        return 'State_Order_' . date('YmdHis');
     }
 }

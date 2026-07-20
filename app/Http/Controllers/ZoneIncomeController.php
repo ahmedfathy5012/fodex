@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Major;
 use App\Models\Zone;
 use App\Models\Order;
-class ZoneIncomeController extends Controller 
+class ZoneIncomeController extends Controller
 {
+    private function reportView(string $page):string
+    {
+         return env('APP_ENV') == 'production'
+              ? "admindashboard.reports.zone_incomes.$page"
+              : "admindashboard.reports.zone_incomes.V2.$page";
+    }
     public function index()
     {
    $zones = zone::all();
@@ -17,14 +23,14 @@ class ZoneIncomeController extends Controller
     $seller_commission = array_sum($orders->pluck("money_seller_commission")->toArray());
     $driver_commission = array_sum($orders->pluck("delivery_commission")->toArray()) - array_sum($orders->pluck("money_seller_commission")->toArray());
      $order_count = count($orders);
-        return view('admindashboard.reports.zone_incomes.index',compact("zones","majors","total","seller_commission","driver_commission","order_count"));
-    
+        return view($this->reportView('index'),compact("zones","majors","total","seller_commission","driver_commission","order_count"));
+
   }public function filterzone_icomes(Request $request){
        $zones = zone::all();
-       
+
     $orders = Order::where("status",3)->where(function ($query) use ($request) {
                 $query->when($request->zone_id != 0,function($q) use($request){
-                   
+
                     return $q->where("zone_id",$request->zone_id);
                 });
                 $query->when($request->major_id != 0,function($q) use($request){
@@ -33,7 +39,7 @@ class ZoneIncomeController extends Controller
                     });
                 });
                 $query->when($request->datepicker,function($q) use($request){
-                   
+
                     $from = explode(" - ",$request->get('datepicker'))[0];
                     $to = explode(" - ",$request->get('datepicker'))[1];
                     return $q->whereBetween('created_at',[$from,$to]);

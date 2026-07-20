@@ -3,132 +3,172 @@
 namespace App\DataTables;
 
 use App\Models\Country;
-use App\Models\Address;
-use Illuminate\Http\Request;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
+use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
 
 class CountryOrderDataTable extends DataTable
 {
     /**
      * Build DataTable class.
-     *
-     * @param mixed $query Results from query() method.
-     * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query,Request $request)
+    public function dataTable($query)
     {
         return datatables()
             ->eloquent($query)
-             ->editColumn('order_number',function(Country $country){
-          
-                    $orders = $country->done_orders()
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                
-                return count($orders);
-            })->editColumn('total',function(Country $country){
-           $orders = $country->done_orders()
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                    return  array_sum($orders->pluck("priceafterdiscount")->toArray());
-                
-            })->editColumn('seller_commission',function(Country $country){
-          
-           $orders = $country->done_orders()
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                    return  array_sum($orders->pluck("money_seller_commission")->toArray());
-                
+
+            ->addColumn('order_number', function (Country $country) {
+                return $this->getCountryOrdersQuery($country)->count();
             })
-         
+
+            ->addColumn('total', function (Country $country) {
+                return $this->getCountryOrdersQuery($country)
+                    ->sum('priceafterdiscount');
+            })
+
+            ->addColumn('seller_commission', function (Country $country) {
+                $orders = $this->getCountryOrdersQuery($country)->get();
+
+                return $orders->sum(function ($order) {
+                    return (float) ($order->money_seller_commission ?? 0);
+                });
+            })
 
             ->rawColumns([
-           'seller_commission',
-           'order_number','total'
-        ]);
+                'order_number',
+                'total',
+                'seller_commission',
+            ]);
     }
-    
 
     /**
-     * Get query source of dataTable.
-     *
-     * @param \App\Models\Order $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Get filtered country orders.
+     */
+    private function getCountryOrdersQuery(Country $country)
+    {
+        $query = $country->done_orders();
+        $dateRange = $this->getDateRange();
+
+        if ($dateRange !== null) {
+            [$from, $to] = $dateRange;
+
+            $query->whereBetween('created_at', [$from, $to]);
+        }
+
+        return $query;
+    }
+
+    private function getDateRange(): ?array
+    {
+        $datepicker = $this->request()->input('datepicker1');
+
+        if (empty($datepicker)) {
+            return null;
+        }
+
+        $dates = preg_split('/\s+-\s+/', trim($datepicker));
+
+        if (!is_array($dates) || count($dates) !== 2) {
+            return null;
+        }
+
+        try {
+            $from = Carbon::createFromFormat('Y-m-d', trim($dates[0]))->startOfDay();
+            $to = Carbon::createFromFormat('Y-m-d', trim($dates[1]))->endOfDay();
+
+            return [$from, $to];
+        } catch (\Throwable $exception) {
+            return null;
+        }
+    }
+
+    /**
+     * Get query source of DataTable.
      */
     public function query(Country $model)
     {
+        $query = $model->newQuery();
+        $dateRange = $this->getDateRange();
 
-        $orders = $model->newQuery()->orderBy("id","desc");
-  
-         return $orders;
-      
+        if ($dateRange !== null) {
+            [$from, $to] = $dateRange;
+
+            $query->whereHas('done_orders', function ($ordersQuery) use ($from, $to) {
+                $ordersQuery->whereBetween('created_at', [$from, $to]);
+            });
+        }
+
+        return $query->orderByDesc('id');
     }
 
     /**
-     * Optional method if you want to use html builder.
-     *
-     * @return \Yajra\DataTables\Html\Builder
+     * Optional method if you want to use HTML builder.
      */
     public function html()
     {
- return $this->builder()
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        ->parameters([
-            'dom' => 'Blfrtip',
-            'order' => [0, 'desc'],
-            'lengthMenu' => [
-                [10,25,50,100,-1],[10,25,50,'all record']
-            ],
-       'buttons'      => ['export'],
-   ]);
-    }
+        return $this->builder()
+            ->setTableId('dataTableBuilder')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
 
+            ->parameters([
+                'dom' => 'Blfrtip',
+                'order' => [[0, 'desc']],
+                'processing' => true,
+                'serverSide' => true,
+
+                'lengthMenu' => [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, 'كل السجلات'],
+                ],
+
+                'buttons' => ['export'],
+            ]);
+    }
     /**
      * Get columns.
-     *
-     * @return array
      */
     protected function getColumns()
     {
         return [
-           ['data'=>'id','title'=>'id'],
-           ["data" => "name" ,"title" =>"اسم الدوله"],
-          ['data'=>'order_number','title'=>'عدد الطلبات' ,'searchable'=>false],
-            ['data'=>'total','title'=>'المبلغ كامل' ,'searchable'=>false],
-             ['data'=>'seller_commission','title'=>'النسبه من المطعم ' ,'searchable'=>false]
+            [
+                'data' => 'id',
+                'name' => 'id',
+                'title' => 'ID',
+            ],
+            [
+                'data' => 'name',
+                'name' => 'name',
+                'title' => 'اسم الدولة',
+            ],
+            [
+                'data' => 'order_number',
+                'name' => 'order_number',
+                'title' => 'عدد الطلبات',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+            [
+                'data' => 'total',
+                'name' => 'total',
+                'title' => 'المبلغ كامل',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+            [
+                'data' => 'seller_commission',
+                'name' => 'seller_commission',
+                'title' => 'النسبة من المطعم',
+                'searchable' => false,
+                'orderable' => false,
+            ],
         ];
     }
 
     /**
      * Get filename for export.
-     *
-     * @return string
      */
     protected function filename()
     {
-        return 'Order_' . date('YmdHis');
+        return 'Country_Order_' . date('YmdHis');
     }
 }
