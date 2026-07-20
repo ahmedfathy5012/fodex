@@ -44,10 +44,10 @@
             justify-content: center;
         }
 
-        .zone-orders-card .card-icon svg rect,
-        .zone-orders-card .card-icon svg path {
-            fill: #3699ff !important;
-        }
+        /*.zone-orders-card .card-icon svg rect,*/
+        /*.zone-orders-card .card-icon svg path {*/
+        /*    fill: #3699ff !important;*/
+        /*}*/
 
         .zone-orders-body {
             padding: 28px;
