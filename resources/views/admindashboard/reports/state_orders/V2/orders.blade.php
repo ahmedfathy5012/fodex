@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .city-income-page {
+        .state-orders-page {
             direction: rtl;
         }
 
-        .city-income-card {
+        .state-orders-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .city-income-card .card-header {
+        .state-orders-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .city-income-card .card-title {
+        .state-orders-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .city-income-card .card-label {
+        .state-orders-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .city-income-card .card-icon {
+        .state-orders-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,25 +44,25 @@
             justify-content: center;
         }
 
-        /*.city-income-card .card-icon svg rect,*/
-        /*.city-income-card .card-icon svg path {*/
+        /*.state-orders-card .card-icon svg rect,*/
+        /*.state-orders-card .card-icon svg path {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .city-income-body {
+        .state-orders-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .city-income-filter-box {
+        .state-orders-filter-box {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 16px;
             padding: 22px;
-            margin-bottom: 28px;
+            margin-bottom: 26px;
         }
 
-        .city-income-section-title {
+        .state-orders-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .city-income-section-title::before {
+        .state-orders-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,45 +81,18 @@
             display: inline-block;
         }
 
-        .city-income-page .form-group label {
+        .state-orders-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .city-income-page .form-control,
-        .city-income-page .bootstrap-select > .dropdown-toggle {
-            min-height: 44px;
-            border-radius: 10px !important;
-            border: 1px solid #e4e6ef !important;
-            color: #3f4254 !important;
-            background: #ffffff !important;
-            box-shadow: none !important;
-            transition: all 0.15s ease;
-        }
-
-        .city-income-page .form-control:focus,
-        .city-income-page .bootstrap-select.show > .dropdown-toggle {
-            border-color: #3699ff !important;
-            box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
-        }
-
-        .city-income-page .bootstrap-select .filter-option {
-            text-align: right !important;
-        }
-
-        .city-income-page .dropdown-menu {
-            border-radius: 12px;
-            border: 1px solid #edf0f5;
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
-        }
-
-        .city-date-wrapper {
+        .state-date-wrapper {
             width: 100%;
         }
 
-        .city-date-group {
+        .state-date-group {
             width: 100%;
             height: 44px;
             display: flex;
@@ -127,7 +100,7 @@
             direction: rtl;
         }
 
-        .city-date-button {
+        .state-date-button {
             width: 46px;
             min-width: 46px;
             height: 44px;
@@ -144,19 +117,19 @@
             transition: all 0.15s ease;
         }
 
-        .city-date-button:hover {
+        .state-date-button:hover {
             background: #187de4;
             border-color: #187de4;
         }
 
-        .city-date-button i {
+        .state-date-button i {
             color: #ffffff !important;
             font-size: 16px;
             padding: 0 !important;
             margin: 0 !important;
         }
 
-        .city-date-group .datepicker {
+        .state-date-group .datepicker {
             width: 100% !important;
             height: 44px !important;
             min-height: 44px !important;
@@ -172,12 +145,12 @@
             text-align: center;
         }
 
-        .city-date-group .datepicker:focus {
+        .state-date-group .datepicker:focus {
             border-color: #e4e6ef !important;
             box-shadow: none !important;
         }
 
-        .city-date-clear {
+        .state-date-clear {
             width: 44px;
             min-width: 44px;
             height: 44px;
@@ -197,7 +170,7 @@
             transition: all 0.15s ease;
         }
 
-        .city-date-clear:hover {
+        .state-date-clear:hover {
             background: #fff5f6;
             color: #f64e60;
         }
@@ -208,13 +181,13 @@
             z-index: 999999 !important;
         }
 
-        .city-search-wrapper {
+        .state-search-wrapper {
             display: flex;
             justify-content: center;
             margin-top: 16px;
         }
 
-        .city-search-btn {
+        .state-search-btn {
             min-width: 180px;
             height: 46px;
             border-radius: 12px !important;
@@ -232,129 +205,141 @@
             transition: all 0.15s ease;
         }
 
-        .city-search-btn:hover {
+        .state-search-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
             color: #ffffff !important;
         }
 
-        .income-stat-card {
-            position: relative;
-            min-height: 160px;
-            border-radius: 20px;
-            padding: 22px;
-            margin-bottom: 22px;
-            overflow: hidden;
-            box-shadow: 0 14px 32px rgba(24, 28, 50, 0.10);
-            transition: all 0.18s ease;
+        .state-orders-table-section {
+            background: #ffffff;
+            border: 1px solid #edf0f5;
+            border-radius: 14px;
+            padding: 18px;
+            overflow-x: auto;
         }
 
-        .income-stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 38px rgba(24, 28, 50, 0.14);
+        .state-orders-page table.dataTable {
+            width: 100% !important;
+            border-collapse: separate !important;
+            border-spacing: 0 8px !important;
+            margin-top: 0 !important;
         }
 
-        .income-stat-card::before {
-            content: "";
-            position: absolute;
-            top: -55px;
-            left: -55px;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.16);
+        .state-orders-page table.dataTable thead th {
+            background: #f3f6f9;
+            color: #3f4254;
+            font-weight: 800;
+            border: 0 !important;
+            padding: 14px 12px !important;
+            white-space: nowrap;
+            text-align: center;
         }
 
-        .income-stat-card::after {
-            content: "";
-            position: absolute;
-            bottom: -70px;
-            right: -70px;
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.12);
+        .state-orders-page table.dataTable thead th:first-child {
+            border-radius: 0 10px 10px 0;
         }
 
-        .income-stat-total {
-            background: linear-gradient(135deg, #1C6DD0, #3699ff);
+        .state-orders-page table.dataTable thead th:last-child {
+            border-radius: 10px 0 0 10px;
         }
 
-        .income-stat-seller {
-            background: linear-gradient(135deg, #16C79A, #20d8aa);
+        .state-orders-page table.dataTable tbody tr {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
-        .income-stat-driver {
-            background: linear-gradient(135deg, #e54e6b, #f06b84);
+        .state-orders-page table.dataTable tbody td {
+            border-top: 1px solid #edf0f5 !important;
+            border-bottom: 1px solid #edf0f5 !important;
+            padding: 13px 12px !important;
+            vertical-align: middle !important;
+            text-align: center;
+            color: #3f4254;
         }
 
-        .income-stat-orders {
-            background: linear-gradient(135deg, #495371, #657091);
+        .state-orders-page table.dataTable tbody td:first-child {
+            border-right: 1px solid #edf0f5 !important;
+            border-radius: 0 10px 10px 0;
         }
 
-        .income-stat-content {
-            position: relative;
-            z-index: 2;
-            height: 100%;
+        .state-orders-page table.dataTable tbody td:last-child {
+            border-left: 1px solid #edf0f5 !important;
+            border-radius: 10px 0 0 10px;
         }
 
-        .income-stat-title {
-            margin: 0 0 20px;
-            color: #ffffff;
-            font-size: 17px;
-            font-weight: 900;
+        .state-orders-page .dataTables_wrapper .dataTables_filter input {
+            border-radius: 10px;
+            border: 1px solid #e4e6ef;
+            min-height: 38px;
+            padding: 6px 12px;
+            margin-right: 8px;
+            box-shadow: none !important;
         }
 
-        .income-stat-value {
-            color: #ffffff;
-            font-size: 28px;
-            font-weight: 900;
-            line-height: 1;
-            word-break: break-word;
+        .state-orders-page .dataTables_wrapper .dataTables_filter input:focus {
+            border-color: #3699ff;
+            box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
+            outline: none;
         }
 
-        .income-stat-icon {
-            position: absolute;
-            left: 22px;
-            bottom: 22px;
-            width: 54px;
-            height: 54px;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-            opacity: 0.95;
+        .state-orders-page .dataTables_wrapper .dataTables_length select {
+            border-radius: 8px;
+            border: 1px solid #e4e6ef;
+            min-height: 36px;
+            padding: 12px 24px;
+        }
+
+        .state-orders-page .dataTables_wrapper .dataTables_info {
+            color: #7e8299;
+            font-weight: 600;
+            padding-top: 16px;
+        }
+
+        .state-orders-page .dataTables_wrapper .dataTables_paginate {
+            padding-top: 14px;
+        }
+
+        .state-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border-radius: 8px !important;
+            border: 0 !important;
+            margin: 0 2px;
+            padding: 6px 12px !important;
+            color: #3f4254 !important;
+            background: transparent !important;
+        }
+
+        .state-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #3699ff !important;
+            color: #ffffff !important;
+        }
+
+        .state-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #eaf4ff !important;
+            color: #3699ff !important;
         }
 
         @media (max-width: 768px) {
-            .city-income-body {
+            .state-orders-body {
                 padding: 18px;
             }
 
-            .city-income-filter-box {
+            .state-orders-filter-box {
                 padding: 16px;
             }
 
-            .city-search-btn {
+            .state-search-btn {
                 width: 100%;
             }
 
-            .income-stat-card {
-                min-height: 145px;
-                padding: 18px;
-            }
-
-            .income-stat-value {
-                font-size: 24px;
-            }
-
-            .income-stat-icon {
-                width: 46px;
-                height: 46px;
+            .state-orders-table-section {
+                padding: 14px;
             }
         }
     </style>
 
-    <div class="city-income-page">
-        <div class="card card-custom gutter-b city-income-card">
+    <div class="state-orders-page">
+        <div class="card card-custom gutter-b state-orders-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -376,49 +361,22 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">الإيرادات الخاصة بالمدن</h3>
+                    <h3 class="card-label">طلبات المحافظات</h3>
                 </div>
             </div>
 
-            <div class="card-body city-income-body">
-                <div class="city-income-filter-box">
-                    <div class="city-income-section-title">فلترة التقرير</div>
+            <div class="card-body state-orders-body">
+                <div class="state-orders-filter-box">
+                    <div class="state-orders-section-title">فلترة الطلبات</div>
 
                     <div class="row">
-                        <div class="form-group col-lg-4 col-md-6">
-                            <label>المدينة <span class="text-danger">*</span></label>
-                            <select name="city_id"
-                                    class="form-control selectpicker"
-                                    id="city"
-                                    required="required"
-                                    data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach(auth()->user()->cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-4 col-md-6">
-                            <label>القسم العام</label>
-                            <select name="major_id"
-                                    class="form-control selectpicker"
-                                    id="major"
-                                    data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach($majors as $major)
-                                    <option value="{{ $major->id }}">{{ $major->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-4 col-md-12">
+                        <div class="form-group col-lg-4 col-md-8 mx-auto">
                             <label>فترة التقرير</label>
 
-                            <div class="city-date-wrapper">
-                                <div class="city-date-group">
+                            <div class="state-date-wrapper">
+                                <div class="state-date-group">
                                     <button type="button"
-                                            class="city-date-button"
+                                            class="state-date-button"
                                             id="openDatePicker">
                                         <i class="fa fa-calendar"></i>
                                     </button>
@@ -431,7 +389,7 @@
                                            placeholder="اختر فترة التقرير">
 
                                     <button type="button"
-                                            class="city-date-clear"
+                                            class="state-date-clear"
                                             id="clearDate"
                                             title="مسح التاريخ">
                                         ×
@@ -441,54 +399,18 @@
                         </div>
                     </div>
 
-                    <div class="city-search-wrapper">
-                    <span id="btn" class="btn btn-sm city-search-btn">
+                    <div class="state-search-wrapper">
+                    <span id="btn" class="btn btn-sm state-search-btn">
                         <i class="fa fa-search"></i>
                         بحث
                     </span>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="income-stat-card income-stat-total">
-                            <div class="income-stat-content">
-                                <h3 class="income-stat-title">المبلغ الكلي</h3>
-                                <div class="income-stat-value" id="total">{{ $total }}</div>
-                                <img src="{{ asset('money-bag.png') }}" class="income-stat-icon" alt="total">
-                            </div>
-                        </div>
-                    </div>
+                <div class="state-orders-table-section">
+                    {!! $dataTable->table([
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="income-stat-card income-stat-seller">
-                            <div class="income-stat-content">
-                                <h3 class="income-stat-title">النسبة من المطعم</h3>
-                                <div class="income-stat-value" id="seller_commission">{{ $seller_commission }}</div>
-                                <img src="{{ asset('revenue.png') }}" class="income-stat-icon" alt="seller commission">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="income-stat-card income-stat-driver">
-                            <div class="income-stat-content">
-                                <h3 class="income-stat-title">النسبة من الدليفري</h3>
-                                <div class="income-stat-value" id="driver_commission">{{ $driver_commission }}</div>
-                                <img src="{{ asset('revenue.png') }}" class="income-stat-icon" alt="driver commission">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="income-stat-card income-stat-orders">
-                            <div class="income-stat-content">
-                                <h3 class="income-stat-title">عدد الطلبات</h3>
-                                <div class="income-stat-value" id="order_count">{{ $order_count }}</div>
-                                <img src="{{ asset('order.png') }}" class="income-stat-icon" alt="orders">
-                            </div>
-                        </div>
-                    </div>
+                    ], true) !!}
                 </div>
             </div>
         </div>
@@ -496,6 +418,8 @@
 @endsection
 
 @section('scripts')
+    {{ $dataTable->scripts() }}
+
     <script>
         $(document).ready(function() {
             $("#datepicker").val('');
@@ -566,38 +490,12 @@
                 $('#datepicker').val('');
             });
 
+            $('#dataTableBuilder').on('preXhr.dt', function(e, settings, data) {
+                data.datepicker1 = $('#datepicker').val();
+            });
+
             $("#btn").on("click", function() {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    type: "post",
-                    url: `filtercity_icomes`,
-                    dataType: "Json",
-                    data: {
-                        "datepicker": String($("#datepicker").val()),
-                        "city_id": $('#city').val(),
-                        "major_id": $('#major').val()
-                    },
-                    success: function(result) {
-                        if (result.status == true) {
-                            $("#total").empty();
-                            $("#total").text(result.total);
-
-                            $("#driver_commission").empty();
-                            $("#driver_commission").text(result.driver_commission);
-
-                            $("#seller_commission").empty();
-                            $("#seller_commission").text(result.seller_commission);
-
-                            $("#order_count").empty();
-                            $("#order_count").text(result.order_count);
-                        }
-                    }
-                });
+                $('#dataTableBuilder').DataTable().ajax.reload();
             });
         });
     </script>

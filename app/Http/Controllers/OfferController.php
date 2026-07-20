@@ -6,18 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\Offer;
 use App\traits\generaltrait;
 use App\DataTables\OfferDataTable;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use App\Models\Zone;
 use App\Models\Seller;
 
 class OfferController extends Controller
 {
    use generaltrait;
+
+   private function offerView(string $page):string
+    {
+         return env('APP_ENV') == 'production'
+              ? "admindashboard.offers.$page"
+              : "admindashboard.offers.V2.$page";
+    }
    public function index(OfferDataTable $dataTable)
     {
 
-        return $dataTable->render('admindashboard.offers.index');
-    
+        return $dataTable->render($this->offerView('index'));
+
   }
 
   /**
@@ -29,7 +36,7 @@ class OfferController extends Controller
   {
    $zones = Zone::all();
    $sellers = Seller::select("id","name")->get();
-    return view('admindashboard.offers.create',compact("zones","sellers"));
+    return view($this->offerView('create'),compact("zones","sellers"));
   }
 
   /**
@@ -48,11 +55,11 @@ class OfferController extends Controller
 
      if($request->hasFile('image'))
         {
-       
+
             $image = $this->uploadimage($request->image,'offers');
             $offer->image = $image;
         }
-       
+
             $offer->paid = $request->paid ? 1 :0;
            $offer->seller_id = $request->seller_id;
 
@@ -64,7 +71,7 @@ class OfferController extends Controller
 
   public function show($id)
   {
-    
+
   }
 
   /**
@@ -79,7 +86,7 @@ class OfferController extends Controller
  $zones = Zone::all();
     $sellers = Seller::select("id","name")->get();
 
-    return view('admindashboard.offers.edit',compact("zones","offer","sellers"));
+    return view($this->offerView('edit'),compact("zones","offer","sellers"));
   }
 
   /**
@@ -92,9 +99,9 @@ class OfferController extends Controller
   {
 
     $request->validate([
-      
+
       ],[
-     
+
        ]);
     $offer = Offer::where('id',$id)->first();
      if($request->hasFile('image'))
@@ -102,8 +109,8 @@ class OfferController extends Controller
               File::delete(public_path(). '/uploads/'.$major->image);
             $image = $this->uploadimage($request->image,'majors');
             $offer->image = $image;
-        } 
-        
+        }
+
        $offer->paid = $request->paid ? 1 :0;
    $offer->seller_id = $request->seller_id;
     $offer->save();
@@ -119,5 +126,5 @@ class OfferController extends Controller
       $offer->delete();
       return response()->json(['status' => true]);
   }
-  
+
 }

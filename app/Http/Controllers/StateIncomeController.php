@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -6,8 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Major;
 use App\Models\State;
 use App\Models\Order;
-class StateIncomeController extends Controller 
+class StateIncomeController extends Controller
 {
+
+    private function reportView(string $page):string
+    {
+         return env('APP_ENV') == 'production'
+              ? "admindashboard.reports.state_incomes.$page"
+              : "admindashboard.reports.state_incomes.V2.$page";
+    }
     public function index()
     {
    $states = State::all();
@@ -17,14 +24,14 @@ class StateIncomeController extends Controller
     $seller_commission = array_sum($orders->pluck("money_seller_commission")->toArray());
     $driver_commission = array_sum($orders->pluck("delivery_commission")->toArray()) - array_sum($orders->pluck("money_seller_commission")->toArray());
      $order_count = count($orders);
-        return view('admindashboard.reports.state_incomes.index',compact("states","majors","total","seller_commission","driver_commission","order_count"));
-    
+        return view($this->reportView('index'),compact("states","majors","total","seller_commission","driver_commission","order_count"));
+
   }public function filterstate_icomes(Request $request){
        $states = State::all();
-       
+
     $orders = Order::where("status",3)->where(function ($query) use ($request) {
                 $query->when($request->state_id != 0,function($q) use($request){
-                   
+
                     return $q->where("state_id",$request->state_id);
                 });
                 $query->when($request->major_id != 0,function($q) use($request){
@@ -33,7 +40,7 @@ class StateIncomeController extends Controller
                     });
                 });
                 $query->when($request->datepicker,function($q) use($request){
-                   
+
                     $from = explode(" - ",$request->get('datepicker'))[0];
                     $to = explode(" - ",$request->get('datepicker'))[1];
                     return $q->whereBetween('created_at',[$from,$to]);

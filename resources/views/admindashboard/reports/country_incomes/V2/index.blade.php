@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .city-income-page {
+        .country-income-page {
             direction: rtl;
         }
 
-        .city-income-card {
+        .country-income-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .city-income-card .card-header {
+        .country-income-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .city-income-card .card-title {
+        .country-income-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .city-income-card .card-label {
+        .country-income-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .city-income-card .card-icon {
+        .country-income-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,17 +44,17 @@
             justify-content: center;
         }
 
-        /*.city-income-card .card-icon svg rect,*/
-        /*.city-income-card .card-icon svg path {*/
+        /*.country-income-card .card-icon svg rect,*/
+        /*.country-income-card .card-icon svg path {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .city-income-body {
+        .country-income-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .city-income-filter-box {
+        .country-income-filter-box {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 16px;
@@ -62,7 +62,7 @@
             margin-bottom: 28px;
         }
 
-        .city-income-section-title {
+        .country-income-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .city-income-section-title::before {
+        .country-income-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,15 +81,15 @@
             display: inline-block;
         }
 
-        .city-income-page .form-group label {
+        .country-income-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .city-income-page .form-control,
-        .city-income-page .bootstrap-select > .dropdown-toggle {
+        .country-income-page .form-control,
+        .country-income-page .bootstrap-select > .dropdown-toggle {
             min-height: 44px;
             border-radius: 10px !important;
             border: 1px solid #e4e6ef !important;
@@ -99,27 +99,27 @@
             transition: all 0.15s ease;
         }
 
-        .city-income-page .form-control:focus,
-        .city-income-page .bootstrap-select.show > .dropdown-toggle {
+        .country-income-page .form-control:focus,
+        .country-income-page .bootstrap-select.show > .dropdown-toggle {
             border-color: #3699ff !important;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
         }
 
-        .city-income-page .bootstrap-select .filter-option {
+        .country-income-page .bootstrap-select .filter-option {
             text-align: right !important;
         }
 
-        .city-income-page .dropdown-menu {
+        .country-income-page .dropdown-menu {
             border-radius: 12px;
             border: 1px solid #edf0f5;
             box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
         }
 
-        .city-date-wrapper {
+        .country-date-wrapper {
             width: 100%;
         }
 
-        .city-date-group {
+        .country-date-group {
             width: 100%;
             height: 44px;
             display: flex;
@@ -127,7 +127,7 @@
             direction: rtl;
         }
 
-        .city-date-button {
+        .country-date-button {
             width: 46px;
             min-width: 46px;
             height: 44px;
@@ -144,19 +144,19 @@
             transition: all 0.15s ease;
         }
 
-        .city-date-button:hover {
+        .country-date-button:hover {
             background: #187de4;
             border-color: #187de4;
         }
 
-        .city-date-button i {
+        .country-date-button i {
             color: #ffffff !important;
             font-size: 16px;
             padding: 0 !important;
             margin: 0 !important;
         }
 
-        .city-date-group .datepicker {
+        .country-date-group .datepicker {
             width: 100% !important;
             height: 44px !important;
             min-height: 44px !important;
@@ -172,24 +172,24 @@
             text-align: center;
         }
 
-        .city-date-group .datepicker:focus {
+        .country-date-group .datepicker:focus {
             border-color: #e4e6ef !important;
             box-shadow: none !important;
         }
 
-        .city-date-clear {
+        .country-date-clear {
             width: 44px;
             min-width: 44px;
             height: 44px;
             border: 1px solid #e4e6ef;
-            border-right: 0;
+            border-left: 0;
             border-radius: 10px 0 0 10px;
             background: #f3f6f9;
             color: #7e8299;
             font-size: 22px;
             font-weight: 900;
             line-height: 1;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -197,7 +197,7 @@
             transition: all 0.15s ease;
         }
 
-        .city-date-clear:hover {
+        .country-date-clear:hover {
             background: #fff5f6;
             color: #f64e60;
         }
@@ -208,13 +208,13 @@
             z-index: 999999 !important;
         }
 
-        .city-search-wrapper {
+        .country-search-wrapper {
             display: flex;
             justify-content: center;
-            margin-top: 16px;
+            margin-top: 8px;
         }
 
-        .city-search-btn {
+        .country-search-btn {
             min-width: 180px;
             height: 46px;
             border-radius: 12px !important;
@@ -232,7 +232,7 @@
             transition: all 0.15s ease;
         }
 
-        .city-search-btn:hover {
+        .country-search-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
             color: #ffffff !important;
@@ -325,15 +325,15 @@
         }
 
         @media (max-width: 768px) {
-            .city-income-body {
+            .country-income-body {
                 padding: 18px;
             }
 
-            .city-income-filter-box {
+            .country-income-filter-box {
                 padding: 16px;
             }
 
-            .city-search-btn {
+            .country-search-btn {
                 width: 100%;
             }
 
@@ -353,8 +353,8 @@
         }
     </style>
 
-    <div class="city-income-page">
-        <div class="card card-custom gutter-b city-income-card">
+    <div class="country-income-page">
+        <div class="card card-custom gutter-b country-income-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -376,49 +376,49 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">الإيرادات الخاصة بالمدن</h3>
+                    <h3 class="card-label">الإيرادات الخاصة بالدول</h3>
                 </div>
             </div>
 
-            <div class="card-body city-income-body">
-                <div class="city-income-filter-box">
-                    <div class="city-income-section-title">فلترة التقرير</div>
+            <div class="card-body country-income-body">
+                <div class="country-income-filter-box">
+                    <div class="country-income-section-title">فلترة التقرير</div>
 
                     <div class="row">
                         <div class="form-group col-lg-4 col-md-6">
-                            <label>المدينة <span class="text-danger">*</span></label>
-                            <select name="city_id"
+                            <label>الدولة <span class="text-danger">*</span></label>
+                            <select name="country_id"
                                     class="form-control selectpicker"
-                                    id="city"
+                                    id="country"
                                     required="required"
                                     data-live-search="true">
                                 <option value="0">الكل</option>
-                                @foreach(auth()->user()->cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                @foreach(auth()->user()->countries as $country)
+                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="form-group col-lg-4 col-md-6">
-                            <label>القسم العام</label>
-                            <select name="major_id"
-                                    class="form-control selectpicker"
-                                    id="major"
-                                    data-live-search="true">
-                                <option value="0">الكل</option>
-                                @foreach($majors as $major)
-                                    <option value="{{ $major->id }}">{{ $major->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+{{--                        <div class="form-group col-lg-4 col-md-6">--}}
+{{--                            <label>القسم العام</label>--}}
+{{--                            <select name="major_id"--}}
+{{--                                    class="form-control selectpicker"--}}
+{{--                                    id="major"--}}
+{{--                                    data-live-search="true">--}}
+{{--                                <option value="0">الكل</option>--}}
+{{--                                @foreach($majors as $major)--}}
+{{--                                    <option value="{{ $major->id }}">{{ $major->title }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
 
                         <div class="form-group col-lg-4 col-md-12">
                             <label>فترة التقرير</label>
 
-                            <div class="city-date-wrapper">
-                                <div class="city-date-group">
+                            <div class="country-date-wrapper">
+                                <div class="country-date-group">
                                     <button type="button"
-                                            class="city-date-button"
+                                            class="country-date-button"
                                             id="openDatePicker">
                                         <i class="fa fa-calendar"></i>
                                     </button>
@@ -431,7 +431,7 @@
                                            placeholder="اختر فترة التقرير">
 
                                     <button type="button"
-                                            class="city-date-clear"
+                                            class="country-date-clear"
                                             id="clearDate"
                                             title="مسح التاريخ">
                                         ×
@@ -441,8 +441,8 @@
                         </div>
                     </div>
 
-                    <div class="city-search-wrapper">
-                    <span id="btn" class="btn btn-sm city-search-btn">
+                    <div class="country-search-wrapper">
+                    <span id="btn" class="btn btn-sm country-search-btn">
                         <i class="fa fa-search"></i>
                         بحث
                     </span>
@@ -499,6 +499,7 @@
     <script>
         $(document).ready(function() {
             $("#datepicker").val('');
+            $("#clearDate").hide();
 
             $('.datepicker').daterangepicker({
                 autoApply: true,
@@ -557,6 +558,13 @@
                 $(this).val(
                     picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD')
                 );
+
+                $("#clearDate").css("display", "flex");
+            });
+
+            $('#datepicker').on('cancel.daterangepicker', function() {
+                $(this).val('');
+                $("#clearDate").hide();
             });
 
             $('#clearDate').on('click', function(e) {
@@ -564,6 +572,7 @@
                 e.stopPropagation();
 
                 $('#datepicker').val('');
+                $(this).hide();
             });
 
             $("#btn").on("click", function() {
@@ -575,11 +584,11 @@
 
                 $.ajax({
                     type: "post",
-                    url: `filtercity_icomes`,
+                    url: `filtercountry_icomes`,
                     dataType: "Json",
                     data: {
                         "datepicker": String($("#datepicker").val()),
-                        "city_id": $('#city').val(),
+                        "country_id": $('#country').val(),
                         "major_id": $('#major').val()
                     },
                     success: function(result) {
