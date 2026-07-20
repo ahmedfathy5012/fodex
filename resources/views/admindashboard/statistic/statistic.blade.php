@@ -2,7 +2,7 @@
 @section('content')
 <style>
   .btn-dating label{
-      
+
     position: absolute;
 top: 5px;
 right: 32px;
@@ -32,8 +32,8 @@ z-index: 1;
 </style>
 	<!--begin::Card-->
     <div class="card card-custom gutter-b">
-      
-	
+
+
         <div class="card-body">
                           <div class="row">
              <div class="form-group col-lg-3 col-md-6">
@@ -69,7 +69,7 @@ z-index: 1;
           <option value="{{$zone->id}}">{{$zone->name}}</option>
           @endforeach
         </select>
-       </div>     
+       </div>
 <!--     <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">-->
 <!--    <i class="fa fa-calendar"></i>&nbsp;-->
 <!--    <span></span> <i class="fa fa-caret-down"></i>-->
@@ -98,9 +98,9 @@ z-index: 1;
               <span id="btn" class="btn btn-primary mx-auto" onclick="filtercharts()">بحث</span>
           </div>
           <div class="container">
-            
-         
-      
+
+
+
         <div class="row">
             <div class="col-6">
             <canvas id="myChart"></canvas>
@@ -119,7 +119,7 @@ z-index: 1;
          <!--  <div class="col-2">  <label>الدول</label></div>-->
          <!--   <div class="col-10">   <hr></div>-->
          <!--    </div>-->
-           
+
          <!--    <div class="row">-->
          <!--   <div class="col-6">-->
          <!--   <canvas id="myChart4"></canvas>-->
@@ -131,7 +131,7 @@ z-index: 1;
          <!--  <div class="col-2">  <label>المحافظات</label></div>-->
          <!--   <div class="col-10">   <hr></div>-->
          <!--    </div>-->
-             
+
          <!--    <div class="row">-->
          <!--   <div class="col-6">-->
          <!--   <canvas id="myChart6"></canvas>-->
@@ -143,7 +143,7 @@ z-index: 1;
          <!--  <div class="col-2">  <label>المدن</label></div>-->
          <!--   <div class="col-10">   <hr></div>-->
          <!--    </div>-->
-           
+
          <!--    <div class="row">-->
          <!--   <div class="col-6">-->
          <!--   <canvas id="myChart8"></canvas>-->
@@ -155,7 +155,7 @@ z-index: 1;
          <!--  <div class="col-2">  <label>المناطق</label></div>-->
          <!--   <div class="col-10">   <hr></div>-->
          <!--    </div>-->
-       
+
          <!--    <div class="row">-->
          <!--   <div class="col-6">-->
          <!--   <canvas id="myChart10"></canvas>-->
@@ -179,7 +179,7 @@ z-index: 1;
 
 @endsection
 @section("scripts")
- <script>   
+ <script>
     //   var start = moment().subtract(29, 'days');
     // var end = moment();
 
@@ -325,15 +325,15 @@ console.log(id);
 
       });
     }
-  
+
 //       $("#btn").on("click",function(){
 //              var table = $('#dataTableBuilder').DataTable();
 //      table.ajax.reload();
 //      return false;
-// }); 
+// });
 
 //         $("#btn").on("click",function(){
- 
+
 //  $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
 //         data.from = $('#from').val();
 //         data.to = $('#to').val();
@@ -383,7 +383,7 @@ var myChart1 = new Chart(ctx1, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 var ctx2 = document.getElementById("myChart1").getContext('2d');
@@ -403,7 +403,7 @@ var myChart2 = new Chart(ctx2, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });var ctx3 = document.getElementById("myChart2").getContext('2d');
 
@@ -422,7 +422,7 @@ var myChart3 = new Chart(ctx3, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });var ctx4 = document.getElementById("myChart3").getContext('2d');
 
@@ -441,14 +441,14 @@ var myChart4 = new Chart(ctx4, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
      }
        }
 
       });
-      
+
       var ctx5 = document.getElementById("myChart5").getContext('2d');
 
 
@@ -466,7 +466,7 @@ var myChart5 = new Chart(ctx5, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });    var ctx4 = document.getElementById("myChart4").getContext('2d');
 
@@ -485,7 +485,7 @@ var myChart4 = new Chart(ctx4, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });  var ctx7 = document.getElementById("myChart7").getContext('2d');
 
@@ -504,7 +504,7 @@ var myChart7 = new Chart(ctx7, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });        console.log(result);
     var ctx6= document.getElementById("myChart6").getContext('2d');
@@ -524,7 +524,7 @@ var myChart6 = new Chart(ctx6, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });    var ctx9 = document.getElementById("myChart9").getContext('2d');
 
@@ -543,7 +543,7 @@ var myChart9 = new Chart(ctx9, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 }); var ctx8= document.getElementById("myChart8").getContext('2d');
 
@@ -562,7 +562,7 @@ var myChart8 = new Chart(ctx8, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });    var ctx11 = document.getElementById("myChart11").getContext('2d');
 
@@ -581,7 +581,7 @@ var myChart11 = new Chart(ctx11, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });  var ctx10= document.getElementById("myChart10").getContext('2d');
 
@@ -600,7 +600,7 @@ var myChart10 = new Chart(ctx10, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });   var ctx12= document.getElementById("myChart12").getContext('2d');
 
@@ -619,7 +619,7 @@ var myChart12 = new Chart(ctx12, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
     }
@@ -650,7 +650,7 @@ var myChart = new Chart(ctx, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -679,7 +679,7 @@ var myChart = new Chart(ctx, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -708,7 +708,7 @@ var myChart = new Chart(ctx, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -737,7 +737,7 @@ var myChart = new Chart(ctx, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -767,7 +767,7 @@ var myChart5 = new Chart(ctx5, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -795,7 +795,7 @@ var myChart4 = new Chart(ctx4, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -825,7 +825,7 @@ var myChart7 = new Chart(ctx7, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -853,7 +853,7 @@ var myChart6 = new Chart(ctx6, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -885,7 +885,7 @@ var myChart9 = new Chart(ctx9, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -913,7 +913,7 @@ var myChart8 = new Chart(ctx8, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -945,7 +945,7 @@ var myChart11 = new Chart(ctx11, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -973,7 +973,7 @@ var myChart10 = new Chart(ctx10, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
@@ -1002,11 +1002,11 @@ var myChart12 = new Chart(ctx12, {
         }]},
     options: {
       responsive: true, // Instruct chart js to respond nicely.
-      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+      maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
     }
 });
 }
 });
-}   
+}
 </script>
 @endsection

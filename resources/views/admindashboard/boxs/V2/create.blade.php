@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .major-content-edit-page {
+        .box-create-page {
             direction: rtl;
         }
 
-        .major-content-edit-card {
+        .box-create-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .major-content-edit-card .card-header {
+        .box-create-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .major-content-edit-card .card-title {
+        .box-create-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .major-content-edit-card .card-label {
+        .box-create-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .major-content-edit-card .card-icon {
+        .box-create-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,17 +44,17 @@
             justify-content: center;
         }
 
-        /*.major-content-edit-card .card-icon svg path,*/
-        /*.major-content-edit-card .card-icon svg polygon {*/
+        /*.box-create-card .card-icon svg path,*/
+        /*.box-create-card .card-icon svg polygon {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .major-content-edit-body {
+        .box-create-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .major-content-section {
+        .box-section {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -62,7 +62,7 @@
             margin-bottom: 22px;
         }
 
-        .major-content-section-title {
+        .box-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .major-content-section-title::before {
+        .box-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,15 +81,15 @@
             display: inline-block;
         }
 
-        .major-content-edit-page .form-group label {
+        .box-create-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .major-content-edit-page .form-control,
-        .major-content-edit-page .bootstrap-select > .dropdown-toggle {
+        .box-create-page .form-control,
+        .box-create-page .bootstrap-select > .dropdown-toggle {
             min-height: 44px;
             border-radius: 10px !important;
             border: 1px solid #e4e6ef !important;
@@ -99,38 +99,38 @@
             transition: all 0.15s ease;
         }
 
-        .major-content-edit-page .form-control:focus,
-        .major-content-edit-page .bootstrap-select.show > .dropdown-toggle {
+        .box-create-page .form-control:focus,
+        .box-create-page .bootstrap-select.show > .dropdown-toggle {
             border-color: #3699ff !important;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
         }
 
-        .major-content-edit-page .bootstrap-select .filter-option {
+        .box-create-page .bootstrap-select .filter-option {
             text-align: right !important;
         }
 
-        .major-content-edit-page .dropdown-menu {
+        .box-create-page .dropdown-menu {
             border-radius: 12px;
             border: 1px solid #edf0f5;
             box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
         }
 
-        .major-content-edit-page .text-danger,
-        .major-content-edit-page p[style*="color:red"] {
+        .box-create-page .text-danger,
+        .box-create-page p[style*="color:red"] {
             color: #f64e60 !important;
             font-size: 13px;
             font-weight: 700;
             margin-top: 6px;
         }
 
-        .major-content-image-wrapper {
+        .box-image-wrapper {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             padding: 12px 0 6px;
         }
 
-        .major-content-edit-page .image-input {
+        .box-create-page .image-input {
             position: relative;
             width: 132px;
             height: 132px;
@@ -139,7 +139,7 @@
             box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
         }
 
-        .major-content-edit-page .image-input-wrapper {
+        .box-create-page .image-input-wrapper {
             width: 132px !important;
             height: 132px !important;
             border-radius: 50% !important;
@@ -150,7 +150,24 @@
             box-shadow: inset 0 0 0 1px #e4e6ef;
         }
 
-        .major-content-edit-page .image-input label.btn {
+        .box-create-page .image-input-wrapper::after {
+            content: "صورة";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7e8299;
+            font-size: 14px;
+            font-weight: 800;
+            pointer-events: none;
+        }
+
+        .box-create-page .image-input-wrapper[style*="url"]::after {
+            display: none;
+        }
+
+        .box-create-page .image-input label.btn {
             position: absolute;
             right: -5px;
             bottom: 8px;
@@ -164,25 +181,26 @@
             border: 1px solid #e4e6ef !important;
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12) !important;
             cursor: pointer;
+            z-index: 2;
         }
 
-        .major-content-edit-page .image-input label.btn svg path,
-        .major-content-edit-page .image-input label.btn svg rect,
-        .major-content-edit-page .image-input label.btn svg circle {
-            fill: #3699ff !important;
-        }
+        /*.box-create-page .image-input label.btn svg path,*/
+        /*.box-create-page .image-input label.btn svg rect,*/
+        /*.box-create-page .image-input label.btn svg circle {*/
+        /*    fill: #3699ff !important;*/
+        /*}*/
 
-        .major-content-edit-page .image-input input[type="file"] {
+        .box-create-page .image-input input[type="file"] {
             display: none;
         }
 
-        .major-content-submit-wrapper {
+        .box-submit-wrapper {
             display: flex;
             justify-content: center;
             padding: 0 28px 28px;
         }
 
-        .major-content-submit-btn {
+        .box-submit-btn {
             min-width: 220px;
             height: 48px;
             border-radius: 12px !important;
@@ -199,37 +217,37 @@
             transition: all 0.15s ease;
         }
 
-        .major-content-submit-btn:hover {
+        .box-submit-btn:hover {
             color: #ffffff !important;
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
         }
 
-        .major-content-submit-btn svg path {
+        .box-submit-btn svg path {
             fill: #ffffff !important;
         }
 
         @media (max-width: 768px) {
-            .major-content-edit-body {
+            .box-create-body {
                 padding: 18px;
             }
 
-            .major-content-section {
+            .box-section {
                 padding: 16px;
             }
 
-            .major-content-submit-wrapper {
+            .box-submit-wrapper {
                 padding: 0 18px 18px;
             }
 
-            .major-content-submit-btn {
+            .box-submit-btn {
                 width: 100%;
             }
         }
     </style>
 
-    <div class="major-content-edit-page">
-        <div class="card card-custom major-content-edit-card">
+    <div class="box-create-page">
+        <div class="card card-custom box-create-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -253,26 +271,24 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">تعديل تصنيف محتوى رئيسي</h3>
+                    <h3 class="card-label">إضافة صندوق</h3>
                 </div>
             </div>
 
             <form method="post"
-                  action="{{ route('updatemajorcontent', $home->id) }}"
+                  action="{{ route('boxs.store') }}"
                   enctype="multipart/form-data">
                 @csrf
 
-                <div class="card-body major-content-edit-body">
-                    <div class="major-content-section">
-                        <div class="major-content-section-title">الصورة</div>
+                <div class="card-body box-create-body">
+                    <div class="box-section">
+                        <div class="box-section-title">صورة الصندوق</div>
 
-                        <div class="major-content-image-wrapper">
-                            <div class="image-input image-input-outline image-input-circle" id="kt_image_3">
-                                <div class="image-input-wrapper mb-5"
-                                     id="im"
-                                     style="background-image:url({{ asset('uploads/' . $home->image) }})"></div>
+                        <div class="box-image-wrapper">
+                            <div class="image-input image-input-outline image-input-circle mx-auto" id="kt_image_3">
+                                <div class="image-input-wrapper mb-5" id="im"></div>
 
-                                <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow p-5"
+                                <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow p-4"
                                        data-action="change"
                                        data-toggle="tooltip"
                                        title=""
@@ -294,7 +310,10 @@
                                     </svg>
                                 </span>
 
-                                    <input type="file" name="image" id="do"/>
+                                    <input type="file"
+                                           name="image"
+                                           id="do"
+                                           accept="image/*"/>
                                     <input type="hidden" name="profile_avatar_remove"/>
                                 </label>
 
@@ -312,47 +331,76 @@
                         </div>
                     </div>
 
-                    <div class="major-content-section">
-                        <div class="major-content-section-title">بيانات التصنيف</div>
+                    <div class="box-section">
+                        <div class="box-section-title">بيانات الصندوق</div>
 
                         <div class="row">
-                            <div class="form-group col-lg-4 col-md-12">
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label>نوع حالة الصندوق <span class="text-danger">*</span></label>
+                                <select name="boxstatus_id"
+                                        class="form-control selectpicker"
+                                        required>
+                                    <option value="0" disabled="disabled" selected>الكل</option>
+                                    @foreach($boxstatus as $boxstat)
+                                        <option value="{{ $boxstat->id }}">{{ $boxstat->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6">
                                 <label>الاسم <span class="text-danger">*</span></label>
                                 <input type="text"
                                        class="form-control"
-                                       value="{{ $home->title }}"
+                                       id="title"
                                        name="title"
-                                       required="required"/>
+                                       value="{{ old('title') }}"
+                                       required/>
 
                                 @error('title')
                                 <p style="color:red;">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="major-content-section">
-                        <div class="major-content-section-title">البائعين</div>
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label>الكود <span class="text-danger">*</span></label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="code"
+                                       name="code"
+                                       value="{{ old('code') }}"
+                                       required/>
 
-                        <div class="row">
-                            <div class="form-group col-lg-4 col-md-12">
-                                <label>البائعين <span class="text-danger">*</span></label>
-                                <select name="seller_id[]"
-                                        class="form-control selectpicker"
-                                        multiple
-                                        required="required"
-                                        id="seller_id"
-                                        data-live-search="true">
-                                    @foreach($sellers as $seller)
-                                        <option value="{{ $seller->id }}"
-                                                style="padding-left:30px;"
-                                                @if(in_array($seller->id, $home->sellers->pluck('id')->toArray())) selected @endif>
-                                            {{ $seller->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                @error('code')
+                                <p style="color:red;">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                                @error('seller_id')
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label>الطول <span class="text-danger">*</span></label>
+                                <input type="number"
+                                       class="form-control"
+                                       id="height"
+                                       name="height"
+                                       value="{{ old('height') }}"
+                                       min="0"
+                                       required/>
+
+                                @error('height')
+                                <p style="color:red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label>العرض <span class="text-danger">*</span></label>
+                                <input type="number"
+                                       class="form-control"
+                                       id="width"
+                                       name="width"
+                                       value="{{ old('width') }}"
+                                       min="0"
+                                       required/>
+
+                                @error('width')
                                 <p style="color:red;">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -360,9 +408,9 @@
                     </div>
                 </div>
 
-                <div class="major-content-submit-wrapper">
-                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold major-content-submit-btn">
-                        حفظ التعديل
+                <div class="box-submit-wrapper">
+                    <button type="submit" class="btn btn-shadow btn-primary font-weight-bold box-submit-btn">
+                        إضافة
 
                         <span class="svg-icon svg-icon m-0 svg-icon-md">
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -394,22 +442,56 @@
 
 @section('scripts')
     <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageInput = document.getElementById('do');
+            const imagePreview = document.getElementById('im');
 
-                reader.onload = function(e) {
-                    $('#im').css('background-image', 0);
-                    $('#im').css('background-image', "url(" + e.target.result + ")");
-                }
+            if (imageInput && imagePreview) {
+                imageInput.addEventListener('change', function (event) {
+                    const image = event.target.files[0];
 
-                reader.readAsDataURL(input.files[0]);
+                    if (!image) {
+                        imagePreview.style.backgroundImage = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = function (readerEvent) {
+                        imagePreview.style.backgroundImage = `url("${readerEvent.target.result}")`;
+                        imagePreview.style.backgroundPosition = 'center';
+                        imagePreview.style.backgroundRepeat = 'no-repeat';
+                        imagePreview.style.backgroundSize = 'cover';
+                    };
+
+                    reader.readAsDataURL(image);
+                });
             }
-        }
-
-        $("#do").change(function() {
-            readURL(this);
-            console.log($('#im').css('background-image'));
         });
+
+        function filtercollectiontype(selected) {
+            let id = selected.value;
+            console.log(id);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                url: `../filtercollectiontype/${id}`,
+                dataType: "Json",
+                success: function(result) {
+                    if (result.status == true) {
+                        $("#value").empty();
+                        $("#value").val(result.value);
+                        $("#value1").empty();
+                        $("#value1").val(result.value);
+                    }
+                }
+            });
+        }
     </script>
 @endsection

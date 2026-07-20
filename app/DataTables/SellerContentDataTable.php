@@ -38,11 +38,11 @@ class SellerContentDataTable extends DataTable
               //  }
             })
             //  ->editColumn('name',function(HomecontentSeller $seller){
-          
+
             //         return '<a href="'.route("seller.show",$seller->seller->id).'">'.$seller->seller->name.'</a>';
-                
+
             // })
-           ->addColumn('action', 'admindashboard.homecontent.selleraction')->with('home',HomeContent::where('id',$this->id)->first())
+           ->addColumn('action', 'admindashboard.homecontent.V2.selleraction')->with('home',HomeContent::where('id',$this->id)->first())
 
             ->rawColumns([
            'action',

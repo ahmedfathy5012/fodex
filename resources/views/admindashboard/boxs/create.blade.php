@@ -28,7 +28,7 @@
  
  
  <!--begin::Form-->
-<form method="post" action="{{route('boxs.store')}}">
+<form method="post" action="{{route('boxs.store')}}" enctype="multipart/form-data">
 
     @csrf
   
@@ -46,7 +46,7 @@
                 <circle fill="#000000" opacity="0.3" cx="12" cy="13" r="2"/>
             </g>
         </svg><!--end::Svg Icon--></span>
-         <input type="file" name="image" id="do" />
+         <input type="file" name="image" id="do" accept="image/*" />
          <input type="hidden" name="profile_avatar_remove"/>
         </label>
         @error('image')
@@ -131,6 +131,29 @@
 </div>
 @endsection
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageInput = document.getElementById('do');
+        const imagePreview = document.getElementById('im');
+
+        imageInput.addEventListener('change', function (event) {
+            const image = event.target.files[0];
+
+            if (!image) {
+                imagePreview.style.backgroundImage = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (readerEvent) {
+                imagePreview.style.backgroundImage = `url("${readerEvent.target.result}")`;
+                imagePreview.style.backgroundPosition = 'center';
+                imagePreview.style.backgroundRepeat = 'no-repeat';
+                imagePreview.style.backgroundSize = 'cover';
+            };
+            reader.readAsDataURL(image);
+        });
+    });
+
     function filtercollectiontype(selected){
 let id = selected.value;
 console.log(id);

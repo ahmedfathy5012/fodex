@@ -26,7 +26,7 @@ class ItemSellerDataTable extends DataTable
                     return $item->seller->name;
                 }
             })
-             ->addColumn('action', 'admindashboard.items.selleraction')
+             ->addColumn('action', 'admindashboard.items.V2.selleraction')
             ->rawColumns([
            'action',
         ]);
@@ -50,7 +50,7 @@ class ItemSellerDataTable extends DataTable
      */
    public function html()
     {
-        
+
          return $this->builder()
         ->columns($this->getColumns())
         ->minifiedAjax()
@@ -74,7 +74,7 @@ class ItemSellerDataTable extends DataTable
      // ['data'=>'id','title'=>'id','visible' => false, 'printable' => false, 'exportable' => true],
             ['data'=>'title','title'=>'الاسم '],
               ['data'=>'description','title'=>'الوصف'],
-        
+
                   ['data'=>'price','title'=>'السعر '],
                 ['data'=>'seller_id','title'=>'البائع','searchable'=>false],
             ['data'=>'action','title'=>'الاعدادات','printable'=>false,'exportable'=>false,'orderable'=>false,'searchable'=>false],

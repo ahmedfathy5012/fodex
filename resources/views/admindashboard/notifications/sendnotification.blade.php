@@ -2,13 +2,13 @@
 @section('content')
 
 <div class="card card-custom">
- 
- 
+
+
     <div class="card-header">
 		<div class="card-title">
 			<span class="card-icon">
-			
-			
+
+
     			<span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2020-12-28-020759/theme/html/demo8/dist/../src/media/svg/icons/Files/File-plus.svg-->
                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -18,16 +18,16 @@
                         </g>
                     </svg><!--end::Svg Icon-->
                 </span>
-			
-			
+
+
 			</span>
-			
+
 			<h3 class="card-label"> ارسال اشعارات</h3>
-			
+
 		</div>
 	</div>
- 
- 
+
+
  <!--begin::Form-->
 
   <div class="card-body">
@@ -65,7 +65,7 @@
           <option value="{{$zone->id}}">{{$zone->name}}</option>
           @endforeach
         </select>
-       </div>     
+       </div>
           </div>
       <div class='row'>
     <!--<div class="form-group col-6">-->
@@ -96,9 +96,9 @@
     			</svg>
     			<!--end::Svg Icon-->
     		</span>
-           
-           
-           
+
+
+
        </button>
  <!--end::Form-->
 </div>
@@ -192,7 +192,7 @@ console.log(id);
          'state_id':$("#state").val(),
          'city_id':$("#city").val(),
          'zone_id':$("#zone").val()
-          },     
+          },
           beforeSend:function(){
       Swal.fire(
   'يتم الان ارسال الاشعارات',
@@ -218,6 +218,6 @@ location.reload();
           }
       })
   }
-      
+
 </script>
 @endsection
