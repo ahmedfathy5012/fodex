@@ -3,149 +3,147 @@
 namespace App\DataTables;
 
 use App\Models\Seller;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
+use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
-use App\Models\Address;
-use Illuminate\Http\Request;
 
 class SellerMoneyDataTable extends DataTable
 {
-   
-    public function dataTable($query,Request $request)
+    public function dataTable($query)
     {
-        return datatables()
- ->eloquent($query)
-
-             ->editColumn('order_number',function(Seller $seller){
-          
-                    $orders = $seller->orders()->where("status",3)
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                
-                return count($orders);
-            })->editColumn('total',function(Seller $seller){
-           $orders = $seller->orders()->where("status",3)
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                    return  array_sum($orders->pluck("priceafterdiscount")->toArray());
-                
-            })->editColumn('seller_commission',function(Seller $seller){
-          
-           $orders = $seller->orders()->where("status",3)
-                    ->where(function ($query)  {
-              
-                $query->when($this->request()->datepicker1,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    })->get();
-                    return  array_sum($orders->pluck("money_seller_commission")->toArray());
-                
+        return datatables()->eloquent($query)
+            ->addColumn('order_number', function (Seller $seller) {
+                return $this->getSellerOrdersQuery($seller)->count();
             })
-         
-
-            ->rawColumns([
-           'seller_commission',
-           'order_number','total'
-        ]);
+            ->addColumn('total', function (Seller $seller) {
+                return $this->getSellerOrdersQuery($seller)->sum('priceafterdiscount');
+            })
+            ->addColumn('seller_commission', function (Seller $seller) {
+                return $this->getSellerOrdersQuery($seller)->get()->sum(function ($order) {
+                    return (float) ($order->money_seller_commission ?? 0);
+                });
+            });
     }
 
-    /**
-     * Get query source of dataTable.
-     *
-     * @param \App\Models\Seller $model
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
+    private function getSellerOrdersQuery(Seller $seller)
+    {
+        $query = $seller->orders()->where('status', 3);
+        $dateRange = $this->getDateRange();
+
+        if ($dateRange !== null) {
+            $this->applyCompletionDateFilter($query, $dateRange);
+        }
+
+        return $query;
+    }
+
+    private function getDateRange(): ?array
+    {
+        $datepicker = $this->request()->input('datepicker1');
+
+        if (empty($datepicker)) {
+            return null;
+        }
+
+        $dates = preg_split('/\s+-\s+/', trim($datepicker));
+
+        if (!is_array($dates) || count($dates) !== 2) {
+            return null;
+        }
+
+        try {
+            return [
+                Carbon::createFromFormat('Y-m-d', trim($dates[0]))->startOfDay(),
+                Carbon::createFromFormat('Y-m-d', trim($dates[1]))->endOfDay(),
+            ];
+        } catch (\Throwable $exception) {
+            return null;
+        }
+    }
+
     public function query(Seller $model)
-    {   
-        /*$seller_ids = Address::whereIn('zone_id',auth()->user()->zones->pluck('id')->toArray())->get()->pluck('seller_id');
-          $country_id = $this->request()->get('country_id');
-     $state_id = $this->request()->get('state_id');
-     $city_id = $this->request()->get('city_id');
-     $zone_id = $this->request()->get('zone_id');
-        $sellers = $model->newQuery()->whereIn('id',$seller_ids);
- if($country_id){
-             $seller_ids = Address::where('country_id',$country_id)->get()->pluck('seller_id');
-             $sellers = $sellers->whereIn('id',$seller_ids);
-      
-         } if($country_id && $state_id){
-             $seller_ids = Address::where('state_id',$state_id)->get()->pluck('seller_id');
-            $sellers = $sellers->whereIn('id',$seller_ids);
-        
-         } if($country_id && $state_id && $city_id){
-             $seller_ids = Address::where('city_id',$city_id)->get()->pluck('seller_id');
-          $sellers = $sellers->whereIn('id',$seller_ids);
-             
-         } if($country_id && $state_id && $city_id && $zone_id){
-             $seller_ids = Address::where('zone_id',$zone_id)->get()->pluck('seller_id');
-           $sellers = $sellers->whereIn('id',$seller_ids);
-         }*/
-         $sellers = $model->newQuery();
+    {
+        $query = $model->newQuery();
+        $majorId = (int) $this->request()->input('major_id', 0);
+        $dateRange = $this->getDateRange();
 
-         $sellers->when($this->request()->major_id != 0, function ($q) {
-             return $q->where("major_id", $this->request()->major_id);
-         });
+        if ($majorId !== 0) {
+            $query->where('major_id', $majorId);
+        }
 
-         return $sellers;
+        if ($dateRange !== null) {
+            $query->whereHas('orders', function ($ordersQuery) use ($dateRange) {
+                $ordersQuery->where('status', 3);
+                $this->applyCompletionDateFilter($ordersQuery, $dateRange);
+            });
+        }
+
+        return $query;
     }
 
     /**
-     * Optional method if you want to use html builder.
-     *
-     * @return \Yajra\DataTables\Html\Builder
+     * المستحقات تُنسب إلى تاريخ التسليم، مع دعم الطلبات القديمة
+     * التي لم يكن يُحفظ لها delivery_time.
      */
+    private function applyCompletionDateFilter($query, array $dateRange): void
+    {
+        $query->where(function ($dateQuery) use ($dateRange) {
+            $dateQuery
+                ->whereBetween('delivery_time', $dateRange)
+                ->orWhere(function ($legacyQuery) use ($dateRange) {
+                    $legacyQuery
+                        ->whereNull('delivery_time')
+                        ->whereBetween('created_at', $dateRange);
+                });
+        });
+    }
+
     public function html()
     {
-          return $this->builder()
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        ->parameters([
-            'dom' => 'Blfrtip',
-            'order' => [0, 'desc'],
-            'lengthMenu' => [
-                [10,25,50,100,-1],[10,25,50,'all record']
-            ],
-       'buttons'      => ['export'],
-   ]);
+        return $this->builder()
+            ->setTableId('dataTableBuilder')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->parameters([
+                'dom' => 'Blfrtip',
+                'processing' => true,
+                'serverSide' => true,
+                'order' => [[0, 'desc']],
+                'lengthMenu' => [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, 'كل السجلات'],
+                ],
+                'buttons' => ['export'],
+            ]);
     }
 
-    /**
-     * Get columns.
-     *
-     * @return array
-     */
     protected function getColumns()
     {
-         return [
-              ['data'=>'name','title'=>'المطعم'],
-              ['data'=>'order_number','title'=>'عدد الطلبات' ,'searchable'=>false],
-            ['data'=>'total','title'=>'المبلغ كامل' ,'searchable'=>false],
-             ['data'=>'seller_commission','title'=>'النسبه من المطعم ' ,'searchable'=>false],
-                
+        return [
+            ['data' => 'name', 'name' => 'name', 'title' => 'المطعم'],
+            [
+                'data' => 'order_number',
+                'name' => 'order_number',
+                'title' => 'عدد الطلبات',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+            [
+                'data' => 'total',
+                'name' => 'total',
+                'title' => 'المبلغ كامل',
+                'searchable' => false,
+                'orderable' => false,
+            ],
+            [
+                'data' => 'seller_commission',
+                'name' => 'seller_commission',
+                'title' => 'النسبة من المطعم',
+                'searchable' => false,
+                'orderable' => false,
+            ],
         ];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
     protected function filename()
     {
         return 'Seller_' . date('YmdHis');

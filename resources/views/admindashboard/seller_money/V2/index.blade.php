@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .zone-orders-page {
+        .sellers-report-page {
             direction: rtl;
         }
 
-        .zone-orders-card {
+        .sellers-report-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .zone-orders-card .card-header {
+        .sellers-report-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .zone-orders-card .card-title {
+        .sellers-report-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .zone-orders-card .card-label {
+        .sellers-report-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .zone-orders-card .card-icon {
+        .sellers-report-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,17 +44,17 @@
             justify-content: center;
         }
 
-        /*.zone-orders-card .card-icon svg rect,*/
-        /*.zone-orders-card .card-icon svg path {*/
+        /*.sellers-report-card .card-icon svg rect,*/
+        /*.sellers-report-card .card-icon svg path {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .zone-orders-body {
+        .sellers-report-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .zone-orders-filter-box {
+        .sellers-report-filter-box {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 16px;
@@ -62,7 +62,7 @@
             margin-bottom: 26px;
         }
 
-        .zone-orders-section-title {
+        .sellers-report-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .zone-orders-section-title::before {
+        .sellers-report-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,18 +81,45 @@
             display: inline-block;
         }
 
-        .zone-orders-page .form-group label {
+        .sellers-report-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .zone-date-wrapper {
+        .sellers-report-page .form-control,
+        .sellers-report-page .bootstrap-select > .dropdown-toggle {
+            min-height: 44px;
+            border-radius: 10px !important;
+            border: 1px solid #e4e6ef !important;
+            color: #3f4254 !important;
+            background: #ffffff !important;
+            box-shadow: none !important;
+            transition: all 0.15s ease;
+        }
+
+        .sellers-report-page .form-control:focus,
+        .sellers-report-page .bootstrap-select.show > .dropdown-toggle {
+            border-color: #3699ff !important;
+            box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
+        }
+
+        .sellers-report-page .bootstrap-select .filter-option {
+            text-align: right !important;
+        }
+
+        .sellers-report-page .dropdown-menu {
+            border-radius: 12px;
+            border: 1px solid #edf0f5;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+        }
+
+        .seller-date-wrapper {
             width: 100%;
         }
 
-        .zone-date-group {
+        .seller-date-group {
             width: 100%;
             height: 44px;
             display: flex;
@@ -100,7 +127,7 @@
             direction: rtl;
         }
 
-        .zone-date-button {
+        .seller-date-button {
             width: 46px;
             min-width: 46px;
             height: 44px;
@@ -117,19 +144,19 @@
             transition: all 0.15s ease;
         }
 
-        .zone-date-button:hover {
+        .seller-date-button:hover {
             background: #187de4;
             border-color: #187de4;
         }
 
-        .zone-date-button i {
+        .seller-date-button i {
             color: #ffffff !important;
             font-size: 16px;
             padding: 0 !important;
             margin: 0 !important;
         }
 
-        .zone-date-group .datepicker {
+        .seller-date-group .datepicker {
             width: 100% !important;
             height: 44px !important;
             min-height: 44px !important;
@@ -145,12 +172,12 @@
             text-align: center;
         }
 
-        .zone-date-group .datepicker:focus {
+        .seller-date-group .datepicker:focus {
             border-color: #e4e6ef !important;
             box-shadow: none !important;
         }
 
-        .zone-date-clear {
+        .seller-date-clear {
             width: 44px;
             min-width: 44px;
             height: 44px;
@@ -170,7 +197,7 @@
             transition: all 0.15s ease;
         }
 
-        .zone-date-clear:hover {
+        .seller-date-clear:hover {
             background: #fff5f6;
             color: #f64e60;
         }
@@ -181,13 +208,13 @@
             z-index: 999999 !important;
         }
 
-        .zone-search-wrapper {
+        .seller-search-wrapper {
             display: flex;
             justify-content: center;
             margin-top: 16px;
         }
 
-        .zone-search-btn {
+        .seller-search-btn {
             min-width: 180px;
             height: 46px;
             border-radius: 12px !important;
@@ -205,13 +232,13 @@
             transition: all 0.15s ease;
         }
 
-        .zone-search-btn:hover {
+        .seller-search-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
             color: #ffffff !important;
         }
 
-        .zone-orders-table-section {
+        .sellers-table-section {
             background: #ffffff;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -219,14 +246,14 @@
             overflow-x: auto;
         }
 
-        .zone-orders-page table.dataTable {
+        .sellers-report-page table.dataTable {
             width: 100% !important;
             border-collapse: separate !important;
             border-spacing: 0 8px !important;
             margin-top: 0 !important;
         }
 
-        .zone-orders-page table.dataTable thead th {
+        .sellers-report-page table.dataTable thead th {
             background: #f3f6f9;
             color: #3f4254;
             font-weight: 800;
@@ -236,20 +263,20 @@
             text-align: center;
         }
 
-        .zone-orders-page table.dataTable thead th:first-child {
+        .sellers-report-page table.dataTable thead th:first-child {
             border-radius: 0 10px 10px 0;
         }
 
-        .zone-orders-page table.dataTable thead th:last-child {
+        .sellers-report-page table.dataTable thead th:last-child {
             border-radius: 10px 0 0 10px;
         }
 
-        .zone-orders-page table.dataTable tbody tr {
+        .sellers-report-page table.dataTable tbody tr {
             background: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
-        .zone-orders-page table.dataTable tbody td {
+        .sellers-report-page table.dataTable tbody td {
             border-top: 1px solid #edf0f5 !important;
             border-bottom: 1px solid #edf0f5 !important;
             padding: 13px 12px !important;
@@ -258,17 +285,17 @@
             color: #3f4254;
         }
 
-        .zone-orders-page table.dataTable tbody td:first-child {
+        .sellers-report-page table.dataTable tbody td:first-child {
             border-right: 1px solid #edf0f5 !important;
             border-radius: 0 10px 10px 0;
         }
 
-        .zone-orders-page table.dataTable tbody td:last-child {
+        .sellers-report-page table.dataTable tbody td:last-child {
             border-left: 1px solid #edf0f5 !important;
             border-radius: 10px 0 0 10px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_filter input {
+        .sellers-report-page .dataTables_wrapper .dataTables_filter input {
             border-radius: 10px;
             border: 1px solid #e4e6ef;
             min-height: 38px;
@@ -277,30 +304,30 @@
             box-shadow: none !important;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_filter input:focus {
+        .sellers-report-page .dataTables_wrapper .dataTables_filter input:focus {
             border-color: #3699ff;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
             outline: none;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_length select {
+        .sellers-report-page .dataTables_wrapper .dataTables_length select {
             border-radius: 8px;
             border: 1px solid #e4e6ef;
             min-height: 36px;
             padding: 12px 24px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_info {
+        .sellers-report-page .dataTables_wrapper .dataTables_info {
             color: #7e8299;
             font-weight: 600;
             padding-top: 16px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate {
+        .sellers-report-page .dataTables_wrapper .dataTables_paginate {
             padding-top: 14px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button {
+        .sellers-report-page .dataTables_wrapper .dataTables_paginate .paginate_button {
             border-radius: 8px !important;
             border: 0 !important;
             margin: 0 2px;
@@ -309,37 +336,37 @@
             background: transparent !important;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        .sellers-report-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             background: #3699ff !important;
             color: #ffffff !important;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        .sellers-report-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #eaf4ff !important;
             color: #3699ff !important;
         }
 
         @media (max-width: 768px) {
-            .zone-orders-body {
+            .sellers-report-body {
                 padding: 18px;
             }
 
-            .zone-orders-filter-box {
+            .sellers-report-filter-box {
                 padding: 16px;
             }
 
-            .zone-search-btn {
+            .seller-search-btn {
                 width: 100%;
             }
 
-            .zone-orders-table-section {
+            .sellers-table-section {
                 padding: 14px;
             }
         }
     </style>
 
-    <div class="zone-orders-page">
-        <div class="card card-custom gutter-b zone-orders-card">
+    <div class="sellers-report-page">
+        <div class="card card-custom gutter-b sellers-report-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -361,22 +388,35 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">طلبات المناطق</h3>
+                    <h3 class="card-label">البائعين</h3>
                 </div>
             </div>
 
-            <div class="card-body zone-orders-body">
-                <div class="zone-orders-filter-box">
-                    <div class="zone-orders-section-title">فلترة الطلبات</div>
+            <div class="card-body sellers-report-body">
+                <div class="sellers-report-filter-box">
+                    <div class="sellers-report-section-title">فلترة البائعين</div>
 
                     <div class="row">
+                        <div class="form-group col-lg-4 col-md-6">
+                            <label>القسم العام</label>
+                            <select name="major_id"
+                                    class="form-control selectpicker"
+                                    id="major"
+                                    data-live-search="true">
+                                <option value="0">الكل</option>
+                                @foreach($majors as $major)
+                                    <option value="{{ $major->id }}">{{ $major->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group col-lg-4 col-md-8 mx-auto">
                             <label>فترة التقرير</label>
 
-                            <div class="zone-date-wrapper">
-                                <div class="zone-date-group">
+                            <div class="seller-date-wrapper">
+                                <div class="seller-date-group">
                                     <button type="button"
-                                            class="zone-date-button"
+                                            class="seller-date-button"
                                             id="openDatePicker">
                                         <i class="fa fa-calendar"></i>
                                     </button>
@@ -389,7 +429,7 @@
                                            placeholder="اختر فترة التقرير">
 
                                     <button type="button"
-                                            class="zone-date-clear"
+                                            class="seller-date-clear"
                                             id="clearDate"
                                             title="مسح التاريخ">
                                         ×
@@ -399,15 +439,15 @@
                         </div>
                     </div>
 
-                    <div class="zone-search-wrapper">
-                    <span id="btn" class="btn btn-sm zone-search-btn">
+                    <div class="seller-search-wrapper">
+                    <span id="btn" class="btn btn-sm seller-search-btn">
                         <i class="fa fa-search"></i>
                         بحث
                     </span>
                     </div>
                 </div>
 
-                <div class="zone-orders-table-section">
+                <div class="sellers-table-section">
                     {!! $dataTable->table([
 
                     ], true) !!}
@@ -488,10 +528,12 @@
                 e.stopPropagation();
 
                 $('#datepicker').val('');
+                $('#dataTableBuilder').DataTable().ajax.reload();
             });
 
             $('#dataTableBuilder').on('preXhr.dt', function(e, settings, data) {
                 data.datepicker1 = $('#datepicker').val();
+                data.major_id = $('#major').val();
             });
 
             $("#btn").on("click", function() {

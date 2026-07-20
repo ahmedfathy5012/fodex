@@ -3,142 +3,126 @@
 namespace App\DataTables;
 
 use App\Models\Major;
-use Yajra\DataTables\Html\Button;
-use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
+use App\Models\Order;
+use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
-use App\Models\Address;
-use Illuminate\Http\Request;
 
 class MajorMoneyDataTable extends DataTable
 {
-   
-    public function dataTable($query,Request $request)
+    public function dataTable($query)
     {
-        return datatables()
-             ->eloquent($query)
-             ->editColumn('order_number',function(Major $major){
-                    $orders = $major->done_orders()
-                    ->filter(function ($query)  {
-              
-                $query->when($this->request()->datepicker1 != null,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                
-                    });
-              //  dd(count($major->done_orders()),count($orders));
-                return count($orders);
-            })->editColumn('total',function(Major $major){
-           $orders = $major->done_orders()
-                    ->filter(function ($query)  {
-              
-                $query->when($this->request()->datepicker1 != null,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    });
-                    return  array_sum($orders->pluck("priceafterdiscount")->toArray());
-                
-            })->editColumn('money_driver_commission',function(Major $major){
-          
-           $orders = $major->done_orders()
-                    ->filter(function ($query)  {
-              
-                $query->when($this->request()->datepicker1 != null,function($q){
-                    $from = explode(" - ",$this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ",$this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at',[$from,$to]);
-                });
-                    });
-                    return  array_sum($orders->pluck("money_driver_commission")->toArray());
-                
+        return datatables()->eloquent($query)
+            ->addColumn('order_number', function (Major $major) {
+                return $this->getMajorOrdersQuery($major)->count();
             })
-         
-
-            ->rawColumns([
-           'money_driver_commission',
-           'order_number','total'
-        ]);
+            ->addColumn('total', function (Major $major) {
+                return $this->getMajorOrdersQuery($major)->sum('priceafterdiscount');
+            })
+            ->addColumn('money_driver_commission', function (Major $major) {
+                return $this->getMajorOrdersQuery($major)->get()->sum(function ($order) {
+                    return (float) ($order->money_driver_commission ?? 0);
+                });
+            });
     }
 
-    /**
-     * Get query source of dataTable.
-     *
-     * @param \App\Models\Driver $model
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
+    private function getMajorOrdersQuery(Major $major)
+    {
+        $query = Order::query()
+            ->where('status', 3)
+            ->whereHas('seller', function ($sellerQuery) use ($major) {
+                $sellerQuery->where('major_id', $major->id);
+            });
+
+        $dateRange = $this->getDateRange();
+
+        if ($dateRange !== null) {
+            $this->applyCompletionDateFilter($query, $dateRange);
+        }
+
+        return $query;
+    }
+
+    private function getDateRange(): ?array
+    {
+        $datepicker = $this->request()->input('datepicker1');
+
+        if (empty($datepicker)) {
+            return null;
+        }
+
+        $dates = preg_split('/\s+-\s+/', trim($datepicker));
+
+        if (!is_array($dates) || count($dates) !== 2) {
+            return null;
+        }
+
+        try {
+            return [
+                Carbon::createFromFormat('Y-m-d', trim($dates[0]))->startOfDay(),
+                Carbon::createFromFormat('Y-m-d', trim($dates[1]))->endOfDay(),
+            ];
+        } catch (\Throwable $exception) {
+            return null;
+        }
+    }
+
+    private function applyCompletionDateFilter($query, array $dateRange): void
+    {
+        $query->where(function ($dateQuery) use ($dateRange) {
+            $dateQuery
+                ->whereBetween('delivery_time', $dateRange)
+                ->orWhere(function ($legacyQuery) use ($dateRange) {
+                    $legacyQuery
+                        ->whereNull('delivery_time')
+                        ->whereBetween('created_at', $dateRange);
+                });
+        });
+    }
+
     public function query(Major $model)
-    {   
-        /*$major_ids = Address::whereIn('zone_id',auth()->user()->zones->pluck('id')->toArray())->get()->pluck('Driver_id');
-          $country_id = $this->request()->get('country_id');
-     $state_id = $this->request()->get('state_id');
-     $city_id = $this->request()->get('city_id');
-     $zone_id = $this->request()->get('zone_id');
-        $majors = $model->newQuery()->whereIn('id',$major_ids);
- if($country_id){
-             $major_ids = Address::where('country_id',$country_id)->get()->pluck('Driver_id');
-             $majors = $majors->whereIn('id',$major_ids);
-      
-         } if($country_id && $state_id){
-             $major_ids = Address::where('state_id',$state_id)->get()->pluck('Driver_id');
-            $majors = $majors->whereIn('id',$major_ids);
-        
-         } if($country_id && $state_id && $city_id){
-             $major_ids = Address::where('city_id',$city_id)->get()->pluck('Driver_id');
-          $majors = $majors->whereIn('id',$major_ids);
-             
-         } if($country_id && $state_id && $city_id && $zone_id){
-             $major_ids = Address::where('zone_id',$zone_id)->get()->pluck('Driver_id');
-           $majors = $majors->whereIn('id',$major_ids);
-         }*/
-         return  $model->newQuery();
+    {
+        $query = $model->newQuery();
+        $dateRange = $this->getDateRange();
+
+        if ($dateRange !== null) {
+            $query->whereHas('sellers.orders', function ($ordersQuery) use ($dateRange) {
+                $ordersQuery->where('status', 3);
+                $this->applyCompletionDateFilter($ordersQuery, $dateRange);
+            });
+        }
+
+        return $query;
     }
 
-    /**
-     * Optional method if you want to use html builder.
-     *
-     * @return \Yajra\DataTables\Html\Builder
-     */
     public function html()
     {
-          return $this->builder()
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        ->parameters([
-            'dom' => 'Blfrtip',
-            'order' => [0, 'desc'],
-            'lengthMenu' => [
-                [10,25,50,100,-1],[10,25,50,'all record']
-            ],
-       'buttons'      => ['export'],
-   ]);
+        return $this->builder()
+            ->setTableId('dataTableBuilder')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->parameters([
+                'dom' => 'Blfrtip',
+                'processing' => true,
+                'serverSide' => true,
+                'order' => [[0, 'desc']],
+                'lengthMenu' => [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, 'كل السجلات'],
+                ],
+                'buttons' => ['export'],
+            ]);
     }
 
-    /**
-     * Get columns.
-     *
-     * @return array
-     */
     protected function getColumns()
     {
-         return [
-              ['data'=>'title','title'=>'التخصص'],
-              ['data'=>'order_number','title'=>'عدد الطلبات' ,'searchable'=>false,'orderable'=>false],
-            ['data'=>'total','title'=>'المبلغ كامل' ,'searchable'=>false,'orderable'=>false],
-             ['data'=>'money_driver_commission','title'=>'النسبه الطيار  ' ,'searchable'=>false,'orderable'=>false],
-                
+        return [
+            ['data' => 'title', 'name' => 'title', 'title' => 'التخصص'],
+            ['data' => 'order_number', 'name' => 'order_number', 'title' => 'عدد الطلبات', 'searchable' => false, 'orderable' => false],
+            ['data' => 'total', 'name' => 'total', 'title' => 'المبلغ كامل', 'searchable' => false, 'orderable' => false],
+            ['data' => 'money_driver_commission', 'name' => 'money_driver_commission', 'title' => 'النسبة الطيار', 'searchable' => false, 'orderable' => false],
         ];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
     protected function filename()
     {
         return 'Major_' . date('YmdHis');

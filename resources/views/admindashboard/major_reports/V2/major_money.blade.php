@@ -2,11 +2,11 @@
 
 @section('content')
     <style>
-        .zone-orders-page {
+        .sections-report-page {
             direction: rtl;
         }
 
-        .zone-orders-card {
+        .sections-report-card {
             border: 0;
             border-radius: 16px;
             overflow: hidden;
@@ -14,27 +14,27 @@
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .zone-orders-card .card-header {
+        .sections-report-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .zone-orders-card .card-title {
+        .sections-report-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .zone-orders-card .card-label {
+        .sections-report-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .zone-orders-card .card-icon {
+        .sections-report-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,17 +44,17 @@
             justify-content: center;
         }
 
-        /*.zone-orders-card .card-icon svg rect,*/
-        /*.zone-orders-card .card-icon svg path {*/
+        /*.sections-report-card .card-icon svg rect,*/
+        /*.sections-report-card .card-icon svg path {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .zone-orders-body {
+        .sections-report-body {
             padding: 28px;
             background: #ffffff;
         }
 
-        .zone-orders-filter-box {
+        .sections-filter-box {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 16px;
@@ -62,7 +62,7 @@
             margin-bottom: 26px;
         }
 
-        .zone-orders-section-title {
+        .sections-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +72,7 @@
             gap: 8px;
         }
 
-        .zone-orders-section-title::before {
+        .sections-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,18 +81,18 @@
             display: inline-block;
         }
 
-        .zone-orders-page .form-group label {
+        .sections-report-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .zone-date-wrapper {
+        .section-date-wrapper {
             width: 100%;
         }
 
-        .zone-date-group {
+        .section-date-group {
             width: 100%;
             height: 44px;
             display: flex;
@@ -100,7 +100,7 @@
             direction: rtl;
         }
 
-        .zone-date-button {
+        .section-date-button {
             width: 46px;
             min-width: 46px;
             height: 44px;
@@ -117,19 +117,19 @@
             transition: all 0.15s ease;
         }
 
-        .zone-date-button:hover {
+        .section-date-button:hover {
             background: #187de4;
             border-color: #187de4;
         }
 
-        .zone-date-button i {
+        .section-date-button i {
             color: #ffffff !important;
             font-size: 16px;
             padding: 0 !important;
             margin: 0 !important;
         }
 
-        .zone-date-group .datepicker {
+        .section-date-group .datepicker {
             width: 100% !important;
             height: 44px !important;
             min-height: 44px !important;
@@ -145,12 +145,12 @@
             text-align: center;
         }
 
-        .zone-date-group .datepicker:focus {
+        .section-date-group .datepicker:focus {
             border-color: #e4e6ef !important;
             box-shadow: none !important;
         }
 
-        .zone-date-clear {
+        .section-date-clear {
             width: 44px;
             min-width: 44px;
             height: 44px;
@@ -170,7 +170,7 @@
             transition: all 0.15s ease;
         }
 
-        .zone-date-clear:hover {
+        .section-date-clear:hover {
             background: #fff5f6;
             color: #f64e60;
         }
@@ -181,13 +181,13 @@
             z-index: 999999 !important;
         }
 
-        .zone-search-wrapper {
+        .section-search-wrapper {
             display: flex;
             justify-content: center;
             margin-top: 16px;
         }
 
-        .zone-search-btn {
+        .section-search-btn {
             min-width: 180px;
             height: 46px;
             border-radius: 12px !important;
@@ -205,13 +205,13 @@
             transition: all 0.15s ease;
         }
 
-        .zone-search-btn:hover {
+        .section-search-btn:hover {
             transform: translateY(-1px);
             box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
             color: #ffffff !important;
         }
 
-        .zone-orders-table-section {
+        .sections-table-section {
             background: #ffffff;
             border: 1px solid #edf0f5;
             border-radius: 14px;
@@ -219,14 +219,14 @@
             overflow-x: auto;
         }
 
-        .zone-orders-page table.dataTable {
+        .sections-report-page table.dataTable {
             width: 100% !important;
             border-collapse: separate !important;
             border-spacing: 0 8px !important;
             margin-top: 0 !important;
         }
 
-        .zone-orders-page table.dataTable thead th {
+        .sections-report-page table.dataTable thead th {
             background: #f3f6f9;
             color: #3f4254;
             font-weight: 800;
@@ -236,20 +236,20 @@
             text-align: center;
         }
 
-        .zone-orders-page table.dataTable thead th:first-child {
+        .sections-report-page table.dataTable thead th:first-child {
             border-radius: 0 10px 10px 0;
         }
 
-        .zone-orders-page table.dataTable thead th:last-child {
+        .sections-report-page table.dataTable thead th:last-child {
             border-radius: 10px 0 0 10px;
         }
 
-        .zone-orders-page table.dataTable tbody tr {
+        .sections-report-page table.dataTable tbody tr {
             background: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
         }
 
-        .zone-orders-page table.dataTable tbody td {
+        .sections-report-page table.dataTable tbody td {
             border-top: 1px solid #edf0f5 !important;
             border-bottom: 1px solid #edf0f5 !important;
             padding: 13px 12px !important;
@@ -258,17 +258,17 @@
             color: #3f4254;
         }
 
-        .zone-orders-page table.dataTable tbody td:first-child {
+        .sections-report-page table.dataTable tbody td:first-child {
             border-right: 1px solid #edf0f5 !important;
             border-radius: 0 10px 10px 0;
         }
 
-        .zone-orders-page table.dataTable tbody td:last-child {
+        .sections-report-page table.dataTable tbody td:last-child {
             border-left: 1px solid #edf0f5 !important;
             border-radius: 10px 0 0 10px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_filter input {
+        .sections-report-page .dataTables_wrapper .dataTables_filter input {
             border-radius: 10px;
             border: 1px solid #e4e6ef;
             min-height: 38px;
@@ -277,30 +277,30 @@
             box-shadow: none !important;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_filter input:focus {
+        .sections-report-page .dataTables_wrapper .dataTables_filter input:focus {
             border-color: #3699ff;
             box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
             outline: none;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_length select {
+        .sections-report-page .dataTables_wrapper .dataTables_length select {
             border-radius: 8px;
             border: 1px solid #e4e6ef;
             min-height: 36px;
             padding: 12px 24px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_info {
+        .sections-report-page .dataTables_wrapper .dataTables_info {
             color: #7e8299;
             font-weight: 600;
             padding-top: 16px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate {
+        .sections-report-page .dataTables_wrapper .dataTables_paginate {
             padding-top: 14px;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button {
+        .sections-report-page .dataTables_wrapper .dataTables_paginate .paginate_button {
             border-radius: 8px !important;
             border: 0 !important;
             margin: 0 2px;
@@ -309,37 +309,37 @@
             background: transparent !important;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        .sections-report-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             background: #3699ff !important;
             color: #ffffff !important;
         }
 
-        .zone-orders-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        .sections-report-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: #eaf4ff !important;
             color: #3699ff !important;
         }
 
         @media (max-width: 768px) {
-            .zone-orders-body {
+            .sections-report-body {
                 padding: 18px;
             }
 
-            .zone-orders-filter-box {
+            .sections-filter-box {
                 padding: 16px;
             }
 
-            .zone-search-btn {
+            .section-search-btn {
                 width: 100%;
             }
 
-            .zone-orders-table-section {
+            .sections-table-section {
                 padding: 14px;
             }
         }
     </style>
 
-    <div class="zone-orders-page">
-        <div class="card card-custom gutter-b zone-orders-card">
+    <div class="sections-report-page">
+        <div class="card card-custom gutter-b sections-report-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -361,22 +361,22 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">طلبات المناطق</h3>
+                    <h3 class="card-label">التقارير الخاصة بالأقسام</h3>
                 </div>
             </div>
 
-            <div class="card-body zone-orders-body">
-                <div class="zone-orders-filter-box">
-                    <div class="zone-orders-section-title">فلترة الطلبات</div>
+            <div class="card-body sections-report-body">
+                <div class="sections-filter-box">
+                    <div class="sections-section-title">فلترة التقرير</div>
 
                     <div class="row">
                         <div class="form-group col-lg-4 col-md-8 mx-auto">
                             <label>فترة التقرير</label>
 
-                            <div class="zone-date-wrapper">
-                                <div class="zone-date-group">
+                            <div class="section-date-wrapper">
+                                <div class="section-date-group">
                                     <button type="button"
-                                            class="zone-date-button"
+                                            class="section-date-button"
                                             id="openDatePicker">
                                         <i class="fa fa-calendar"></i>
                                     </button>
@@ -389,7 +389,7 @@
                                            placeholder="اختر فترة التقرير">
 
                                     <button type="button"
-                                            class="zone-date-clear"
+                                            class="section-date-clear"
                                             id="clearDate"
                                             title="مسح التاريخ">
                                         ×
@@ -399,15 +399,15 @@
                         </div>
                     </div>
 
-                    <div class="zone-search-wrapper">
-                    <span id="btn" class="btn btn-sm zone-search-btn">
+                    <div class="section-search-wrapper">
+                    <span id="btn" class="btn btn-sm section-search-btn">
                         <i class="fa fa-search"></i>
                         بحث
                     </span>
                     </div>
                 </div>
 
-                <div class="zone-orders-table-section">
+                <div class="sections-table-section">
                     {!! $dataTable->table([
 
                     ], true) !!}
@@ -488,6 +488,7 @@
                 e.stopPropagation();
 
                 $('#datepicker').val('');
+                $('#dataTableBuilder').DataTable().ajax.reload();
             });
 
             $('#dataTableBuilder').on('preXhr.dt', function(e, settings, data) {

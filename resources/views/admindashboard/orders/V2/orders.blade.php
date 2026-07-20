@@ -44,10 +44,10 @@
             justify-content: center;
         }
 
-        .orders-index-card .card-icon svg path,
-        .orders-index-card .card-icon svg rect {
-            fill: #3699ff !important;
-        }
+        /*.orders-index-card .card-icon svg path,*/
+        /*.orders-index-card .card-icon svg rect {*/
+        /*    fill: #3699ff !important;*/
+        /*}*/
 
         .orders-index-body {
             padding: 28px;
@@ -121,54 +121,80 @@
             margin: 8px 0 18px;
         }
 
-        .btn-dating {
-            position: relative;
+        .orders-date-group {
             width: 100%;
             max-width: 360px;
-            margin: 0;
+            height: 44px;
+            display: flex;
+            align-items: stretch;
+            direction: rtl;
         }
 
-        .btn-dating label {
-            position: absolute;
-            top: 1px;
-            right: 1px;
-            z-index: 2;
+        .orders-date-button {
             width: 46px;
-            height: 42px;
-            margin: 0;
+            min-width: 46px;
+            height: 44px;
+            border: 1px solid #3699ff;
+            border-left: 0;
             border-radius: 0 10px 10px 0;
             background: #3699ff;
             color: #ffffff;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 0;
-            opacity: 1;
-            cursor: pointer;
-        }
-
-        .btn-dating label i {
-            color: #ffffff;
-            font-size: 14px;
-        }
-
-        .btn-dating .datepicker {
-            width: 100%;
-            min-height: 44px;
-            border-radius: 10px;
-            border: 1px solid #e4e6ef;
-            padding: 9px 56px 9px 14px;
-            color: #3f4254;
-            background: #ffffff;
-            outline: none;
-            box-shadow: none;
             cursor: pointer;
             transition: all 0.15s ease;
         }
 
-        .btn-dating .datepicker:focus {
-            border-color: #3699ff;
-            box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12);
+        .orders-date-button:hover {
+            background: #187de4;
+            border-color: #187de4;
+        }
+
+        .orders-date-button i {
+            color: #ffffff !important;
+            font-size: 16px;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .orders-date-group .datepicker {
+            width: 100% !important;
+            height: 44px !important;
+            border-radius: 0 !important;
+            border: 1px solid #e4e6ef !important;
+            border-right: 0 !important;
+            border-left: 0 !important;
+            padding: 10px 14px !important;
+            color: #3f4254 !important;
+            background: #ffffff !important;
+            box-shadow: none !important;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .orders-date-clear {
+            width: 44px;
+            min-width: 44px;
+            height: 44px;
+            border: 1px solid #e4e6ef;
+            border-right: 0;
+            border-radius: 10px 0 0 10px;
+            background: #f3f6f9;
+            color: #7e8299;
+            font-size: 22px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .orders-date-clear:hover {
+            background: #fff5f6;
+            color: #f64e60;
         }
 
         .orders-search-row {
@@ -376,13 +402,14 @@
                     </div>
 
                     <div class="orders-date-wrapper">
-                        <div class="form-group btn-dating">
-                            <label for="datepicker">
-                                <i class="fa fa-calendar"></i>&nbsp;
-                                <span></span>
-                                <i class="fa fa-caret-down" id="fsq"></i>
-                            </label>
-                            <input type="text" id="datepicker" name="datepicker" class="datepicker" readonly="">
+                        <div class="orders-date-group">
+                            <button type="button" class="orders-date-button" id="openDatePicker">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                            <input type="text" id="datepicker" name="datepicker"
+                                   class="form-control datepicker" readonly
+                                   placeholder="اختر فترة التقرير">
+                            <button type="button" class="orders-date-clear" id="clearDate" title="مسح التاريخ">×</button>
                         </div>
                     </div>
 
@@ -463,9 +490,10 @@
 
         $('.datepicker').daterangepicker({
             autoApply: true,
-            opens: "left",
-            drops: "auto",
-            parentEl: "main",
+            autoUpdateInput: false,
+            opens: "center",
+            drops: "down",
+            parentEl: "body",
             ranges: {
                 "اليوم": [moment(), moment()],
                 "أمس": [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -507,6 +535,23 @@
                     "ديسمبر"
                 ],
             },
+        });
+
+        $("#openDatePicker").on("click", function() {
+            $("#datepicker").trigger("click");
+        });
+
+        $('#datepicker').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(
+                picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD')
+            );
+        });
+
+        $('#clearDate').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#datepicker').val('');
+            $('#dataTableBuilder').DataTable().ajax.reload();
         });
 
         $("#btn").on("click", function () {

@@ -76,9 +76,13 @@ class DailyOrderDataTable extends DataTable
                     });
                 });
                 $query->when($request->datepicker1, function ($q) use ($request) {
-                    $from = explode(" - ", $this->request()->get('datepicker1'))[0];
-                    $to = explode(" - ", $this->request()->get('datepicker1'))[1];
-                    return $q->whereBetween('created_at', [$from, $to]);
+                    $dateRange = $this->getDateRange();
+
+                    if ($dateRange !== null) {
+                        return $q->whereBetween('created_at', $dateRange);
+                    }
+
+                    return $q;
                 });
                 $query->when($request->status != '', function ($q) use ($request) {
                     if ($request->status == 5) {
@@ -111,7 +115,11 @@ class DailyOrderDataTable extends DataTable
         //  $from = explode(" - ",$this->request()->get('datepicker1'))[0];
 
         //  }
-        $orders = $model->newQuery()->whereDate("created_at", Carbon::now()->format('Y-m-d'))->orderBy("id", "desc");
+        $orders = $model->newQuery()->orderBy("id", "desc");
+
+        if ($this->getDateRange() === null) {
+            $orders->whereDate("created_at", Carbon::today());
+        }
         if (auth()->user()->type == 1) {
             $orders = $orders->whereIn("country_id", auth()->user()->countries->pluck("id")->toArray());
         } else if (auth()->user()->type == 2) {
@@ -125,6 +133,33 @@ class DailyOrderDataTable extends DataTable
         }
         return $orders;
 
+    }
+
+    /**
+     * استخراج نطاق التاريخ المختار شاملًا بداية ونهاية اليومين.
+     */
+    private function getDateRange(): ?array
+    {
+        $datepicker = $this->request()->input('datepicker1');
+
+        if (empty($datepicker)) {
+            return null;
+        }
+
+        $dates = preg_split('/\s+-\s+/', trim($datepicker));
+
+        if (!is_array($dates) || count($dates) !== 2) {
+            return null;
+        }
+
+        try {
+            return [
+                Carbon::createFromFormat('Y-m-d', trim($dates[0]))->startOfDay(),
+                Carbon::createFromFormat('Y-m-d', trim($dates[1]))->endOfDay(),
+            ];
+        } catch (\Throwable $exception) {
+            return null;
+        }
     }
 
     /**
