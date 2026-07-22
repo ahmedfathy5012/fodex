@@ -2,39 +2,39 @@
 
 @section('content')
     <style>
-        .expenses-page {
+        .wallet-page {
             direction: rtl;
         }
 
-        .expenses-card {
+        .wallet-card {
             border: 0;
             border-radius: 16px;
-            overflow: hidden;
+            overflow: visible !important;
             background: #ffffff;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         }
 
-        .expenses-card .card-header {
+        .wallet-card .card-header {
             background: #ffffff;
             border-bottom: 1px solid #edf0f5;
             padding: 22px 26px;
         }
 
-        .expenses-card .card-title {
+        .wallet-card .card-title {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .expenses-card .card-label {
+        .wallet-card .card-label {
             margin: 0;
             font-size: 20px;
             font-weight: 800;
             color: #181c32;
         }
 
-        .expenses-card .card-icon {
+        .wallet-card .card-icon {
             width: 42px;
             height: 42px;
             border-radius: 12px;
@@ -44,25 +44,111 @@
             justify-content: center;
         }
 
-        /*.expenses-card .card-icon svg rect,*/
-        /*.expenses-card .card-icon svg path {*/
+        /*.wallet-card .card-icon svg rect,*/
+        /*.wallet-card .card-icon svg path {*/
         /*    fill: #3699ff !important;*/
         /*}*/
 
-        .expenses-body {
+        .wallet-body {
             padding: 28px;
             background: #ffffff;
+            overflow: visible !important;
         }
 
-        .expenses-filter-box {
+        .wallet-stat-card {
+            position: relative;
+            min-height: 160px;
+            border-radius: 20px;
+            padding: 22px;
+            margin-bottom: 22px;
+            overflow: hidden;
+            box-shadow: 0 14px 32px rgba(24, 28, 50, 0.10);
+            transition: all 0.18s ease;
+        }
+
+        .wallet-stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 38px rgba(24, 28, 50, 0.14);
+        }
+
+        .wallet-stat-card::before {
+            content: "";
+            position: absolute;
+            top: -55px;
+            left: -55px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .wallet-stat-card::after {
+            content: "";
+            position: absolute;
+            bottom: -70px;
+            right: -70px;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .wallet-stat-expenses {
+            background: linear-gradient(135deg, #1C6DD0, #3699ff);
+        }
+
+        .wallet-stat-collections {
+            background: linear-gradient(135deg, #16C79A, #20d8aa);
+        }
+
+        .wallet-stat-rest {
+            background: linear-gradient(135deg, #e54e6b, #f06b84);
+        }
+
+        .wallet-stat-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+        }
+
+        .wallet-stat-title {
+            margin: 0 0 20px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .wallet-stat-value {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 1;
+            word-break: break-word;
+        }
+
+        .wallet-stat-icon {
+            position: absolute;
+            left: 22px;
+            bottom: 22px;
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.95;
+        }
+
+        .wallet-filter-box {
             background: #fbfcfe;
             border: 1px solid #edf0f5;
             border-radius: 16px;
             padding: 22px;
-            margin-bottom: 26px;
+            margin: 8px 0 26px;
+            overflow: visible !important;
+            position: relative;
+            z-index: 5;
         }
 
-        .expenses-section-title {
+        .wallet-section-title {
             font-size: 16px;
             font-weight: 800;
             color: #181c32;
@@ -72,7 +158,7 @@
             gap: 8px;
         }
 
-        .expenses-section-title::before {
+        .wallet-section-title::before {
             content: "";
             width: 5px;
             height: 18px;
@@ -81,45 +167,18 @@
             display: inline-block;
         }
 
-        .expenses-page .form-group label {
+        .wallet-page .form-group label {
             font-weight: 700;
             color: #3f4254;
             margin-bottom: 8px;
             font-size: 14px;
         }
 
-        .expenses-page .form-control,
-        .expenses-page .bootstrap-select > .dropdown-toggle {
-            min-height: 44px;
-            border-radius: 10px !important;
-            border: 1px solid #e4e6ef !important;
-            color: #3f4254 !important;
-            background: #ffffff !important;
-            box-shadow: none !important;
-            transition: all 0.15s ease;
-        }
-
-        .expenses-page .form-control:focus,
-        .expenses-page .bootstrap-select.show > .dropdown-toggle {
-            border-color: #3699ff !important;
-            box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
-        }
-
-        .expenses-page .bootstrap-select .filter-option {
-            text-align: right !important;
-        }
-
-        .expenses-page .dropdown-menu {
-            border-radius: 12px;
-            border: 1px solid #edf0f5;
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
-        }
-
-        .expense-date-wrapper {
+        .wallet-date-wrapper {
             width: 100%;
         }
 
-        .expense-date-group {
+        .wallet-date-group {
             width: 100%;
             height: 44px;
             display: flex;
@@ -127,7 +186,7 @@
             direction: rtl;
         }
 
-        .expense-date-button {
+        .wallet-date-button {
             width: 46px;
             min-width: 46px;
             height: 44px;
@@ -144,19 +203,19 @@
             transition: all 0.15s ease;
         }
 
-        .expense-date-button:hover {
+        .wallet-date-button:hover {
             background: #187de4;
             border-color: #187de4;
         }
 
-        .expense-date-button i {
+        .wallet-date-button i {
             color: #ffffff !important;
             font-size: 16px;
             padding: 0 !important;
             margin: 0 !important;
         }
 
-        .expense-date-group .datepicker {
+        .wallet-date-group .datepicker {
             width: 100% !important;
             height: 44px !important;
             min-height: 44px !important;
@@ -172,12 +231,12 @@
             text-align: center;
         }
 
-        .expense-date-group .datepicker:focus {
+        .wallet-date-group .datepicker:focus {
             border-color: #e4e6ef !important;
             box-shadow: none !important;
         }
 
-        .expense-date-clear {
+        .wallet-date-clear {
             width: 44px;
             min-width: 44px;
             height: 44px;
@@ -197,7 +256,7 @@
             transition: all 0.15s ease;
         }
 
-        .expense-date-clear:hover {
+        .wallet-date-clear:hover {
             background: #fff5f6;
             color: #f64e60;
         }
@@ -208,184 +267,120 @@
             z-index: 999999 !important;
         }
 
-        .expenses-actions-row {
+        .wallet-search-wrapper {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 22px;
+            justify-content: center;
+            margin-top: 16px;
         }
 
-        .expenses-search-btn,
-        .expenses-add-btn {
-            min-width: 150px;
-            height: 44px;
+        .wallet-search-btn {
+            min-width: 180px;
+            height: 46px;
             border-radius: 12px !important;
+            background: #3699ff !important;
             border: 0 !important;
             color: #ffffff !important;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 900 !important;
             display: inline-flex !important;
             align-items: center;
             justify-content: center;
             gap: 8px;
             cursor: pointer;
-            text-decoration: none !important;
+            box-shadow: 0 8px 18px rgba(54, 153, 255, 0.25);
             transition: all 0.15s ease;
         }
 
-        .expenses-search-btn {
-            background: #3699ff !important;
-            box-shadow: 0 8px 18px rgba(54, 153, 255, 0.25);
-        }
-
-        .expenses-add-btn {
-            background: #1bc5bd !important;
-            box-shadow: 0 8px 18px rgba(27, 197, 189, 0.22);
-        }
-
-        .expenses-search-btn:hover,
-        .expenses-add-btn:hover {
+        .wallet-search-btn:hover {
             transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(54, 153, 255, 0.32);
             color: #ffffff !important;
         }
 
-        .expenses-table-section {
+        .wallet-table-card {
             background: #ffffff;
             border: 1px solid #edf0f5;
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 18px;
-            overflow-x: auto;
+            margin-top: 24px;
         }
 
-        .expenses-page table.dataTable {
-            width: 100% !important;
-            border-collapse: separate !important;
-            border-spacing: 0 8px !important;
-            margin-top: 0 !important;
+        .wallet-page .table {
+            margin: 0;
+            border-collapse: separate;
+            border-spacing: 0 8px;
         }
 
-        .expenses-page table.dataTable thead th {
+        .wallet-page .table thead th {
             background: #f3f6f9;
             color: #3f4254;
-            font-weight: 800;
+            font-weight: 900;
             border: 0 !important;
             padding: 14px 12px !important;
-            white-space: nowrap;
             text-align: center;
+            white-space: nowrap;
         }
 
-        .expenses-page table.dataTable thead th:first-child {
+        .wallet-page .table thead th:first-child {
             border-radius: 0 10px 10px 0;
         }
 
-        .expenses-page table.dataTable thead th:last-child {
+        .wallet-page .table thead th:last-child {
             border-radius: 10px 0 0 10px;
         }
 
-        .expenses-page table.dataTable tbody tr {
+        .wallet-page .table tbody td {
             background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-        }
-
-        .expenses-page table.dataTable tbody td {
             border-top: 1px solid #edf0f5 !important;
             border-bottom: 1px solid #edf0f5 !important;
-            padding: 13px 12px !important;
-            vertical-align: middle !important;
-            text-align: center;
+            padding: 16px 12px !important;
             color: #3f4254;
+            font-weight: 900;
+            text-align: center;
+            vertical-align: middle;
         }
 
-        .expenses-page table.dataTable tbody td:first-child {
+        .wallet-page .table tbody td:first-child {
             border-right: 1px solid #edf0f5 !important;
             border-radius: 0 10px 10px 0;
         }
 
-        .expenses-page table.dataTable tbody td:last-child {
+        .wallet-page .table tbody td:last-child {
             border-left: 1px solid #edf0f5 !important;
             border-radius: 10px 0 0 10px;
         }
 
-        .expenses-page .dataTables_wrapper .dataTables_filter input {
-            border-radius: 10px;
-            border: 1px solid #e4e6ef;
-            min-height: 38px;
-            padding: 6px 12px;
-            margin-right: 8px;
-            box-shadow: none !important;
-        }
-
-        .expenses-page .dataTables_wrapper .dataTables_filter input:focus {
-            border-color: #3699ff;
-            box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.12) !important;
-            outline: none;
-        }
-
-        .expenses-page .dataTables_wrapper .dataTables_length select {
-            border-radius: 8px;
-            border: 1px solid #e4e6ef;
-            min-height: 36px;
-            padding: 12px 24px;
-        }
-
-        .expenses-page .dataTables_wrapper .dataTables_info {
-            color: #7e8299;
-            font-weight: 600;
-            padding-top: 16px;
-        }
-
-        .expenses-page .dataTables_wrapper .dataTables_paginate {
-            padding-top: 14px;
-        }
-
-        .expenses-page .dataTables_wrapper .dataTables_paginate .paginate_button {
-            border-radius: 8px !important;
-            border: 0 !important;
-            margin: 0 2px;
-            padding: 6px 12px !important;
-            color: #3f4254 !important;
-            background: transparent !important;
-        }
-
-        .expenses-page .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            background: #3699ff !important;
-            color: #ffffff !important;
-        }
-
-        .expenses-page .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            background: #eaf4ff !important;
-            color: #3699ff !important;
-        }
-
         @media (max-width: 768px) {
-            .expenses-body {
+            .wallet-body {
                 padding: 18px;
             }
 
-            .expenses-filter-box {
+            .wallet-filter-box {
                 padding: 16px;
             }
 
-            .expenses-actions-row {
-                flex-direction: column;
-                align-items: stretch;
+            .wallet-stat-card {
+                min-height: 145px;
+                padding: 18px;
             }
 
-            .expenses-search-btn,
-            .expenses-add-btn {
+            .wallet-stat-value {
+                font-size: 24px;
+            }
+
+            .wallet-stat-icon {
+                width: 46px;
+                height: 46px;
+            }
+
+            .wallet-search-btn {
                 width: 100%;
-            }
-
-            .expenses-table-section {
-                padding: 14px;
             }
         }
     </style>
 
-    <div class="expenses-page">
-        <div class="card card-custom gutter-b expenses-card">
+    <div class="wallet-page">
+        <div class="card card-custom gutter-b wallet-card">
             <div class="card-header">
                 <div class="card-title">
                 <span class="card-icon">
@@ -407,24 +402,54 @@
                     </span>
                 </span>
 
-                    <h3 class="card-label">المصروفات</h3>
+                    <h3 class="card-label">المحفظة</h3>
                 </div>
             </div>
 
-            <div class="card-body expenses-body">
-                <div class="expenses-filter-box">
-                    <div class="expenses-section-title">فلترة المصروفات</div>
+            <div class="card-body wallet-body">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="wallet-stat-card wallet-stat-expenses">
+                            <div class="wallet-stat-content">
+                                <h3 class="wallet-stat-title">المصروفات</h3>
+                                <div class="wallet-stat-value" id="expenses_card">{{ $expenses }}</div>
+                                <img src="{{ asset('expenses.png') }}" class="wallet-stat-icon" alt="expenses">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="wallet-stat-card wallet-stat-collections">
+                            <div class="wallet-stat-content">
+                                <h3 class="wallet-stat-title">التحصيلات</h3>
+                                <div class="wallet-stat-value" id="collections_card">{{ $allcolletions }}</div>
+                                <img src="{{ asset('revenue.png') }}" class="wallet-stat-icon" alt="collections">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="wallet-stat-card wallet-stat-rest">
+                            <div class="wallet-stat-content">
+                                <h3 class="wallet-stat-title">المتبقي</h3>
+                                <div class="wallet-stat-value" id="rest_card">{{ $rest }}</div>
+                                <img src="{{ asset('money-bag.png') }}" class="wallet-stat-icon" alt="rest">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wallet-filter-box">
+                    <div class="wallet-section-title">فلترة المحفظة</div>
 
                     <div class="row">
-                        <x-filter-component />
-
                         <div class="form-group col-lg-4 col-md-8 mx-auto">
                             <label>فترة التقرير</label>
 
-                            <div class="expense-date-wrapper">
-                                <div class="expense-date-group">
+                            <div class="wallet-date-wrapper">
+                                <div class="wallet-date-group">
                                     <button type="button"
-                                            class="expense-date-button"
+                                            class="wallet-date-button"
                                             id="openDatePicker">
                                         <i class="fa fa-calendar"></i>
                                     </button>
@@ -437,7 +462,7 @@
                                            placeholder="اختر فترة التقرير">
 
                                     <button type="button"
-                                            class="expense-date-clear"
+                                            class="wallet-date-clear"
                                             id="clearDate"
                                             title="مسح التاريخ">
                                         ×
@@ -447,34 +472,83 @@
                         </div>
                     </div>
 
-                    <div class="expenses-actions-row">
-                    <span id="btn" class="btn btn-sm expenses-search-btn">
-                        <i class="fa fa-search"></i>
-                        بحث
-                    </span>
-
-                        <a class="btn btn-sm expenses-add-btn"
-                           href="{{ route('expenses.create') }}">
-                            <i class="fa fa-plus"></i>
-                            إضافة
-                        </a>
+                    <div class="wallet-search-wrapper">
+                        <button type="button"
+                                id="btn"
+                                class="btn btn-primary wallet-search-btn"
+                                onclick="walletfilter()">
+                            <i class="fa fa-search"></i>
+                            بحث
+                        </button>
                     </div>
                 </div>
 
-                <div class="expenses-table-section">
-                    {!! $dataTable->table([
+                <div class="wallet-table-card">
+                    <div class="table-responsive">
+                        <table class="table" id="invoice_table">
+                            <thead>
+                            <tr>
+                                <th>المصروفات</th>
+                                <th>التحصيلات</th>
+                                <th>المتبقي</th>
+                            </tr>
+                            </thead>
 
-                    ], true) !!}
+                            <tbody>
+                            <tr>
+                                <td><span id="expenses"></span></td>
+                                <td><span id="collections"></span></td>
+                                <td><span id="rest"></span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 
-@section('scripts')
-    {{ $dataTable->scripts() }}
-
+@section("scripts")
     <script>
+        function walletfilter() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "post",
+                url: `walletfilter`,
+                dataType: "Json",
+                data: {
+                    'datepicker': $("#datepicker").val(),
+                },
+                success: function(result) {
+                    if (result.status == true) {
+                        $("#expenses").empty();
+                        $("#expenses").text(result.expenses);
+
+                        $("#rest").empty();
+                        $("#rest").text(result.rest);
+
+                        $("#collections").empty();
+                        $("#collections").text(result.collections);
+
+                        $("#expenses_card").empty();
+                        $("#expenses_card").text(result.expenses);
+
+                        $("#rest_card").empty();
+                        $("#rest_card").text(result.rest);
+
+                        $("#collections_card").empty();
+                        $("#collections_card").text(result.collections);
+                    }
+                }
+            });
+        }
+
         $(document).ready(function() {
             $("#datepicker").val('');
 
@@ -542,22 +616,14 @@
                 e.stopPropagation();
 
                 $('#datepicker').val('');
-                $('#dataTableBuilder').DataTable().ajax.reload();
-            });
 
-            $('#dataTableBuilder').on('preXhr.dt', function(e, settings, data) {
-                data.datepicker1 = $('#datepicker').val();
-                data.country_id = $('#country').val() || 0;
-                data.state_id = $('#state').val() || 0;
-                data.city_id = $('#city').val() || 0;
-                data.zone_id = $('#zone').val() || 0;
-            });
+                if ($('#datepicker').data('daterangepicker')) {
+                    $('#datepicker').data('daterangepicker').setStartDate(moment());
+                    $('#datepicker').data('daterangepicker').setEndDate(moment());
+                }
 
-            $("#btn").on("click", function() {
-                $('#dataTableBuilder').DataTable().ajax.reload();
-                return false;
+                walletfilter();
             });
         });
-
     </script>
 @endsection

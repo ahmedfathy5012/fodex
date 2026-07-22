@@ -2,63 +2,129 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\ExpenseType;
-use App\Models\Income;
 use App\DataTables\IncomeDataTable;
 use App\Models\AllcollectionType;
+use App\Models\Income;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\View\View;
+
 class IncomeController extends Controller
 {
-   public function index(IncomeDataTable $dataTable)
+    /**
+     * Determine the Blade view according to the environment.
+     */
+    private function incomeView(string $page): string
     {
+        return app()->environment('production')
+            ? "admindashboard.incomes.$page"
+            : "admindashboard.incomes.V2.$page";
+    }
 
-        return $dataTable->render('admindashboard.incomes.index');
-    
-  }
+    /**
+     * Display incomes list.
+     */
+    public function index(IncomeDataTable $dataTable)
+    {
+        return $dataTable->render($this->incomeView('index'));
+    }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create()
-  {
-      $expenses = AllcollectionType::all();
-    return view('admindashboard.incomes.create')->with('expenses',$expenses);
-  }
+    /**
+     * Show the form for creating a new income.
+     */
+    public function create(): View
+    {
+        $expenses = AllcollectionType::query()
+            ->orderBy('name')
+            ->get();
 
- 
-  public function store(Request $request)
-  {
- 
-    $income = new Income;
-    $income->value = $request->value;
-    $income->employee_id = auth()->id();
-     $income->collectiontype_id = $request->collectiontype_id;
-    $income->save();
-    return redirect()->route('incomes.index');
-  }
+        return view(
+            $this->incomeView('create'),
+            compact('expenses')
+        );
+    }
 
- 
-  public function edit($id)
-  {
-   
-  }
-  public function update(Request $request,$id)
-  {
- 
-  }
+    /**
+     * Store a new income.
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $collectionTypeTable = (new AllcollectionType())->getTable();
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function destroy($id)
-  {
-     $income = Income::where('id',$id)->first();
-     $income->delete();
-     return response()->json(['status' => true]);
-  }
+        $validated = $request->validate([
+            'collectiontype_id' => [
+                'required',
+                Rule::exists($collectionTypeTable, 'id'),
+            ],
+            'value' => [
+                'required',
+                'numeric',
+                'min:0',
+            ],
+        ], [
+            'collectiontype_id.required' => 'نوع الإيراد مطلوب.',
+            'collectiontype_id.exists' => 'نوع الإيراد المحدد غير صحيح.',
+            'value.required' => 'قيمة الإيراد مطلوبة.',
+            'value.numeric' => 'قيمة الإيراد يجب أن تكون رقمًا.',
+            'value.min' => 'قيمة الإيراد لا يمكن أن تكون أقل من صفر.',
+        ]);
+
+        $collectionType = AllcollectionType::findOrFail(
+            $validated['collectiontype_id']
+        );
+
+        $income = new Income();
+        $income->collectiontype_id = $collectionType->id;
+
+        /*
+         * نستخدم القيمة الموجودة في نوع التحصيل.
+         * وفي حالة عدم وجودها نستخدم القيمة القادمة من الفورم.
+         */
+        $income->value = $collectionType->value ?? $validated['value'];
+
+        /*
+         * هذا هو نفس المستخدم الذي ستتم إضافته
+         * إلى استعلام DataTable حتى يظهر الإيراد.
+         */
+        $income->employee_id = auth()->id();
+
+        $income->save();
+
+        return redirect()
+            ->route('incomes.index')
+            ->with('success', 'تمت إضافة الإيراد بنجاح.');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource.
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Delete income.
+     */
+    public function destroy($id): JsonResponse
+    {
+        $income = Income::findOrFail($id);
+
+        $income->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'تم حذف الإيراد بنجاح.',
+        ]);
+    }
 }

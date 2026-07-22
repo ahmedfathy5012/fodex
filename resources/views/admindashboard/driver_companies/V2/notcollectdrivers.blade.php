@@ -44,10 +44,10 @@
             justify-content: center;
         }
 
-        .driver-companies-card .card-icon svg path,
-        .driver-companies-card .card-icon svg rect {
-            fill: #3699ff !important;
-        }
+        /*.driver-companies-card .card-icon svg path,*/
+        /*.driver-companies-card .card-icon svg rect {*/
+        /*    fill: #3699ff !important;*/
+        /*}*/
 
         .driver-companies-toolbar {
             display: flex;
