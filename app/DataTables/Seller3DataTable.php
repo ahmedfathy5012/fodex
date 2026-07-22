@@ -32,7 +32,7 @@ class Seller3DataTable extends DataTable
                     return '<a href="'.route("seller.show",$seller->id).'">'.$seller->name.'</a>';
 
             })
-           ->addColumn('action', 'admindashboard.sellers.V2.notcollectaction')
+           ->addColumn('action','admindashboard.sellers.V2.notcollectaction')
 
             ->rawColumns([
            'action',
